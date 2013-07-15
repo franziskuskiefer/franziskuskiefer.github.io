@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Franziskus Kiefer by franziskuskiefer</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <link rel="stylesheet" href="stylesheets/bib-publication-list.css"/>
+    <script src="javascripts/jquery-1.10.1.min.js" type="text/javascript"></script>
+    <script src="javascripts/bib-list-min.js" type="text/javascript"></script>
+    <script src="javascripts/scale.fix.js" type="text/javascript"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="without-description">
+        <h1><a href="./">Franziskus Kiefer</a></h1>
+        <p></p>
+        <!--<p class="view"><a href="http://franziskuskiefer.github.io/publications">Publications <small>franziskuskiefer</small></a></p>
+        <ul>
+          <li><a href="publications.html">GoTo<strong>Publications</strong></a></li>
+        </ul>-->
+      </header>
+      <section>
+	<table id="pubTable" class="display"></table>
+	<script type="text/javascript">
+	    $(document).ready(function() {
+		bibtexify("data/publications.bib", "pubTable");
+		return true;
+	    });
+	</script>
+      </section>
+    </div>
+    <footer>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
