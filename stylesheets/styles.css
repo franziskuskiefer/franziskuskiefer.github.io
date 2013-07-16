@@ -181,6 +181,7 @@ table {
   text-align: left;
  }
 
+/*
 th {
   font-family: 'Arvo', Helvetica, Arial, sans-serif;
 	font-size: 18px;
@@ -194,7 +195,7 @@ td {
   padding: 10px;
 	background: #ccc;
  }
-
+*/
 
 /* Wrapper */
 .wrapper {
@@ -251,55 +252,73 @@ a.name {
 header ul {
   list-style:none;
   padding:0;
+
+    position:relative;
+    right:25px;
+    top:0px;
 }
 
 header li {
 	list-style-type: none;
-  width:132px;
-  height:15px;
+}
+
+header a.buttons{
+	
+  	width:132px;
+  	height:15px;
 	margin-bottom: 12px;
 	line-height: 1em;
 	padding: 6px 6px 6px 7px;
 
 	background: #AF0011;
 	background: -moz-linear-gradient(top, #AF0011 0%, #820011 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f8f8f8), color-stop(100%,#dddddd));
-  background: -webkit-linear-gradient(top, #AF0011 0%,#820011 100%);
-  background: -o-linear-gradient(top, #AF0011 0%,#820011 100%);
-  background: -ms-linear-gradient(top, #AF0011 0%,#820011 100%);
-  background: linear-gradient(top, #AF0011 0%,#820011 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f8f8f8), color-stop(100%,#dddddd));
+	background: -webkit-linear-gradient(top, #AF0011 0%,#820011 100%);
+	background: -o-linear-gradient(top, #AF0011 0%,#820011 100%);
+	background: -ms-linear-gradient(top, #AF0011 0%,#820011 100%);
+	background: linear-gradient(top, #AF0011 0%,#820011 100%);
 
 	border-radius:4px;
-  border:1px solid #0D0D0D;
+	border:1px solid #0D0D0D;
 
 	-webkit-box-shadow: inset 0px 1px 1px 0 rgba(233,2,38, 1);
 	box-shadow: inset 0px 1px 1px 0 rgba(233,2,38, 1);
 
 }
 
-header li:hover {
+header a.buttons:hover {
 	background: #C3001D;
 	background: -moz-linear-gradient(top, #C3001D 0%, #950119 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f8f8f8), color-stop(100%,#dddddd));
-  background: -webkit-linear-gradient(top, #C3001D 0%,#950119 100%);
-  background: -o-linear-gradient(top, #C3001D 0%,#950119 100%);
-  background: -ms-linear-gradient(top, #C3001D 0%,#950119 100%);
-  background: linear-gradient(top, #C3001D 0%,#950119 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f8f8f8), color-stop(100%,#dddddd));
+	background: -webkit-linear-gradient(top, #C3001D 0%,#950119 100%);
+	background: -o-linear-gradient(top, #C3001D 0%,#950119 100%);
+	background: -ms-linear-gradient(top, #C3001D 0%,#950119 100%);
+	background: linear-gradient(top, #C3001D 0%,#950119 100%);
+}
+
+header a.links:before {
+    content: url('../images/arrow-down.png');
 }
 
 a.buttons {
 	-webkit-font-smoothing: antialiased;
-	background: url(../images/arrow-down.png) no-repeat;
+	/*
+	background: url(../images/arrow-down.png) no-repeat 0px -2px;
+	padding: 2px 2px 2px 22px;
+	height: 40px;
+	*/
 	font-weight: normal;
 	text-shadow: rgba(0, 0, 0, 0.4) 0 -1px 0;
-	padding: 2px 2px 2px 22px;
-	height: 30px;
+	display:block;
 }
 
-a.github {
-	background: url(../images/octocat-small.png) no-repeat 1px;
+/*
+a.github:before {
+	background: url(../images/octocat-small.png) no-repeat 0px -2px;
+	content: url('../images/octocat-small.png');
+	padding: 0px 0px 10px 0px !important;
 }
-
+*/
 a.buttons:hover {
 	color: #fff;
 	text-decoration: none;
@@ -318,11 +337,12 @@ section {
 /* Footer */
 
 footer {
-  width:170px;
+  width:250px;
   float:left;
   position:fixed;
   bottom:10px;
-	padding-left: 50px;
+	padding-left: 5px;
+	font-size:70%
 }
 
 @media print, screen and (max-width: 960px) {
