@@ -95,7 +95,7 @@
 	type = {Master Thesis},
 	research_area = {Cryptographic Protocols, CASED},
 	organization = {Department of Computer Science},
-	url = {http://www.franziskuskiefer.de/data/MasterThesis.pdf}
+	url = {https://dl.dropboxusercontent.com/u/188585/data/MasterThesis.pdf}
 }
 
 @misc{cryptoeprint:2013:127,
