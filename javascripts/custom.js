@@ -20,3 +20,7 @@ function UnCryptMailto( s )
         location.href=mail;
 //	alert("You can contact me at "+mail);
     }
+
+function loadPage(page){
+	$('#mainContent').load(page);
+}
