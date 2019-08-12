@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Publications on FK</title>
+    <link>https://franziskuskiefer.de/publications/</link>
+    <description>Recent content in Publications on FK</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 01 Jan 2000 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://franziskuskiefer.de/publications/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>An efficient mobile PACE implementation</title>
+      <link>https://franziskuskiefer.de/publications/pace/</link>
+      <pubDate>Sat, 01 Jan 2000 00:00:00 +0000</pubDate>
+      
+      <guid>https://franziskuskiefer.de/publications/pace/</guid>
+      <description>Many future electronic identity cards will be equipped with a contact-less interface. Analysts expect that a significant proportion of future mobile phones support Near Field Communication (NFC) technology. Thus, it is a reasonable approach to use the cell phone as mobile smart card terminal, which in particular supports the Password Authenticated Connection Establishment (PACE) protocol to ensure user consent and to protect the wireless interface between the mobile phone and the smart card.</description>
+    </item>
+    
+    <item>
+      <title>Blind Password Registration for Two-Server Password Authenticated Key Exchange and Secret Sharing Protocols</title>
+      <link>https://franziskuskiefer.de/publications/2bpr/</link>
+      <pubDate>Sat, 01 Jan 2000 00:00:00 +0000</pubDate>
+      
+      <guid>https://franziskuskiefer.de/publications/2bpr/</guid>
+      <description>Many organisations enforce policies on the length and formation of passwords to encourage selection of strong passwords and protect their multi-user systems. For Two-Server Password Authenticated Key Exchange (2PAKE) and Two-Server Password Authenticated Secret Sharing (2PASS) protocols, where the password chosen by the client is secretly shared between the two servers, the initial remote registration of policy-compliant passwords represents a major problem because none of the servers is supposed to know the password in clear.</description>
+    </item>
+    
+    <item>
+      <title>Blind Password Registration for Verifier-based PAKE</title>
+      <link>https://franziskuskiefer.de/publications/bpr/</link>
+      <pubDate>Sat, 01 Jan 2000 00:00:00 +0000</pubDate>
+      
+      <guid>https://franziskuskiefer.de/publications/bpr/</guid>
+      <description>We propose Blind Password Registration (BPR), a new class of cryptographic protocols that is instrumental for secure registration of client passwords at remote servers with additional protection against unwitting password disclosures on the server side that may occur due to the lack of the state-of-the-art password protection mechanisms implemented by the server or due to common server-compromise attacks. The dictionary attack resistance property of BPR protocols guarantees that the only information available to the server during and after the execution of the protocol cannot be used to reveal the client password without performing an offline dictionary attack on a password verifier (e.</description>
+    </item>
+    
+    <item>
+      <title>Distributed Smooth Projective Hashing and its Application to Two-Server Password Authenticated Key Exchange</title>
+      <link>https://franziskuskiefer.de/publications/dsphf/</link>
+      <pubDate>Sat, 01 Jan 2000 00:00:00 +0000</pubDate>
+      
+      <guid>https://franziskuskiefer.de/publications/dsphf/</guid>
+      <description>Smooth projective hash functions have been used as building block for various cryptographic applications, in particular for password-based authentication. In this work we propose the extended concept of distributed smooth projective hash functions where the computation of the hash value is distributed across $n$ parties and show how to instantiate the underlying approach for languages consisting of Cramer-Shoup ciphertexts. As an application of distributed smooth projective hashing we build a new framework for the design of two-server password authenticated key exchange protocols, which we believe can help to &amp;ldquo;explain&amp;rdquo; the design of earlier two-server password authenticated key exchange protocols.</description>
+    </item>
+    
+    <item>
+      <title>Group Signatures: Privacy-Preserving Authentication Methods</title>
+      <link>https://franziskuskiefer.de/publications/gs/</link>
+      <pubDate>Sat, 01 Jan 2000 00:00:00 +0000</pubDate>
+      
+      <guid>https://franziskuskiefer.de/publications/gs/</guid>
+      <description>Group signatures are cryptographic privacy-preserving authentication mechanisms. Potential signers are formed into a group, which is managed by a usually centralized authority (group manager). Each group member being in possession of a (valid) membership certificate can sign documents on behalf of the whole group. In addition to various forms of unforgeability the distinguished privacy property of group signatures is that they do not leak any information about the actual signer, except for the validity of the signer&amp;rsquo;s membership in the group.</description>
+    </item>
+    
+    <item>
+      <title>Oblivious PAKE: Efficient Handling of Password Trials</title>
+      <link>https://franziskuskiefer.de/publications/opake/</link>
+      <pubDate>Sat, 01 Jan 2000 00:00:00 +0000</pubDate>
+      
+      <guid>https://franziskuskiefer.de/publications/opake/</guid>
+      <description>In this work we introduce the notion of Oblivious Password based Authenticated Key Exchange (O-PAKE) and a general compiler to transform a large class of PAKE into O-PAKE protocols. O-PAKE allows a client that shares one password with a server to use a set of passwords within one PAKE session. It succeeds if and only if one of those input passwords matches the one stored on the server side. The term oblivious is used to emphasize that no information about any password, input by the client, is made available to the server.</description>
+    </item>
+    
+    <item>
+      <title>Practical Security in E-Mail Applications</title>
+      <link>https://franziskuskiefer.de/publications/bird/</link>
+      <pubDate>Sat, 01 Jan 2000 00:00:00 +0000</pubDate>
+      
+      <guid>https://franziskuskiefer.de/publications/bird/</guid>
+      <description>This paper deals with practicability issues of encrypted e-mails. A quick survey on the status quo indicates that popular e-mail clients lack substantial practicability qualities, for example searching in encrypted e-mails. Other approaches such as De-Mail provide solutions, but offer transport encryption only. We present and discuss a number of improvements to the practicability of e-mail encryption. These enable efficient searching in encrypted e-mails as well as subject encryption and the use of cryptographic functions in calendar applications.</description>
+    </item>
+    
+    <item>
+      <title>Pseudorandom Signatures</title>
+      <link>https://franziskuskiefer.de/publications/prs/</link>
+      <pubDate>Sat, 01 Jan 2000 00:00:00 +0000</pubDate>
+      
+      <guid>https://franziskuskiefer.de/publications/prs/</guid>
+      <description>We develop a three-level hierarchy of privacy notions for (unforgeable) digital signature schemes. We first prove mutual independence of existing notions of anonymity and confidentiality, and then show that these are implied by higher privacy goals. The top notion in our hierarchy is pseudorandomness signatures with this property hide the entire information about the signing process and cannot be recognized as signatures when transmitted over a public network. This implies very strong unlinkability guarantees across different signers and even different signing algorithms, and gives rise to new forms of private public-key authentication.</description>
+    </item>
+    
+    <item>
+      <title>Revocation and Non-repudiation: When the First Destroys the Latter</title>
+      <link>https://franziskuskiefer.de/publications/europki/</link>
+      <pubDate>Sat, 01 Jan 2000 00:00:00 +0000</pubDate>
+      
+      <guid>https://franziskuskiefer.de/publications/europki/</guid>
+      <description>Electronic signatures replace handwritten signatures in electronic processes. In this context, non-repudiation is one of the most desired properties yet in practice it cannot be provided by the signature schemes themselves. Therefore, additional mechanisms in the underlying public key infrastructure are required. In this work, we present a formal treatment of that issue. We extend the formal model for public key infrastructures by Maurer introducing transitions to make it dynamic. We use the extended model to evaluate the relationship between non-repudiation and revocation and prove that backdated revocation always destroys the non-repudiation property.</description>
+    </item>
+    
+    <item>
+      <title>Secure Set-based Policy Checking and Its Application to Password Registration</title>
+      <link>https://franziskuskiefer.de/publications/spc/</link>
+      <pubDate>Sat, 01 Jan 2000 00:00:00 +0000</pubDate>
+      
+      <guid>https://franziskuskiefer.de/publications/spc/</guid>
+      <description>Policies are the corner stones of today&amp;rsquo;s computer systems. They define secure states and safe operations. A common problem with policies is that their enforcement is often in conflict with user privacy. In order to check the satisfiability of a policy, a server usually needs to collect from a client some information which may be private. In this work we introduce the notion of secure set-based policy checking (SPC) that allows the server to verify policies while preserving the client&amp;rsquo;s privacy.</description>
+    </item>
+    
+    <item>
+      <title>Secure modular password authentication for the web using channel bindings</title>
+      <link>https://franziskuskiefer.de/publications/smpa/</link>
+      <pubDate>Sat, 01 Jan 2000 00:00:00 +0000</pubDate>
+      
+      <guid>https://franziskuskiefer.de/publications/smpa/</guid>
+      <description>Secure protocols for password-based user authentication are well-studied in the cryptographic literature but have failed to see wide-spread adoption on the Internet; most proposals to date require extensive modifications to the Transport Layer Security (TLS) protocol, making deployment challenging. Recently, a few modular designs have been proposed in which a cryptographically secure password-based mutual authentication protocol is run inside a confidential (but not necessarily authenticated) channel such as TLS; the password protocol is bound to the established channel to prevent active attacks.</description>
+    </item>
+    
+    <item>
+      <title>Universally Composable Two-Server PAKE</title>
+      <link>https://franziskuskiefer.de/publications/uc2pake/</link>
+      <pubDate>Sat, 01 Jan 2000 00:00:00 +0000</pubDate>
+      
+      <guid>https://franziskuskiefer.de/publications/uc2pake/</guid>
+      <description>Two-Server Password Authenticated Key Exchange (2PAKE) protocols apply secret shar-ing techniques to achieve protection against server-compromise attacks. 2PAKE protocols eliminate the need for password hashing and remain secure as long as one of the servers remains honest. This concept has also been explored in connection with two-server password authenticated secret sharing (2PASS) protocols for which game-based and universally composable versions have been proposed. In contrast, universally composable PAKE protocols exist currently only in the single-server scenario and all proposed 2PAKE protocols use game-based security deﬁnitions.</description>
+    </item>
+    
+    <item>
+      <title>Zero-Knowledge Password Policy Checks and Verifier-Based PAKE</title>
+      <link>https://franziskuskiefer.de/publications/zkppc/</link>
+      <pubDate>Sat, 01 Jan 2000 00:00:00 +0000</pubDate>
+      
+      <guid>https://franziskuskiefer.de/publications/zkppc/</guid>
+      <description>Zero-Knowledge Password Policy Checks (ZKPPC), introduced in this work, enable blind registration of client passwords at remote servers, i.e., client passwords are never transmitted to the servers. This eliminates the need for trusting servers to securely process and store client passwords. A ZKPPC protocol, executed as part of the registration procedure, allows clients to further prove compliance of chosen passwords with respect to password policies defined by the servers. The main benefit of ZKPPC-based password registration is that it guarantees that registered passwords never appear in clear on the server side.</description>
+    </item>
+    
+    <item>
+      <title>hacspec: towards verifiable crypto standard</title>
+      <link>https://franziskuskiefer.de/publications/hacspec18/</link>
+      <pubDate>Sat, 01 Jan 2000 00:00:00 +0000</pubDate>
+      
+      <guid>https://franziskuskiefer.de/publications/hacspec18/</guid>
+      <description>We present hacspec, a collaborative effort to design a formal specification language for cryptographic primitives. Specifications (specs) written in hacspec are succinct, easy to read and implement, and lend themselves to formal verification using a variety of existing tools. The syntax of hacspec is similar to the pseudocode used in cryptographic standards but is equipped with a static type system and syntax checking tools that can find errors. Specs written in hacspec are executable and can hence be tested against test vectors taken from standards and specified in a common format.</description>
+    </item>
+    
+  </channel>
+</rss>

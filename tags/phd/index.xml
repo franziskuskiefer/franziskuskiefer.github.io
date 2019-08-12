@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>phd on FK</title>
+    <link>https://franziskuskiefer.de/tags/phd/</link>
+    <description>Recent content in phd on FK</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 06 Mar 2015 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://franziskuskiefer.de/tags/phd/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Submitting through Editorial Manager</title>
+      <link>https://franziskuskiefer.de/post/editorial-manager/</link>
+      <pubDate>Fri, 06 Mar 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://franziskuskiefer.de/post/editorial-manager/</guid>
+      <description>Today I had to submit a paper through the Editorial Manager (used by Springer) for the first time. Needless to say that it&amp;rsquo;s not as easy as it sounds. Therefore here some helpful links for everyone having to do the same. I ended up putting the references in the .tex file as nothing else worked for me.
+ http://www.bartneck.de/2010/09/30/submitting-your-latex-manuscript-to-editorial-manager-springer-elsevier/ http://drezha.me.uk/post/22719621060/submitting-a-springerlink-elsvier-journal-using  </description>
+    </item>
+    
+  </channel>
+</rss>

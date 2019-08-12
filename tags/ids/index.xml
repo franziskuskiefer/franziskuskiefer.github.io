@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ids on FK</title>
+    <link>https://franziskuskiefer.de/tags/ids/</link>
+    <description>Recent content in ids on FK</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 05 Oct 2014 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://franziskuskiefer.de/tags/ids/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Snort, Barnyard2 &amp; Snorby</title>
+      <link>https://franziskuskiefer.de/post/snort/</link>
+      <pubDate>Sun, 05 Oct 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://franziskuskiefer.de/post/snort/</guid>
+      <description>This post is work in progress but I never got around to finishing it. Sorry
+After a first failed attempt to install Snorby on an Arch Linux server (Snorby requires Ruby 1.9.x, Arch uses 2.x and I&amp;rsquo;m not willing to use the AUR version for this) I&amp;rsquo;m doing this on a Ubuntu 14.04 Server.
+Snort Before installing Snorby we have to install snort itself. This can be done with sudo apt-get install snort.</description>
+    </item>
+    
+  </channel>
+</rss>

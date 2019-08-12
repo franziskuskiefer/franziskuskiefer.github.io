@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>linux on FK</title>
+    <link>https://franziskuskiefer.de/tags/linux/</link>
+    <description>Recent content in linux on FK</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 12 Oct 2014 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://franziskuskiefer.de/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>OpenVPN HowTo</title>
+      <link>https://franziskuskiefer.de/post/openvpn/</link>
+      <pubDate>Sun, 12 Oct 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://franziskuskiefer.de/post/openvpn/</guid>
+      <description>OpenPVN is an easy to set-up and use VPN solution that offer TUN/TAP support. In this tutorial I describe how to set-up an OpenVPN connection between a Ubuntu server and an Arch client.
+Preparations (Server) First we have to install OpenVPN on the server.
+# apt-get install openvpn To see whether TUN/TAP is enabled in the kernel we can check the kernel log grep tun /var/log/kern.log and load it if it doesn&amp;rsquo;t show up modprobe tun.</description>
+    </item>
+    
+  </channel>
+</rss>

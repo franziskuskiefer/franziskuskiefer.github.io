@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://franziskuskiefer.de/tags/hacl/</loc>
+    <lastmod>2018-11-30T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/tags/</loc>
+    <lastmod>2018-11-30T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/post/hacspec2/</loc>
+    <lastmod>2018-11-30T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/</loc>
+    <lastmod>2018-11-30T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/tags/formal-verification/</loc>
+    <lastmod>2018-11-30T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/tags/specs/</loc>
+    <lastmod>2018-11-30T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/tags/mozilla/</loc>
+    <lastmod>2018-11-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/post/surf-london-2018/</loc>
+    <lastmod>2018-11-19T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/tags/surf/</loc>
+    <lastmod>2018-11-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/tags/conference/</loc>
+    <lastmod>2018-11-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/tags/nss/</loc>
+    <lastmod>2018-04-12T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/post/hacl-nss-integration/</loc>
+    <lastmod>2018-04-12T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/post/hacl-star/</loc>
+    <lastmod>2018-02-14T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/post/hacspec1/</loc>
+    <lastmod>2018-02-08T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/post/cve-2017-5462/</loc>
+    <lastmod>2017-08-31T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/tags/prng/</loc>
+    <lastmod>2017-08-31T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/post/new-blog/</loc>
+    <lastmod>2017-08-29T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/tags/orga/</loc>
+    <lastmod>2017-08-29T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/tags/website/</loc>
+    <lastmod>2017-08-29T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/post/aes-gcm-speedup/</loc>
+    <lastmod>2017-06-27T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/tags/speed/</loc>
+    <lastmod>2017-06-27T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/post/</loc>
+    <lastmod>2017-03-02T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/post/constant-time-division/</loc>
+    <lastmod>2016-12-28T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/tags/constant-time/</loc>
+    <lastmod>2016-12-28T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/post/nss-static-analysis/</loc>
+    <lastmod>2016-05-25T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/tags/static-analysis/</loc>
+    <lastmod>2016-05-25T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/tags/firefox/</loc>
+    <lastmod>2016-01-02T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/post/raw-github/</loc>
+    <lastmod>2016-01-02T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/tags/github/</loc>
+    <lastmod>2016-01-02T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/post/editorial-manager/</loc>
+    <lastmod>2015-03-06T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/tags/phd/</loc>
+    <lastmod>2015-03-06T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/tags/university/</loc>
+    <lastmod>2015-03-06T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/post/openvpn/</loc>
+    <lastmod>2014-10-12T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/tags/linux/</loc>
+    <lastmod>2014-10-12T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/tags/openvpn/</loc>
+    <lastmod>2014-10-12T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/post/snort/</loc>
+    <lastmod>2014-10-05T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/tags/barnyard2/</loc>
+    <lastmod>2014-10-05T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/tags/ids/</loc>
+    <lastmod>2014-10-05T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/tags/snort/</loc>
+    <lastmod>2014-10-05T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/post/pgflibraryfadings/</loc>
+    <lastmod>2014-09-01T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/tags/latex/</loc>
+    <lastmod>2014-09-01T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/post/displaymath/</loc>
+    <lastmod>2014-08-17T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/publications/pace/</loc>
+    <lastmod>2000-01-01T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/publications/2bpr/</loc>
+    <lastmod>2000-01-01T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/publications/bpr/</loc>
+    <lastmod>2000-01-01T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/publications/dsphf/</loc>
+    <lastmod>2000-01-01T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/publications/gs/</loc>
+    <lastmod>2000-01-01T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/publications/opake/</loc>
+    <lastmod>2000-01-01T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/publications/bird/</loc>
+    <lastmod>2000-01-01T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/publications/prs/</loc>
+    <lastmod>2000-01-01T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/publications/</loc>
+    <lastmod>2000-01-01T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/publications/europki/</loc>
+    <lastmod>2000-01-01T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/publications/spc/</loc>
+    <lastmod>2000-01-01T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/publications/smpa/</loc>
+    <lastmod>2000-01-01T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/publications/uc2pake/</loc>
+    <lastmod>2000-01-01T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/publications/zkppc/</loc>
+    <lastmod>2000-01-01T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/publications/hacspec18/</loc>
+    <lastmod>2000-01-01T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/about/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/resume/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+</urlset>

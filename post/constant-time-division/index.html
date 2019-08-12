@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+     
+    <title>FK  | On Constant Time Division</title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+     <meta name="generator" content="Hugo 0.55.6" />
+      
+      
+        <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+      
+
+     <link href='https://franziskuskiefer.de/dist/main.css' rel='stylesheet' type="text/css" />
+
+     
+
+      <meta property="og:title" content="On Constant Time Division" />
+<meta property="og:description" content="I knew you shouldn&#39;t use division but I didn&#39;t know how bad it was." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://franziskuskiefer.de/post/constant-time-division/" />
+<meta property="article:published_time" content="2016-12-28T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2016-12-28T00:00:00&#43;00:00"/>
+
+<meta itemprop="name" content="On Constant Time Division">
+<meta itemprop="description" content="I knew you shouldn&#39;t use division but I didn&#39;t know how bad it was.">
+
+
+<meta itemprop="datePublished" content="2016-12-28T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2016-12-28T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="341">
+
+
+
+<meta itemprop="keywords" content="constant-time,NSS," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="On Constant Time Division"/>
+<meta name="twitter:description" content="I knew you shouldn&#39;t use division but I didn&#39;t know how bad it was."/>
+
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  
+  
+  <header class="cover bg-top" style="background-image: url('https://franziskuskiefer.de/images/plot_low-1.png');">
+    <div class="pb3-m pb6-l bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="https://franziskuskiefer.de/" class="f3 fw2 hover-white no-underline white-90 dib">
+      FK
+    </a>
+    <div class="flex-l items-center">
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/about/" title="About page">
+              About
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/post/" title="Articles page">
+              Articles
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/publications/" title="Publications page">
+              Publications
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/resume/" title="Resume page">
+              Resume
+            </a>
+          </li>
+          
+        </ul>
+      
+      
+
+
+
+  <a href="https://twitter.com/_franziskus_" class="link-transition twitter link dib z-999 pt3 pt0-l mr2" title="Twitter link">
+    <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+  </a>
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        <h1 class="f2 f1-l fw2 white-90 mb0 lh-title">On Constant Time Division</h1>
+        
+          <h2 class="fw1 f5 f3-l white-80 measure-wide-l center lh-copy mt3 mb4">
+            I knew you shouldn&#39;t use division but I didn&#39;t know how bad it was.
+          </h2>
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  <div class="flex-l mt2 mw8 center">
+    <article class="center cf pv5 ph3 ph4-ns mw7">
+      <p class="f6 b helvetica tracked">
+        
+        POST
+      </p>
+      <h1 class="f1 athelas">
+        On Constant Time Division
+      </h1>
+        
+        
+      <time class="f6 mv4 dib tracked" datetime="2016-12-28T00:00:00Z">
+        December 28, 2016
+      </time>
+      <section class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray">
+        
+
+<p>Writing constant time code is hard. We all know that. But I&rsquo;m always amazed again on how difficult it is. In preparation for making NSS more constant time I looked into certain CPU instructions that are known to be not constant time.
+So I wrote a little thing to measure the time (CPU cycles) needed for division.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-asm" data-lang="asm">    <span style="color:#a6e22e">div</span>     <span style="color:#66d9ef">rcx</span>                     <span style="color:#960050;background-color:#1e0010">;</span> <span style="color:#66d9ef">eax</span> <span style="color:#66d9ef">is</span> <span style="color:#66d9ef">now</span> <span style="color:#66d9ef">a</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#66d9ef">b</span></code></pre></div>
+<p>The CPU I&rsquo;m using in this post is an Intel i7-4790 (haswell). Running the same measurements on other processors architectures will most likely yield different results. I&rsquo;m describing two experiments I did. First, I look at bits in the divisor and how they influence the timing of the division. And then I look at the dividend and its influence.</p>
+
+<h1 id="the-divisor">The Divisor</h1>
+
+<p>There are two interesting things we can look at here. The very small divisors as well as the pattern that we get in larger divisors.</p>
+
+<h2 id="129">&lt; 129</h2>
+
+<figure><a href="../../images/plot_low-1.png">
+    <img src="../../images/plot_low-1.png"/> </a>
+</figure>
+
+
+<p>This graph plots the number of cycles needed for the division of numbers &lt; 130. It&rsquo;s easy to see that the number of cycles needed is in general around 300. However, there are a couple of &ldquo;outliers&rdquo; that need significantly less.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C">    <span style="color:#ae81ff">128</span>    <span style="color:#ae81ff">123</span>
+     <span style="color:#ae81ff">64</span>    <span style="color:#ae81ff">135</span>
+     <span style="color:#ae81ff">32</span>    <span style="color:#ae81ff">132</span>
+     <span style="color:#ae81ff">16</span>    <span style="color:#ae81ff">132</span>
+      <span style="color:#ae81ff">8</span>    <span style="color:#ae81ff">123</span>
+      <span style="color:#ae81ff">4</span>    <span style="color:#ae81ff">123</span>
+      <span style="color:#ae81ff">2</span>    <span style="color:#ae81ff">123</span>
+      <span style="color:#ae81ff">1</span>    <span style="color:#ae81ff">126</span></code></pre></div>
+<p>You might have spotted the pattern already. The CPU probably doesn&rsquo;t want to do this expensive division and simply shifts the dividend to get the result. This trend continues later on but is more difficult to observe. (And there&rsquo;s a more interesting pattern there.)</p>
+
+<h2 id="the-larger-pattern">The larger pattern</h2>
+
+<figure><a href="./../images/plot-1.png">
+    <img src="../../images/plot-1.png"/> </a>
+</figure>
+
+
+<p>The graph shows a striking pattern and makes it obvious that division is not constant-time. Let&rsquo;s try to understand what&rsquo;s happening here.</p>
+
+<p>The first part of the pattern can be explained by changing bit-lengths in the divisor. At <code>8191</code> and <code>16383</code> for example a streak of fast division ends. This is probably because the <code>8192</code> and <code>16384</code> require an additional bit each.</p>
+
+<p>However, I&rsquo;m clueless on how to explain the rest of the pattern.</p>
+
+<p>(I&rsquo;ll update this post when I figured out what&rsquo;s going on.)</p>
+
+      </section>
+      
+
+  
+  
+  
+  
+  
+
+
+    </article>
+  </div>
+
+    </main>
+    <footer class="bg-near-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://franziskuskiefer.de/" >
+    &copy; 2019 FK
+  </a>
+  
+
+
+
+  <a href="https://twitter.com/_franziskus_" class="link-transition twitter link dib z-999 pt3 pt0-l mr2" title="Twitter link">
+    <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+  </a>
+
+
+
+
+  </div>
+</footer>
+
+    <script src="https://franziskuskiefer.de/dist/app.bundle.js" async></script>
+
+  </body>
+</html>
