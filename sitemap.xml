@@ -66,16 +66,16 @@
   </url>
   
   <url>
-    <loc>https://franziskuskiefer.de/tags/nss/</loc>
-    <lastmod>2018-04-12T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://franziskuskiefer.de/post/hacl-nss-integration/</loc>
     <lastmod>2018-04-12T00:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://franziskuskiefer.de/tags/nss/</loc>
+    <lastmod>2018-04-12T00:00:00+00:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
