@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>SURF on FK</title>
-    <link>https://franziskuskiefer.de/tags/surf/</link>
+    <link>https://www.franziskuskiefer.de/tags/surf/</link>
     <description>Recent content in SURF on FK</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 19 Nov 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://franziskuskiefer.de/tags/surf/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.franziskuskiefer.de/tags/surf/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Mozilla Security Research Summit London 2018</title>
-      <link>https://franziskuskiefer.de/post/surf-london-2018/</link>
+      <link>https://www.franziskuskiefer.de/post/surf-london-2018/</link>
       <pubDate>Mon, 19 Nov 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://franziskuskiefer.de/post/surf-london-2018/</guid>
+      <guid>https://www.franziskuskiefer.de/post/surf-london-2018/</guid>
       <description>The Security Engineering University Relationship Framework (SURF) is an initiative within the Firefox security engineering team to improve relations with privacy and security researchers. SURF includes a variety of possible relationships but is focused on building long-term relationships with researchers and organisations. The goal of SURF projects is to explore topics that are outside of Mozilla&amp;rsquo;s immediate product needs, influence Mozilla&amp;rsquo;s long-term product development and vision.
 On November 12th the first SURF summit was held in London.</description>
     </item>

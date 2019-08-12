@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>website on FK</title>
-    <link>https://franziskuskiefer.de/tags/website/</link>
+    <link>https://www.franziskuskiefer.de/tags/website/</link>
     <description>Recent content in website on FK</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 29 Aug 2017 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://franziskuskiefer.de/tags/website/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.franziskuskiefer.de/tags/website/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>New Website</title>
-      <link>https://franziskuskiefer.de/post/new-blog/</link>
+      <link>https://www.franziskuskiefer.de/post/new-blog/</link>
       <pubDate>Tue, 29 Aug 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://franziskuskiefer.de/post/new-blog/</guid>
+      <guid>https://www.franziskuskiefer.de/post/new-blog/</guid>
       <description>After a couple of years using ghost I switched to the static page generator hugo. Hugo is easy to write and easy to publish. But more importantly it doesn&amp;rsquo;t offer the attack surface ghost does and doesn&amp;rsquo;t require external ressources like ghost does. It further decreases the amount of ressources used on the server.</description>
     </item>
     

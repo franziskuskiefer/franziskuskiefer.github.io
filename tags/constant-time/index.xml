@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>constant-time on FK</title>
-    <link>https://franziskuskiefer.de/tags/constant-time/</link>
+    <link>https://www.franziskuskiefer.de/tags/constant-time/</link>
     <description>Recent content in constant-time on FK</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 28 Dec 2016 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://franziskuskiefer.de/tags/constant-time/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.franziskuskiefer.de/tags/constant-time/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>On Constant Time Division</title>
-      <link>https://franziskuskiefer.de/post/constant-time-division/</link>
+      <link>https://www.franziskuskiefer.de/post/constant-time-division/</link>
       <pubDate>Wed, 28 Dec 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://franziskuskiefer.de/post/constant-time-division/</guid>
+      <guid>https://www.franziskuskiefer.de/post/constant-time-division/</guid>
       <description>Writing constant time code is hard. We all know that. But I&amp;rsquo;m always amazed again on how difficult it is. In preparation for making NSS more constant time I looked into certain CPU instructions that are known to be not constant time. So I wrote a little thing to measure the time (CPU cycles) needed for division.
 div rcx ; eax is now a/b The CPU I&amp;rsquo;m using in this post is an Intel i7-4790 (haswell).</description>
     </item>
