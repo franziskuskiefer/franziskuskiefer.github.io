@@ -3,6 +3,13 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://www.franziskuskiefer.de/</loc>
+    <lastmod>2018-11-30T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://www.franziskuskiefer.de/tags/hacl/</loc>
     <lastmod>2018-11-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -16,13 +23,6 @@
   
   <url>
     <loc>https://www.franziskuskiefer.de/post/hacspec2/</loc>
-    <lastmod>2018-11-30T00:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.franziskuskiefer.de/</loc>
     <lastmod>2018-11-30T00:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -379,6 +379,12 @@
   
   <url>
     <loc>https://www.franziskuskiefer.de/about/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.franziskuskiefer.de/berlin_crypto/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
