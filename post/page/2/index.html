@@ -56,20 +56,8 @@
         <ul class="pl0 mr3">
           
           <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/about/" title="About page">
-              About
-            </a>
-          </li>
-          
-          <li class="list f5 f4-ns fw4 dib pr3">
             <a class="hover-white no-underline white-90" href="/post/" title="Articles page">
               Articles
-            </a>
-          </li>
-          
-          <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/berlin_crypto/" title="Berlin Crypto page">
-              Berlin Crypto
             </a>
           </li>
           
@@ -122,6 +110,65 @@
   </main>
     
     <section class="flex-ns flex-wrap justify-around mt5">
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        August 29, 2017
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/new-blog/" class="link black dim">
+        New Website
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      After a couple of years using ghost I switched to the static page generator hugo. Hugo is easy to write and easy to publish. But more importantly it doesn&rsquo;t offer the attack surface ghost does and doesn&rsquo;t require external ressources like ghost does. It further decreases the amount of ressources used on the server.
+    </div>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        June 27, 2017
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/aes-gcm-speedup/" class="link black dim">
+        Aes Gcm Speedup
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      AES-GCM is a NIST standardised authenticated encryption algorithm (FIPS 800-38D). Since its standardisation in 2008 its usage increased to a point where it is the prevalent encryption used with TLS. With 85% it is by far the most widely used cipher.
+ Firefox 53 TLS cipher telemetry   Unfortunately the AES-GCM implementation used in Firefox (provided by NSS) does not take advantage of full hardware acceleration; it uses a slower software-only implementation on Mac, Linux 32-bit, or any device that doesn&rsquo;t have the AVX, PCLMUL, and AES-NI hardware instructions.
+    </div>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        December 28, 2016
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/constant-time-division/" class="link black dim">
+        On Constant Time Division
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      Writing constant time code is hard. We all know that. But I&rsquo;m always amazed again on how difficult it is. In preparation for making NSS more constant time I looked into certain CPU instructions that are known to be not constant time. So I wrote a little thing to measure the time (CPU cycles) needed for division.
+div rcx ; eax is now a/b The CPU I&rsquo;m using in this post is an Intel i7-4790 (haswell).
+    </div>
+  </div>
+
+        </div>
       
         <div class="relative w-100 w-30-l mb4 bg-white">
             <div class="mb3 pa4 mid-gray overflow-hidden">
@@ -183,87 +230,6 @@ Ever wanted to view HTML pages directly from GitHub? Me too. Unfortunately the R
 
         </div>
       
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        October 12, 2014
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/openvpn/" class="link black dim">
-        OpenVPN HowTo
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      OpenPVN is an easy to set-up and use VPN solution that offer TUN/TAP support. In this tutorial I describe how to set-up an OpenVPN connection between a Ubuntu server and an Arch client.
-Preparations (Server) First we have to install OpenVPN on the server.
-# apt-get install openvpn To see whether TUN/TAP is enabled in the kernel we can check the kernel log grep tun /var/log/kern.log and load it if it doesn&rsquo;t show up modprobe tun.
-    </div>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        October 5, 2014
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/snort/" class="link black dim">
-        Snort, Barnyard2 &amp; Snorby
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      This post is work in progress but I never got around to finishing it. Sorry
-After a first failed attempt to install Snorby on an Arch Linux server (Snorby requires Ruby 1.9.x, Arch uses 2.x and I&rsquo;m not willing to use the AUR version for this) I&rsquo;m doing this on a Ubuntu 14.04 Server.
-Snort Before installing Snorby we have to install snort itself. This can be done with sudo apt-get install snort.
-    </div>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        September 1, 2014
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/pgflibraryfadings/" class="link black dim">
-        The curious case of pgflibraryfadings
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      Over the last year I was battling a strange error of reverse synctex search with evince and several latex editors. Everything works perfect with synctex unless I want to do a reverse search (click in the pdf docutment and get the according tex position) on the first page. Instead of getting the correct position my latex editor always opens the file pgflibraryfadings.code.tex. While I finally found the cause of the problem, I have no idea how to solve it.
-    </div>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        August 17, 2014
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/displaymath/" class="link black dim">
-        Display &amp; Inline Math
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      Another day in latex wonderland &hellip; Today I was writing an equation in an aligned environment using sum and those fancy things. Unfortunately aligned is a display math environment such that the limits of sum are displayed above and below, which was really not suitable in my case. So how do I display inline-math style in a display math environment?
-Let&rsquo;s say we have an equation environment with an equation
-    </div>
-  </div>
-
-        </div>
-      
     </section>
     
 
@@ -301,12 +267,23 @@ Let&rsquo;s say we have an equation environment with an equation
     <li class="page-item active"><a class="page-link" href="/post/page/2/">2</a></li>
     
     
-    <li class="page-item disabled">
-    <a href="" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/post/page/3/">3</a></li>
+    
+    
+    <li class="page-item">
+    <a href="/post/page/3/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
     </li>
     
     <li class="page-item">
-        <a href="/post/page/2/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/post/page/3/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
     </li>
     
 </ul>

@@ -378,18 +378,6 @@
   </url>
   
   <url>
-    <loc>https://www.franziskuskiefer.de/about/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.franziskuskiefer.de/berlin_crypto/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://www.franziskuskiefer.de/categories/</loc>
     <priority>0</priority>
   </url>
