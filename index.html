@@ -9,7 +9,7 @@
     <meta name="MobileOptimized" content="320">
 
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-     <meta name="generator" content="Hugo 0.55.6" />
+     <meta name="generator" content="Hugo 0.58.3" />
       
       
         <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
@@ -27,8 +27,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://www.franziskuskiefer.de/" />
 
-<meta property="og:updated_time" content="2018-11-30T00:00:00&#43;00:00"/>
-
+<meta property="og:updated_time" content="2019-10-21T00:00:00+00:00" />
 <meta itemprop="name" content="">
 <meta itemprop="description" content="">
 
@@ -146,6 +145,26 @@ I&rsquo;m also the initiator and co-organiser of the <a href="https://berlin-cry
           <div class="relative w-100 mb4">
             
 <article class="bb b--black-10">
+  <a class="db pv4 ph3 ph0-l no-underline dark-gray dim" href="/post/wrapping-arithmetic/">
+    <div class="flex flex-column flex-row-ns">
+      
+      <div class="w-100">
+        <h1 class="f3 fw1 athelas mt0 lh-title">Wrapping arithmetic in Rust</h1>
+        <div class="f6 f5-l lh-copy nested-copy-line-height">
+          One of Rusts great feature is that it catches integer overflows at runtime and panics rather than wraps (in debug builds). I recommend you read Huon&rsquo;s blog post about this from a couple years ago.
+While this is a desirable behaviour in general, integer overflows are commonly used when implementing cryptography primitives. Rust offers wrapping alternatives such as wrapping_add etc. to allow wrapping behaviour. However, this makes code very hard to read, e.
+        </div>
+        
+      </div>
+    </div>
+  </a>
+</article>
+
+          </div>
+        
+          <div class="relative w-100 mb4">
+            
+<article class="bb b--black-10">
   <a class="db pv4 ph3 ph0-l no-underline dark-gray dim" href="/post/hacspec2/">
     <div class="flex flex-column flex-row-ns">
       
@@ -183,33 +202,18 @@ On November 12th the first SURF summit was held in London.
 
           </div>
         
-          <div class="relative w-100 mb4">
-            
-<article class="bb b--black-10">
-  <a class="db pv4 ph3 ph0-l no-underline dark-gray dim" href="/post/hacl-nss-integration/">
-    <div class="flex flex-column flex-row-ns">
-      
-      <div class="w-100">
-        <h1 class="f3 fw1 athelas mt0 lh-title">Shipping (some) HACL*</h1>
-        <div class="f6 f5-l lh-copy nested-copy-line-height">
-          If you didn&rsquo;t read the article about the HACL* approach, go there first and read it. tl;dr
- HACL* is a cryptographic library written in F* that allows translation to C using kremlin. It guarantees memory safety, secret independent computation, and functional correctness with respect to a mathematical specification.
- In this second blog post I describe the process of integrating code from HACL*, a researchy crypto library, into NSS, a production library shipping to millions of people, running on a plethora of platforms.
-        </div>
-        
-      </div>
-    </div>
-  </a>
-</article>
-
-          </div>
-        
       </section>
 
     
       <section class="w-100">
         <h1 class="f3">More</h1>
         
+        
+          <h2 class="f5 fw4 mb4 dib mr3">
+            <a href="/post/hacl-nss-integration/" class="link black dim">
+              Shipping (some) HACL*
+            </a>
+          </h2>
         
           <h2 class="f5 fw4 mb4 dib mr3">
             <a href="/post/hacl-star/" class="link black dim">
@@ -226,12 +230,6 @@ On November 12th the first SURF summit was held in London.
           <h2 class="f5 fw4 mb4 dib mr3">
             <a href="/post/cve-2017-5462/" class="link black dim">
               CVE-2017-5462 - A PRNG issue
-            </a>
-          </h2>
-        
-          <h2 class="f5 fw4 mb4 dib mr3">
-            <a href="/post/new-blog/" class="link black dim">
-              New Website
             </a>
           </h2>
         

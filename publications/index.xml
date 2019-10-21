@@ -57,6 +57,15 @@
     </item>
     
     <item>
+      <title>hacspec: towards verifiable crypto standard</title>
+      <link>https://www.franziskuskiefer.de/publications/hacspec18/</link>
+      <pubDate>Sat, 01 Jan 2000 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.franziskuskiefer.de/publications/hacspec18/</guid>
+      <description>We present hacspec, a collaborative effort to design a formal specification language for cryptographic primitives. Specifications (specs) written in hacspec are succinct, easy to read and implement, and lend themselves to formal verification using a variety of existing tools. The syntax of hacspec is similar to the pseudocode used in cryptographic standards but is equipped with a static type system and syntax checking tools that can find errors. Specs written in hacspec are executable and can hence be tested against test vectors taken from standards and specified in a common format.</description>
+    </item>
+    
+    <item>
       <title>Oblivious PAKE: Efficient Handling of Password Trials</title>
       <link>https://www.franziskuskiefer.de/publications/opake/</link>
       <pubDate>Sat, 01 Jan 2000 00:00:00 +0000</pubDate>
@@ -93,21 +102,21 @@
     </item>
     
     <item>
-      <title>Secure Set-based Policy Checking and Its Application to Password Registration</title>
-      <link>https://www.franziskuskiefer.de/publications/spc/</link>
-      <pubDate>Sat, 01 Jan 2000 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.franziskuskiefer.de/publications/spc/</guid>
-      <description>Policies are the corner stones of today&amp;rsquo;s computer systems. They define secure states and safe operations. A common problem with policies is that their enforcement is often in conflict with user privacy. In order to check the satisfiability of a policy, a server usually needs to collect from a client some information which may be private. In this work we introduce the notion of secure set-based policy checking (SPC) that allows the server to verify policies while preserving the client&amp;rsquo;s privacy.</description>
-    </item>
-    
-    <item>
       <title>Secure modular password authentication for the web using channel bindings</title>
       <link>https://www.franziskuskiefer.de/publications/smpa/</link>
       <pubDate>Sat, 01 Jan 2000 00:00:00 +0000</pubDate>
       
       <guid>https://www.franziskuskiefer.de/publications/smpa/</guid>
       <description>Secure protocols for password-based user authentication are well-studied in the cryptographic literature but have failed to see wide-spread adoption on the Internet; most proposals to date require extensive modifications to the Transport Layer Security (TLS) protocol, making deployment challenging. Recently, a few modular designs have been proposed in which a cryptographically secure password-based mutual authentication protocol is run inside a confidential (but not necessarily authenticated) channel such as TLS; the password protocol is bound to the established channel to prevent active attacks.</description>
+    </item>
+    
+    <item>
+      <title>Secure Set-based Policy Checking and Its Application to Password Registration</title>
+      <link>https://www.franziskuskiefer.de/publications/spc/</link>
+      <pubDate>Sat, 01 Jan 2000 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.franziskuskiefer.de/publications/spc/</guid>
+      <description>Policies are the corner stones of today&amp;rsquo;s computer systems. They define secure states and safe operations. A common problem with policies is that their enforcement is often in conflict with user privacy. In order to check the satisfiability of a policy, a server usually needs to collect from a client some information which may be private. In this work we introduce the notion of secure set-based policy checking (SPC) that allows the server to verify policies while preserving the client&amp;rsquo;s privacy.</description>
     </item>
     
     <item>
@@ -126,15 +135,6 @@
       
       <guid>https://www.franziskuskiefer.de/publications/zkppc/</guid>
       <description>Zero-Knowledge Password Policy Checks (ZKPPC), introduced in this work, enable blind registration of client passwords at remote servers, i.e., client passwords are never transmitted to the servers. This eliminates the need for trusting servers to securely process and store client passwords. A ZKPPC protocol, executed as part of the registration procedure, allows clients to further prove compliance of chosen passwords with respect to password policies defined by the servers. The main benefit of ZKPPC-based password registration is that it guarantees that registered passwords never appear in clear on the server side.</description>
-    </item>
-    
-    <item>
-      <title>hacspec: towards verifiable crypto standard</title>
-      <link>https://www.franziskuskiefer.de/publications/hacspec18/</link>
-      <pubDate>Sat, 01 Jan 2000 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.franziskuskiefer.de/publications/hacspec18/</guid>
-      <description>We present hacspec, a collaborative effort to design a formal specification language for cryptographic primitives. Specifications (specs) written in hacspec are succinct, easy to read and implement, and lend themselves to formal verification using a variety of existing tools. The syntax of hacspec is similar to the pseudocode used in cryptographic standards but is equipped with a static type system and syntax checking tools that can find errors. Specs written in hacspec are executable and can hence be tested against test vectors taken from standards and specified in a common format.</description>
     </item>
     
   </channel>

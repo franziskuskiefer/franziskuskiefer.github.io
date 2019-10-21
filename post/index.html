@@ -9,7 +9,7 @@
     <meta name="MobileOptimized" content="320">
 
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-     <meta name="generator" content="Hugo 0.55.6" />
+     <meta name="generator" content="Hugo 0.58.3" />
       
       
         <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
@@ -27,8 +27,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://www.franziskuskiefer.de/post/" />
 
-<meta property="og:updated_time" content="2017-03-02T00:00:00&#43;00:00"/>
-
+<meta property="og:updated_time" content="2017-03-02T00:00:00+00:00" />
 <meta itemprop="name" content="Articles">
 <meta itemprop="description" content="">
 
@@ -112,6 +111,26 @@
   </main>
     
     <section class="flex-ns flex-wrap justify-around mt5">
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        October 21, 2019
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/wrapping-arithmetic/" class="link black dim">
+        Wrapping arithmetic in Rust
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      One of Rusts great feature is that it catches integer overflows at runtime and panics rather than wraps (in debug builds). I recommend you read Huon&rsquo;s blog post about this from a couple years ago.
+While this is a desirable behaviour in general, integer overflows are commonly used when implementing cryptography primitives. Rust offers wrapping alternatives such as wrapping_add etc. to allow wrapping behaviour. However, this makes code very hard to read, e.
+    </div>
+  </div>
+
+        </div>
       
         <div class="relative w-100 w-30-l mb4 bg-white">
             <div class="mb3 pa4 mid-gray overflow-hidden">
@@ -214,27 +233,6 @@ The main focus of HacSpec is to allow specifications to be compiled to formal la
 
         </div>
       
-        <div class="relative w-100 w-30-l mb4 bg-white">
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        August 31, 2017
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/cve-2017-5462/" class="link black dim">
-        CVE-2017-5462 - A PRNG issue
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      On April 19, 2017, Mozilla Foundation published the Security Advisory 2017-10 outlining several recently fixed security vulnerabilities. One of these vulnerabilities, tracked as CVE-2017-5462, affects the Pseudo-Random Number Generator (PRNG) within the Network Security Services (NSS) library prior to version 3.29.5 and Firefox prior to version 53.
-This post describes the bug and how it was discovered.
-Inside the NSS PRNG NSS uses Hash_DRBG as PRNG, which is one of several PRNG schemes defined in the NIST Special Publication 800-90.
-    </div>
-  </div>
-
-        </div>
-      
     </section>
     
 
@@ -245,7 +243,7 @@ Inside the NSS PRNG NSS uses Hash_DRBG as PRNG, which is one of several PRNG sch
     </li>
     
     <li class="page-item disabled">
-    <a href="" class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+    <a  class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
     </li>
     
     
@@ -292,6 +290,7 @@ Inside the NSS PRNG NSS uses Hash_DRBG as PRNG, which is one of several PRNG sch
     </li>
     
 </ul>
+
 
   </article>
 
