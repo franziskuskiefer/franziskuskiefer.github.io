@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>conference on Franziskus Kiefer</title>
@@ -6,10 +6,21 @@
     <description>Recent content in conference on Franziskus Kiefer</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 19 Nov 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 12 Nov 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.franziskuskiefer.de/tags/conference/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Mozilla SURF Summit Vienna 2019</title>
+      <link>https://www.franziskuskiefer.de/post/surf-vienna-2019/</link>
+      <pubDate>Tue, 12 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.franziskuskiefer.de/post/surf-vienna-2019/</guid>
+      <description>Last week we had the third Security Engineering University Relationship Framework (SURF) summit in Vienna. The last SURF summit I attended was the first one in London 2018.
+This time we had four talks by Mozillians, three invited talks, as well as eight lightning talks. I live-tweeted a little during the event if you like slides on photos.
+Christoph talked about how to harden the content security landscape of Firefox and posed the question how we could do some of that on the web.</description>
+    </item>
     
     <item>
       <title>Mozilla Security Research Summit London 2018</title>

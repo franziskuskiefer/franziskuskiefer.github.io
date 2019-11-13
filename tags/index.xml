@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Franziskus Kiefer</title>
@@ -6,10 +6,37 @@
     <description>Recent content in Tags on Franziskus Kiefer</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 21 Oct 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 12 Nov 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.franziskuskiefer.de/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>conference</title>
+      <link>https://www.franziskuskiefer.de/tags/conference/</link>
+      <pubDate>Tue, 12 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.franziskuskiefer.de/tags/conference/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Mozilla</title>
+      <link>https://www.franziskuskiefer.de/tags/mozilla/</link>
+      <pubDate>Tue, 12 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.franziskuskiefer.de/tags/mozilla/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SURF</title>
+      <link>https://www.franziskuskiefer.de/tags/surf/</link>
+      <pubDate>Tue, 12 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.franziskuskiefer.de/tags/surf/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>crypto</title>
@@ -53,33 +80,6 @@
       <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>https://www.franziskuskiefer.de/tags/hacl/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>conference</title>
-      <link>https://www.franziskuskiefer.de/tags/conference/</link>
-      <pubDate>Mon, 19 Nov 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.franziskuskiefer.de/tags/conference/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Mozilla</title>
-      <link>https://www.franziskuskiefer.de/tags/mozilla/</link>
-      <pubDate>Mon, 19 Nov 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.franziskuskiefer.de/tags/mozilla/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>SURF</title>
-      <link>https://www.franziskuskiefer.de/tags/surf/</link>
-      <pubDate>Mon, 19 Nov 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.franziskuskiefer.de/tags/surf/</guid>
       <description></description>
     </item>
     
