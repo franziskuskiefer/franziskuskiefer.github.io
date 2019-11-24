@@ -35,7 +35,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://www.franziskuskiefer.de/publications/" />
 
-<meta property="og:updated_time" content="2000-01-01T00:00:00+00:00" />
+<meta property="og:updated_time" content="2018-11-26T00:00:00+00:00" />
 <meta itemprop="name" content="Publications">
 <meta itemprop="description" content="">
 
@@ -131,7 +131,7 @@
     <main class="pb7" role="main">
       
   <article class="pa3 pa4-ns nested-copy-line-height nested-img">
-    <section class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy mid-gray">
+    <section class="cf ph3 ph5-l pv3 pv4-l f4 center measure-wide lh-copy mid-gray">
 
 <h1 id="conferences">Conferences</h1>
 
@@ -205,12 +205,12 @@ Kryptotag 2010 â€¢ with Alex Wiesmaier, Moritz Horsch, Johannes Braun, Detlef HÃ
   <div class="bg-white mb3 pa4 gray overflow-hidden">
     <span class="f6 db">Publications</span>
     <h1 class="f3 near-black">
-      <a href="/publications/opake/" class="link black dim">
-        Oblivious PAKE: Efficient Handling of Password Trials
+      <a href="/publications/smpa/" class="link black dim">
+        Secure modular password authentication for the web using channel bindings
       </a>
     </h1>
     <div class="nested-links f5 tj-l lh-copy nested-copy-line-height">
-      In this work we introduce the notion of Oblivious Password based Authenticated Key Exchange (O-PAKE) and a general compiler to transform a large class of PAKE into O-PAKE protocols. O-PAKE allows a client that shares one password with a server to use a set of passwords within one PAKE session. It succeeds if and only if one of those input passwords matches the one stored on the server side. The term oblivious is used to emphasize that no information about any password, input by the client, is made available to the server.
+      Secure protocols for password-based user authentication are well-studied in the cryptographic literature but have failed to see wide-spread adoption on the Internet; most proposals to date require extensive modifications to the Transport Layer Security (TLS) protocol, making deployment challenging. Recently, a few modular designs have been proposed in which a cryptographically secure password-based mutual authentication protocol is run inside a confidential (but not necessarily authenticated) channel such as TLS; the password protocol is bound to the established channel to prevent active attacks.
     </div>
   </div>
 </div>
@@ -220,12 +220,27 @@ Kryptotag 2010 â€¢ with Alex Wiesmaier, Moritz Horsch, Johannes Braun, Detlef HÃ
   <div class="bg-white mb3 pa4 gray overflow-hidden">
     <span class="f6 db">Publications</span>
     <h1 class="f3 near-black">
-      <a href="/publications/bird/" class="link black dim">
-        Practical Security in E-Mail Applications
+      <a href="/publications/zkppc/" class="link black dim">
+        Zero-Knowledge Password Policy Checks and Verifier-Based PAKE
       </a>
     </h1>
     <div class="nested-links f5 tj-l lh-copy nested-copy-line-height">
-      This paper deals with practicability issues of encrypted e-mails. A quick survey on the status quo indicates that popular e-mail clients lack substantial practicability qualities, for example searching in encrypted e-mails. Other approaches such as De-Mail provide solutions, but offer transport encryption only. We present and discuss a number of improvements to the practicability of e-mail encryption. These enable efficient searching in encrypted e-mails as well as subject encryption and the use of cryptographic functions in calendar applications.
+      Zero-Knowledge Password Policy Checks (ZKPPC), introduced in this work, enable blind registration of client passwords at remote servers, i.e., client passwords are never transmitted to the servers. This eliminates the need for trusting servers to securely process and store client passwords. A ZKPPC protocol, executed as part of the registration procedure, allows clients to further prove compliance of chosen passwords with respect to password policies defined by the servers. The main benefit of ZKPPC-based password registration is that it guarantees that registered passwords never appear in clear on the server side.
+    </div>
+  </div>
+</div>
+</div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Publications</span>
+    <h1 class="f3 near-black">
+      <a href="/publications/dsphf/" class="link black dim">
+        Distributed Smooth Projective Hashing and its Application to Two-Server Password Authenticated Key Exchange
+      </a>
+    </h1>
+    <div class="nested-links f5 tj-l lh-copy nested-copy-line-height">
+      Smooth projective hash functions have been used as building block for various cryptographic applications, in particular for password-based authentication. In this work we propose the extended concept of distributed smooth projective hash functions where the computation of the hash value is distributed across $n$ parties and show how to instantiate the underlying approach for languages consisting of Cramer-Shoup ciphertexts. As an application of distributed smooth projective hashing we build a new framework for the design of two-server password authenticated key exchange protocols, which we believe can help to &ldquo;explain&rdquo; the design of earlier two-server password authenticated key exchange protocols.
     </div>
   </div>
 </div>
@@ -265,27 +280,12 @@ Kryptotag 2010 â€¢ with Alex Wiesmaier, Moritz Horsch, Johannes Braun, Detlef HÃ
   <div class="bg-white mb3 pa4 gray overflow-hidden">
     <span class="f6 db">Publications</span>
     <h1 class="f3 near-black">
-      <a href="/publications/smpa/" class="link black dim">
-        Secure modular password authentication for the web using channel bindings
+      <a href="/publications/gs/" class="link black dim">
+        Group Signatures: Privacy-Preserving Authentication Methods
       </a>
     </h1>
     <div class="nested-links f5 tj-l lh-copy nested-copy-line-height">
-      Secure protocols for password-based user authentication are well-studied in the cryptographic literature but have failed to see wide-spread adoption on the Internet; most proposals to date require extensive modifications to the Transport Layer Security (TLS) protocol, making deployment challenging. Recently, a few modular designs have been proposed in which a cryptographically secure password-based mutual authentication protocol is run inside a confidential (but not necessarily authenticated) channel such as TLS; the password protocol is bound to the established channel to prevent active attacks.
-    </div>
-  </div>
-</div>
-</div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Publications</span>
-    <h1 class="f3 near-black">
-      <a href="/publications/spc/" class="link black dim">
-        Secure Set-based Policy Checking and Its Application to Password Registration
-      </a>
-    </h1>
-    <div class="nested-links f5 tj-l lh-copy nested-copy-line-height">
-      Policies are the corner stones of today&rsquo;s computer systems. They define secure states and safe operations. A common problem with policies is that their enforcement is often in conflict with user privacy. In order to check the satisfiability of a policy, a server usually needs to collect from a client some information which may be private. In this work we introduce the notion of secure set-based policy checking (SPC) that allows the server to verify policies while preserving the client&rsquo;s privacy.
+      Group signatures are cryptographic privacy-preserving authentication mechanisms. Potential signers are formed into a group, which is managed by a usually centralized authority (group manager). Each group member being in possession of a (valid) membership certificate can sign documents on behalf of the whole group. In addition to various forms of unforgeability the distinguished privacy property of group signatures is that they do not leak any information about the actual signer, except for the validity of the signer&rsquo;s membership in the group.
     </div>
   </div>
 </div>
