@@ -6,10 +6,19 @@
     <description>Recent content in Articles on Franziskus Kiefer</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 02 Mar 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 23 Dec 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.franziskuskiefer.de/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Shared-Secrets Service</title>
+      <link>https://www.franziskuskiefer.de/post/shared-secrets-service/</link>
+      <pubDate>Mon, 23 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.franziskuskiefer.de/post/shared-secrets-service/</guid>
+      <description>At the Berlin Crypto this month we had a talk by Kevin about a shared-secret service they developed at Syselevn. After experimenting with PGP and deciding that it doesn&#39;t do what they needed, they decided to go with a very simple, custom encrypt-then-mac scheme. You can find details here. When someone says they built their own encryption scheme and message format I get obviously curious. In this post I want to summarize the scheme, design decisions, compare it standard authenticated encryption schemes, and ponder the question of the right security definitions.</description>
+    </item>
     
     <item>
       <title>Mozilla SURF Summit Vienna 2019</title>
@@ -28,7 +37,7 @@ Christoph talked about how to harden the content security landscape of Firefox a
       <pubDate>Mon, 21 Oct 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.franziskuskiefer.de/post/wrapping-arithmetic/</guid>
-      <description>One of Rusts great feature is that it catches integer overflows at runtime and panics rather than wraps (in debug builds). I recommend you read Huon&amp;rsquo;s blog post about this from a couple years ago.
+      <description>One of Rusts great feature is that it catches integer overflows at runtime and panics rather than wraps (in debug builds). I recommend you read Huon&#39;s blog post about this from a couple years ago.
 While this is a desirable behaviour in general, integer overflows are commonly used when implementing cryptography primitives. Rust offers wrapping alternatives such as wrapping_add etc. to allow wrapping behaviour. However, this makes code very hard to read, e.</description>
     </item>
     
@@ -38,7 +47,7 @@ While this is a desirable behaviour in general, integer overflows are commonly u
       <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>https://www.franziskuskiefer.de/post/hacspec2/</guid>
-      <description>Earlier this year I introduced hacspec, a new specification language for cryptographic primitives. After Karthik presented the idea and very preliminary results at IETF 101 in March we made quite some progress and presented a paper with a little more detail at SSR earlier this week. In this blog post I&amp;rsquo;ll give the gist of the SSR paper and introduce the first version of hacspec.
+      <description>Earlier this year I introduced hacspec, a new specification language for cryptographic primitives. After Karthik presented the idea and very preliminary results at IETF 101 in March we made quite some progress and presented a paper with a little more detail at SSR earlier this week. In this blog post I&#39;ll give the gist of the SSR paper and introduce the first version of hacspec.
 All information about hacspec can be found at https://hacs-workshop.</description>
     </item>
     
@@ -48,7 +57,7 @@ All information about hacspec can be found at https://hacs-workshop.</descriptio
       <pubDate>Mon, 19 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>https://www.franziskuskiefer.de/post/surf-london-2018/</guid>
-      <description>The Security Engineering University Relationship Framework (SURF) is an initiative within the Firefox security engineering team to improve relations with privacy and security researchers. SURF includes a variety of possible relationships but is focused on building long-term relationships with researchers and organisations. The goal of SURF projects is to explore topics that are outside of Mozilla&amp;rsquo;s immediate product needs, influence Mozilla&amp;rsquo;s long-term product development and vision.
+      <description>The Security Engineering University Relationship Framework (SURF) is an initiative within the Firefox security engineering team to improve relations with privacy and security researchers. SURF includes a variety of possible relationships but is focused on building long-term relationships with researchers and organisations. The goal of SURF projects is to explore topics that are outside of Mozilla&#39;s immediate product needs, influence Mozilla&#39;s long-term product development and vision.
 On November 12th the first SURF summit was held in London.</description>
     </item>
     
@@ -58,9 +67,9 @@ On November 12th the first SURF summit was held in London.</description>
       <pubDate>Thu, 12 Apr 2018 00:00:00 +0000</pubDate>
       
       <guid>https://www.franziskuskiefer.de/post/hacl-nss-integration/</guid>
-      <description>If you didn&amp;rsquo;t read the article about the HACL* approach, go there first and read it. tl;dr
+      <description>If you didn&#39;t read the article about the HACL* approach, go there first and read it. tl;dr
  HACL* is a cryptographic library written in F* that allows translation to C using kremlin. It guarantees memory safety, secret independent computation, and functional correctness with respect to a mathematical specification.
- In this second blog post I describe the process of integrating code from HACL*, a researchy crypto library, into NSS, a production library shipping to millions of people, running on a plethora of platforms.</description>
+  In this second blog post I describe the process of integrating code from HACL*, a researchy crypto library, into NSS, a production library shipping to millions of people, running on a plethora of platforms.</description>
     </item>
     
     <item>
@@ -100,7 +109,7 @@ Inside the NSS PRNG NSS uses Hash_DRBG as PRNG, which is one of several PRNG sch
       <pubDate>Tue, 29 Aug 2017 00:00:00 +0000</pubDate>
       
       <guid>https://www.franziskuskiefer.de/post/new-blog/</guid>
-      <description>After a couple of years using ghost I switched to the static page generator hugo. Hugo is easy to write and easy to publish. But more importantly it doesn&amp;rsquo;t offer the attack surface ghost does and doesn&amp;rsquo;t require external ressources like ghost does. It further decreases the amount of ressources used on the server.</description>
+      <description>After a couple of years using ghost I switched to the static page generator hugo. Hugo is easy to write and easy to publish. But more importantly it doesn&#39;t offer the attack surface ghost does and doesn&#39;t require external ressources like ghost does. It further decreases the amount of ressources used on the server.</description>
     </item>
     
     <item>
@@ -110,7 +119,7 @@ Inside the NSS PRNG NSS uses Hash_DRBG as PRNG, which is one of several PRNG sch
       
       <guid>https://www.franziskuskiefer.de/post/aes-gcm-speedup/</guid>
       <description>AES-GCM is a NIST standardised authenticated encryption algorithm (FIPS 800-38D). Since its standardisation in 2008 its usage increased to a point where it is the prevalent encryption used with TLS. With 85% it is by far the most widely used cipher.
- Firefox 53 TLS cipher telemetry   Unfortunately the AES-GCM implementation used in Firefox (provided by NSS) does not take advantage of full hardware acceleration; it uses a slower software-only implementation on Mac, Linux 32-bit, or any device that doesn&amp;rsquo;t have the AVX, PCLMUL, and AES-NI hardware instructions.</description>
+ Firefox 53 TLS cipher telemetry   Unfortunately the AES-GCM implementation used in Firefox (provided by NSS) does not take advantage of full hardware acceleration; it uses a slower software-only implementation on Mac, Linux 32-bit, or any device that doesn&#39;t have the AVX, PCLMUL, and AES-NI hardware instructions.</description>
     </item>
     
     <item>
@@ -119,8 +128,8 @@ Inside the NSS PRNG NSS uses Hash_DRBG as PRNG, which is one of several PRNG sch
       <pubDate>Wed, 28 Dec 2016 00:00:00 +0000</pubDate>
       
       <guid>https://www.franziskuskiefer.de/post/constant-time-division/</guid>
-      <description>Writing constant time code is hard. We all know that. But I&amp;rsquo;m always amazed again on how difficult it is. In preparation for making NSS more constant time I looked into certain CPU instructions that are known to be not constant time. So I wrote a little thing to measure the time (CPU cycles) needed for division.
-div rcx ; eax is now a/b The CPU I&amp;rsquo;m using in this post is an Intel i7-4790 (haswell).</description>
+      <description>Writing constant time code is hard. We all know that. But I&#39;m always amazed again on how difficult it is. In preparation for making NSS more constant time I looked into certain CPU instructions that are known to be not constant time. So I wrote a little thing to measure the time (CPU cycles) needed for division.
+div rcx ; eax is now a/b The CPU I&#39;m using in this post is an Intel i7-4790 (haswell).</description>
     </item>
     
     <item>
@@ -129,7 +138,7 @@ div rcx ; eax is now a/b The CPU I&amp;rsquo;m using in this post is an Intel i7
       <pubDate>Wed, 25 May 2016 00:00:00 +0000</pubDate>
       
       <guid>https://www.franziskuskiefer.de/post/nss-static-analysis/</guid>
-      <description>When I started working on NSS 7 months ago one of the tasks I was asked to do was to work through the related Coverity issues. This post summarises some learnings from this as we&amp;rsquo;ve since come a long way since over the last months.
+      <description>When I started working on NSS 7 months ago one of the tasks I was asked to do was to work through the related Coverity issues. This post summarises some learnings from this as we&#39;ve since come a long way since over the last months.
 Static analysis plays a crucial part in locating vulnerabilities and bugs during development. For NSS we currently use multiple static analysis tools. While scan-build as well as infer are great applications to find bugs, they require a lot of manual management.</description>
     </item>
     
@@ -139,8 +148,8 @@ Static analysis plays a crucial part in locating vulnerabilities and bugs during
       <pubDate>Sat, 02 Jan 2016 00:00:00 +0000</pubDate>
       
       <guid>https://www.franziskuskiefer.de/post/raw-github/</guid>
-      <description>~This extension doesn&amp;rsquo;t work from Firefox 57 on. I might update it when I find time.~
-Ever wanted to view HTML pages directly from GitHub? Me too. Unfortunately the Raw button doesn&amp;rsquo;t render the HTML but only displays the source code. There are a bunch of Chrome extensions that add a button to open file from Github at rawgit directly, but none for Firefox. So I wrote one. It&amp;rsquo;s still an early version and more of a hack than a real extension, but it works (mostly).</description>
+      <description>~This extension doesn&#39;t work from Firefox 57 on. I might update it when I find time.~
+Ever wanted to view HTML pages directly from GitHub? Me too. Unfortunately the Raw button doesn&#39;t render the HTML but only displays the source code. There are a bunch of Chrome extensions that add a button to open file from Github at rawgit directly, but none for Firefox. So I wrote one. It&#39;s still an early version and more of a hack than a real extension, but it works (mostly).</description>
     </item>
     
     <item>
@@ -149,7 +158,7 @@ Ever wanted to view HTML pages directly from GitHub? Me too. Unfortunately the R
       <pubDate>Fri, 06 Mar 2015 00:00:00 +0000</pubDate>
       
       <guid>https://www.franziskuskiefer.de/post/editorial-manager/</guid>
-      <description>Today I had to submit a paper through the Editorial Manager (used by Springer) for the first time. Needless to say that it&amp;rsquo;s not as easy as it sounds. Therefore here some helpful links for everyone having to do the same. I ended up putting the references in the .tex file as nothing else worked for me.
+      <description>Today I had to submit a paper through the Editorial Manager (used by Springer) for the first time. Needless to say that it&#39;s not as easy as it sounds. Therefore here some helpful links for everyone having to do the same. I ended up putting the references in the .tex file as nothing else worked for me.
  http://www.bartneck.de/2010/09/30/submitting-your-latex-manuscript-to-editorial-manager-springer-elsevier/ http://drezha.me.uk/post/22719621060/submitting-a-springerlink-elsvier-journal-using  </description>
     </item>
     
@@ -161,7 +170,7 @@ Ever wanted to view HTML pages directly from GitHub? Me too. Unfortunately the R
       <guid>https://www.franziskuskiefer.de/post/openvpn/</guid>
       <description>OpenPVN is an easy to set-up and use VPN solution that offer TUN/TAP support. In this tutorial I describe how to set-up an OpenVPN connection between a Ubuntu server and an Arch client.
 Preparations (Server) First we have to install OpenVPN on the server.
-# apt-get install openvpn To see whether TUN/TAP is enabled in the kernel we can check the kernel log grep tun /var/log/kern.log and load it if it doesn&amp;rsquo;t show up modprobe tun.</description>
+# apt-get install openvpn To see whether TUN/TAP is enabled in the kernel we can check the kernel log grep tun /var/log/kern.log and load it if it doesn&#39;t show up modprobe tun.</description>
     </item>
     
     <item>
@@ -171,7 +180,7 @@ Preparations (Server) First we have to install OpenVPN on the server.
       
       <guid>https://www.franziskuskiefer.de/post/snort/</guid>
       <description>This post is work in progress but I never got around to finishing it. Sorry
-After a first failed attempt to install Snorby on an Arch Linux server (Snorby requires Ruby 1.9.x, Arch uses 2.x and I&amp;rsquo;m not willing to use the AUR version for this) I&amp;rsquo;m doing this on a Ubuntu 14.04 Server.
+After a first failed attempt to install Snorby on an Arch Linux server (Snorby requires Ruby 1.9.x, Arch uses 2.x and I&#39;m not willing to use the AUR version for this) I&#39;m doing this on a Ubuntu 14.04 Server.
 Snort Before installing Snorby we have to install snort itself. This can be done with sudo apt-get install snort.</description>
     </item>
     
@@ -191,7 +200,7 @@ Snort Before installing Snorby we have to install snort itself. This can be done
       
       <guid>https://www.franziskuskiefer.de/post/displaymath/</guid>
       <description>Another day in latex wonderland &amp;hellip; Today I was writing an equation in an aligned environment using sum and those fancy things. Unfortunately aligned is a display math environment such that the limits of sum are displayed above and below, which was really not suitable in my case. So how do I display inline-math style in a display math environment?
-Let&amp;rsquo;s say we have an equation environment with an equation</description>
+Let&#39;s say we have an equation environment with an equation</description>
     </item>
     
   </channel>

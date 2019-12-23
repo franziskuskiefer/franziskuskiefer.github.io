@@ -6,20 +6,10 @@
     <description>Recent content in HACL* on Franziskus Kiefer</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 30 Nov 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 12 Apr 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.franziskuskiefer.de/tags/hacl/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Update on hacspec</title>
-      <link>https://www.franziskuskiefer.de/post/hacspec2/</link>
-      <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.franziskuskiefer.de/post/hacspec2/</guid>
-      <description>Earlier this year I introduced hacspec, a new specification language for cryptographic primitives. After Karthik presented the idea and very preliminary results at IETF 101 in March we made quite some progress and presented a paper with a little more detail at SSR earlier this week. In this blog post I&amp;rsquo;ll give the gist of the SSR paper and introduce the first version of hacspec.
-All information about hacspec can be found at https://hacs-workshop.</description>
-    </item>
     
     <item>
       <title>Shipping (some) HACL*</title>
@@ -27,9 +17,9 @@ All information about hacspec can be found at https://hacs-workshop.</descriptio
       <pubDate>Thu, 12 Apr 2018 00:00:00 +0000</pubDate>
       
       <guid>https://www.franziskuskiefer.de/post/hacl-nss-integration/</guid>
-      <description>If you didn&amp;rsquo;t read the article about the HACL* approach, go there first and read it. tl;dr
+      <description>If you didn&#39;t read the article about the HACL* approach, go there first and read it. tl;dr
  HACL* is a cryptographic library written in F* that allows translation to C using kremlin. It guarantees memory safety, secret independent computation, and functional correctness with respect to a mathematical specification.
- In this second blog post I describe the process of integrating code from HACL*, a researchy crypto library, into NSS, a production library shipping to millions of people, running on a plethora of platforms.</description>
+  In this second blog post I describe the process of integrating code from HACL*, a researchy crypto library, into NSS, a production library shipping to millions of people, running on a plethora of platforms.</description>
     </item>
     
     <item>
@@ -40,16 +30,6 @@ All information about hacspec can be found at https://hacs-workshop.</descriptio
       <guid>https://www.franziskuskiefer.de/post/hacl-star/</guid>
       <description>HACL* (High-Assurance Cryptographic Library) is a formally verified cryptographic library in F*, developed by the Prosecco team at INRIA Paris in collaboration with Microsoft Research, as part of Project Everest. HACL* was inspired by discussions at the HACS workshop and aims at developing a set of reference implementations in C for common cryptographic primitives.
 This is the first post in a series describing formal verification in NSS as an approach to improve confidence in highly complex, highly security critical code.</description>
-    </item>
-    
-    <item>
-      <title>Introducing HacSpec</title>
-      <link>https://www.franziskuskiefer.de/post/hacspec1/</link>
-      <pubDate>Thu, 08 Feb 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.franziskuskiefer.de/post/hacspec1/</guid>
-      <description>HacSpec is a proposal for a new specification language for cryptographic primitives that is succinct, that is easy to read and implement, and that lends itself to formal verification. It aims to formalise the pseudocode used in cryptographic standards by proposing a formal syntax that can be checked for simple errors. HacSpec specifications are further executable to test against test vectors specified in a common syntax.
-The main focus of HacSpec is to allow specifications to be compiled to formal languages such as cryptol, coq, F*, and easycrypt and thus make it easier to formally verify implementations.</description>
     </item>
     
   </channel>

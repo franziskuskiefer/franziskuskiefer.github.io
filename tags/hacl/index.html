@@ -6,10 +6,10 @@
     
     <title>Franziskus Kiefer  | HACL*</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.61.0" />
     
     
-      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+      <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
     
 
     
@@ -34,18 +34,17 @@
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://www.franziskuskiefer.de/tags/hacl/" />
-
-<meta property="og:updated_time" content="2018-11-30T00:00:00+00:00" />
+<meta property="og:updated_time" content="2018-04-12T00:00:00+00:00" />
 <meta itemprop="name" content="HACL*">
-<meta itemprop="description" content="">
-
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="description" content=""><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="HACL*"/>
 <meta name="twitter:description" content=""/>
 
+      
+    
   </head>
 
-  <body class="ma0 avenir bg-near-white prodution">
+  <body class="ma0 avenir bg-near-white production">
 
     
 
@@ -143,32 +142,14 @@
   <div class="bg-white mb3 pa4 gray overflow-hidden">
     <span class="f6 db">Post</span>
     <h1 class="f3 near-black">
-      <a href="/post/hacspec2/" class="link black dim">
-        Update on hacspec
-      </a>
-    </h1>
-    <div class="nested-links f5 tj-l lh-copy nested-copy-line-height">
-      Earlier this year I introduced hacspec, a new specification language for cryptographic primitives. After Karthik presented the idea and very preliminary results at IETF 101 in March we made quite some progress and presented a paper with a little more detail at SSR earlier this week. In this blog post I&rsquo;ll give the gist of the SSR paper and introduce the first version of hacspec.
-All information about hacspec can be found at https://hacs-workshop.
-    </div>
-  </div>
-</div>
-
-        </div>
-      
-        <div class="relative w-100  mb4 bg-white">
-          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Post</span>
-    <h1 class="f3 near-black">
       <a href="/post/hacl-nss-integration/" class="link black dim">
         Shipping (some) HACL*
       </a>
     </h1>
     <div class="nested-links f5 tj-l lh-copy nested-copy-line-height">
-      If you didn&rsquo;t read the article about the HACL* approach, go there first and read it. tl;dr
+      If you didn't read the article about the HACL* approach, go there first and read it. tl;dr
  HACL* is a cryptographic library written in F* that allows translation to C using kremlin. It guarantees memory safety, secret independent computation, and functional correctness with respect to a mathematical specification.
- In this second blog post I describe the process of integrating code from HACL*, a researchy crypto library, into NSS, a production library shipping to millions of people, running on a plethora of platforms.
+  In this second blog post I describe the process of integrating code from HACL*, a researchy crypto library, into NSS, a production library shipping to millions of people, running on a plethora of platforms.
     </div>
   </div>
 </div>
@@ -187,24 +168,6 @@ All information about hacspec can be found at https://hacs-workshop.
     <div class="nested-links f5 tj-l lh-copy nested-copy-line-height">
       HACL* (High-Assurance Cryptographic Library) is a formally verified cryptographic library in F*, developed by the Prosecco team at INRIA Paris in collaboration with Microsoft Research, as part of Project Everest. HACL* was inspired by discussions at the HACS workshop and aims at developing a set of reference implementations in C for common cryptographic primitives.
 This is the first post in a series describing formal verification in NSS as an approach to improve confidence in highly complex, highly security critical code.
-    </div>
-  </div>
-</div>
-
-        </div>
-      
-        <div class="relative w-100  mb4 bg-white">
-          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Post</span>
-    <h1 class="f3 near-black">
-      <a href="/post/hacspec1/" class="link black dim">
-        Introducing HacSpec
-      </a>
-    </h1>
-    <div class="nested-links f5 tj-l lh-copy nested-copy-line-height">
-      HacSpec is a proposal for a new specification language for cryptographic primitives that is succinct, that is easy to read and implement, and that lends itself to formal verification. It aims to formalise the pseudocode used in cryptographic standards by proposing a formal syntax that can be checked for simple errors. HacSpec specifications are further executable to test against test vectors specified in a common syntax.
-The main focus of HacSpec is to allow specifications to be compiled to formal languages such as cryptol, coq, F*, and easycrypt and thus make it easier to formally verify implementations.
     </div>
   </div>
 </div>

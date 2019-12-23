@@ -4,7 +4,49 @@
   
   <url>
     <loc>https://www.franziskuskiefer.de/</loc>
-    <lastmod>2019-11-12T00:00:00+00:00</lastmod>
+    <lastmod>2019-12-23T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.franziskuskiefer.de/post/</loc>
+    <lastmod>2019-12-23T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.franziskuskiefer.de/tags/berlin-crypto/</loc>
+    <lastmod>2019-12-23T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.franziskuskiefer.de/tags/crypto/</loc>
+    <lastmod>2019-12-23T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.franziskuskiefer.de/tags/rwc/</loc>
+    <lastmod>2019-12-23T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.franziskuskiefer.de/post/shared-secrets-service/</loc>
+    <lastmod>2019-12-23T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.franziskuskiefer.de/tags/</loc>
+    <lastmod>2019-12-23T00:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -38,20 +80,6 @@
   </url>
   
   <url>
-    <loc>https://www.franziskuskiefer.de/tags/</loc>
-    <lastmod>2019-11-12T00:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.franziskuskiefer.de/tags/crypto/</loc>
-    <lastmod>2019-10-21T00:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://www.franziskuskiefer.de/tags/formal-verification/</loc>
     <lastmod>2019-10-21T00:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
@@ -80,7 +108,7 @@
   </url>
   
   <url>
-    <loc>https://www.franziskuskiefer.de/tags/hacl/</loc>
+    <loc>https://www.franziskuskiefer.de/tags/hacspec/</loc>
     <lastmod>2018-11-30T00:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -110,6 +138,13 @@
   <url>
     <loc>https://www.franziskuskiefer.de/post/surf-london-2018/</loc>
     <lastmod>2018-11-19T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.franziskuskiefer.de/tags/hacl/</loc>
+    <lastmod>2018-04-12T00:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -187,13 +222,6 @@
   <url>
     <loc>https://www.franziskuskiefer.de/tags/speed/</loc>
     <lastmod>2017-06-27T00:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.franziskuskiefer.de/post/</loc>
-    <lastmod>2017-03-02T00:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>

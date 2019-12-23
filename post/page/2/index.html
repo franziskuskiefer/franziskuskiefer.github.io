@@ -6,10 +6,10 @@
     
     <title>Franziskus Kiefer  | Articles</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.61.0" />
     
     
-      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+      <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
     
 
     
@@ -34,18 +34,17 @@
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://www.franziskuskiefer.de/post/" />
-
-<meta property="og:updated_time" content="2017-03-02T00:00:00+00:00" />
+<meta property="og:updated_time" content="2019-12-23T00:00:00+00:00" />
 <meta itemprop="name" content="Articles">
-<meta itemprop="description" content="">
-
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="description" content=""><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Articles"/>
 <meta name="twitter:description" content=""/>
 
+      
+    
   </head>
 
-  <body class="ma0 avenir bg-near-white prodution">
+  <body class="ma0 avenir bg-near-white production">
 
     
 
@@ -133,10 +132,30 @@
 
   <article class="pa3 pa4-ns nested-copy-line-height nested-img">
     <section class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy mid-gray">
-      <p>I don&rsquo;t get to write a lot here. But if I do, I hope you like it.</p>
-
+      
     </section>
     <aside class="flex-ns flex-wrap justify-around mt5">
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+          
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        February 14, 2018
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/hacl-star/" class="link black dim">
+        The HACL* approach
+      </a>
+    </h1>
+    <div class="nested-links f5 tj-l lh-copy nested-copy-line-height">
+      HACL* (High-Assurance Cryptographic Library) is a formally verified cryptographic library in F*, developed by the Prosecco team at INRIA Paris in collaboration with Microsoft Research, as part of Project Everest. HACL* was inspired by discussions at the HACS workshop and aims at developing a set of reference implementations in C for common cryptographic primitives.
+This is the first post in a series describing formal verification in NSS as an approach to improve confidence in highly complex, highly security critical code.
+    </div>
+  </div>
+
+        </div>
       
         <div class="relative w-100 w-30-l mb4 bg-white">
           
@@ -195,7 +214,7 @@ Inside the NSS PRNG NSS uses Hash_DRBG as PRNG, which is one of several PRNG sch
       </a>
     </h1>
     <div class="nested-links f5 tj-l lh-copy nested-copy-line-height">
-      After a couple of years using ghost I switched to the static page generator hugo. Hugo is easy to write and easy to publish. But more importantly it doesn&rsquo;t offer the attack surface ghost does and doesn&rsquo;t require external ressources like ghost does. It further decreases the amount of ressources used on the server.
+      After a couple of years using ghost I switched to the static page generator hugo. Hugo is easy to write and easy to publish. But more importantly it doesn't offer the attack surface ghost does and doesn't require external ressources like ghost does. It further decreases the amount of ressources used on the server.
     </div>
   </div>
 
@@ -216,7 +235,7 @@ Inside the NSS PRNG NSS uses Hash_DRBG as PRNG, which is one of several PRNG sch
     </h1>
     <div class="nested-links f5 tj-l lh-copy nested-copy-line-height">
       AES-GCM is a NIST standardised authenticated encryption algorithm (FIPS 800-38D). Since its standardisation in 2008 its usage increased to a point where it is the prevalent encryption used with TLS. With 85% it is by far the most widely used cipher.
- Firefox 53 TLS cipher telemetry   Unfortunately the AES-GCM implementation used in Firefox (provided by NSS) does not take advantage of full hardware acceleration; it uses a slower software-only implementation on Mac, Linux 32-bit, or any device that doesn&rsquo;t have the AVX, PCLMUL, and AES-NI hardware instructions.
+ Firefox 53 TLS cipher telemetry   Unfortunately the AES-GCM implementation used in Firefox (provided by NSS) does not take advantage of full hardware acceleration; it uses a slower software-only implementation on Mac, Linux 32-bit, or any device that doesn't have the AVX, PCLMUL, and AES-NI hardware instructions.
     </div>
   </div>
 
@@ -236,29 +255,8 @@ Inside the NSS PRNG NSS uses Hash_DRBG as PRNG, which is one of several PRNG sch
       </a>
     </h1>
     <div class="nested-links f5 tj-l lh-copy nested-copy-line-height">
-      Writing constant time code is hard. We all know that. But I&rsquo;m always amazed again on how difficult it is. In preparation for making NSS more constant time I looked into certain CPU instructions that are known to be not constant time. So I wrote a little thing to measure the time (CPU cycles) needed for division.
-div rcx ; eax is now a/b The CPU I&rsquo;m using in this post is an Intel i7-4790 (haswell).
-    </div>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-          
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        May 25, 2016
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/nss-static-analysis/" class="link black dim">
-        NSS Static Analysis
-      </a>
-    </h1>
-    <div class="nested-links f5 tj-l lh-copy nested-copy-line-height">
-      When I started working on NSS 7 months ago one of the tasks I was asked to do was to work through the related Coverity issues. This post summarises some learnings from this as we&rsquo;ve since come a long way since over the last months.
-Static analysis plays a crucial part in locating vulnerabilities and bugs during development. For NSS we currently use multiple static analysis tools. While scan-build as well as infer are great applications to find bugs, they require a lot of manual management.
+      Writing constant time code is hard. We all know that. But I'm always amazed again on how difficult it is. In preparation for making NSS more constant time I looked into certain CPU instructions that are known to be not constant time. So I wrote a little thing to measure the time (CPU cycles) needed for division.
+div rcx ; eax is now a/b The CPU I'm using in this post is an Intel i7-4790 (haswell).
     </div>
   </div>
 
@@ -312,12 +310,23 @@ Static analysis plays a crucial part in locating vulnerabilities and bugs during
     <li class="page-item"><a class="page-link" href="/post/page/3/">3</a></li>
     
     
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/post/page/4/">4</a></li>
+    
+    
     <li class="page-item">
     <a href="/post/page/3/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
     </li>
     
     <li class="page-item">
-        <a href="/post/page/3/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/post/page/4/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
     </li>
     
 </ul>

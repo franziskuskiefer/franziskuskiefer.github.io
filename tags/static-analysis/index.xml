@@ -17,7 +17,7 @@
       <pubDate>Wed, 25 May 2016 00:00:00 +0000</pubDate>
       
       <guid>https://www.franziskuskiefer.de/post/nss-static-analysis/</guid>
-      <description>When I started working on NSS 7 months ago one of the tasks I was asked to do was to work through the related Coverity issues. This post summarises some learnings from this as we&amp;rsquo;ve since come a long way since over the last months.
+      <description>When I started working on NSS 7 months ago one of the tasks I was asked to do was to work through the related Coverity issues. This post summarises some learnings from this as we&#39;ve since come a long way since over the last months.
 Static analysis plays a crucial part in locating vulnerabilities and bugs during development. For NSS we currently use multiple static analysis tools. While scan-build as well as infer are great applications to find bugs, they require a lot of manual management.</description>
     </item>
     

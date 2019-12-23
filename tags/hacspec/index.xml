@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>hacspec on Franziskus Kiefer</title>
+    <link>https://www.franziskuskiefer.de/tags/hacspec/</link>
+    <description>Recent content in hacspec on Franziskus Kiefer</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 30 Nov 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.franziskuskiefer.de/tags/hacspec/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Update on hacspec</title>
+      <link>https://www.franziskuskiefer.de/post/hacspec2/</link>
+      <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.franziskuskiefer.de/post/hacspec2/</guid>
+      <description>Earlier this year I introduced hacspec, a new specification language for cryptographic primitives. After Karthik presented the idea and very preliminary results at IETF 101 in March we made quite some progress and presented a paper with a little more detail at SSR earlier this week. In this blog post I&#39;ll give the gist of the SSR paper and introduce the first version of hacspec.
+All information about hacspec can be found at https://hacs-workshop.</description>
+    </item>
+    
+    <item>
+      <title>Introducing HacSpec</title>
+      <link>https://www.franziskuskiefer.de/post/hacspec1/</link>
+      <pubDate>Thu, 08 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.franziskuskiefer.de/post/hacspec1/</guid>
+      <description>HacSpec is a proposal for a new specification language for cryptographic primitives that is succinct, that is easy to read and implement, and that lends itself to formal verification. It aims to formalise the pseudocode used in cryptographic standards by proposing a formal syntax that can be checked for simple errors. HacSpec specifications are further executable to test against test vectors specified in a common syntax.
+The main focus of HacSpec is to allow specifications to be compiled to formal languages such as cryptol, coq, F*, and easycrypt and thus make it easier to formally verify implementations.</description>
+    </item>
+    
+  </channel>
+</rss>

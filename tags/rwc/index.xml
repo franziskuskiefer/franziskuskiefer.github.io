@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>rwc on Franziskus Kiefer</title>
+    <link>https://www.franziskuskiefer.de/tags/rwc/</link>
+    <description>Recent content in rwc on Franziskus Kiefer</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 23 Dec 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.franziskuskiefer.de/tags/rwc/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Shared-Secrets Service</title>
+      <link>https://www.franziskuskiefer.de/post/shared-secrets-service/</link>
+      <pubDate>Mon, 23 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.franziskuskiefer.de/post/shared-secrets-service/</guid>
+      <description>At the Berlin Crypto this month we had a talk by Kevin about a shared-secret service they developed at Syselevn. After experimenting with PGP and deciding that it doesn&#39;t do what they needed, they decided to go with a very simple, custom encrypt-then-mac scheme. You can find details here. When someone says they built their own encryption scheme and message format I get obviously curious. In this post I want to summarize the scheme, design decisions, compare it standard authenticated encryption schemes, and ponder the question of the right security definitions.</description>
+    </item>
+    
+  </channel>
+</rss>

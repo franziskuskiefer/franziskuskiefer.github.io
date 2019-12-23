@@ -6,10 +6,37 @@
     <description>Recent content in Tags on Franziskus Kiefer</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 12 Nov 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 23 Dec 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.franziskuskiefer.de/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>berlin crypto</title>
+      <link>https://www.franziskuskiefer.de/tags/berlin-crypto/</link>
+      <pubDate>Mon, 23 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.franziskuskiefer.de/tags/berlin-crypto/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>crypto</title>
+      <link>https://www.franziskuskiefer.de/tags/crypto/</link>
+      <pubDate>Mon, 23 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.franziskuskiefer.de/tags/crypto/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>rwc</title>
+      <link>https://www.franziskuskiefer.de/tags/rwc/</link>
+      <pubDate>Mon, 23 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.franziskuskiefer.de/tags/rwc/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>conference</title>
@@ -35,15 +62,6 @@
       <pubDate>Tue, 12 Nov 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.franziskuskiefer.de/tags/surf/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>crypto</title>
-      <link>https://www.franziskuskiefer.de/tags/crypto/</link>
-      <pubDate>Mon, 21 Oct 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.franziskuskiefer.de/tags/crypto/</guid>
       <description></description>
     </item>
     
@@ -75,16 +93,25 @@
     </item>
     
     <item>
+      <title>hacspec</title>
+      <link>https://www.franziskuskiefer.de/tags/hacspec/</link>
+      <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.franziskuskiefer.de/tags/hacspec/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>HACL*</title>
       <link>https://www.franziskuskiefer.de/tags/hacl/</link>
-      <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 12 Apr 2018 00:00:00 +0000</pubDate>
       
       <guid>https://www.franziskuskiefer.de/tags/hacl/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>nss</title>
+      <title>NSS</title>
       <link>https://www.franziskuskiefer.de/tags/nss/</link>
       <pubDate>Thu, 12 Apr 2018 00:00:00 +0000</pubDate>
       

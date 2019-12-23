@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Franziskus Kiefer  | Shared-Secrets Service</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="generator" content="Hugo 0.61.0" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+    
+
+    
+    
+      <link href="/dist/css/app.d98f2eb6bcd1eaedb7edf166bd16af26.css" rel="stylesheet">
+    
+
+    
+
+    
+      
+    
+
+    
+    
+    <meta property="og:title" content="Shared-Secrets Service" />
+<meta property="og:description" content="At the Berlin Crypto this month we had a talk by Kevin about a shared-secret service they developed at Syselevn. After experimenting with PGP and deciding that it doesn&#39;t do what they needed, they decided to go with a very simple, custom encrypt-then-mac scheme. You can find details here. When someone says they built their own encryption scheme and message format I get obviously curious. In this post I want to summarize the scheme, design decisions, compare it standard authenticated encryption schemes, and ponder the question of the right security definitions." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.franziskuskiefer.de/post/shared-secrets-service/" />
+<meta property="article:published_time" content="2019-12-23T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-12-23T00:00:00+00:00" />
+<meta itemprop="name" content="Shared-Secrets Service">
+<meta itemprop="description" content="At the Berlin Crypto this month we had a talk by Kevin about a shared-secret service they developed at Syselevn. After experimenting with PGP and deciding that it doesn&#39;t do what they needed, they decided to go with a very simple, custom encrypt-then-mac scheme. You can find details here. When someone says they built their own encryption scheme and message format I get obviously curious. In this post I want to summarize the scheme, design decisions, compare it standard authenticated encryption schemes, and ponder the question of the right security definitions.">
+<meta itemprop="datePublished" content="2019-12-23T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2019-12-23T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="1671">
+
+
+
+<meta itemprop="keywords" content="berlin crypto,crypto,rwc," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Shared-Secrets Service"/>
+<meta name="twitter:description" content="At the Berlin Crypto this month we had a talk by Kevin about a shared-secret service they developed at Syselevn. After experimenting with PGP and deciding that it doesn&#39;t do what they needed, they decided to go with a very simple, custom encrypt-then-mac scheme. You can find details here. When someone says they built their own encryption scheme and message format I get obviously curious. In this post I want to summarize the scheme, design decisions, compare it standard authenticated encryption schemes, and ponder the question of the right security definitions."/>
+
+      
+    
+  </head>
+
+  <body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="https://www.franziskuskiefer.de/" class="f3 fw2 hover-white no-underline white-90 dib">
+      Franziskus Kiefer
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/post/" title="Articles page">
+              Articles
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/publications/" title="Publications page">
+              Publications
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/resume/" title="Résumé page">
+              Résumé
+            </a>
+          </li>
+          
+        </ul>
+      
+      
+
+
+
+<a href="https://twitter.com/_franziskus_" target="_blank" class="link-transition twitter link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener me" aria-label="follow on Twitter——Opens in a new window">
+  <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+<a href="https://github.com/franziskuskiefer" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener me" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+
+    <header class="mt4 w-100">
+      <p class="f6 b helvetica tracked">
+          
+        ARTICLES
+      </p>
+      <h1 class="f1 athelas mb1">Shared-Secrets Service</h1>
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2019-12-23T00:00:00Z">December 23, 2019</time>
+      
+      
+    </header>
+
+    <section class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><p>At the <a href="https://berlin-crypto.github.io">Berlin Crypto</a> this month we had a talk by <a href="https://twitter.com/xyahe/">Kevin</a> about a <a href="https://secrets.syseleven.de">shared-secret service</a> they developed at <a href="https://syseleven.de">Syselevn</a>.
+After experimenting with PGP and deciding that it doesn't do what they needed, they decided to go with a very simple, custom encrypt-then-mac scheme. You can find details <a href="https://github.com/syseleven/shared-secrets/blob/master/ENCRYPTION.md">here</a>.
+When someone says they built their own encryption scheme and message format I get obviously curious.
+In this post I want to summarize the scheme, design decisions, compare it standard authenticated encryption schemes, and ponder the question of the right security definitions.</p>
+<p>Note that I refrain from formal definitions in this post.
+I only want to give the intuition.
+Please read the linked documents for formal definitions and details.
+See for example the <a href="https://cseweb.ucsd.edu/~mihir/papers/oem.pdf">Authenticated Encryption paper by Bellare and Namprempre</a> for details on authenticated encryption and the <a href="https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.76.4921&amp;rep=rep1&amp;type=pdf">Authenticated Encryption with Associated Data by Rogaway</a> on AEADs.</p>
+<h2 id="shared-secrets">Shared-Secrets</h2>
+<p>The service and scheme are described as follows:</p>
+<blockquote>
+<p>Shared-Secrets is an application that helps you to simply share one-time secrets over the web.
+Using the Shared-Secrets service allows you to transfer the actual secret in an encrypted form.
+Retrieving the secret is as simple as following a link.
+In contrast to other secret sharing services, Shared-Secrets does not store the secret on the server, but puts the encrypted secret into the link that you share with the desired recipient.</p>
+</blockquote>
+<p>I leave aside the fact that any attacker that can intercept the message can trivially retrieve the secret and focus on the encryption scheme used for the service.
+Note that the service allows to encrypt the message with a password before sharing it to prevent the aforementioned attack.</p>
+<p>The encryption scheme used for this service is a basic encrypt-then-mac scheme that can be written as</p>
+<pre><code>(c, t) &lt;- EtM(key, nonce, msg, aad)
+</code></pre><p>where <code>aad</code> contains all meta-data (version etc.).
+Keys for the mac and encryption algorithms are derived as follows</p>
+<pre><code>key &lt;- random() # 32-byte
+(k_c, k_t) &lt;- (HMAC-SHA256(key, &quot;enc&quot;), HMAC-SHA256(key, &quot;mac&quot;))
+rsakey &lt;- RSA-OAEP(pk, key)
+</code></pre><p>The RSA key <code>pk</code> is the server's public key.
+Now we can compute the ciphertext and mac.</p>
+<pre><code>c &lt;- AES-256-CTR(k_c, nonce, msg)
+t &lt;- HMAC-SHA256(k_t, aad, c)
+</code></pre><p>The message format is defined as</p>
+<pre><code>[version:01][rsakeycount:02][rsakeyid:32][rsakeylength:02][rsakey:mm][...][rsakeyid:32][rsakeylength:02][rsakey:mm][nonce:16][message:nn][mac:32]
+</code></pre><p>with <code>rsakeyid := SHA256(pk)</code> and <code>nonce := $(date +%s)|0..0</code> (8-byte unix timestamp, padded 8 zero bytes).</p>
+<h3 id="observations">Observations</h3>
+<p>Looking at the scheme there are a two things that stand out.
+This is in addition to the unclear threat scenario that I won't discuss in this post.</p>
+<p>Note that there's currently no standardized way of doing  hybrid encryption. There's currently an <a href="https://tools.ietf.org/html/draft-irtf-cfrg-hpke-02">RFC in the making</a> but until that's finished it is necessary to define custom hybrid schemes as done here.</p>
+<h4 id="the-nonce-is-not-random">The nonce is not random</h4>
+<p>When using encryption schemes such as AES-CTR it is paramount that the nonce is unique.
+If this is not the case, the key-stream becomes known and allows full message recovery.
+Using a timestamp as nonce is usually a bad move as time is predictable and not random.</p>
+<h4 id="how-is-this-different-from-an-aead">How is this different from an AEAD</h4>
+<p>The scheme as described above looks like an AEAD scheme.
+So the question is why didn't they just use an established AEAD scheme such as AES-GCM or ChaCha20Poly1305.</p>
+<h2 id="encrypt-then-mac--aead">Encrypt-then-Mac == AEAD?</h2>
+<p>Let's talk about encryption and authentication first.
+Historically encryption offered confidentiality but no integrity.
+Something that's not immediately obvious to non-cryptographers who want to use encryption to protect their data.
+Authenticated Encryption (AE) and its relation to non-authenticated encryption was first described in the previously mentioned paper by <a href="https://cseweb.ucsd.edu/~mihir/papers/oem.pdf">Bellare and Namprempre</a> in 2000.</p>
+<p>Encryption was considered secure if it satisfied the indistinguishable under chosen plaintext property, i.e. if an attacker couldn't distinguish whether a ciphertext encrypts message <code>a</code> or message <code>b</code>.
+But &ldquo;security&rdquo; of an encryption scheme intuitively might mean something else as well.
+In addition to not being able to know which message is encrypted in a ciphertext it shouldn't be possible for an attacker to change the content of the message or the ciphertext without the recipient noticing it.
+This property can be described as ciphertext (or plaintext) integrity and allows the definition of authenticated encryption.
+Adding associated data (AD) that is not encrypted but authenticated we get Authenticated Encryption with Associated Data (AEAD).
+For a comprehensive overview of AEAD and its history I recommend checking out these <a href="https://summerschool-croatia.cs.ru.nl/2016/slides/PhilRogaway.pdf">slides by Phillip Rogaway</a>.</p>
+<h3 id="encrypt-then-mac--aead-1">Encrypt-then-Mac != AEAD</h3>
+<p>Generally encrypt-then-mac schemes can be considered AEADs.
+For this to be true however, the Mac has to be strongly unforgeable.
+Luckily this is the case for HMAC such that the scheme described above is fine in this regard.</p>
+<p>A MAC scheme is weakly unforgeable (WUF-CMA) if an attacker is not able to generate a tag for a new message, i.e. a message that she hasn't seen a tag for before.
+If a scheme is strongly unforgeable (SUF-CMA), it must me impossible for an attacker to generate a new message, tag pair, i.e. not only a new message but also a new tag.
+While SUF-CMA seems like an artificial extension of the intuitive notion of WUF-CMA it is necessary to build an AEAD as WUF-CMA doesn't provide integrity guarantees for the ciphertext or plaintext.</p>
+<h2 id="aead-properties">AEAD Properties</h2>
+<p>The motivation to build this custom AEAD scheme instead of using an existing one was a big point of discussion at the meetup.
+The essence is that Kenny didn't trust that an AEAD provided exactly what he needed.
+So what are properties of an AEAD?
+Generally AEADs are supposed to offer IND-CCA security where the attacker is allowed to decrypt arbitrary ciphertexts.
+Instead of thinking of AEAD as IND-CCA secure it is more intuitive to think of it as IND-CPA secure (i.e. the attacker can't do better than guessing which message is encrypted in a ciphertext when given the ciphertext to one of two adversarially chosen messages) and offering INT-CTXT, i.e. integrity of the ciphertext.
+Note that this <strong>does not</strong> imply authenticity of the plaintext because IND-CCA does not guarantee that it is impossible for an attacker to generate a valid ciphertext for a specially crafted message.</p>
+<h3 id="uniqueness-of-tags">Uniqueness of Tags</h3>
+<p>The property that was questioned to be part of the AEAD security definition but was important to the Shared-Secrets service is the uniqueness of the ciphertext and tag.
+This is necessary to make sure secrets can only be retrieved once.
+According to the <a href="https://secrets.syseleven.de/how">website</a> the server uses a fingerprint to achieve this.
+First I notice that fingerprint is not defined in the encryption scheme.
+Looking at <a href="https://github.com/syseleven/shared-secrets/blob/2fa63d5bf0673d497c7ee5afa766176ccb34b34f/lib/shared-secrets.exec.php#L256">the code</a> it appears that the fingerprint is the tag.
+The fingerprint is stored on the server and the service refuses to decrypt anything with the fingerprint if it did so once before.</p>
+<p>So the question is whether the used encrypt-then-mac scheme makes sure that the tag is unique and whether an AEAD would have offered this property as well.</p>
+<p>In other words, can an attacker generate a second, different, valid tag  <code>t'</code> for an existing ciphertext, tag pair <code>(c, t)</code>.
+Note that I do not consider encodings here.
+(Using base64 encoding for example it is possible to generate two different base64 strings that decode to the same binary message.)
+To this end there has to exist a pair <code>(c, t), (c', t')</code> with <code>Dec(c) == Dec(c') &amp;&amp; Verify(t) == Verify(t')</code> i.e. two ciphertext, tag pairs that decrypt to the same message and both tags are valid.
+First note that the unforgeability of the Mac ensures that it is impossible to generate a valid tag <code>t'</code> for a given ciphertext <code>c</code> without knowledge of the key.
+It follows that the ciphertext <code>c'</code> has to be different from the original ciphertext <code>c</code>.
+But without knowledge of the message <code>m</code> encrypted in <code>c</code> (or the key) it is impossible to generate a ciphertext <code>c'</code> that decrypts to <code>m</code>.
+Hence this is not possible.</p>
+<p>While everything else in this post were well established properties of AEADs this one doesn't appear to follow trivially.
+However, this applies to the custom scheme used in Shared-Secrets as well as an off-the-shelf AEAD.</p>
+<h2 id="timestamps-as-nonces">Timestamps as Nonces</h2>
+<p>Non-random nonces break most AEAD schemes.
+This is one reason <a href="https://web.cs.ucdavis.edu/~rogaway/papers/keywrap.pdf">Misuse-Resistant AE (MRAE)</a> was introduced and specified for schemes such as AES-GCM (<a href="https://tools.ietf.org/html/rfc8452">AES-GCM-SIV</a>).</p>
+<p>So how does choosing a timestamp as nonce fare in the Shared-Secret scheme?</p>
+<p>Recall that AES in counter mode, as used here, is an XOR of a plaintext block with the AES encryption of the concatenation of the nonce and the counter (<code>c_i = m_i xor AES(key, nonce||ctr)</code>).
+Thus, one can recover an unknown plaintext by computing the xor of its ciphertext with the xor of a known ciphertext, plaintext pair (<code>m_i = c_i xor (c'_i xor m'_i)</code>) when the nonce is known.</p>
+<p>While the Shared-Secrets scheme is very fragile here and not well-designed here (why not just take a random nonce?) I can't see how this can be exploited.
+Even if an attacker is able to generate two ciphertexts with the same nonce (this can be easily done by sending two requests to the server at the same time), the key will be different in both cases.</p>
+<h2 id="discussion-how-to-define-security">Discussion: How to define security?</h2>
+<p>This episode illustrates how important it is for security definitions to model real-world scenarios that people actually have when using a primitive.
+But it also shows that sometimes, even though standard primitives with appropriate security definitions exist, communicating these properties fail.
+The use case of the Shared-Secrets is a peculiar one but highlights these issues.
+Something I did not expect is that people rather define their own crypto schemes than using existing ones because they think they don't understand the properties properly.
+But this is all the more reason to make sure the exact security properties a scheme offers are communicated and well understood by everyone.</p>
+<p>For me this is another pointer that it is important to have properly working communication channels between people analyzing crypto and everyone using it in order to transport requirements and make sure everyone is on the same page.
+And this is, among others things, what we do at the <a href="https://berlin-crypto.github.io">Berlin Crypto</a> meetup in a very informal and local setting.</p>
+<ul class="pa0">
+  
+   <li class="list">
+     <a href="/tags/berlin-crypto" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">berlin crypto</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/crypto" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">crypto</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/rwc" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">rwc</a>
+   </li>
+  
+</ul>
+<div class="mt6">
+      
+      
+      </div>
+    </section>
+
+    <aside class="w-30-l mt6-l"><div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+    <p class="f5 b mb3">What&#39;s in this post</p>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#shared-secrets">Shared-Secrets</a>
+      <ul>
+        <li><a href="#observations">Observations</a></li>
+      </ul>
+    </li>
+    <li><a href="#encrypt-then-mac--aead">Encrypt-then-Mac == AEAD?</a>
+      <ul>
+        <li><a href="#encrypt-then-mac--aead-1">Encrypt-then-Mac != AEAD</a></li>
+      </ul>
+    </li>
+    <li><a href="#aead-properties">AEAD Properties</a>
+      <ul>
+        <li><a href="#uniqueness-of-tags">Uniqueness of Tags</a></li>
+      </ul>
+    </li>
+    <li><a href="#timestamps-as-nonces">Timestamps as Nonces</a></li>
+    <li><a href="#discussion-how-to-define-security">Discussion: How to define security?</a></li>
+  </ul>
+</nav>
+  </div>
+
+
+
+
+  <div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+    <p class="f5 b mb3">Related</p>
+    <ul class="pa0 list">
+	   
+	     <li  class="mb2">
+          <a href="/post/wrapping-arithmetic/">Wrapping arithmetic in Rust</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/hacspec2/">Update on hacspec</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/hacl-star/">The HACL* approach</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/hacspec1/">Introducing HacSpec</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/cve-2017-5462/">CVE-2017-5462 - A PRNG issue</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/aes-gcm-speedup/">Aes Gcm Speedup</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/post/constant-time-division/">On Constant Time Division</a>
+        </li>
+	    
+    </ul>
+</div>
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://www.franziskuskiefer.de/" >
+    &copy; 2019 Franziskus Kiefer
+  </a>
+    <div>
+
+
+
+<a href="https://twitter.com/_franziskus_" target="_blank" class="link-transition twitter link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener me" aria-label="follow on Twitter——Opens in a new window">
+  <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+<a href="https://github.com/franziskuskiefer" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener me" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+</div>
+  </div>
+</footer>
+
+    
+
+  <script src="/dist/js/app.3fc0f988d21662902933.js"></script>
+
+
+  </body>
+</html>

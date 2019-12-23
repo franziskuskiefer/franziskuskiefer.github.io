@@ -6,10 +6,10 @@
     
     <title>Franziskus Kiefer  | Articles</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="generator" content="Hugo 0.61.0" />
     
     
-      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+      <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
     
 
     
@@ -34,18 +34,17 @@
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://www.franziskuskiefer.de/post/" />
-
-<meta property="og:updated_time" content="2017-03-02T00:00:00+00:00" />
+<meta property="og:updated_time" content="2019-12-23T00:00:00+00:00" />
 <meta itemprop="name" content="Articles">
-<meta itemprop="description" content="">
-
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="description" content=""><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Articles"/>
 <meta name="twitter:description" content=""/>
 
+      
+    
   </head>
 
-  <body class="ma0 avenir bg-near-white prodution">
+  <body class="ma0 avenir bg-near-white production">
 
     
 
@@ -133,10 +132,29 @@
 
   <article class="pa3 pa4-ns nested-copy-line-height nested-img">
     <section class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy mid-gray">
-      <p>I don&rsquo;t get to write a lot here. But if I do, I hope you like it.</p>
-
+      
     </section>
     <aside class="flex-ns flex-wrap justify-around mt5">
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+          
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
+        December 23, 2019
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/shared-secrets-service/" class="link black dim">
+        Shared-Secrets Service
+      </a>
+    </h1>
+    <div class="nested-links f5 tj-l lh-copy nested-copy-line-height">
+      At the Berlin Crypto this month we had a talk by Kevin about a shared-secret service they developed at Syselevn. After experimenting with PGP and deciding that it doesn't do what they needed, they decided to go with a very simple, custom encrypt-then-mac scheme. You can find details here. When someone says they built their own encryption scheme and message format I get obviously curious. In this post I want to summarize the scheme, design decisions, compare it standard authenticated encryption schemes, and ponder the question of the right security definitions.
+    </div>
+  </div>
+
+        </div>
       
         <div class="relative w-100 w-30-l mb4 bg-white">
           
@@ -174,7 +192,7 @@ Christoph talked about how to harden the content security landscape of Firefox a
       </a>
     </h1>
     <div class="nested-links f5 tj-l lh-copy nested-copy-line-height">
-      One of Rusts great feature is that it catches integer overflows at runtime and panics rather than wraps (in debug builds). I recommend you read Huon&rsquo;s blog post about this from a couple years ago.
+      One of Rusts great feature is that it catches integer overflows at runtime and panics rather than wraps (in debug builds). I recommend you read Huon's blog post about this from a couple years ago.
 While this is a desirable behaviour in general, integer overflows are commonly used when implementing cryptography primitives. Rust offers wrapping alternatives such as wrapping_add etc. to allow wrapping behaviour. However, this makes code very hard to read, e.
     </div>
   </div>
@@ -195,7 +213,7 @@ While this is a desirable behaviour in general, integer overflows are commonly u
       </a>
     </h1>
     <div class="nested-links f5 tj-l lh-copy nested-copy-line-height">
-      Earlier this year I introduced hacspec, a new specification language for cryptographic primitives. After Karthik presented the idea and very preliminary results at IETF 101 in March we made quite some progress and presented a paper with a little more detail at SSR earlier this week. In this blog post I&rsquo;ll give the gist of the SSR paper and introduce the first version of hacspec.
+      Earlier this year I introduced hacspec, a new specification language for cryptographic primitives. After Karthik presented the idea and very preliminary results at IETF 101 in March we made quite some progress and presented a paper with a little more detail at SSR earlier this week. In this blog post I'll give the gist of the SSR paper and introduce the first version of hacspec.
 All information about hacspec can be found at https://hacs-workshop.
     </div>
   </div>
@@ -216,7 +234,7 @@ All information about hacspec can be found at https://hacs-workshop.
       </a>
     </h1>
     <div class="nested-links f5 tj-l lh-copy nested-copy-line-height">
-      The Security Engineering University Relationship Framework (SURF) is an initiative within the Firefox security engineering team to improve relations with privacy and security researchers. SURF includes a variety of possible relationships but is focused on building long-term relationships with researchers and organisations. The goal of SURF projects is to explore topics that are outside of Mozilla&rsquo;s immediate product needs, influence Mozilla&rsquo;s long-term product development and vision.
+      The Security Engineering University Relationship Framework (SURF) is an initiative within the Firefox security engineering team to improve relations with privacy and security researchers. SURF includes a variety of possible relationships but is focused on building long-term relationships with researchers and organisations. The goal of SURF projects is to explore topics that are outside of Mozilla's immediate product needs, influence Mozilla's long-term product development and vision.
 On November 12th the first SURF summit was held in London.
     </div>
   </div>
@@ -237,30 +255,9 @@ On November 12th the first SURF summit was held in London.
       </a>
     </h1>
     <div class="nested-links f5 tj-l lh-copy nested-copy-line-height">
-      If you didn&rsquo;t read the article about the HACL* approach, go there first and read it. tl;dr
+      If you didn't read the article about the HACL* approach, go there first and read it. tl;dr
  HACL* is a cryptographic library written in F* that allows translation to C using kremlin. It guarantees memory safety, secret independent computation, and functional correctness with respect to a mathematical specification.
- In this second blog post I describe the process of integrating code from HACL*, a researchy crypto library, into NSS, a production library shipping to millions of people, running on a plethora of platforms.
-    </div>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-          
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        February 14, 2018
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/hacl-star/" class="link black dim">
-        The HACL* approach
-      </a>
-    </h1>
-    <div class="nested-links f5 tj-l lh-copy nested-copy-line-height">
-      HACL* (High-Assurance Cryptographic Library) is a formally verified cryptographic library in F*, developed by the Prosecco team at INRIA Paris in collaboration with Microsoft Research, as part of Project Everest. HACL* was inspired by discussions at the HACS workshop and aims at developing a set of reference implementations in C for common cryptographic primitives.
-This is the first post in a series describing formal verification in NSS as an approach to improve confidence in highly complex, highly security critical code.
+  In this second blog post I describe the process of integrating code from HACL*, a researchy crypto library, into NSS, a production library shipping to millions of people, running on a plethora of platforms.
     </div>
   </div>
 
@@ -314,12 +311,23 @@ This is the first post in a series describing formal verification in NSS as an a
     <li class="page-item"><a class="page-link" href="/post/page/3/">3</a></li>
     
     
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/post/page/4/">4</a></li>
+    
+    
     <li class="page-item">
     <a href="/post/page/2/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
     </li>
     
     <li class="page-item">
-        <a href="/post/page/3/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/post/page/4/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
     </li>
     
 </ul>
