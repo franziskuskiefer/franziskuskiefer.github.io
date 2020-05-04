@@ -4,7 +4,28 @@
   
   <url>
     <loc>https://www.franziskuskiefer.de/</loc>
-    <lastmod>2019-12-23T00:00:00+00:00</lastmod>
+    <lastmod>2020-05-04T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.franziskuskiefer.de/tags/aisec/</loc>
+    <lastmod>2020-05-04T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.franziskuskiefer.de/post/leaving-aisec/</loc>
+    <lastmod>2020-05-04T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.franziskuskiefer.de/tags/</loc>
+    <lastmod>2020-05-04T00:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -39,13 +60,6 @@
   
   <url>
     <loc>https://www.franziskuskiefer.de/post/shared-secrets-service/</loc>
-    <lastmod>2019-12-23T00:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.franziskuskiefer.de/tags/</loc>
     <lastmod>2019-12-23T00:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>

@@ -6,10 +6,10 @@
     
     <title>Franziskus Kiefer  | Snort, Barnyard2 &amp; Snorby</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="generator" content="Hugo 0.62.2" />
+    <meta name="generator" content="Hugo 0.69.2" />
     
     
-      <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
     
 
     
@@ -27,7 +27,7 @@
     
     <meta property="og:title" content="Snort, Barnyard2 &amp; Snorby" />
 <meta property="og:description" content="This post is work in progress but I never got around to finishing it. Sorry
-After a first failed attempt to install Snorby on an Arch Linux server (Snorby requires Ruby 1.9.x, Arch uses 2.x and I&#39;m not willing to use the AUR version for this) I&#39;m doing this on a Ubuntu 14.04 Server.
+After a first failed attempt to install Snorby on an Arch Linux server (Snorby requires Ruby 1.9.x, Arch uses 2.x and I&rsquo;m not willing to use the AUR version for this) I&rsquo;m doing this on a Ubuntu 14.04 Server.
 Snort Before installing Snorby we have to install snort itself. This can be done with sudo apt-get install snort." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.franziskuskiefer.de/post/snort/" />
@@ -35,7 +35,7 @@ Snort Before installing Snorby we have to install snort itself. This can be done
 <meta property="article:modified_time" content="2014-10-05T00:00:00+00:00" />
 <meta itemprop="name" content="Snort, Barnyard2 &amp; Snorby">
 <meta itemprop="description" content="This post is work in progress but I never got around to finishing it. Sorry
-After a first failed attempt to install Snorby on an Arch Linux server (Snorby requires Ruby 1.9.x, Arch uses 2.x and I&#39;m not willing to use the AUR version for this) I&#39;m doing this on a Ubuntu 14.04 Server.
+After a first failed attempt to install Snorby on an Arch Linux server (Snorby requires Ruby 1.9.x, Arch uses 2.x and I&rsquo;m not willing to use the AUR version for this) I&rsquo;m doing this on a Ubuntu 14.04 Server.
 Snort Before installing Snorby we have to install snort itself. This can be done with sudo apt-get install snort.">
 <meta itemprop="datePublished" content="2014-10-05T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2014-10-05T00:00:00&#43;00:00" />
@@ -46,14 +46,12 @@ Snort Before installing Snorby we have to install snort itself. This can be done
 <meta itemprop="keywords" content="ids,snort,barnyard2," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Snort, Barnyard2 &amp; Snorby"/>
 <meta name="twitter:description" content="This post is work in progress but I never got around to finishing it. Sorry
-After a first failed attempt to install Snorby on an Arch Linux server (Snorby requires Ruby 1.9.x, Arch uses 2.x and I&#39;m not willing to use the AUR version for this) I&#39;m doing this on a Ubuntu 14.04 Server.
+After a first failed attempt to install Snorby on an Arch Linux server (Snorby requires Ruby 1.9.x, Arch uses 2.x and I&rsquo;m not willing to use the AUR version for this) I&rsquo;m doing this on a Ubuntu 14.04 Server.
 Snort Before installing Snorby we have to install snort itself. This can be done with sudo apt-get install snort."/>
 
-      
-    
   </head>
 
-  <body class="ma0 avenir bg-near-white production">
+  <body class="ma0 avenir bg-near-white prodution">
 
     
    
@@ -150,10 +148,10 @@ Snort Before installing Snorby we have to install snort itself. This can be done
     </header>
 
     <section class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><p><strong>This post is work in progress but I never got around to finishing it. Sorry</strong></p>
-<p>After a first failed attempt to install Snorby on an Arch Linux server (Snorby requires Ruby 1.9.x, Arch uses 2.x and I'm not willing to use the AUR version for this) I'm doing this on a Ubuntu 14.04 Server.</p>
+<p>After a first failed attempt to install Snorby on an Arch Linux server (Snorby requires Ruby 1.9.x, Arch uses 2.x and I&rsquo;m not willing to use the AUR version for this) I&rsquo;m doing this on a Ubuntu 14.04 Server.</p>
 <h1 id="snort">Snort</h1>
-<p>Before installing Snorby we have to install snort itself. This can be done with <code>sudo apt-get install snort</code>. Snort asks for a network address range to use for <code>HOME_NET</code>. Since I'm not sure what to use here (the network may change), I just use standard value. This can later be changed using snort config files.</p>
-<p>For testing purposes I add a new rule file in <code>/etc/snort/rules/</code> with a very basic rule that logs everything. <em>You really shouldn't do this in productive use, this will spam your snort output.</em></p>
+<p>Before installing Snorby we have to install snort itself. This can be done with <code>sudo apt-get install snort</code>. Snort asks for a network address range to use for <code>HOME_NET</code>. Since I&rsquo;m not sure what to use here (the network may change), I just use standard value. This can later be changed using snort config files.</p>
+<p>For testing purposes I add a new rule file in <code>/etc/snort/rules/</code> with a very basic rule that logs everything. <em>You really shouldn&rsquo;t do this in productive use, this will spam your snort output.</em></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">file: test.rules
 alert ip any any -&gt; any any <span style="color:#f92672">(</span>msg:<span style="color:#e6db74">&#34;Someone tried to access the server&#34;</span>; sid:100001; rev:1; priority:2;<span style="color:#f92672">)</span>
 </code></pre></div><p>To use the new rule file you have to include it in the snort config <code>/etc/snort/snort.conf</code> by adding a line <code>include $RULE_PATH/test.rules</code>.</p>
@@ -171,7 +169,7 @@ alert ip any any -&gt; any any <span style="color:#f92672">(</span>msg:<span sty
 </code></pre></div><h2 id="snorby">Snorby</h2>
 <p>Before installing snorby I need to make sure that certain software is installed.</p>
 <h3 id="prerequesite">Prerequesite</h3>
-<p>The base system is a fresh Ubuntu 14.04 Server installation. Before installing Snorby we have to make sure that all requirements are installed. The <a href="http://snorby.org">Snorby website</a> lists the following dependencies: <code>git</code>, <code>ruby</code>, <code>ImageMagick</code> and <code>Wkhtmltopdf</code>. But installing dependencies is not as easy as it sounds. I'm on a headless server and don't want to install video drivers. So what to do with the strange <code>Wkhtmltopdf</code> package? And why the heck does a headless application need X? But luckily there is a ruby gem of wkhtmltopdf that does not need any X component (documentation of Snorby is really bad here). So we just use <code>sudo gem install wkhtmltopdf</code> and we are good (ignore the errors during installation). We also have to install <code>ruby-dev</code> and <code>make</code> on Ubuntu. Further we need <code>mysql-server</code> installed. To get rails and bundler we have to install them with <code>sudo gem install bundler</code> and <code>sudo gem install rails</code>.</p>
+<p>The base system is a fresh Ubuntu 14.04 Server installation. Before installing Snorby we have to make sure that all requirements are installed. The <a href="http://snorby.org">Snorby website</a> lists the following dependencies: <code>git</code>, <code>ruby</code>, <code>ImageMagick</code> and <code>Wkhtmltopdf</code>. But installing dependencies is not as easy as it sounds. I&rsquo;m on a headless server and don&rsquo;t want to install video drivers. So what to do with the strange <code>Wkhtmltopdf</code> package? And why the heck does a headless application need X? But luckily there is a ruby gem of wkhtmltopdf that does not need any X component (documentation of Snorby is really bad here). So we just use <code>sudo gem install wkhtmltopdf</code> and we are good (ignore the errors during installation). We also have to install <code>ruby-dev</code> and <code>make</code> on Ubuntu. Further we need <code>mysql-server</code> installed. To get rails and bundler we have to install them with <code>sudo gem install bundler</code> and <code>sudo gem install rails</code>.</p>
 <h3 id="installing-snorby">Installing Snorby</h3>
 <p>Now we need to get snorby sources</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clone https://github.com/Snorby/snorby

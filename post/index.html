@@ -6,10 +6,10 @@
     
     <title>Franziskus Kiefer  | Articles</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="generator" content="Hugo 0.62.2" />
+    <meta name="generator" content="Hugo 0.69.2" />
     
     
-      <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
     
 
     
@@ -40,11 +40,9 @@
 <meta name="twitter:title" content="Articles"/>
 <meta name="twitter:description" content=""/>
 
-      
-    
   </head>
 
-  <body class="ma0 avenir bg-near-white production">
+  <body class="ma0 avenir bg-near-white prodution">
 
     
 
@@ -141,6 +139,28 @@
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
       <div class="f6">
+        May 4, 2020
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/leaving-aisec/" class="link black dim">
+        I&#39;m leaving AISEC
+      </a>
+    </h1>
+    <div class="nested-links f5 tj-l lh-copy nested-copy-line-height">
+      I don&rsquo;t like to write a post like this but I really feel that this one is necessary. After not even half a year I&rsquo;m going to leave the Fraunhofer AISEC at the end of May. In this post I want to explain why.
+This is not a post about contact tracing!
+During the week of April 13 the controversy around PEPP-PT started to heat up. Articles from coindesk and other media such as Golem (German), started to pop up and I started to get a little concerned knowing that AISEC is part of the PEPP-PT organization.
+    </div>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+          
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
         December 23, 2019
       </div>
     
@@ -150,7 +170,7 @@
       </a>
     </h1>
     <div class="nested-links f5 tj-l lh-copy nested-copy-line-height">
-      At the Berlin Crypto this month we had a talk by Kevin about a shared-secret service they developed at Syselevn. After experimenting with PGP and deciding that it doesn't do what they needed, they decided to go with a very simple, custom encrypt-then-mac scheme. You can find details here. When someone says they built their own encryption scheme and message format I get obviously curious. In this post I want to summarize the scheme, design decisions, compare it standard authenticated encryption schemes, and ponder the question of the right security definitions.
+      At the Berlin Crypto this month we had a talk by Kevin about a shared-secret service they developed at Syselevn. After experimenting with PGP and deciding that it doesn&rsquo;t do what they needed, they decided to go with a very simple, custom encrypt-then-mac scheme. You can find details here. When someone says they built their own encryption scheme and message format I get obviously curious. In this post I want to summarize the scheme, design decisions, compare it standard authenticated encryption schemes, and ponder the question of the right security definitions.
     </div>
   </div>
 
@@ -192,7 +212,7 @@ Christoph talked about how to harden the content security landscape of Firefox a
       </a>
     </h1>
     <div class="nested-links f5 tj-l lh-copy nested-copy-line-height">
-      One of Rusts great feature is that it catches integer overflows at runtime and panics rather than wraps (in debug builds). I recommend you read Huon's blog post about this from a couple years ago.
+      One of Rusts great feature is that it catches integer overflows at runtime and panics rather than wraps (in debug builds). I recommend you read Huon&rsquo;s blog post about this from a couple years ago.
 While this is a desirable behaviour in general, integer overflows are commonly used when implementing cryptography primitives. Rust offers wrapping alternatives such as wrapping_add etc. to allow wrapping behaviour. However, this makes code very hard to read, e.
     </div>
   </div>
@@ -213,7 +233,7 @@ While this is a desirable behaviour in general, integer overflows are commonly u
       </a>
     </h1>
     <div class="nested-links f5 tj-l lh-copy nested-copy-line-height">
-      Earlier this year I introduced hacspec, a new specification language for cryptographic primitives. After Karthik presented the idea and very preliminary results at IETF 101 in March we made quite some progress and presented a paper with a little more detail at SSR earlier this week. In this blog post I'll give the gist of the SSR paper and introduce the first version of hacspec.
+      Earlier this year I introduced hacspec, a new specification language for cryptographic primitives. After Karthik presented the idea and very preliminary results at IETF 101 in March we made quite some progress and presented a paper with a little more detail at SSR earlier this week. In this blog post I&rsquo;ll give the gist of the SSR paper and introduce the first version of hacspec.
 All information about hacspec can be found at https://hacs-workshop.
     </div>
   </div>
@@ -234,30 +254,8 @@ All information about hacspec can be found at https://hacs-workshop.
       </a>
     </h1>
     <div class="nested-links f5 tj-l lh-copy nested-copy-line-height">
-      The Security Engineering University Relationship Framework (SURF) is an initiative within the Firefox security engineering team to improve relations with privacy and security researchers. SURF includes a variety of possible relationships but is focused on building long-term relationships with researchers and organisations. The goal of SURF projects is to explore topics that are outside of Mozilla's immediate product needs, influence Mozilla's long-term product development and vision.
+      The Security Engineering University Relationship Framework (SURF) is an initiative within the Firefox security engineering team to improve relations with privacy and security researchers. SURF includes a variety of possible relationships but is focused on building long-term relationships with researchers and organisations. The goal of SURF projects is to explore topics that are outside of Mozilla&rsquo;s immediate product needs, influence Mozilla&rsquo;s long-term product development and vision.
 On November 12th the first SURF summit was held in London.
-    </div>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-          
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        April 12, 2018
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/hacl-nss-integration/" class="link black dim">
-        Shipping (some) HACL*
-      </a>
-    </h1>
-    <div class="nested-links f5 tj-l lh-copy nested-copy-line-height">
-      If you didn't read the article about the HACL* approach, go there first and read it. tl;dr
- HACL* is a cryptographic library written in F* that allows translation to C using kremlin. It guarantees memory safety, secret independent computation, and functional correctness with respect to a mathematical specification.
-  In this second blog post I describe the process of integrating code from HACL*, a researchy crypto library, into NSS, a production library shipping to millions of people, running on a plethora of platforms.
     </div>
   </div>
 

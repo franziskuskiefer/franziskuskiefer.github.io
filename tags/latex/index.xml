@@ -27,7 +27,7 @@
       
       <guid>https://www.franziskuskiefer.de/post/displaymath/</guid>
       <description>Another day in latex wonderland &amp;hellip; Today I was writing an equation in an aligned environment using sum and those fancy things. Unfortunately aligned is a display math environment such that the limits of sum are displayed above and below, which was really not suitable in my case. So how do I display inline-math style in a display math environment?
-Let&#39;s say we have an equation environment with an equation</description>
+Let&amp;rsquo;s say we have an equation environment with an equation</description>
     </item>
     
   </channel>

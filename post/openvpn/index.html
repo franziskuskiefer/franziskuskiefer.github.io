@@ -6,10 +6,10 @@
     
     <title>Franziskus Kiefer  | OpenVPN HowTo</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="generator" content="Hugo 0.62.2" />
+    <meta name="generator" content="Hugo 0.69.2" />
     
     
-      <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
     
 
     
@@ -28,7 +28,7 @@
     <meta property="og:title" content="OpenVPN HowTo" />
 <meta property="og:description" content="OpenPVN is an easy to set-up and use VPN solution that offer TUN/TAP support. In this tutorial I describe how to set-up an OpenVPN connection between a Ubuntu server and an Arch client.
 Preparations (Server) First we have to install OpenVPN on the server.
-# apt-get install openvpn To see whether TUN/TAP is enabled in the kernel we can check the kernel log grep tun /var/log/kern.log and load it if it doesn&#39;t show up modprobe tun." />
+# apt-get install openvpn To see whether TUN/TAP is enabled in the kernel we can check the kernel log grep tun /var/log/kern.log and load it if it doesn&rsquo;t show up modprobe tun." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.franziskuskiefer.de/post/openvpn/" />
 <meta property="article:published_time" content="2014-10-12T00:00:00+00:00" />
@@ -36,7 +36,7 @@ Preparations (Server) First we have to install OpenVPN on the server.
 <meta itemprop="name" content="OpenVPN HowTo">
 <meta itemprop="description" content="OpenPVN is an easy to set-up and use VPN solution that offer TUN/TAP support. In this tutorial I describe how to set-up an OpenVPN connection between a Ubuntu server and an Arch client.
 Preparations (Server) First we have to install OpenVPN on the server.
-# apt-get install openvpn To see whether TUN/TAP is enabled in the kernel we can check the kernel log grep tun /var/log/kern.log and load it if it doesn&#39;t show up modprobe tun.">
+# apt-get install openvpn To see whether TUN/TAP is enabled in the kernel we can check the kernel log grep tun /var/log/kern.log and load it if it doesn&rsquo;t show up modprobe tun.">
 <meta itemprop="datePublished" content="2014-10-12T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2014-10-12T00:00:00&#43;00:00" />
 <meta itemprop="wordCount" content="413">
@@ -47,13 +47,11 @@ Preparations (Server) First we have to install OpenVPN on the server.
 <meta name="twitter:title" content="OpenVPN HowTo"/>
 <meta name="twitter:description" content="OpenPVN is an easy to set-up and use VPN solution that offer TUN/TAP support. In this tutorial I describe how to set-up an OpenVPN connection between a Ubuntu server and an Arch client.
 Preparations (Server) First we have to install OpenVPN on the server.
-# apt-get install openvpn To see whether TUN/TAP is enabled in the kernel we can check the kernel log grep tun /var/log/kern.log and load it if it doesn&#39;t show up modprobe tun."/>
+# apt-get install openvpn To see whether TUN/TAP is enabled in the kernel we can check the kernel log grep tun /var/log/kern.log and load it if it doesn&rsquo;t show up modprobe tun."/>
 
-      
-    
   </head>
 
-  <body class="ma0 avenir bg-near-white production">
+  <body class="ma0 avenir bg-near-white prodution">
 
     
    
@@ -153,7 +151,7 @@ Preparations (Server) First we have to install OpenVPN on the server.
 <h1 id="preparations-server">Preparations (Server)</h1>
 <p>First we have to install OpenVPN on the server.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># apt-get install openvpn</span>
-</code></pre></div><p>To see whether TUN/TAP is enabled in the kernel we can check the kernel log <code>grep tun /var/log/kern.log</code> and load it if it doesn't show up <code>modprobe tun</code>.</p>
+</code></pre></div><p>To see whether TUN/TAP is enabled in the kernel we can check the kernel log <code>grep tun /var/log/kern.log</code> and load it if it doesn&rsquo;t show up <code>modprobe tun</code>.</p>
 <h2 id="creating-a-pki">Creating a PKI</h2>
 <p>To use OpenVPN we need a PKI and certificates. Fortunately there is a script for that.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># apt-get install easy-rsa</span>
@@ -196,7 +194,7 @@ dh /etc/openvpn/dh2048.pem
 tls-auth /etc/openvpn/ta.key <span style="color:#ae81ff">1</span>
 user nobody
 group nobody
-</code></pre></div><p>The <em>test-server-ip</em> has to be replaced with the server's IP or URL. Now we can also start the client <code># openvpn /etc/openvpn/client.conf</code>. The start-up should end with</p>
+</code></pre></div><p>The <em>test-server-ip</em> has to be replaced with the server&rsquo;s IP or URL. Now we can also start the client <code># openvpn /etc/openvpn/client.conf</code>. The start-up should end with</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Initialization Sequence Completed
 </code></pre></div><ul class="pa0">
   

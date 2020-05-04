@@ -6,10 +6,10 @@
     
     <title>Franziskus Kiefer  | Articles</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="generator" content="Hugo 0.62.2" />
+    <meta name="generator" content="Hugo 0.69.2" />
     
     
-      <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
     
 
     
@@ -40,11 +40,9 @@
 <meta name="twitter:title" content="Articles"/>
 <meta name="twitter:description" content=""/>
 
-      
-    
   </head>
 
-  <body class="ma0 avenir bg-near-white production">
+  <body class="ma0 avenir bg-near-white prodution">
 
     
 
@@ -141,6 +139,28 @@
             <div class="mb3 pa4 mid-gray overflow-hidden">
     
       <div class="f6">
+        April 12, 2018
+      </div>
+    
+    <h1 class="f3 near-black">
+      <a href="/post/hacl-nss-integration/" class="link black dim">
+        Shipping (some) HACL*
+      </a>
+    </h1>
+    <div class="nested-links f5 tj-l lh-copy nested-copy-line-height">
+      If you didn&rsquo;t read the article about the HACL* approach, go there first and read it. tl;dr
+ HACL* is a cryptographic library written in F* that allows translation to C using kremlin. It guarantees memory safety, secret independent computation, and functional correctness with respect to a mathematical specification.
+  In this second blog post I describe the process of integrating code from HACL*, a researchy crypto library, into NSS, a production library shipping to millions of people, running on a plethora of platforms.
+    </div>
+  </div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+          
+            <div class="mb3 pa4 mid-gray overflow-hidden">
+    
+      <div class="f6">
         February 14, 2018
       </div>
     
@@ -214,7 +234,7 @@ Inside the NSS PRNG NSS uses Hash_DRBG as PRNG, which is one of several PRNG sch
       </a>
     </h1>
     <div class="nested-links f5 tj-l lh-copy nested-copy-line-height">
-      After a couple of years using ghost I switched to the static page generator hugo. Hugo is easy to write and easy to publish. But more importantly it doesn't offer the attack surface ghost does and doesn't require external ressources like ghost does. It further decreases the amount of ressources used on the server.
+      After a couple of years using ghost I switched to the static page generator hugo. Hugo is easy to write and easy to publish. But more importantly it doesn&rsquo;t offer the attack surface ghost does and doesn&rsquo;t require external ressources like ghost does. It further decreases the amount of ressources used on the server.
     </div>
   </div>
 
@@ -235,28 +255,7 @@ Inside the NSS PRNG NSS uses Hash_DRBG as PRNG, which is one of several PRNG sch
     </h1>
     <div class="nested-links f5 tj-l lh-copy nested-copy-line-height">
       AES-GCM is a NIST standardised authenticated encryption algorithm (FIPS 800-38D). Since its standardisation in 2008 its usage increased to a point where it is the prevalent encryption used with TLS. With 85% it is by far the most widely used cipher.
- Firefox 53 TLS cipher telemetry   Unfortunately the AES-GCM implementation used in Firefox (provided by NSS) does not take advantage of full hardware acceleration; it uses a slower software-only implementation on Mac, Linux 32-bit, or any device that doesn't have the AVX, PCLMUL, and AES-NI hardware instructions.
-    </div>
-  </div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-          
-            <div class="mb3 pa4 mid-gray overflow-hidden">
-    
-      <div class="f6">
-        December 28, 2016
-      </div>
-    
-    <h1 class="f3 near-black">
-      <a href="/post/constant-time-division/" class="link black dim">
-        On Constant Time Division
-      </a>
-    </h1>
-    <div class="nested-links f5 tj-l lh-copy nested-copy-line-height">
-      Writing constant time code is hard. We all know that. But I'm always amazed again on how difficult it is. In preparation for making NSS more constant time I looked into certain CPU instructions that are known to be not constant time. So I wrote a little thing to measure the time (CPU cycles) needed for division.
-div rcx ; eax is now a/b The CPU I'm using in this post is an Intel i7-4790 (haswell).
+ Firefox 53 TLS cipher telemetry   Unfortunately the AES-GCM implementation used in Firefox (provided by NSS) does not take advantage of full hardware acceleration; it uses a slower software-only implementation on Mac, Linux 32-bit, or any device that doesn&rsquo;t have the AVX, PCLMUL, and AES-NI hardware instructions.
     </div>
   </div>
 

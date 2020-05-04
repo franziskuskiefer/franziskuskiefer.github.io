@@ -6,10 +6,10 @@
     
     <title>Franziskus Kiefer  | On Constant Time Division</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="generator" content="Hugo 0.62.2" />
+    <meta name="generator" content="Hugo 0.69.2" />
     
     
-      <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
     
 
     
@@ -43,11 +43,9 @@
 <meta name="twitter:title" content="On Constant Time Division"/>
 <meta name="twitter:description" content="I knew you shouldn&#39;t use division but I didn&#39;t know how bad it was."/>
 
-      
-    
   </head>
 
-  <body class="ma0 avenir bg-near-white production">
+  <body class="ma0 avenir bg-near-white prodution">
 
     
    
@@ -155,10 +153,10 @@
       
     </header>
 
-    <section class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><p>Writing constant time code is hard. We all know that. But I'm always amazed again on how difficult it is. In preparation for making NSS more constant time I looked into certain CPU instructions that are known to be not constant time.
+    <section class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><p>Writing constant time code is hard. We all know that. But I&rsquo;m always amazed again on how difficult it is. In preparation for making NSS more constant time I looked into certain CPU instructions that are known to be not constant time.
 So I wrote a little thing to measure the time (CPU cycles) needed for division.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-asm" data-lang="asm">    <span style="color:#a6e22e">div</span>     <span style="color:#66d9ef">rcx</span>                     <span style="color:#75715e">; eax is now a/b
-</span></code></pre></div><p>The CPU I'm using in this post is an Intel i7-4790 (haswell). Running the same measurements on other processors architectures will most likely yield different results. I'm describing two experiments I did. First, I look at bits in the divisor and how they influence the timing of the division. And then I look at the dividend and its influence.</p>
+</span></code></pre></div><p>The CPU I&rsquo;m using in this post is an Intel i7-4790 (haswell). Running the same measurements on other processors architectures will most likely yield different results. I&rsquo;m describing two experiments I did. First, I look at bits in the divisor and how they influence the timing of the division. And then I look at the dividend and its influence.</p>
 <h1 id="the-divisor">The Divisor</h1>
 <p>There are two interesting things we can look at here. The very small divisors as well as the pattern that we get in larger divisors.</p>
 <h2 id="-129">&lt; 129</h2>
@@ -166,7 +164,7 @@ So I wrote a little thing to measure the time (CPU cycles) needed for division.<
     <img src="../../images/plot_low-1.png"/> </a>
 </figure>
 
-<p>This graph plots the number of cycles needed for the division of numbers &lt; 130. It's easy to see that the number of cycles needed is in general around 300. However, there are a couple of &ldquo;outliers&rdquo; that need significantly less.</p>
+<p>This graph plots the number of cycles needed for the division of numbers &lt; 130. It&rsquo;s easy to see that the number of cycles needed is in general around 300. However, there are a couple of &ldquo;outliers&rdquo; that need significantly less.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C">    <span style="color:#ae81ff">128</span>    <span style="color:#ae81ff">123</span>
      <span style="color:#ae81ff">64</span>    <span style="color:#ae81ff">135</span>
      <span style="color:#ae81ff">32</span>    <span style="color:#ae81ff">132</span>
@@ -175,16 +173,16 @@ So I wrote a little thing to measure the time (CPU cycles) needed for division.<
       <span style="color:#ae81ff">4</span>    <span style="color:#ae81ff">123</span>
       <span style="color:#ae81ff">2</span>    <span style="color:#ae81ff">123</span>
       <span style="color:#ae81ff">1</span>    <span style="color:#ae81ff">126</span>
-</code></pre></div><p>You might have spotted the pattern already. The CPU probably doesn't want to do this expensive division and simply shifts the dividend to get the result. This trend continues later on but is more difficult to observe. (And there's a more interesting pattern there.)</p>
+</code></pre></div><p>You might have spotted the pattern already. The CPU probably doesn&rsquo;t want to do this expensive division and simply shifts the dividend to get the result. This trend continues later on but is more difficult to observe. (And there&rsquo;s a more interesting pattern there.)</p>
 <h2 id="the-larger-pattern">The larger pattern</h2>
 <figure><a href=".%22./../images/plot-1.png%22">
     <img src="../../images/plot-1.png"/> </a>
 </figure>
 
-<p>The graph shows a striking pattern and makes it obvious that division is not constant-time. Let's try to understand what's happening here.</p>
+<p>The graph shows a striking pattern and makes it obvious that division is not constant-time. Let&rsquo;s try to understand what&rsquo;s happening here.</p>
 <p>The first part of the pattern can be explained by changing bit-lengths in the divisor. At <code>8191</code> and <code>16383</code> for example a streak of fast division ends. This is probably because the <code>8192</code> and <code>16384</code> require an additional bit each.</p>
-<p>However, I'm clueless on how to explain the rest of the pattern.</p>
-<p>(I'll update this post when I figured out what's going on.)</p>
+<p>However, I&rsquo;m clueless on how to explain the rest of the pattern.</p>
+<p>(I&rsquo;ll update this post when I figured out what&rsquo;s going on.)</p>
 <ul class="pa0">
   
    <li class="list">

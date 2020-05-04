@@ -53,7 +53,7 @@
       <pubDate>Thu, 10 Dec 2015 00:00:00 +0000</pubDate>
       
       <guid>https://www.franziskuskiefer.de/publications/spc/</guid>
-      <description>Policies are the corner stones of today&#39;s computer systems. They define secure states and safe operations. A common problem with policies is that their enforcement is often in conflict with user privacy. In order to check the satisfiability of a policy, a server usually needs to collect from a client some information which may be private. In this work we introduce the notion of secure set-based policy checking (SPC) that allows the server to verify policies while preserving the client&#39;s privacy.</description>
+      <description>Policies are the corner stones of today&amp;rsquo;s computer systems. They define secure states and safe operations. A common problem with policies is that their enforcement is often in conflict with user privacy. In order to check the satisfiability of a policy, a server usually needs to collect from a client some information which may be private. In this work we introduce the notion of secure set-based policy checking (SPC) that allows the server to verify policies while preserving the client&amp;rsquo;s privacy.</description>
     </item>
     
     <item>
@@ -116,7 +116,7 @@
       <pubDate>Thu, 23 Aug 2012 00:00:00 +0000</pubDate>
       
       <guid>https://www.franziskuskiefer.de/publications/gs/</guid>
-      <description>Group signatures are cryptographic privacy-preserving authentication mechanisms. Potential signers are formed into a group, which is managed by a usually centralized authority (group manager). Each group member being in possession of a (valid) membership certificate can sign documents on behalf of the whole group. In addition to various forms of unforgeability the distinguished privacy property of group signatures is that they do not leak any information about the actual signer, except for the validity of the signer&#39;s membership in the group.</description>
+      <description>Group signatures are cryptographic privacy-preserving authentication mechanisms. Potential signers are formed into a group, which is managed by a usually centralized authority (group manager). Each group member being in possession of a (valid) membership certificate can sign documents on behalf of the whole group. In addition to various forms of unforgeability the distinguished privacy property of group signatures is that they do not leak any information about the actual signer, except for the validity of the signer&amp;rsquo;s membership in the group.</description>
     </item>
     
     <item>

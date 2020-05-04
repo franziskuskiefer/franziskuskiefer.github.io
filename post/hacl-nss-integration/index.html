@@ -6,10 +6,10 @@
     
     <title>Franziskus Kiefer  | Shipping (some) HACL*</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="generator" content="Hugo 0.62.2" />
+    <meta name="generator" content="Hugo 0.69.2" />
     
     
-      <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
     
 
     
@@ -26,7 +26,7 @@
     
     
     <meta property="og:title" content="Shipping (some) HACL*" />
-<meta property="og:description" content="If you didn&#39;t read the article about the HACL* approach, go there first and read it. tl;dr
+<meta property="og:description" content="If you didn&rsquo;t read the article about the HACL* approach, go there first and read it. tl;dr
  HACL* is a cryptographic library written in F* that allows translation to C using kremlin. It guarantees memory safety, secret independent computation, and functional correctness with respect to a mathematical specification.
   In this second blog post I describe the process of integrating code from HACL*, a researchy crypto library, into NSS, a production library shipping to millions of people, running on a plethora of platforms." />
 <meta property="og:type" content="article" />
@@ -34,7 +34,7 @@
 <meta property="article:published_time" content="2018-04-12T00:00:00+00:00" />
 <meta property="article:modified_time" content="2018-04-12T00:00:00+00:00" />
 <meta itemprop="name" content="Shipping (some) HACL*">
-<meta itemprop="description" content="If you didn&#39;t read the article about the HACL* approach, go there first and read it. tl;dr
+<meta itemprop="description" content="If you didn&rsquo;t read the article about the HACL* approach, go there first and read it. tl;dr
  HACL* is a cryptographic library written in F* that allows translation to C using kremlin. It guarantees memory safety, secret independent computation, and functional correctness with respect to a mathematical specification.
   In this second blog post I describe the process of integrating code from HACL*, a researchy crypto library, into NSS, a production library shipping to millions of people, running on a plethora of platforms.">
 <meta itemprop="datePublished" content="2018-04-12T00:00:00&#43;00:00" />
@@ -45,15 +45,13 @@
 
 <meta itemprop="keywords" content="nss,HACL*,formal verification," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Shipping (some) HACL*"/>
-<meta name="twitter:description" content="If you didn&#39;t read the article about the HACL* approach, go there first and read it. tl;dr
+<meta name="twitter:description" content="If you didn&rsquo;t read the article about the HACL* approach, go there first and read it. tl;dr
  HACL* is a cryptographic library written in F* that allows translation to C using kremlin. It guarantees memory safety, secret independent computation, and functional correctness with respect to a mathematical specification.
   In this second blog post I describe the process of integrating code from HACL*, a researchy crypto library, into NSS, a production library shipping to millions of people, running on a plethora of platforms."/>
 
-      
-    
   </head>
 
-  <body class="ma0 avenir bg-near-white production">
+  <body class="ma0 avenir bg-near-white prodution">
 
     
    
@@ -149,7 +147,7 @@
       
     </header>
 
-    <section class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><p>If you didn't read the article about the <a href="../hacl-star/">HACL* approach</a>, go there first and read it. tl;dr</p>
+    <section class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><p>If you didn&rsquo;t read the article about the <a href="../hacl-star/">HACL* approach</a>, go there first and read it. tl;dr</p>
 <blockquote>
 <p><a href="https://github.com/mitls/hacl-star/">HACL*</a> is a cryptographic library written in <a href="https://www.fstar-lang.org/">F*</a> that allows translation to C using kremlin.
 It guarantees memory safety, secret independent computation, and functional correctness with respect to a mathematical specification.</p>
@@ -187,7 +185,7 @@ For every primitive I looked at so far the performance of HACL* was at least as 
 <h2 id="code-quality">Code quality</h2>
 <p>Code quality was, as with any generated code, a big concern.
 How readable is the generated code? Can it easily be changed if the need arises?
-The first versions we looked at weren't that great &hellip;</p>
+The first versions we looked at weren&rsquo;t that great &hellip;</p>
 <p><figure><a href="../../images/hacl-review.png">
     <img src="../../images/hacl-review.png"/> </a>
 </figure>
@@ -197,8 +195,8 @@ The first versions we looked at weren't that great &hellip;</p>
 </figure>
 </p>
 <p>But after a couple improvements to kremlin the code was good to go.
-While every new piece of code that's being integrated has to pass code review the C code produced by kremlin is good enough now to land new primitives without having to improve upstream code first.
-Note however that code passes review here that wouldn't pass if it were hand-written.
+While every new piece of code that&rsquo;s being integrated has to pass code review the C code produced by kremlin is good enough now to land new primitives without having to improve upstream code first.
+Note however that code passes review here that wouldn&rsquo;t pass if it were hand-written.
 The code generator is not perfect.
 We have to live with some rough edges.
 The most important point is that the code is understandable.</p>
@@ -206,11 +204,11 @@ The most important point is that the code is understandable.</p>
 So the only change to the verified C code imported from HACL* is formatting.</p>
 <h3 id="some-pain-points-remain">Some pain points remain</h3>
 <p>There are some outstanding issues that I hope get fixed in kremlin and would improve code quality significantly.
-Kremlin doesn't know <code>const</code>, which is one of the few nice helpers one can use in C to control what's happening to your pointer.
+Kremlin doesn&rsquo;t know <code>const</code>, which is one of the few nice helpers one can use in C to control what&rsquo;s happening to your pointer.
 While <code>const</code> is not necessary because of the HACL* proofs, it would be nice to have.
 Kremlin further generates unnecessary casts such as <code>(uint32_t)4U</code>.
 This is not a big deal but makes code harder to read.
-There's also a big number of temporary variables that aren't necessary and make the code harder to read.</p>
+There&rsquo;s also a big number of temporary variables that aren&rsquo;t necessary and make the code harder to read.</p>
 <h2 id="platform-support">Platform support</h2>
 <p>Being a researchy library HACL* is not tested on a big variety of platforms.
 NSS on the other hand has to run on most available platforms as well as a number of legacy platforms.
@@ -230,21 +228,21 @@ The <a href="https://github.com/mitls/hacl-star/blob/master/snapshots/kremlib/ve
 <p>The code imported from HACL* into NSS is not expected to change a lot.
 But there are always reasons why the code has to get updated and a process is required to do so.
 To fix issues like broken platforms, changes to the upstream projects have to be landed and the snapshot in NSS has to get updated to the new upstream version.
-For this process to run smoothly it's necessary for both teams to work together.</p>
+For this process to run smoothly it&rsquo;s necessary for both teams to work together.</p>
 <p>Updating the HACL* code in NSS is pretty easy.
 First the new code is generated with a new version of HACL*, formatted, and copied to NSS.
 Then the docker image running the CI gets updated.
-Here's a diff for a recent update.</p>
+Here&rsquo;s a diff for a recent update.</p>
 <figure><a href="../../images/nss-hacl-patch.png">
     <img src="../../images/nss-hacl-patch.png"/> </a>
 </figure>
 
 <h2 id="running-the-verification-in-nss">Running the verification in NSS</h2>
-<p>To make sure that whatever we use in NSS actually verifies and the generated code isn't changed manually, the NSS CI has to verify the HACL* snapshot it uses on every run.
+<p>To make sure that whatever we use in NSS actually verifies and the generated code isn&rsquo;t changed manually, the NSS CI has to verify the HACL* snapshot it uses on every run.
 NSS uses <a href="https://github.com/taskcluster">taskcluster</a> as CI, which allows us to use a <a href="https://searchfox.org/nss/source/automation/taskcluster/docker-hacl">docker image</a> that re-verifies the used HACL* revision on every push.
 Checking the code in NSS is then a simple diff.</p>
 <h1 id="lessons-learned">Lessons learned</h1>
-<p>The first lesson is that it's possible to ship formally verified software.
+<p>The first lesson is that it&rsquo;s possible to ship formally verified software.
 The code is relatively simple and self-contained, which makes this easier.
 But it shows that formal verification tools are good enough to be used in production.</p>
 <p>The second lesson we learned is probably the more valuable one.</p>
@@ -253,12 +251,12 @@ But it shows that formal verification tools are good enough to be used in produc
 </blockquote>
 <p>From an engineering standpoint it might be frightening to start looking at formal verification tools and corresponding languages.
 But people working with these tools are happy to help out if that means more people are using their tools.
-It will need some effort getting used to the tools and languages but it's well worth it.</p>
+It will need some effort getting used to the tools and languages but it&rsquo;s well worth it.</p>
 <p>For people working on formal methods; You might have to learn a little more than you wanted to know about differences between different platforms and compilers and how to ship software.
-But that might be worth the effort if it means your proofs are used in production software that's used by millions of people.</p>
+But that might be worth the effort if it means your proofs are used in production software that&rsquo;s used by millions of people.</p>
 <hr>
 <p>Looking for more material on this?
-There's a high-level <a href="https://blog.mozilla.org/security/2017/09/13/verified-cryptography-firefox-57/">blog post</a> that talks about the formal verification work in NSS happening at Mozilla.
+There&rsquo;s a high-level <a href="https://blog.mozilla.org/security/2017/09/13/verified-cryptography-firefox-57/">blog post</a> that talks about the formal verification work in NSS happening at Mozilla.
 There has also been a talk at RWC 2018 earlier this year on this work (<a href="https://rwc.iacr.org/2018/Slides/Beurdouche.pdf">slides</a>, <a href="https://www.youtube.com/watch?v=xrZTVRICpSs">video</a>).</p>
 <ul class="pa0">
   

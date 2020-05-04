@@ -6,10 +6,10 @@
     
     <title>Franziskus Kiefer  | Introducing HacSpec</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="generator" content="Hugo 0.62.2" />
+    <meta name="generator" content="Hugo 0.69.2" />
     
     
-      <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
     
 
     
@@ -46,11 +46,9 @@ The main focus of HacSpec is to allow specifications to be compiled to formal la
 <meta name="twitter:description" content="HacSpec is a proposal for a new specification language for cryptographic primitives that is succinct, that is easy to read and implement, and that lends itself to formal verification. It aims to formalise the pseudocode used in cryptographic standards by proposing a formal syntax that can be checked for simple errors. HacSpec specifications are further executable to test against test vectors specified in a common syntax.
 The main focus of HacSpec is to allow specifications to be compiled to formal languages such as cryptol, coq, F*, and easycrypt and thus make it easier to formally verify implementations."/>
 
-      
-    
   </head>
 
-  <body class="ma0 avenir bg-near-white production">
+  <body class="ma0 avenir bg-near-white prodution">
 
     
    
@@ -162,7 +160,7 @@ The current state can be found at  <a href="https://github.com/HACS-workshop/hac
 The language is valid Python 3.6 using PEP484 and PEP526 for typing.
 It further uses comments (similar to PEP484 types) to define lengths and ranges.</p>
 <p>There are also <a href="https://github.com/HACS-workshop/hacspec/tree/master/specs/hacspec-rust">experiments using Rust</a> as basis for HacSpec.
-While Rust's type system makes it a compelling candidate, limitations in handling integers of arbitrary size means we probably won't be basing HacSpec on Rust.</p>
+While Rust&rsquo;s type system makes it a compelling candidate, limitations in handling integers of arbitrary size means we probably won&rsquo;t be basing HacSpec on Rust.</p>
 <p>The <a href="https://github.com/HACS-workshop/hacspec/blob/master/LANGUAGE.md">language specification</a> is currently vague and not fully formalised yet.
 It lives in a markdown document but will move to an RFC layout later.</p>
 <h3 id="formal-specifications">Formal specifications</h3>
@@ -172,7 +170,7 @@ It lives in a markdown document but will move to an RFC layout later.</p>
 Basing HacSpec on another language like Python means that not all valid Python programs are valid HacSpec programs.
 The spec checker is supposed to tell authors whether a given python program is a valid HacSpec.</p>
 <h3 id="compilers">Compilers</h3>
-<p>There's currently a very basic <a href="https://github.com/HACS-workshop/hacspec/tree/master/spec-compilers">HacSpec to F* compiler</a> from Karthik.
+<p>There&rsquo;s currently a very basic <a href="https://github.com/HACS-workshop/hacspec/tree/master/spec-compilers">HacSpec to F* compiler</a> from Karthik.
 Eventually we would like to have compilers from HacSpec to all common formal languages such as cryptol, coq, F*, and easycrypt.</p>
 <h2 id="call-for-participation">Call for participation</h2>
 <p>We invite contributions in the following areas.</p>

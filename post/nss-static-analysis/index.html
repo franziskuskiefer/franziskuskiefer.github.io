@@ -6,10 +6,10 @@
     
     <title>Franziskus Kiefer  | NSS Static Analysis</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="generator" content="Hugo 0.62.2" />
+    <meta name="generator" content="Hugo 0.69.2" />
     
     
-      <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
     
 
     
@@ -43,11 +43,9 @@
 <meta name="twitter:title" content="NSS Static Analysis"/>
 <meta name="twitter:description" content="We do it. You should do it too."/>
 
-      
-    
   </head>
 
-  <body class="ma0 avenir bg-near-white production">
+  <body class="ma0 avenir bg-near-white prodution">
 
     
    
@@ -143,13 +141,13 @@
       
     </header>
 
-    <section class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><p>When I started working on <a href="https://nss-crypto.org/">NSS</a> 7 months ago one of the tasks I was asked to do was to work through the related <a href="https://www.coverity.com/">Coverity</a> issues. This post summarises some learnings from this as we've since come a long way since over the last months.</p>
+    <section class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><p>When I started working on <a href="https://nss-crypto.org/">NSS</a> 7 months ago one of the tasks I was asked to do was to work through the related <a href="https://www.coverity.com/">Coverity</a> issues. This post summarises some learnings from this as we&rsquo;ve since come a long way since over the last months.</p>
 <p>Static analysis plays a crucial part in locating vulnerabilities and bugs during development. For NSS we currently use multiple <a href="https://scan.coverity.com/projects/nss/">static</a> <a href="http://clang-analyzer.llvm.org/scan-build.html">analysis</a> <a href="http://fbinfer.com">tools</a>. While scan-build as well as infer are great applications to find bugs, they require a lot of manual management. Features such as the <code>incremental</code> analysis of infer help with that though. Nonetheless, Coverity with its rich interface is the tool driving day to day analysis of NSS.</p>
 <p>When I started working on static analysis issues in NSS we only had Coverity scans for NSS releases <a href="https://scan.coverity.com/projects/firefox/">in Firefox</a>, which meant that we had to wait for six weeks or more to get feedback from the analyser on possible bugs. Now we have regular scans of the <a href="https://scan.coverity.com/projects/nss/">NSS tree</a> as well as local scans with scan-build and infer.</p>
 <h1 id="challenges-of-a-crypto-library">Challenges of a crypto library</h1>
 <p>A big challenge when doing static analysis of a low-level (cryptographic) library is the high number of false positives. Errors like <code>tainted value</code> can very likely be totally benign code that shifts around some bits as often necessary for efficiently and securely implemented crypto algorithms. Many false positives also mean a lot of work without actually improving the code and an increased probability of missing an actual bug.</p>
 <h1 id="dealing-with-technical-debt">Dealing with technical debt</h1>
-<p>A library as old as NSS naturally comes with a lot of technical debt, which creates a huge backlog of static analysis bugs. Mostly in code that hasn't been of big interested to most developers so far.</p>
+<p>A library as old as NSS naturally comes with a lot of technical debt, which creates a huge backlog of static analysis bugs. Mostly in code that hasn&rsquo;t been of big interested to most developers so far.</p>
 <figure><a href="../../images/static-analysis.png">
     <img src="../../images/static-analysis.png"/> </a><figcaption>
             <h4>Coverity Analysis Overview</h4>

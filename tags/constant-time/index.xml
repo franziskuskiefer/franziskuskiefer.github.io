@@ -17,8 +17,8 @@
       <pubDate>Wed, 28 Dec 2016 00:00:00 +0000</pubDate>
       
       <guid>https://www.franziskuskiefer.de/post/constant-time-division/</guid>
-      <description>Writing constant time code is hard. We all know that. But I&#39;m always amazed again on how difficult it is. In preparation for making NSS more constant time I looked into certain CPU instructions that are known to be not constant time. So I wrote a little thing to measure the time (CPU cycles) needed for division.
-div rcx ; eax is now a/b The CPU I&#39;m using in this post is an Intel i7-4790 (haswell).</description>
+      <description>Writing constant time code is hard. We all know that. But I&amp;rsquo;m always amazed again on how difficult it is. In preparation for making NSS more constant time I looked into certain CPU instructions that are known to be not constant time. So I wrote a little thing to measure the time (CPU cycles) needed for division.
+div rcx ; eax is now a/b The CPU I&amp;rsquo;m using in this post is an Intel i7-4790 (haswell).</description>
     </item>
     
   </channel>

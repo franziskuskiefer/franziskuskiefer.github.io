@@ -6,10 +6,19 @@
     <description>Recent content in Tags on Franziskus Kiefer</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 23 Dec 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 04 May 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.franziskuskiefer.de/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>aisec</title>
+      <link>https://www.franziskuskiefer.de/tags/aisec/</link>
+      <pubDate>Mon, 04 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.franziskuskiefer.de/tags/aisec/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>berlin crypto</title>

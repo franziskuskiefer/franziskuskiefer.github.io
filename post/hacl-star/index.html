@@ -6,10 +6,10 @@
     
     <title>Franziskus Kiefer  | The HACL* approach</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="generator" content="Hugo 0.62.2" />
+    <meta name="generator" content="Hugo 0.69.2" />
     
     
-      <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
     
 
     
@@ -46,11 +46,9 @@ This is the first post in a series describing formal verification in NSS as an a
 <meta name="twitter:description" content="HACL* (High-Assurance Cryptographic Library) is a formally verified cryptographic library in F*, developed by the Prosecco team at INRIA Paris in collaboration with Microsoft Research, as part of Project Everest. HACL* was inspired by discussions at the HACS workshop and aims at developing a set of reference implementations in C for common cryptographic primitives.
 This is the first post in a series describing formal verification in NSS as an approach to improve confidence in highly complex, highly security critical code."/>
 
-      
-    
   </head>
 
-  <body class="ma0 avenir bg-near-white production">
+  <body class="ma0 avenir bg-near-white prodution">
 
     
    
@@ -153,12 +151,12 @@ In this first post I describe the most important ideas and concepts of HACL*, th
 If you want to have all the juicy details about HACL*, I recommend reading the <a href="https://github.com/mitls/hacl-star/blob/master/doc/papers/hacl-star-ccs2017.pdf">CCS'17 paper</a>.</p>
 <h1 id="hacl">HACL*</h1>
 <p>HACL*, though written in F*, can be compiled to C code with guaranteed memory safety, secret independent computation, and functional correctness with respect to some mathematical specification.
-Let's first have a look at the high-level idea of HACL* on the example of Curve25519.</p>
+Let&rsquo;s first have a look at the high-level idea of HACL* on the example of Curve25519.</p>
 <p>The first step is to take the specification (<a href="https://tools.ietf.org/html/rfc7748">RFC 7748</a> in this case) and translate it into a high level F* specification.
 This specification is easy to read and can be checked for correctness against the RFC easily.
 All correctness guarantees HACL* gives for the generated C code are based on this specification, i.e. the C code is proven to be functionally equivalent to the the high level specification.
 Here the definition of the Montgomery ladder, an excerpt from the <a href="https://github.com/mitls/hacl-star/blob/dev_specs/specs/Spec.Curve25519.fst">Curve25519 specification</a>. (Apologies for the highlighting, no F* support.)</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ocaml" data-lang="ocaml"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span style="color:#66d9ef">let</span> <span style="color:#66d9ef">rec</span> montgomery_ladder_ <span style="color:#f92672">(</span>init<span style="color:#f92672">:</span>elem<span style="color:#f92672">)</span> x xp1 <span style="color:#f92672">(</span>k<span style="color:#f92672">:</span>scalar<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>ctr<span style="color:#f92672">:</span>nat<span style="color:#f92672">{</span>ctr<span style="color:#f92672">&lt;</span><span style="color:#f92672">=</span>256<span style="color:#f92672">}</span><span style="color:#f92672">)</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ocaml" data-lang="ocaml"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span style="color:#66d9ef">let</span> <span style="color:#66d9ef">rec</span> montgomery_ladder_ <span style="color:#f92672">(</span>init<span style="color:#f92672">:</span>elem<span style="color:#f92672">)</span> x xp1 <span style="color:#f92672">(</span>k<span style="color:#f92672">:</span>scalar<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>ctr<span style="color:#f92672">:</span>nat<span style="color:#f92672">{</span>ctr<span style="color:#f92672">&lt;=</span>256<span style="color:#f92672">})</span>
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span>  <span style="color:#f92672">:</span> <span style="color:#a6e22e">Tot</span> proj_point <span style="color:#f92672">(</span>decreases ctr<span style="color:#f92672">)</span> <span style="color:#f92672">=</span>
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span>  <span style="color:#66d9ef">if</span> ctr <span style="color:#f92672">=</span> 0 <span style="color:#66d9ef">then</span> x
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span>  <span style="color:#66d9ef">else</span> <span style="color:#f92672">(</span>
@@ -172,22 +170,22 @@ Here the definition of the Montgomery ladder, an excerpt from the <a href="https
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span style="color:#f92672">)</span></code></pre></div>
 <p>Running the reference implementation is possible but obviously slow (it is executed in OCaml).
 However a subset of F* (called Low*) can be translated to C using <a href="https://github.com/FStarLang/kremlin">Kremlin</a>.
-While the specification might be valid Low* code it is not optimised and thus won't yield fast C code.
+While the specification might be valid Low* code it is not optimised and thus won&rsquo;t yield fast C code.
 In order to generate fast C code more efficient Low* code has to be written first.
 Looking at state of the art C code for the given algorithm (<a href="https://github.com/jedisct1/libsodium/blob/e878bc141be12820dc6dbcd7a97bf50070bc1e2a/src/libsodium/crypto_scalarmult/curve25519/donna_c64/curve25519_donna_c64.c">Curve25519 Donna</a> for example) Low* code can be written that resembles the fast C code and can be extracted via Kremlin to similarly looking C code.</p>
 <p>At this point the main benefit of the HACL* approach comes to light.
 The optimised Low* code (as well as the extracted C code) are hard to get right and even harder to review for correctness, memory safety, and secret independent execution.
 Using an SMT solver (<a href="https://github.com/Z3Prover/z3">Z3</a> is used in HACL*) and F*&lsquo;s strong type system, functional equivalence is proven between the high-level F* specification and the optimised Low* code.
 The Low* code usually has to be enhanced with additional information to help prove the equivalence.
-This additional code however is ignored by Kremlin and doesn't get translated to C.</p>
+This additional code however is ignored by Kremlin and doesn&rsquo;t get translated to C.</p>
 <p>The following graphic gives an overview of the HACL* process.</p>
 <figure><a href="../../images/hacl-chart.png">
     <img src="../../images/hacl-chart.png"/> </a>
 </figure>
 
 <h2 id="an-example---conditional-swap">An Example - Conditional Swap</h2>
-<p>HACL* is a pretty complex library and it might be hard to understand what's going on.
-Therefore I'll give a small example of the basic concepts behind HACL* focusing on functional correctness.</p>
+<p>HACL* is a pretty complex library and it might be hard to understand what&rsquo;s going on.
+Therefore I&rsquo;ll give a small example of the basic concepts behind HACL* focusing on functional correctness.</p>
 <p>Conditional swaps are used for example in Curve25519 implementations to swap two variables <code>a</code> and <code>b</code> if a certain condition is given, <code>c = 0</code> here.
 In F* this can be written as follows.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ocaml" data-lang="ocaml"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span style="color:#66d9ef">val</span> cswap<span style="color:#f92672">:</span> x<span style="color:#f92672">:</span>uint32 <span style="color:#f92672">-&gt;</span> y<span style="color:#f92672">:</span>uint32 <span style="color:#f92672">-&gt;</span> c<span style="color:#f92672">:</span>uint32 <span style="color:#f92672">-&gt;</span>
@@ -212,7 +210,7 @@ This looks as follows in pseudo-C-code.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ocaml" data-lang="ocaml"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span style="color:#66d9ef">val</span> cswap_constant_time<span style="color:#f92672">:</span> x<span style="color:#f92672">:</span>uint32 <span style="color:#f92672">-&gt;</span> y<span style="color:#f92672">:</span>uint32 <span style="color:#f92672">-&gt;</span> c<span style="color:#f92672">:</span>uint32<span style="color:#f92672">{</span>c <span style="color:#f92672">=</span> 0xFFFFFFFFul <span style="color:#960050;background-color:#1e0010">\</span><span style="color:#f92672">/</span> c <span style="color:#f92672">=</span> 0ul<span style="color:#f92672">}</span> <span style="color:#f92672">-&gt;</span>
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span>  <span style="color:#a6e22e">Tot</span> <span style="color:#f92672">(</span>uint32 <span style="color:#f92672">*</span> uint32<span style="color:#f92672">)</span>
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span style="color:#66d9ef">let</span> cswap_constant_time x y c <span style="color:#f92672">=</span>
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span>  <span style="color:#66d9ef">let</span> mask <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>x <span style="color:#f92672">^^</span> y<span style="color:#f92672">)</span> <span style="color:#f92672">&amp;</span><span style="color:#f92672">^</span> c <span style="color:#66d9ef">in</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span>  <span style="color:#66d9ef">let</span> mask <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>x <span style="color:#f92672">^^</span> y<span style="color:#f92672">)</span> <span style="color:#f92672">&amp;^</span> c <span style="color:#66d9ef">in</span>
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span>  <span style="color:#66d9ef">let</span> a <span style="color:#f92672">=</span> x <span style="color:#f92672">^^</span> mask <span style="color:#66d9ef">in</span>
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span>  <span style="color:#66d9ef">let</span> b <span style="color:#f92672">=</span> y <span style="color:#f92672">^^</span> mask <span style="color:#66d9ef">in</span>
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span>  <span style="color:#f92672">(</span>a<span style="color:#f92672">,</span> b<span style="color:#f92672">)</span></code></pre></div>
@@ -222,7 +220,7 @@ To this end we write a lemma to ensures that.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ocaml" data-lang="ocaml"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span style="color:#66d9ef">let</span> a<span style="color:#f92672">,</span> b <span style="color:#f92672">=</span> cswap_constant_time x y c <span style="color:#66d9ef">in</span>
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span style="color:#66d9ef">let</span> c<span style="color:#f92672">,</span> d <span style="color:#f92672">=</span> cswap x y c <span style="color:#66d9ef">in</span>
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span>a <span style="color:#f92672">=</span> c <span style="color:#f92672">/</span><span style="color:#960050;background-color:#1e0010">\</span> b <span style="color:#f92672">=</span> d</code></pre></div>
-<p>While this can't be proven immediately it is relatively easy to write some helper lemmata that help F* and Z3 to understand the correctness of this statement.
+<p>While this can&rsquo;t be proven immediately it is relatively easy to write some helper lemmata that help F* and Z3 to understand the correctness of this statement.
 The C code extracted by Kremlin from the F* code above then looks as follows.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span> {
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span>  uint32_t fst;
@@ -235,10 +233,10 @@ The C code extracted by Kremlin from the F* code above then looks as follows.</p
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9</span>}</code></pre></div>
 <p>Check out the <a href="https://github.com/franziskuskiefer/the-hacl-approach">repository</a> for the full source code of the example.</p>
 <p>Memory safety can be proven easily as well by specifying liveliness conditions of buffers.
-In this example we don't have buffers so no need for verifying memory safety.
+In this example we don&rsquo;t have buffers so no need for verifying memory safety.
 We skip proving secret-independent execution here as it requires additional support from HACL*.</p>
 <h1 id="code-generation-vs-code-verification">Code Generation vs Code Verification</h1>
-<p>The HACL* approach as described above is a great way of generating fast C code that's proven to be correct, memory safe, and have secret-independent runtime.
+<p>The HACL* approach as described above is a great way of generating fast C code that&rsquo;s proven to be correct, memory safe, and have secret-independent runtime.
 For <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Projects/NSS">NSS</a> we decided to use code generation and integrate code from HACL* into the code base.
 However, instead of generating code it would also be possible to verify existing C code with other tools such as Cryptol/SAW to prove similar properties of the code.</p>
 <p>The main advantage of code generation is that the mathematical specifications can be easily used to build more complex algorithms and protocols on top and allow for re-use of specification code.
@@ -246,7 +244,7 @@ The trusted code base written in F* is therefore very small.</p>
 <p>The main drawback of generating code is a relatively large third-party code base that has to be trusted in order to generate the code.
 The weakest link in the case of HACL* is probably Kremlin, which has a <a href="https://www.microsoft.com/en-us/research/wp-content/uploads/2017/05/icfp17main-main96-p-5064b17-32755-submitted.pdf">hand written proof</a> but is a relatively young piece of code that probably contains bugs.</p>
 <p>There is no optimal solution to this problem that works for everyone but the HACL* approach as described in this post is a great way to get better confidence in correctness and security of complex C code using formal verification.</p>
-<p>In the next post I'll talk about challenges we faced when integrating code from HACL* into NSS and how we solved them.</p>
+<p>In the next post I&rsquo;ll talk about challenges we faced when integrating code from HACL* into NSS and how we solved them.</p>
 <ul class="pa0">
   
    <li class="list">

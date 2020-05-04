@@ -17,7 +17,7 @@
       <pubDate>Mon, 21 Oct 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.franziskuskiefer.de/post/wrapping-arithmetic/</guid>
-      <description>One of Rusts great feature is that it catches integer overflows at runtime and panics rather than wraps (in debug builds). I recommend you read Huon&#39;s blog post about this from a couple years ago.
+      <description>One of Rusts great feature is that it catches integer overflows at runtime and panics rather than wraps (in debug builds). I recommend you read Huon&amp;rsquo;s blog post about this from a couple years ago.
 While this is a desirable behaviour in general, integer overflows are commonly used when implementing cryptography primitives. Rust offers wrapping alternatives such as wrapping_add etc. to allow wrapping behaviour. However, this makes code very hard to read, e.</description>
     </item>
     
@@ -27,7 +27,7 @@ While this is a desirable behaviour in general, integer overflows are commonly u
       <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>https://www.franziskuskiefer.de/post/hacspec2/</guid>
-      <description>Earlier this year I introduced hacspec, a new specification language for cryptographic primitives. After Karthik presented the idea and very preliminary results at IETF 101 in March we made quite some progress and presented a paper with a little more detail at SSR earlier this week. In this blog post I&#39;ll give the gist of the SSR paper and introduce the first version of hacspec.
+      <description>Earlier this year I introduced hacspec, a new specification language for cryptographic primitives. After Karthik presented the idea and very preliminary results at IETF 101 in March we made quite some progress and presented a paper with a little more detail at SSR earlier this week. In this blog post I&amp;rsquo;ll give the gist of the SSR paper and introduce the first version of hacspec.
 All information about hacspec can be found at https://hacs-workshop.</description>
     </item>
     
@@ -37,7 +37,7 @@ All information about hacspec can be found at https://hacs-workshop.</descriptio
       <pubDate>Thu, 12 Apr 2018 00:00:00 +0000</pubDate>
       
       <guid>https://www.franziskuskiefer.de/post/hacl-nss-integration/</guid>
-      <description>If you didn&#39;t read the article about the HACL* approach, go there first and read it. tl;dr
+      <description>If you didn&amp;rsquo;t read the article about the HACL* approach, go there first and read it. tl;dr
  HACL* is a cryptographic library written in F* that allows translation to C using kremlin. It guarantees memory safety, secret independent computation, and functional correctness with respect to a mathematical specification.
   In this second blog post I describe the process of integrating code from HACL*, a researchy crypto library, into NSS, a production library shipping to millions of people, running on a plethora of platforms.</description>
     </item>
