@@ -6,7 +6,7 @@
     
     <title>Franziskus Kiefer  | The HACL* approach</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="generator" content="Hugo 0.71.0" />
+    <meta name="generator" content="Hugo 0.72.0" />
     
     
       <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
@@ -177,7 +177,7 @@ In order to generate fast C code more efficient Low* code has to be written firs
 Looking at state of the art C code for the given algorithm (<a href="https://github.com/jedisct1/libsodium/blob/e878bc141be12820dc6dbcd7a97bf50070bc1e2a/src/libsodium/crypto_scalarmult/curve25519/donna_c64/curve25519_donna_c64.c">Curve25519 Donna</a> for example) Low* code can be written that resembles the fast C code and can be extracted via Kremlin to similarly looking C code.</p>
 <p>At this point the main benefit of the HACL* approach comes to light.
 The optimised Low* code (as well as the extracted C code) are hard to get right and even harder to review for correctness, memory safety, and secret independent execution.
-Using an SMT solver (<a href="https://github.com/Z3Prover/z3">Z3</a> is used in HACL*) and F*&lsquo;s strong type system, functional equivalence is proven between the high-level F* specification and the optimised Low* code.
+Using an SMT solver (<a href="https://github.com/Z3Prover/z3">Z3</a> is used in HACL*) and F*&rsquo;s strong type system, functional equivalence is proven between the high-level F* specification and the optimised Low* code.
 The Low* code usually has to be enhanced with additional information to help prove the equivalence.
 This additional code however is ignored by Kremlin and doesn&rsquo;t get translated to C.</p>
 <p>The following graphic gives an overview of the HACL* process.</p>
