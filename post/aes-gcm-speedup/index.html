@@ -6,7 +6,7 @@
     
     <title>Franziskus Kiefer  | Aes Gcm Speedup</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="generator" content="Hugo 0.74.3" />
+    <meta name="generator" content="Hugo 0.75.1" />
     
     
       <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
@@ -176,7 +176,7 @@
         <span style="color:#a6e22e">MP_DIGIT</span>(c, ib <span style="color:#f92672">+</span> a_used) <span style="color:#f92672">=</span> b_i;
 }
 </code></pre></div><p>We can improve on two fronts here. First NSS should use PCLMUL to speed up the ghash multiplication if possible. Second if PCLMUL is not available, NSS should use a fast constant-time implementation.</p>
-<p><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=868948">Bug 868948</a> has several attempts of speeding up the software implementation without introducing timing side-channels. Unfortunately the fastest code that was proposed uses table lookups and is therefore not constant-time. Thanks to <a href="https://www.bearssl.org/constanttime.html">Thomas Pornin</a> I found a nicer way to implement the binary multiplication in a way that doesn&rsquo;t leak any timing information and is still faster than any other code I&rsquo;ve seen. (Check out Thomas&rsquo; excellent write-up for details.)</p>
+<p><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=868948">Bug 868948</a> has several attempts of speeding up the software implementation without introducing timing side-channels. Unfortunately the fastest code that was proposed uses table lookups and is therefore not constant-time. Thanks to <a href="https://www.bearssl.org/constanttime.html">Thomas Pornin</a> I found a nicer way to implement the binary multiplication in a way that doesn&rsquo;t leak any timing information and is still faster than any other code I&rsquo;ve seen. (Check out Thomas' excellent write-up for details.)</p>
 <p>If PCLMUL is available on the CPU, using it is of course the way to go. All modern compilers support intrinsics, which allows us to write &ldquo;inline assembly&rdquo; in C that runs on all platforms without having to write assembly. A hardware accelerated implementation of the ghash multiplication can be <a href="https://searchfox.org/nss/rev/40ab32e6acb227e7ede4734573e448ff43d179d5/lib/freebl/gcm.c#314">easily implemented</a> with <a href="https://software.intel.com/sites/landingpage/IntrinsicsGuide/#text=clmul&amp;expand=641"><code>_mm_clmulepi64_si128</code></a>.</p>
 <p>On Mac and Linux the new 32-bit and 64-bit software ghash functions (faster and constant-time) are used on the respective platforms if PCLMUL or AVX is not available. Since Windows doesn&rsquo;t support 128-bit integers (outside of registers) NSS falls back to the slower 32-bit ghash code (which is still more than 25% faster).</p>
 <h1 id="improving-aes-performance">Improving AES performance</h1>

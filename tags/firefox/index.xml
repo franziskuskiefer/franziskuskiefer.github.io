@@ -6,11 +6,7 @@
     <description>Recent content in Firefox on Franziskus Kiefer</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 02 Jan 2016 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://www.franziskuskiefer.de/tags/firefox/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sat, 02 Jan 2016 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/tags/firefox/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>RawGit Firefox Extension</title>
       <link>https://www.franziskuskiefer.de/post/raw-github/</link>

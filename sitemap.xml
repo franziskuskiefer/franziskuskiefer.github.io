@@ -4,7 +4,21 @@
   
   <url>
     <loc>https://www.franziskuskiefer.de/</loc>
-    <lastmod>2020-05-04T00:00:00+00:00</lastmod>
+    <lastmod>2020-08-19T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.franziskuskiefer.de/publications/arkg/</loc>
+    <lastmod>2020-08-19T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.franziskuskiefer.de/publications/</loc>
+    <lastmod>2020-08-19T00:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -137,13 +151,6 @@
   
   <url>
     <loc>https://www.franziskuskiefer.de/publications/hacspec18/</loc>
-    <lastmod>2018-11-26T00:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.franziskuskiefer.de/publications/</loc>
     <lastmod>2018-11-26T00:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>

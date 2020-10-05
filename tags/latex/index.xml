@@ -6,11 +6,7 @@
     <description>Recent content in latex on Franziskus Kiefer</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 01 Sep 2014 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://www.franziskuskiefer.de/tags/latex/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Mon, 01 Sep 2014 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/tags/latex/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>The curious case of pgflibraryfadings</title>
       <link>https://www.franziskuskiefer.de/post/pgflibraryfadings/</link>

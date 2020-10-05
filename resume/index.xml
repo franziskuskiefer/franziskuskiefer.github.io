@@ -5,10 +5,6 @@
     <link>https://www.franziskuskiefer.de/resume/</link>
     <description>Recent content in Résumé on Franziskus Kiefer</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    
-	<atom:link href="https://www.franziskuskiefer.de/resume/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <language>en-us</language><atom:link href="https://www.franziskuskiefer.de/resume/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

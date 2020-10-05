@@ -6,10 +6,16 @@
     <description>Recent content on Franziskus Kiefer</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 04 May 2020 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://www.franziskuskiefer.de/index.xml" rel="self" type="application/rss+xml" />
-    
+    <lastBuildDate>Wed, 19 Aug 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Asynchronous Remote Key Generation: An Analysis of Yubico&#39;s Proposal for W3C WebAuthn</title>
+      <link>https://www.franziskuskiefer.de/publications/arkg/</link>
+      <pubDate>Wed, 19 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.franziskuskiefer.de/publications/arkg/</guid>
+      <description>WebAuthn, forming part of FIDO2, is a W3C standard for strong authentication, which employs digital signatures to authenticate web users whilst preserving their privacy. Owned by users, WebAuthn authenticators generate attested and unlinkable public-key credentials for each web service to authenticate users. Since the loss of authenticators prevents users from accessing web services, usable recovery solutions preserving the original WebAuthn design choices and security objectives are urgently needed.
+We examine Yubico&amp;rsquo;s recent proposal for recovering from the loss of a WebAuthn authenticator by using a secondary backup authenticator.</description>
+    </item>
     
     <item>
       <title>I&#39;m leaving AISEC</title>
