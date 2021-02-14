@@ -6,7 +6,17 @@
     <description>Recent content on Franziskus Kiefer</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 19 Aug 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 14 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>💲 Web Monetization 💲</title>
+      <link>https://www.franziskuskiefer.de/post/webmonetization/</link>
+      <pubDate>Sun, 14 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.franziskuskiefer.de/post/webmonetization/</guid>
+      <description>Thanks to Deez I gave web monetization a spin on this website today. Here I write up how I did it, how it went, and what I think about it.
+The proposed web monetization standard allows browsers to securely pay websites, and, in turn, allows for websites to react to being paid, for example by turning off ads or providing extra functionality to paying visitors. There is some good description of use cases on Coil&amp;rsquo;s website if you&amp;rsquo;re looking for a more general explainer.</description>
+    </item>
+    
     <item>
       <title>Asynchronous Remote Key Generation: An Analysis of Yubico&#39;s Proposal for W3C WebAuthn</title>
       <link>https://www.franziskuskiefer.de/publications/arkg/</link>
@@ -95,7 +105,7 @@ On November 12th the first SURF summit was held in London.</description>
       <guid>https://www.franziskuskiefer.de/post/hacl-nss-integration/</guid>
       <description>If you didn&amp;rsquo;t read the article about the HACL* approach, go there first and read it. tl;dr
  HACL* is a cryptographic library written in F* that allows translation to C using kremlin. It guarantees memory safety, secret independent computation, and functional correctness with respect to a mathematical specification.
-  In this second blog post I describe the process of integrating code from HACL*, a researchy crypto library, into NSS, a production library shipping to millions of people, running on a plethora of platforms.</description>
+ In this second blog post I describe the process of integrating code from HACL*, a researchy crypto library, into NSS, a production library shipping to millions of people, running on a plethora of platforms.</description>
     </item>
     
     <item>

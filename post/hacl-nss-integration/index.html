@@ -4,8 +4,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
-    <title>Franziskus Kiefer  | Shipping (some) HACL*</title>
+    <title>Shipping (some) HACL* | Franziskus Kiefer</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="If you didn&rsquo;t read the article about the HACL* approach, go there first and read it. tl;dr
+ HACL* is a cryptographic library written in F* that allows translation to C using kremlin. It guarantees memory safety, secret independent computation, and functional correctness with respect to a mathematical specification.
+ In this second blog post I describe the process of integrating code from HACL*, a researchy crypto library, into NSS, a production library shipping to millions of people, running on a plethora of platforms.">
     <meta name="generator" content="Hugo 0.80.0" />
     
     
@@ -14,13 +17,14 @@
 
     
     
-      <link href="/dist/css/app.d98f2eb6bcd1eaedb7edf166bd16af26.css" rel="stylesheet">
+      <link href="/dist/css/app.4fc0b62e4b82c997bb0041217cd6b979.css" rel="stylesheet">
     
 
     
 
     
       
+
     
 
     
@@ -28,7 +32,7 @@
     <meta property="og:title" content="Shipping (some) HACL*" />
 <meta property="og:description" content="If you didn&rsquo;t read the article about the HACL* approach, go there first and read it. tl;dr
  HACL* is a cryptographic library written in F* that allows translation to C using kremlin. It guarantees memory safety, secret independent computation, and functional correctness with respect to a mathematical specification.
-  In this second blog post I describe the process of integrating code from HACL*, a researchy crypto library, into NSS, a production library shipping to millions of people, running on a plethora of platforms." />
+ In this second blog post I describe the process of integrating code from HACL*, a researchy crypto library, into NSS, a production library shipping to millions of people, running on a plethora of platforms." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.franziskuskiefer.de/post/hacl-nss-integration/" />
 <meta property="article:published_time" content="2018-04-12T00:00:00+00:00" />
@@ -36,7 +40,7 @@
 <meta itemprop="name" content="Shipping (some) HACL*">
 <meta itemprop="description" content="If you didn&rsquo;t read the article about the HACL* approach, go there first and read it. tl;dr
  HACL* is a cryptographic library written in F* that allows translation to C using kremlin. It guarantees memory safety, secret independent computation, and functional correctness with respect to a mathematical specification.
-  In this second blog post I describe the process of integrating code from HACL*, a researchy crypto library, into NSS, a production library shipping to millions of people, running on a plethora of platforms.">
+ In this second blog post I describe the process of integrating code from HACL*, a researchy crypto library, into NSS, a production library shipping to millions of people, running on a plethora of platforms.">
 <meta itemprop="datePublished" content="2018-04-12T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2018-04-12T00:00:00+00:00" />
 <meta itemprop="wordCount" content="1222">
@@ -48,10 +52,48 @@
 <meta name="twitter:title" content="Shipping (some) HACL*"/>
 <meta name="twitter:description" content="If you didn&rsquo;t read the article about the HACL* approach, go there first and read it. tl;dr
  HACL* is a cryptographic library written in F* that allows translation to C using kremlin. It guarantees memory safety, secret independent computation, and functional correctness with respect to a mathematical specification.
-  In this second blog post I describe the process of integrating code from HACL*, a researchy crypto library, into NSS, a production library shipping to millions of people, running on a plethora of platforms."/>
+ In this second blog post I describe the process of integrating code from HACL*, a researchy crypto library, into NSS, a production library shipping to millions of people, running on a plethora of platforms."/>
 
       
     
+	
+  
+    <meta name="monetization" content='$ilp.uphold.com/NMNKYReeKNNw'>
+  
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script>
+window.onload = function(){
+
+  var monetizationStartEventOccurred = false
+  hideContent()
+
+  if (document.monetization){
+    document.monetization.addEventListener('monetizationstart', function(event){
+      monetizationStartEventOccurred = true
+      showContent()
+    });
+  } else {
+    hideContent()
+  }
+
+  function hideContent() {
+    document.getElementById("exclusiveThanks").style.display = 'none'
+    document.getElementById("exclusiveError").style.display = 'block'
+    document.getElementById("exclusive").style.display = 'none'
+  }
+
+  function showContent() {
+    document.getElementById("exclusiveThanks").style.display = 'block'
+    document.getElementById("exclusiveError").style.display = 'none'
+    document.getElementById("exclusive").style.display = 'block'
+  }
+}
+</script>
+
   </head>
 
   <body class="ma0 avenir bg-near-white production">
@@ -64,8 +106,10 @@
     <div class="bg-black">
       <nav class="pv3 ph3 ph4-ns" role="navigation">
   <div class="flex-l justify-between items-center center">
-    <a href="https://www.franziskuskiefer.de/" class="f3 fw2 hover-white no-underline white-90 dib">
-      Franziskus Kiefer
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        Franziskus Kiefer
+      
     </a>
     <div class="flex-l items-center">
       
@@ -97,7 +141,8 @@
 
 
 
-<a href="https://twitter.com/_franziskus_" target="_blank" class="link-transition twitter link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener me" aria-label="follow on Twitter——Opens in a new window">
+
+<a href="https://twitter.com/_franziskus_" target="_blank" class="link-transition twitter link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
   <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
 
 <span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
@@ -109,7 +154,7 @@
 
 
 
-<a href="https://github.com/franziskuskiefer" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener me" aria-label="follow on Github——Opens in a new window">
+<a href="https://github.com/franziskuskiefer" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
   <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
   <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
 </svg>
@@ -118,6 +163,9 @@
 <path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
 </svg>
 </span></a>
+
+
+
 
 
 
@@ -136,31 +184,68 @@
       
   
   <article class="flex-l flex-wrap justify-between mw8 center ph3">
-
     <header class="mt4 w-100">
-      <p class="f6 b helvetica tracked">
+      <aside class="instapaper_ignoref b helvetica tracked">
           
         ARTICLES
-      </p>
-      <h1 class="f1 athelas mb1">Shipping (some) HACL*</h1>
+      </aside>
+      
+
+
+
+
+  <div id="sharing" class="mt3">
+
+    
+    <a href="https://www.facebook.com/sharer.php?u=https://www.franziskuskiefer.de/post/hacl-nss-integration/" class="facebook no-underline" aria-label="share on Facebook">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28.765,50.32h6.744V33.998h4.499l0.596-5.624h-5.095  l0.007-2.816c0-1.466,0.14-2.253,2.244-2.253h2.812V17.68h-4.5c-5.405,0-7.307,2.729-7.307,7.317v3.377h-3.369v5.625h3.369V50.32z   M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+
+    </a>
+
+    
+    
+    <a href="https://twitter.com/share?url=https://www.franziskuskiefer.de/post/hacl-nss-integration/&amp;text=Shipping%20%28some%29%20HACL*" class="twitter no-underline" aria-label="share on Twitter">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+    </a>
+
+    
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.franziskuskiefer.de/post/hacl-nss-integration/&amp;title=Shipping%20%28some%29%20HACL*" class="linkedin no-underline" aria-label="share on LinkedIn">
+      <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+    </a>
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">Shipping (some) HACL*</h1>
       
       
       <time class="f6 mv4 dib tracked" datetime="2018-04-12T00:00:00Z">April 12, 2018</time>
+
       
       
     </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l">
 
-    <section class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><p>If you didn&rsquo;t read the article about the <a href="../hacl-star/">HACL* approach</a>, go there first and read it. tl;dr</p>
+<p>If you didn&rsquo;t read the article about the <a href="../hacl-star/">HACL* approach</a>, go there first and read it. tl;dr</p>
+
 <blockquote>
 <p><a href="https://github.com/mitls/hacl-star/">HACL*</a> is a cryptographic library written in <a href="https://www.fstar-lang.org/">F*</a> that allows translation to C using kremlin.
 It guarantees memory safety, secret independent computation, and functional correctness with respect to a mathematical specification.</p>
 </blockquote>
-<hr>
+
+<hr />
+
 <p>In this second blog post I describe the process of integrating code from HACL*, a researchy crypto library, into NSS, a production library shipping to millions of people, running on a plethora of platforms.
 In short, how to ship (some parts of) HACL*.</p>
+
 <h1 id="shipping-formally-verified-code">Shipping formally verified code</h1>
+
 <p>Before integrating any code from HACL* into NSS there had to be some criteria the code had to fulfil in order to get considered and a process of integrating, maintaining, and updating the code.
 The criteria roughly looked like this:</p>
+
 <ul>
 <li>The code has to be correct.</li>
 <li>Performance must not be degraded by any new code.</li>
@@ -169,10 +254,13 @@ The criteria roughly looked like this:</p>
 <li>Upstream changes can to be integrated easily into NSS and fixes can be integrated upstream.</li>
 <li>The verification and generation toolchain has to run in the NSS world.</li>
 </ul>
+
 <p>We started integrating HACL* crypto primitives into NSS with <a href="https://tools.ietf.org/html/rfc7748">Curve25519</a>.
 At the time of writing NSS contains code from HACL* for Curve25519 64-bit, <a href="https://tools.ietf.org/html/rfc7539">Poly1305</a> 32-bit and 64-bit, <a href="https://tools.ietf.org/html/rfc7539">ChaCha20</a>, and ChaCha20 with SSSE3 hardware acceleration.
 More primitives are in the pipeline and will be integrated in the near future.</p>
+
 <h2 id="correctness">Correctness</h2>
+
 <p>Any code that lands in NSS has to be correct, obviously.
 This might be evident but when talking about HACL* generated C code, correctness is not so simple.
 Correctness can be checked relatively easily by looking at the HACL* specification of a given primitive.
@@ -180,15 +268,20 @@ This code is relatively easy to review (when familiar with F*) as it closely res
 The correctness of the C code is guaranteed by the formal proofs from HACL*.
 In addition we run all the usual test vectors on it of course.
 To catch any errors in the extraction chain from F* to C the extracted C code is reviewed for correctness as well.</p>
+
 <h2 id="performance">Performance</h2>
+
 <p>Performance was not a big concern.
 As shown in the <a href="https://github.com/mitls/hacl-star/blob/master/doc/papers/hacl-star-ccs2017.pdf">HACL* paper from CCS 2017</a>, performance of most primitives is on par with or better than the fastest C implementations out there.
 Nonetheless, performance of each primitive is compared between HACL* and the NSS to make sure not to degrade performance.
 For every primitive I looked at so far the performance of HACL* was at least as good as the performance of the NSS code.</p>
+
 <h2 id="code-quality">Code quality</h2>
+
 <p>Code quality was, as with any generated code, a big concern.
 How readable is the generated code? Can it easily be changed if the need arises?
 The first versions we looked at weren&rsquo;t that great &hellip;</p>
+
 <p><figure><a href="../../images/hacl-review.png">
     <img src="../../images/hacl-review.png"/> </a>
 </figure>
@@ -197,26 +290,33 @@ The first versions we looked at weren&rsquo;t that great &hellip;</p>
     <img src="../../images/ugly-hacl.png"/> </a>
 </figure>
 </p>
+
 <p>But after a couple improvements to kremlin the code was good to go.
 While every new piece of code that&rsquo;s being integrated has to pass code review the C code produced by kremlin is good enough now to land new primitives without having to improve upstream code first.
 Note however that code passes review here that wouldn&rsquo;t pass if it were hand-written.
 The code generator is not perfect.
 We have to live with some rough edges.
 The most important point is that the code is understandable.</p>
+
 <p>NSS if formatted with <code>clang-format</code>, which is checked on CI.
 So the only change to the verified C code imported from HACL* is formatting.</p>
+
 <h3 id="some-pain-points-remain">Some pain points remain</h3>
+
 <p>There are some outstanding issues that I hope get fixed in kremlin and would improve code quality significantly.
 Kremlin doesn&rsquo;t know <code>const</code>, which is one of the few nice helpers one can use in C to control what&rsquo;s happening to your pointer.
 While <code>const</code> is not necessary because of the HACL* proofs, it would be nice to have.
 Kremlin further generates unnecessary casts such as <code>(uint32_t)4U</code>.
 This is not a big deal but makes code harder to read.
 There&rsquo;s also a big number of temporary variables that aren&rsquo;t necessary and make the code harder to read.</p>
+
 <h2 id="platform-support">Platform support</h2>
+
 <p>Being a researchy library HACL* is not tested on a big variety of platforms.
 NSS on the other hand has to run on most available platforms as well as a number of legacy platforms.
 While the NSS CI covers Windows, Linux, and Mac in different configurations such as Intel 32-bit, 64-bit, and aarch64, there are other platforms such as BSD using NSS that are not covered.
 As expected we ran into a couple issues on some platforms such as BSD and Solaris but they were quickly resolved.</p>
+
 <p><figure><a href="../../images/nss-bsd-hacl-bug.png">
     <img src="../../images/nss-bsd-hacl-bug.png"/> </a>
 </figure>
@@ -225,39 +325,54 @@ As expected we ran into a couple issues on some platforms such as BSD and Solari
     <img src="../../images/nss-solaris-hacl-bug.png"/> </a>
 </figure>
 </p>
+
 <p>Especially code that is hardware dependent such as Intel intrinsics needs extra attention.
 The <a href="https://github.com/mitls/hacl-star/blob/master/snapshots/kremlib/vec128.h"><code>vec128.h</code></a> header used by HACL* to abstract hardware instructions needed a couple iterations before it worked on all supported platforms.</p>
+
 <h2 id="handling-change">Handling change</h2>
+
 <p>The code imported from HACL* into NSS is not expected to change a lot.
 But there are always reasons why the code has to get updated and a process is required to do so.
 To fix issues like broken platforms, changes to the upstream projects have to be landed and the snapshot in NSS has to get updated to the new upstream version.
 For this process to run smoothly it&rsquo;s necessary for both teams to work together.</p>
+
 <p>Updating the HACL* code in NSS is pretty easy.
 First the new code is generated with a new version of HACL*, formatted, and copied to NSS.
 Then the docker image running the CI gets updated.
 Here&rsquo;s a diff for a recent update.</p>
+
 <figure><a href="../../images/nss-hacl-patch.png">
     <img src="../../images/nss-hacl-patch.png"/> </a>
 </figure>
 
+
 <h2 id="running-the-verification-in-nss">Running the verification in NSS</h2>
+
 <p>To make sure that whatever we use in NSS actually verifies and the generated code isn&rsquo;t changed manually, the NSS CI has to verify the HACL* snapshot it uses on every run.
 NSS uses <a href="https://github.com/taskcluster">taskcluster</a> as CI, which allows us to use a <a href="https://searchfox.org/nss/source/automation/taskcluster/docker-hacl">docker image</a> that re-verifies the used HACL* revision on every push.
 Checking the code in NSS is then a simple diff.</p>
+
 <h1 id="lessons-learned">Lessons learned</h1>
+
 <p>The first lesson is that it&rsquo;s possible to ship formally verified software.
 The code is relatively simple and self-contained, which makes this easier.
 But it shows that formal verification tools are good enough to be used in production.</p>
+
 <p>The second lesson we learned is probably the more valuable one.</p>
+
 <blockquote>
 <p><em>Talk to each other and work together.</em></p>
 </blockquote>
+
 <p>From an engineering standpoint it might be frightening to start looking at formal verification tools and corresponding languages.
 But people working with these tools are happy to help out if that means more people are using their tools.
 It will need some effort getting used to the tools and languages but it&rsquo;s well worth it.</p>
+
 <p>For people working on formal methods; You might have to learn a little more than you wanted to know about differences between different platforms and compilers and how to ship software.
 But that might be worth the effort if it means your proofs are used in production software that&rsquo;s used by millions of people.</p>
-<hr>
+
+<hr />
+
 <p>Looking for more material on this?
 There&rsquo;s a high-level <a href="https://blog.mozilla.org/security/2017/09/13/verified-cryptography-firefox-57/">blog post</a> that talks about the formal verification work in NSS happening at Mozilla.
 There has also been a talk at RWC 2018 earlier this year on this work (<a href="https://rwc.iacr.org/2018/Slides/Beurdouche.pdf">slides</a>, <a href="https://www.youtube.com/watch?v=xrZTVRICpSs">video</a>).</p>
@@ -276,11 +391,11 @@ There has also been a talk at RWC 2018 earlier this year on this work (<a href="
    </li>
   
 </ul>
-<div class="mt6">
+<div class="mt6 instapaper_ignoref">
       
       
       </div>
-    </section>
+    </div>
 
     <aside class="w-30-l mt6-l">
 
@@ -310,13 +425,14 @@ There has also been a talk at RWC 2018 earlier this year on this work (<a href="
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
   <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://www.franziskuskiefer.de/" >
-    &copy; 2021 Franziskus Kiefer
+    &copy;  Franziskus Kiefer 2021 
   </a>
     <div>
 
 
 
-<a href="https://twitter.com/_franziskus_" target="_blank" class="link-transition twitter link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener me" aria-label="follow on Twitter——Opens in a new window">
+
+<a href="https://twitter.com/_franziskus_" target="_blank" class="link-transition twitter link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
   <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
 
 <span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
@@ -328,7 +444,7 @@ There has also been a talk at RWC 2018 earlier this year on this work (<a href="
 
 
 
-<a href="https://github.com/franziskuskiefer" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener me" aria-label="follow on Github——Opens in a new window">
+<a href="https://github.com/franziskuskiefer" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
   <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
   <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
 </svg>
@@ -337,6 +453,9 @@ There has also been a talk at RWC 2018 earlier this year on this work (<a href="
 <path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
 </svg>
 </span></a>
+
+
+
 
 
 

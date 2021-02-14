@@ -4,8 +4,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
-    <title>Franziskus Kiefer  | Update on hacspec</title>
+    <title>Update on hacspec | Franziskus Kiefer</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Earlier this year I introduced hacspec, a new specification language for cryptographic primitives. After Karthik presented the idea and very preliminary results at IETF 101 in March we made quite some progress and presented a paper with a little more detail at SSR earlier this week. In this blog post I&rsquo;ll give the gist of the SSR paper and introduce the first version of hacspec.
+All information about hacspec can be found at https://hacs-workshop.">
     <meta name="generator" content="Hugo 0.80.0" />
     
     
@@ -14,13 +16,14 @@
 
     
     
-      <link href="/dist/css/app.d98f2eb6bcd1eaedb7edf166bd16af26.css" rel="stylesheet">
+      <link href="/dist/css/app.4fc0b62e4b82c997bb0041217cd6b979.css" rel="stylesheet">
     
 
     
 
     
       
+
     
 
     
@@ -37,7 +40,7 @@ All information about hacspec can be found at https://hacs-workshop." />
 All information about hacspec can be found at https://hacs-workshop.">
 <meta itemprop="datePublished" content="2018-11-30T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2018-11-30T00:00:00+00:00" />
-<meta itemprop="wordCount" content="1208">
+<meta itemprop="wordCount" content="1210">
 
 
 
@@ -49,6 +52,44 @@ All information about hacspec can be found at https://hacs-workshop."/>
 
       
     
+	
+  
+    <meta name="monetization" content='$ilp.uphold.com/NMNKYReeKNNw'>
+  
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script>
+window.onload = function(){
+
+  var monetizationStartEventOccurred = false
+  hideContent()
+
+  if (document.monetization){
+    document.monetization.addEventListener('monetizationstart', function(event){
+      monetizationStartEventOccurred = true
+      showContent()
+    });
+  } else {
+    hideContent()
+  }
+
+  function hideContent() {
+    document.getElementById("exclusiveThanks").style.display = 'none'
+    document.getElementById("exclusiveError").style.display = 'block'
+    document.getElementById("exclusive").style.display = 'none'
+  }
+
+  function showContent() {
+    document.getElementById("exclusiveThanks").style.display = 'block'
+    document.getElementById("exclusiveError").style.display = 'none'
+    document.getElementById("exclusive").style.display = 'block'
+  }
+}
+</script>
+
   </head>
 
   <body class="ma0 avenir bg-near-white production">
@@ -61,8 +102,10 @@ All information about hacspec can be found at https://hacs-workshop."/>
     <div class="bg-black">
       <nav class="pv3 ph3 ph4-ns" role="navigation">
   <div class="flex-l justify-between items-center center">
-    <a href="https://www.franziskuskiefer.de/" class="f3 fw2 hover-white no-underline white-90 dib">
-      Franziskus Kiefer
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        Franziskus Kiefer
+      
     </a>
     <div class="flex-l items-center">
       
@@ -94,7 +137,8 @@ All information about hacspec can be found at https://hacs-workshop."/>
 
 
 
-<a href="https://twitter.com/_franziskus_" target="_blank" class="link-transition twitter link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener me" aria-label="follow on Twitter——Opens in a new window">
+
+<a href="https://twitter.com/_franziskus_" target="_blank" class="link-transition twitter link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
   <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
 
 <span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
@@ -106,7 +150,7 @@ All information about hacspec can be found at https://hacs-workshop."/>
 
 
 
-<a href="https://github.com/franziskuskiefer" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener me" aria-label="follow on Github——Opens in a new window">
+<a href="https://github.com/franziskuskiefer" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
   <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
   <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
 </svg>
@@ -115,6 +159,9 @@ All information about hacspec can be found at https://hacs-workshop."/>
 <path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
 </svg>
 </span></a>
+
+
+
 
 
 
@@ -133,32 +180,66 @@ All information about hacspec can be found at https://hacs-workshop."/>
       
   
   <article class="flex-l flex-wrap justify-between mw8 center ph3">
-
     <header class="mt4 w-100">
-      <p class="f6 b helvetica tracked">
+      <aside class="instapaper_ignoref b helvetica tracked">
           
         ARTICLES
-      </p>
-      <h1 class="f1 athelas mb1">Update on hacspec</h1>
+      </aside>
+      
+
+
+
+
+  <div id="sharing" class="mt3">
+
+    
+    <a href="https://www.facebook.com/sharer.php?u=https://www.franziskuskiefer.de/post/hacspec2/" class="facebook no-underline" aria-label="share on Facebook">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28.765,50.32h6.744V33.998h4.499l0.596-5.624h-5.095  l0.007-2.816c0-1.466,0.14-2.253,2.244-2.253h2.812V17.68h-4.5c-5.405,0-7.307,2.729-7.307,7.317v3.377h-3.369v5.625h3.369V50.32z   M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+
+    </a>
+
+    
+    
+    <a href="https://twitter.com/share?url=https://www.franziskuskiefer.de/post/hacspec2/&amp;text=Update%20on%20hacspec" class="twitter no-underline" aria-label="share on Twitter">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+    </a>
+
+    
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.franziskuskiefer.de/post/hacspec2/&amp;title=Update%20on%20hacspec" class="linkedin no-underline" aria-label="share on LinkedIn">
+      <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+    </a>
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">Update on hacspec</h1>
       
       
       <time class="f6 mv4 dib tracked" datetime="2018-11-30T00:00:00Z">November 30, 2018</time>
+
       
       
     </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l">
 
-    <section class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><p>Earlier this year I introduced <a href="../hacspec1">hacspec, a new specification language for cryptographic primitives</a>.
+<p>Earlier this year I introduced <a href="../hacspec1">hacspec, a new specification language for cryptographic primitives</a>.
 After Karthik presented the idea and very preliminary results at <a href="https://github.com/HACS-workshop/hacspec/blob/master/doc/hacspec-short-talk-CFRG-IETF-101.pdf">IETF 101</a> in March we made quite some progress and presented a paper with a little more detail at <a href="https://ssr2018.net/">SSR</a> earlier this week.
 In this blog post I&rsquo;ll give the gist of the <a href="https://github.com/HACS-workshop/hacspec/blob/master/doc/hacspec-ssr18-paper.pdf">SSR paper</a> and introduce the first version of <em>hacspec</em>.</p>
+
 <p>All information about <em>hacspec</em> can be found at <a href="https://hacs-workshop.github.io/hacspec/">https://hacs-workshop.github.io/hacspec/</a>.</p>
+
 <h2 id="the-language">The language</h2>
+
 <p>The <em>hacspec</em> language is a DSL for cryptographic algorithms.
 But it can also be seen as a typed subset of Python.
 The following describes the language.</p>
 <pre><code>  Values v ::=
          n                             integer constants 
        | True | False                  boolean constants 
-       | '...' | &quot;...&quot;                 string constants 
+       | &#39;...&#39; | &#34;...&#34;                 string constants 
        | (v1,...,vn)                   tuple constant 
        | array([v1,...,vn])            array constant 
 
@@ -194,9 +275,9 @@ Statements s ::=
        | if e:                         if-elif-else conditional 
              s1...sn  
          elif e:  
-             s1'...sn'  
+             s1&#39;...sn&#39;  
          else  
-             s1''...sn''  
+             s1&#39;&#39;...sn&#39;&#39;  
        | for i in range(e):            for loop 
              s1...sn  
        | break                         break from loop 
@@ -205,64 +286,86 @@ Statements s ::=
        | return e                      return from function 
        | from x import x1, x2,..., xn  module import 
   
-Specs σ ::= s1...sn                    sequence of statements 
-</code></pre><h2 id="hacspec-architecture">hacspec architecture</h2>
+Specs σ ::= s1...sn                    sequence of statements </code></pre>
+<h2 id="hacspec-architecture">hacspec architecture</h2>
+
 <p>The <em>hacspec</em> architecture is depicted in the following graph.</p>
+
 <figure><a href="../../images/hacspec2-architecture.png">
     <img src="../../images/hacspec2-architecture.png"/> </a>
 </figure>
 
+
 <h2 id="writing-hacspec">Writing hacspec</h2>
+
 <p>Every spec should be accompanied by a test and some test vectors leaving the author with at least two files, e.g. <code>poly.py</code> and <code>poly_test.py</code> (also see <a href="#Example">Example section</a>).
 Note that only the spec file has to be <em>hacspec</em> syntax.
 The test file can make use of all of Python.
 <em>hacspec</em> comes with a standard library called speclib and a spec-checker.
 To use the <em>hacspec</em> speclib and spec-checker install them via <code>pip install hacspec</code> or from the source (the <code>setup.py</code> for the Python package can be found in <code>/build/</code>).
 Running <em>hacspec</em> requires a Python interpreter version 3.6.4 or newer.</p>
+
 <h3 id="speclib">speclib</h3>
+
 <p>Commonly used functionality is provided in <em>speclib</em> (<code>from hacspec.speclib import *</code>).
 The full speclib documentation can be found <a href="https://hacs-workshop.github.io/hacspec/docs/">here</a>.
 Some highlights are</p>
+
 <ul>
 <li><em>modular arithmetic</em>: <code>natmod_t</code> is an integer data type that provides modular arithmetic, e.g. <code>felem_t = natmod_t((2**130)-5)</code> defines field elements modulo <code>(2**130)-5</code>.</li>
 <li><em>machine integers</em>: <code>unitN_t</code> define commonly used machine integer types for <code>N = 8, 16, 32, 64, 128</code>.</li>
 <li><em>byte arrays, vectors, and matrices</em>: provided data structures are <code>array_t, bytes_t, vector_t, matrix_t</code> as well as the variable length versions <code>vlarray_t</code> and <code>vlbytes_t</code>. Note that the vector and matrix data types offer point-wise arithmetic.</li>
 <li><em>refinements</em>: <code>refine_t</code> allows to refine data types.</li>
-<li><em>contracts</em>: <code>@contract</code> annotation on functions can be used for pre- and post-conditions.<!-- raw HTML omitted -->1<!-- raw HTML omitted --></li>
+<li><em>contracts</em>: <code>@contract</code> annotation on functions can be used for pre- and post-conditions.<sup>1</sup></li>
 </ul>
+
 <h3 id="spec-checker">spec-checker</h3>
+
 <p>Since hacspecs are executed with a Python interpreter it is not sufficient to run <em>hacspec</em> to check their syntax.
-To check that the syntax is valid a spec-checker is provided.<!-- raw HTML omitted -->2<!-- raw HTML omitted --></p>
-<pre><code>hacspec-check &lt;your-hacspec&gt;
-</code></pre><h3 id="executing-hacspec">Executing hacspec</h3>
+To check that the syntax is valid a spec-checker is provided.<sup>2</sup></p>
+<pre><code>hacspec-check &lt;your-hacspec&gt;</code></pre>
+<h3 id="executing-hacspec">Executing hacspec</h3>
+
 <p><em>hacspec</em> tests are executed with the Python interpreter.
 Executing tests on a spec can yield three different results.</p>
+
 <ol>
 <li>The execution is successful and all test vectors pass. In this case the spec is most likely correct and doesn&rsquo;t contain any obvious typing issues.</li>
 <li>The execution fails because of a failing test case. In this case the spec is probably wrong (or the test vectors are incorrect).</li>
 <li>The execution fails because of a type error. The speclib as well as <a href="https://github.com/agronholm/typeguard/">typeguard</a> are used to perform runtime type checks.</li>
 </ol>
+
 <h2 id="checking-and-compiling-hacspec">Checking and compiling hacspec</h2>
+
 <p>To use <em>hacspecs</em> for formal verification such as verification of cryptographic properties of an algorithm, generating code in other languages from the spec, or verifying correctness of other implementations with it, a second set of tools is provided.
-These tools are written in OCaml and thus require additional setup and are not packaged right now.<!-- raw HTML omitted -->3<!-- raw HTML omitted -->
+These tools are written in OCaml and thus require additional setup and are not packaged right now.<sup>3</sup>
 Check out the <a href="https://github.com/HACS-workshop/hacspec">repository</a> to use them.
 All tools can be easily called via <code>make</code> (see documentation in the repo <code>/compiler/</code> for details).</p>
+
 <h3 id="type-checker">Type checker</h3>
+
 <p>To perform proper type checking Python is impractical.
 A native type checker is implemented in OCaml that performs syntax and type checking for <em>hacspec</em>.
 To run the type checker on a spec simply run <code>./checker.native &lt;your-spec&gt;</code>.</p>
+
 <h3 id="compiler">Compiler</h3>
+
 <p>The type checker also produces a typed AST that can be used to generate the spec in another formal language.
 There are currently compiler for EasyCrypt and F*.
 I&rsquo;ll only describe the F* compiler as it&rsquo;s more complete.</p>
+
 <h4 id="f-compiler">F* compiler</h4>
+
 <p>The F* compiler requires <a href="https://github.com/mitls/hacl-star/"><code>HACL_HOME</code></a> and <a href="https://github.com/FStarLang/FStar"><code>FSTAR_HOME</code></a> environment variables to be set.
 The compiler is then invoked like this <code>./to_fstar &lt;your-spec&gt;</code>.
 The generated F* spec can then be type checked or executed on test vectors to check correctness of the spec.
 Using <a href="https://github.com/FStarLang/kremlin">kremlin</a> the F* code can also be used to generate C code.</p>
+
 <h2 id="Example">Example</h2>
+
 <p>The <a href="https://github.com/HACS-workshop/hacspec/tree/master/specs"><em>hacspec</em> repo</a> has many examples.
 I&rsquo;ll only give a short one here.</p>
+
 <p>The spec <code>poly.py</code>:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#f92672">from</span> hacspec.speclib <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
 
@@ -279,8 +382,8 @@ felem_t <span style="color:#f92672">=</span> natmod_t(p130m5)
     acc: felem_t <span style="color:#f92672">=</span> felem(<span style="color:#ae81ff">0</span>)
     <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(array<span style="color:#f92672">.</span>length(m)):
         acc <span style="color:#f92672">=</span> (acc <span style="color:#f92672">+</span> m[i]) <span style="color:#f92672">*</span> r
-    <span style="color:#66d9ef">return</span> acc
-</code></pre></div><p>The test <code>poly_test.py</code>:</p>
+    <span style="color:#66d9ef">return</span> acc</code></pre></div>
+<p>The test <code>poly_test.py</code>:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#f92672">from</span> poly <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
 
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>():
@@ -298,8 +401,8 @@ felem_t <span style="color:#f92672">=</span> natmod_t(p130m5)
         <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Test successful&#34;</span>)
 
 <span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
-    main()
-</code></pre></div><p>This can now be run with <code>python poly_test.py</code> and checked with <code>hacspec-check poly.py</code> and <code>checker.native poly.py</code>.
+    main()</code></pre></div>
+<p>This can now be run with <code>python poly_test.py</code> and checked with <code>hacspec-check poly.py</code> and <code>checker.native poly.py</code>.
 Compiling this to F* can be done with <code>to_fstar.native poly.py</code>, generating the following F* code.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ocaml" data-lang="ocaml"><span style="color:#66d9ef">module</span> <span style="color:#a6e22e">Poly</span>
 <span style="color:#66d9ef">open</span> <span style="color:#a6e22e">Speclib</span>
@@ -310,20 +413,26 @@ Compiling this to F* can be done with <code>to_fstar.native poly.py</code>, gene
 <span style="color:#66d9ef">let</span> poly <span style="color:#f92672">(</span>m <span style="color:#f92672">:</span> vlarray_t felem_t<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>r <span style="color:#f92672">:</span> felem_t<span style="color:#f92672">)</span> <span style="color:#f92672">:</span> felem_t <span style="color:#f92672">=</span>
   <span style="color:#66d9ef">let</span> acc <span style="color:#f92672">=</span> felem 0 <span style="color:#66d9ef">in</span>
   <span style="color:#66d9ef">let</span> acc <span style="color:#f92672">=</span> repeati <span style="color:#f92672">(</span>array_length m<span style="color:#f92672">)</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">fun</span> i acc <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">(</span>acc <span style="color:#f92672">+.</span> m<span style="color:#f92672">.[</span>i<span style="color:#f92672">])</span> <span style="color:#f92672">*.</span> r<span style="color:#f92672">)</span> acc <span style="color:#66d9ef">in</span>
-  acc
-</code></pre></div><h1 id="next-steps">Next steps</h1>
+  acc</code></pre></div>
+<h1 id="next-steps">Next steps</h1>
+
 <p>We hope that <em>hacspec</em> is a useful tool for spec authors and many people indeed voiced interest already.
 While the tooling isn&rsquo;t perfect yet, the language is developed enough to start using it.
 The next steps for <em>hacspec</em> is to get some usage from spec authors and improve tooling.
 We also hope to get more compilers for different formal languages implemented.</p>
-<!-- raw HTML omitted -->
-<hr>
-<!-- raw HTML omitted -->
+
+<p><br></p>
+
+<hr />
+
+<p><br></p>
+
 <ol>
 <li>Note that contracts are still in development and not fully supported yet.</li>
 <li>In future <em>hacspec</em> syntax checks and running test vectors on the spec should be done in one invocation.</li>
 <li>In future pre-built binaries should be distributed to make this easier.</li>
 </ol>
+
 <p><em>hacspec is mostly a spare time project for me at the moment. Development is therefore not always as fast as I&rsquo;d like.</em></p>
 <ul class="pa0">
   
@@ -344,11 +453,11 @@ We also hope to get more compilers for different formal languages implemented.</
    </li>
   
 </ul>
-<div class="mt6">
+<div class="mt6 instapaper_ignoref">
       
       
       </div>
-    </section>
+    </div>
 
     <aside class="w-30-l mt6-l">
 
@@ -394,13 +503,14 @@ We also hope to get more compilers for different formal languages implemented.</
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
   <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://www.franziskuskiefer.de/" >
-    &copy; 2021 Franziskus Kiefer
+    &copy;  Franziskus Kiefer 2021 
   </a>
     <div>
 
 
 
-<a href="https://twitter.com/_franziskus_" target="_blank" class="link-transition twitter link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener me" aria-label="follow on Twitter——Opens in a new window">
+
+<a href="https://twitter.com/_franziskus_" target="_blank" class="link-transition twitter link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
   <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
 
 <span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
@@ -412,7 +522,7 @@ We also hope to get more compilers for different formal languages implemented.</
 
 
 
-<a href="https://github.com/franziskuskiefer" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener me" aria-label="follow on Github——Opens in a new window">
+<a href="https://github.com/franziskuskiefer" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
   <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
   <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
 </svg>
@@ -421,6 +531,9 @@ We also hope to get more compilers for different formal languages implemented.</
 <path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
 </svg>
 </span></a>
+
+
+
 
 
 
