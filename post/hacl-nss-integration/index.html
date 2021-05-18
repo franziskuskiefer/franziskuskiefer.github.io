@@ -9,7 +9,7 @@
     <meta name="description" content="If you didn&rsquo;t read the article about the HACL* approach, go there first and read it. tl;dr
  HACL* is a cryptographic library written in F* that allows translation to C using kremlin. It guarantees memory safety, secret independent computation, and functional correctness with respect to a mathematical specification.
  In this second blog post I describe the process of integrating code from HACL*, a researchy crypto library, into NSS, a production library shipping to millions of people, running on a plethora of platforms.">
-    <meta name="generator" content="Hugo 0.82.0" />
+    <meta name="generator" content="Hugo 0.83.1" />
     
     
       <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
@@ -278,12 +278,10 @@ For every primitive I looked at so far the performance of HACL* was at least as 
 How readable is the generated code? Can it easily be changed if the need arises?
 The first versions we looked at weren&rsquo;t that great &hellip;</p>
 
-<p><figure><a href="../../images/hacl-review.png">
-    <img src="../../images/hacl-review.png"/> </a>
+<p><figure><a href="../../images/hacl-review.png"><img src="../../images/hacl-review.png"/></a>
 </figure>
 
-<figure><a href="../../images/ugly-hacl.png">
-    <img src="../../images/ugly-hacl.png"/> </a>
+<figure><a href="../../images/ugly-hacl.png"><img src="../../images/ugly-hacl.png"/></a>
 </figure>
 </p>
 
@@ -313,12 +311,10 @@ NSS on the other hand has to run on most available platforms as well as a number
 While the NSS CI covers Windows, Linux, and Mac in different configurations such as Intel 32-bit, 64-bit, and aarch64, there are other platforms such as BSD using NSS that are not covered.
 As expected we ran into a couple issues on some platforms such as BSD and Solaris but they were quickly resolved.</p>
 
-<p><figure><a href="../../images/nss-bsd-hacl-bug.png">
-    <img src="../../images/nss-bsd-hacl-bug.png"/> </a>
+<p><figure><a href="../../images/nss-bsd-hacl-bug.png"><img src="../../images/nss-bsd-hacl-bug.png"/></a>
 </figure>
 
-<figure><a href="../../images/nss-solaris-hacl-bug.png">
-    <img src="../../images/nss-solaris-hacl-bug.png"/> </a>
+<figure><a href="../../images/nss-solaris-hacl-bug.png"><img src="../../images/nss-solaris-hacl-bug.png"/></a>
 </figure>
 </p>
 
@@ -337,8 +333,7 @@ First the new code is generated with a new version of HACL*, formatted, and copi
 Then the docker image running the CI gets updated.
 Here&rsquo;s a diff for a recent update.</p>
 
-<figure><a href="../../images/nss-hacl-patch.png">
-    <img src="../../images/nss-hacl-patch.png"/> </a>
+<figure><a href="../../images/nss-hacl-patch.png"><img src="../../images/nss-hacl-patch.png"/></a>
 </figure>
 
 

@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="Thanks to Deez I gave web monetization a spin on this website today. Here I write up how I did it, how it went, and what I think about it.
 The proposed web monetization standard allows browsers to securely pay websites, and, in turn, allows for websites to react to being paid, for example by turning off ads or providing extra functionality to paying visitors. There is some good description of use cases on Coil&rsquo;s website if you&rsquo;re looking for a more general explainer.">
-    <meta name="generator" content="Hugo 0.82.0" />
+    <meta name="generator" content="Hugo 0.83.1" />
     
     
       <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
@@ -230,8 +230,7 @@ There is some good description of use cases on <a href="https://developers.coil.
 <p>The following diagram from the <a href="https://webmonetization.org/docs/explainer/">web monetization docs</a> illustrate the information flow.
 In short, the <code>monetization</code> meta-tag on the page is parsed by the browser, which initiates a session for a page visit and triggers the payment through the payment pointer.</p>
 
-<figure><a href="../../images/webmonetization-flow.svg">
-    <img src="../../images/webmonetization-flow.svg"/> </a>
+<figure><a href="../../images/webmonetization-flow.svg"><img src="../../images/webmonetization-flow.svg"/></a>
 </figure>
 
 
@@ -250,8 +249,7 @@ The verification didn&rsquo;t go through yet 🤔.
 But I can still receive funds and have honestly no idea what&rsquo;s happening here.
 This is a pretty bad sign for a provider that&rsquo;s supposed to handle money for me.</p>
 
-<figure><a href="../../images/UpholdWallet.png">
-    <img src="../../images/UpholdWallet.png"/> </a>
+<figure><a href="../../images/UpholdWallet.png"><img src="../../images/UpholdWallet.png"/></a>
 </figure>
 
 
@@ -326,8 +324,7 @@ It is even easier to include it now.</p>
 <p>To see how consumers visiting a website experience web monetization I used <a href="https://coil.com">Coil</a>.
 With an account and an <a href="https://coil.com/#Extension-Install-Section">extension for your favourite browser</a> we see that it is working.</p>
 
-<figure><a href="../../images/franziskuskiefer.de-coil.png">
-    <img src="../../images/franziskuskiefer.de-coil.png"/> </a>
+<figure><a href="../../images/franziskuskiefer.de-coil.png"><img src="../../images/franziskuskiefer.de-coil.png"/></a>
 </figure>
 
 
@@ -336,8 +333,7 @@ With an account and an <a href="https://coil.com/#Extension-Install-Section">ext
 <p>Seeing the green <code>$</code> when visiting a page that uses web monetization shows the user that they are supporting the content creator and feels good.
 However, it takes a while for the monetization to kick in such that it looks like the page refreshes after a second for exclusive content.</p>
 
-<figure><a href="../../images/monetization-loading.gif">
-    <img src="../../images/monetization-loading.gif"/> </a>
+<figure><a href="../../images/monetization-loading.gif"><img src="../../images/monetization-loading.gif"/></a>
 </figure>
 
 
@@ -385,8 +381,7 @@ Now that they disabled my account I have to disable the web monetization experim
 I don&rsquo;t really care, but Uphold appears to be as bad as I expected.
 There was no communication whatsoever from Uphold except the following screen when logging in.</p>
 
-<figure><a href="../../images/uphold-account-lock.png">
-    <img src="../../images/uphold-account-lock.png"/> </a>
+<figure><a href="../../images/uphold-account-lock.png"><img src="../../images/uphold-account-lock.png"/></a>
 </figure>
 
 

@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="AES-GCM is a NIST standardised authenticated encryption algorithm (FIPS 800-38D). Since its standardisation in 2008 its usage increased to a point where it is the prevalent encryption used with TLS. With 85% it is by far the most widely used cipher.
  Firefox 53 TLS cipher telemetry   Unfortunately the AES-GCM implementation used in Firefox (provided by NSS) does not take advantage of full hardware acceleration; it uses a slower software-only implementation on Mac, Linux 32-bit, or any device that doesn&rsquo;t have the AVX, PCLMUL, and AES-NI hardware instructions.">
-    <meta name="generator" content="Hugo 0.82.0" />
+    <meta name="generator" content="Hugo 0.83.1" />
     
     
       <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
@@ -231,8 +231,7 @@ window.onload = function(){
 
 <p>AES-GCM is a NIST standardised authenticated encryption algorithm (FIPS 800-38D). Since its standardisation in 2008 its usage increased to a point where it is the prevalent encryption used with TLS. With 85% it is by far the <a href="https://telemetry.mozilla.org/new-pipeline/dist.html#!cumulative=0&amp;end_date=2017-05-24&amp;keys=__none__!__none__!__none__&amp;max_channel_version=release%252F53&amp;measure=SSL_SYMMETRIC_CIPHER_FULL&amp;min_channel_version=null&amp;processType=*&amp;product=Firefox&amp;sanitize=1&amp;sort_keys=submissions&amp;start_date=2017-04-13&amp;table=0&amp;trim=1&amp;use_submission_date=0">most widely used cipher</a>.</p>
 
-<figure><a href="../../images/Screenshot-from-2017-06-14-10-09-27.png">
-    <img src="../../images/Screenshot-from-2017-06-14-10-09-27.png"/> </a><figcaption>
+<figure><a href="../../images/Screenshot-from-2017-06-14-10-09-27.png"><img src="../../images/Screenshot-from-2017-06-14-10-09-27.png"/></a><figcaption>
             <h4>Firefox 53 TLS cipher telemetry</h4>
         </figcaption>
 </figure>
@@ -253,8 +252,7 @@ window.onload = function(){
        s_bmul_d_add(MP_DIGITS(a), a_used, b_i, MP_DIGITS(c) <span style="color:#f92672">+</span> ib);
     <span style="color:#66d9ef">else</span>
         <span style="color:#a6e22e">MP_DIGIT</span>(c, ib <span style="color:#f92672">+</span> a_used) <span style="color:#f92672">=</span> b_i;
-}
-</code></pre></div>
+}</code></pre></div>
 <p>We can improve on two fronts here. First NSS should use PCLMUL to speed up the ghash multiplication if possible. Second if PCLMUL is not available, NSS should use a fast constant-time implementation.</p>
 
 <p><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=868948">Bug 868948</a> has several attempts of speeding up the software implementation without introducing timing side-channels. Unfortunately the fastest code that was proposed uses table lookups and is therefore not constant-time. Thanks to <a href="https://www.bearssl.org/constanttime.html">Thomas Pornin</a> I found a nicer way to implement the binary multiplication in a way that doesn&rsquo;t leak any timing information and is still faster than any other code I&rsquo;ve seen. (Check out Thomas&rsquo; excellent write-up for details.)</p>
@@ -271,8 +269,7 @@ window.onload = function(){
         m <span style="color:#f92672">=</span> _mm_aesenc_si128(m, cx<span style="color:#f92672">-&gt;</span>keySchedule[i]);
     }
     m <span style="color:#f92672">=</span> _mm_aesenclast_si128(m, cx<span style="color:#f92672">-&gt;</span>keySchedule[cx<span style="color:#f92672">-&gt;</span>Nr]);
-    _mm_storeu_si128((<span style="color:#66d9ef">__m128i</span> <span style="color:#f92672">*</span>)output, m);
-</code></pre></div>
+    _mm_storeu_si128((<span style="color:#66d9ef">__m128i</span> <span style="color:#f92672">*</span>)output, m);</code></pre></div>
 <p>Key expansion is a little bit more involved (for 192 and 256 bit). But is <a href="https://searchfox.org/nss/rev/40ab32e6acb227e7ede4734573e448ff43d179d5/lib/freebl/rijndael.c#393">written</a> in about 100 lines as well.</p>
 
 <p>Mac sees the biggest improvement here. Previously, only Windows and 64-bit Linux used AES-NI, and now all desktop x86 and x64 platforms use it when available.</p>
@@ -283,14 +280,12 @@ window.onload = function(){
 
 <p>Linux measurements are done on an Intel Core i7-4790, Windows measurements on a Surface Pro 2 with an Intel Core i5-4300U, and Mac (Core i7-4980HQ).</p>
 
-<p><figure><a href="../../images/linux64-encrypt.png">
-    <img src="../../images/linux64-encrypt.png"/> </a><figcaption>
+<p><figure><a href="../../images/linux64-encrypt.png"><img src="../../images/linux64-encrypt.png"/></a><figcaption>
             <h4>Linux 64-bit encrypt</h4>
         </figcaption>
 </figure>
 
-<figure><a href="../../images/linux32-encrypt.png">
-    <img src="../../images/linux32-encrypt.png"/> </a><figcaption>
+<figure><a href="../../images/linux32-encrypt.png"><img src="../../images/linux32-encrypt.png"/></a><figcaption>
             <h4>Linux 64-bit encrypt</h4>
         </figcaption>
 </figure>
@@ -300,22 +295,19 @@ window.onload = function(){
 The speed-up for 32-bit Linux is obviously more significant as it didn&rsquo;t have any hardware accelerated code before. With full hardware acceleration the new code is more than 5 times faster than before. In the worst case, when PCLMUL is not available, the speed-up is still more than 50%.</p>
 
 <p>The story is similar on Windows (though NSS had fast code for 32-bit there before).
-<figure><a href="../../images/win64-encrypt.png">
-    <img src="../../images/win64-encrypt.png"/> </a><figcaption>
+<figure><a href="../../images/win64-encrypt.png"><img src="../../images/win64-encrypt.png"/></a><figcaption>
             <h4>Windows 64-bit encrypt</h4>
         </figcaption>
 </figure>
 
-<figure><a href="../../images/win32-encrypt.png">
-    <img src="../../images/win32-encrypt.png"/> </a><figcaption>
+<figure><a href="../../images/win32-encrypt.png"><img src="../../images/win32-encrypt.png"/></a><figcaption>
             <h4>Windows 32-bit encrypt</h4>
         </figcaption>
 </figure>
 </p>
 
 <p>Performance improvements on Mac (64-bit only) range from 60% in the best case to 44% when AES-NI or PCLMUL is not available.
-<figure><a href="../../images/mac-encrypt.png">
-    <img src="../../images/mac-encrypt.png"/> </a><figcaption>
+<figure><a href="../../images/mac-encrypt.png"><img src="../../images/mac-encrypt.png"/></a><figcaption>
             <h4>OS-X encrypt</h4>
         </figcaption>
 </figure>

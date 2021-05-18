@@ -6,7 +6,16 @@
     <description>Recent content on Franziskus Kiefer</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 14 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 18 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>OpenMLS Performance</title>
+      <link>https://www.franziskuskiefer.de/post/openmls-first-benchmarks/</link>
+      <pubDate>Tue, 18 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.franziskuskiefer.de/post/openmls-first-benchmarks/</guid>
+      <description>The Messaging Layer Security (MLS) protocol is an IETF proposal for group key establishment and message protection. OpenMLS is a Rust implementation of the MLS protocol in its current state (draft 11 as of the point of writing this) that is being implemented by Raphael, Konrad and myself. For more general information on MLS I refer to the spec and other blog posts. This blog post is only about MLS, and in particular OpenMLS, performance.</description>
+    </item>
+    
     <item>
       <title>💲 Web Monetization 💲</title>
       <link>https://www.franziskuskiefer.de/post/webmonetization/</link>
