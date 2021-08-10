@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="Thanks to Deez I gave web monetization a spin on this website today. Here I write up how I did it, how it went, and what I think about it.
 The proposed web monetization standard allows browsers to securely pay websites, and, in turn, allows for websites to react to being paid, for example by turning off ads or providing extra functionality to paying visitors. There is some good description of use cases on Coil&rsquo;s website if you&rsquo;re looking for a more general explainer.">
-    <meta name="generator" content="Hugo 0.83.1" />
+    <meta name="generator" content="Hugo 0.87.0" />
     
     
       <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
@@ -33,13 +33,13 @@ The proposed web monetization standard allows browsers to securely pay websites,
 The proposed web monetization standard allows browsers to securely pay websites, and, in turn, allows for websites to react to being paid, for example by turning off ads or providing extra functionality to paying visitors. There is some good description of use cases on Coil&rsquo;s website if you&rsquo;re looking for a more general explainer." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.franziskuskiefer.de/post/webmonetization/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2021-02-14T00:00:00&#43;00:00" />
-<meta property="article:modified_time" content="2021-02-14T00:00:00&#43;00:00" />
+<meta property="article:published_time" content="2021-02-14T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-02-14T00:00:00+00:00" />
 
 <meta itemprop="name" content="💲 Web Monetization 💲">
 <meta itemprop="description" content="Thanks to Deez I gave web monetization a spin on this website today. Here I write up how I did it, how it went, and what I think about it.
-The proposed web monetization standard allows browsers to securely pay websites, and, in turn, allows for websites to react to being paid, for example by turning off ads or providing extra functionality to paying visitors. There is some good description of use cases on Coil&rsquo;s website if you&rsquo;re looking for a more general explainer."><meta itemprop="datePublished" content="2021-02-14T00:00:00&#43;00:00" />
-<meta itemprop="dateModified" content="2021-02-14T00:00:00&#43;00:00" />
+The proposed web monetization standard allows browsers to securely pay websites, and, in turn, allows for websites to react to being paid, for example by turning off ads or providing extra functionality to paying visitors. There is some good description of use cases on Coil&rsquo;s website if you&rsquo;re looking for a more general explainer."><meta itemprop="datePublished" content="2021-02-14T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2021-02-14T00:00:00+00:00" />
 <meta itemprop="wordCount" content="1378">
 <meta itemprop="keywords" content="webmonetization,hugo,w3c," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="💲 Web Monetization 💲"/>
@@ -282,24 +282,24 @@ The subscription provider like <a href="https://coil.com/">Coil</a> is another b
 <p>There is a <a href="https://github.com/sabinebertram/hugo-webmonetization-component">web monetization theme</a> for <a href="https://gohugo.io">hugo</a> (the framework I use for this site) that allows for easy integration of web monetization.</p>
 
 <p>First I added the hugo-webmonetization-component as second theme to my site:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git submodule add git@github.com:sabinebertram/hugo-webmonetization-component.git themes/webmonetization</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git submodule add git@github.com:sabinebertram/hugo-webmonetization-component.git themes/webmonetization</code></pre></div>
 <p>Then I changed my theme in the <code>config.toml</code> as follows:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-toml" data-lang="toml"><span style="color:#a6e22e">theme</span> = [<span style="color:#e6db74">&#34;gohugo-theme-ananke&#34;</span>, <span style="color:#e6db74">&#34;webmonetization&#34;</span>]</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-toml" data-lang="toml"><span style="color:#a6e22e">theme</span> = [<span style="color:#e6db74">&#34;gohugo-theme-ananke&#34;</span>, <span style="color:#e6db74">&#34;webmonetization&#34;</span>]</code></pre></div>
 <p>And then set my <a href="https://paymentpointers.org/">payment pointer</a> in the <code>params</code> section of the <code>config.toml</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-toml" data-lang="toml">[<span style="color:#a6e22e">params</span>]
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-toml" data-lang="toml">[<span style="color:#a6e22e">params</span>]
   <span style="color:#a6e22e">monetization</span> = <span style="color:#e6db74">&#34;$ilp.uphold.com/NMNKYReeKNNw&#34;</span></code></pre></div>
 <p>In order to actually use the monetization parameter I added it to the ananke theme&rsquo;s <code>&lt;head&gt;</code>.
 The <code>head</code> is defined in <code>themes/gohugo-theme-ananke/layouts/_default/baseof.html</code>, which includes a <code>head-additions.html</code> where we can add the monetization partial.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">{{ partial &#34;webmonetization.html&#34; .}}</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">{{ partial &#34;webmonetization.html&#34; .}}</code></pre></div>
 <h3 id="sample-exclusive-content">Sample exclusive content 💎</h3>
 
 <p>In hugo it is simple to add exclusive content with the following short code.
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C">{{ <span style="color:#f92672">%</span> exclusive <span style="color:#f92672">%</span> }}
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C">{{ <span style="color:#f92672">%</span> exclusive <span style="color:#f92672">%</span> }}
  ... exclusive content ...
 {{ <span style="color:#f92672">%</span> <span style="color:#f92672">/</span>exclusive <span style="color:#f92672">%</span> }}</code></pre></div>
 Note that this only works if <code>blackfriday</code> is used as markup engine and things like markdown code blocks don&rsquo;t work in there.
 This might be a shortcoming of the hugo theme I&rsquo;m using here.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-toml" data-lang="toml">[<span style="color:#a6e22e">markup</span>]
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-toml" data-lang="toml">[<span style="color:#a6e22e">markup</span>]
   <span style="color:#a6e22e">defaultMarkdownHandler</span> = <span style="color:#e6db74">&#34;blackfriday&#34;</span></code></pre></div>
 <p><p id="exclusiveError" align="center"> &mdash; <i class="fa fa-lock"></i> Exclusive content. Get a <a href="https://www.coil.com">Coil subscription</a> to unlock. &mdash; </p></p>
 

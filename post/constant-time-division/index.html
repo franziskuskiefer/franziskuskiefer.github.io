@@ -7,7 +7,7 @@
     <title>On Constant Time Division | Franziskus Kiefer</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="I knew you shouldn&#39;t use division but I didn&#39;t know how bad it was.">
-    <meta name="generator" content="Hugo 0.83.1" />
+    <meta name="generator" content="Hugo 0.87.0" />
     
     
       <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
@@ -31,12 +31,12 @@
 <meta property="og:description" content="I knew you shouldn&#39;t use division but I didn&#39;t know how bad it was." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.franziskuskiefer.de/post/constant-time-division/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2016-12-28T00:00:00&#43;00:00" />
-<meta property="article:modified_time" content="2016-12-28T00:00:00&#43;00:00" />
+<meta property="article:published_time" content="2016-12-28T00:00:00+00:00" />
+<meta property="article:modified_time" content="2016-12-28T00:00:00+00:00" />
 
 <meta itemprop="name" content="On Constant Time Division">
-<meta itemprop="description" content="I knew you shouldn&#39;t use division but I didn&#39;t know how bad it was."><meta itemprop="datePublished" content="2016-12-28T00:00:00&#43;00:00" />
-<meta itemprop="dateModified" content="2016-12-28T00:00:00&#43;00:00" />
+<meta itemprop="description" content="I knew you shouldn&#39;t use division but I didn&#39;t know how bad it was."><meta itemprop="datePublished" content="2016-12-28T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2016-12-28T00:00:00+00:00" />
 <meta itemprop="wordCount" content="341">
 <meta itemprop="keywords" content="constant-time,NSS,crypto," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="On Constant Time Division"/>
@@ -231,7 +231,7 @@ window.onload = function(){
 
 <p>Writing constant time code is hard. We all know that. But I&rsquo;m always amazed again on how difficult it is. In preparation for making NSS more constant time I looked into certain CPU instructions that are known to be not constant time.
 So I wrote a little thing to measure the time (CPU cycles) needed for division.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-asm" data-lang="asm">    <span style="color:#a6e22e">div</span>     <span style="color:#66d9ef">rcx</span>                     <span style="color:#960050;background-color:#1e0010">;</span> <span style="color:#66d9ef">eax</span> <span style="color:#66d9ef">is</span> <span style="color:#66d9ef">now</span> <span style="color:#66d9ef">a</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#66d9ef">b</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-asm" data-lang="asm">    <span style="color:#a6e22e">div</span>     <span style="color:#66d9ef">rcx</span>                     <span style="color:#960050;background-color:#1e0010">;</span> <span style="color:#66d9ef">eax</span> <span style="color:#66d9ef">is</span> <span style="color:#66d9ef">now</span> <span style="color:#66d9ef">a</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#66d9ef">b</span></code></pre></div>
 <p>The CPU I&rsquo;m using in this post is an Intel i7-4790 (haswell). Running the same measurements on other processors architectures will most likely yield different results. I&rsquo;m describing two experiments I did. First, I look at bits in the divisor and how they influence the timing of the division. And then I look at the dividend and its influence.</p>
 
 <h1 id="the-divisor">The Divisor</h1>
@@ -245,7 +245,7 @@ So I wrote a little thing to measure the time (CPU cycles) needed for division.<
 
 
 <p>This graph plots the number of cycles needed for the division of numbers &lt; 130. It&rsquo;s easy to see that the number of cycles needed is in general around 300. However, there are a couple of &ldquo;outliers&rdquo; that need significantly less.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C">    <span style="color:#ae81ff">128</span>    <span style="color:#ae81ff">123</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C">    <span style="color:#ae81ff">128</span>    <span style="color:#ae81ff">123</span>
      <span style="color:#ae81ff">64</span>    <span style="color:#ae81ff">135</span>
      <span style="color:#ae81ff">32</span>    <span style="color:#ae81ff">132</span>
      <span style="color:#ae81ff">16</span>    <span style="color:#ae81ff">132</span>

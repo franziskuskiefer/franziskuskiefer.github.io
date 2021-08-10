@@ -9,7 +9,7 @@
     <meta name="description" content="This post is work in progress but I never got around to finishing it. Sorry
 After a first failed attempt to install Snorby on an Arch Linux server (Snorby requires Ruby 1.9.x, Arch uses 2.x and I&rsquo;m not willing to use the AUR version for this) I&rsquo;m doing this on a Ubuntu 14.04 Server.
 Snort Before installing Snorby we have to install snort itself. This can be done with sudo apt-get install snort.">
-    <meta name="generator" content="Hugo 0.83.1" />
+    <meta name="generator" content="Hugo 0.87.0" />
     
     
       <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
@@ -35,14 +35,14 @@ After a first failed attempt to install Snorby on an Arch Linux server (Snorby r
 Snort Before installing Snorby we have to install snort itself. This can be done with sudo apt-get install snort." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.franziskuskiefer.de/post/snort/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2014-10-05T00:00:00&#43;00:00" />
-<meta property="article:modified_time" content="2014-10-05T00:00:00&#43;00:00" />
+<meta property="article:published_time" content="2014-10-05T00:00:00+00:00" />
+<meta property="article:modified_time" content="2014-10-05T00:00:00+00:00" />
 
 <meta itemprop="name" content="Snort, Barnyard2 &amp; Snorby">
 <meta itemprop="description" content="This post is work in progress but I never got around to finishing it. Sorry
 After a first failed attempt to install Snorby on an Arch Linux server (Snorby requires Ruby 1.9.x, Arch uses 2.x and I&rsquo;m not willing to use the AUR version for this) I&rsquo;m doing this on a Ubuntu 14.04 Server.
-Snort Before installing Snorby we have to install snort itself. This can be done with sudo apt-get install snort."><meta itemprop="datePublished" content="2014-10-05T00:00:00&#43;00:00" />
-<meta itemprop="dateModified" content="2014-10-05T00:00:00&#43;00:00" />
+Snort Before installing Snorby we have to install snort itself. This can be done with sudo apt-get install snort."><meta itemprop="datePublished" content="2014-10-05T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2014-10-05T00:00:00+00:00" />
 <meta itemprop="wordCount" content="1001">
 <meta itemprop="keywords" content="ids,snort,barnyard2," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Snort, Barnyard2 &amp; Snorby"/>
@@ -234,7 +234,7 @@ window.onload = function(){
 <p>Before installing Snorby we have to install snort itself. This can be done with <code>sudo apt-get install snort</code>. Snort asks for a network address range to use for <code>HOME_NET</code>. Since I&rsquo;m not sure what to use here (the network may change), I just use standard value. This can later be changed using snort config files.</p>
 
 <p>For testing purposes I add a new rule file in <code>/etc/snort/rules/</code> with a very basic rule that logs everything. <em>You really shouldn&rsquo;t do this in productive use, this will spam your snort output.</em></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">file: test.rules
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">file: test.rules
 alert ip any any -&gt; any any <span style="color:#f92672">(</span>msg:<span style="color:#e6db74">&#34;Someone tried to access the server&#34;</span>; sid:100001; rev:1; priority:2;<span style="color:#f92672">)</span></code></pre></div>
 <p>To use the new rule file you have to include it in the snort config <code>/etc/snort/snort.conf</code> by adding a line <code>include $RULE_PATH/test.rules</code>.</p>
 
@@ -245,9 +245,9 @@ alert ip any any -&gt; any any <span style="color:#f92672">(</span>msg:<span sty
 <h2 id="rules">Rules</h2>
 
 <p>A common requirement for rules on a server is to inspect outgoing documents for suspicious content. Checking for example if a website contains a certain string can be done as follows:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">alert tcp any <span style="color:#ae81ff">80</span> -&gt; any any <span style="color:#f92672">(</span>file_data; content:<span style="color:#e6db74">&#34;Placeholder&#34;</span>; flow:to_client,established; msg:<span style="color:#e6db74">&#34;Detected placeholderwebsite&#34;</span>; sid:1000002; rev:1; priority:2;<span style="color:#f92672">)</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">alert tcp any <span style="color:#ae81ff">80</span> -&gt; any any <span style="color:#f92672">(</span>file_data; content:<span style="color:#e6db74">&#34;Placeholder&#34;</span>; flow:to_client,established; msg:<span style="color:#e6db74">&#34;Detected placeholderwebsite&#34;</span>; sid:1000002; rev:1; priority:2;<span style="color:#f92672">)</span></code></pre></div>
 <p>In order for this rule to work properly one has to make sure that <code>snort.conf</code> contains at least the following elements for <code>http_inspect_server</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">xtended_response_inspection <span style="color:#ae81ff">\
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">xtended_response_inspection <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>inspect_gzip <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>normalize_utf <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>server_flow_depth <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">\
@@ -263,25 +263,25 @@ alert ip any any -&gt; any any <span style="color:#f92672">(</span>msg:<span sty
 <h3 id="installing-snorby">Installing Snorby</h3>
 
 <p>Now we need to get snorby sources</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clone https://github.com/Snorby/snorby</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clone https://github.com/Snorby/snorby</code></pre></div>
 <p>After changing to the <code>cd snorby</code> directory we can install it using <code>bundle install</code>.</p>
 
 <p>Now we have to configure snorby to be able to read events from the database. To do so we copy <code>database.yml.example</code> in the <code>config</code> folder to <code>database.yml</code> and change the database configuration to access MySQL. Further we copy <code>snorby_config.yml.example</code> to <code>snorby_config.yml</code> and check that <code>wkhtmltopdf</code> and <code>domain</code> are correct in the <code>production</code> section. It seems there are more dependencies needed (in particular <code>nokogiri</code> needs more). So we have to install <code>libxml2-dev</code>, <code>libxslt-dev</code>, <code>libmysqlclient-dev</code>, <code>g++</code>.</p>
 
 <p>Now we should be able to run</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">bundle exec rake snorby:setup</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">bundle exec rake snorby:setup</code></pre></div>
 <p>to set-up snorby and start it with</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">bundle exec rails server -e production</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">bundle exec rails server -e production</code></pre></div>
 <h2 id="instaling-barnyard2">Instaling Barnyard2</h2>
 
 <p>To get the snort output into our Snorby interface we use <a href="https://github.com/firnsy/barnyard2">Barnyard2</a>. Since there is no package for Ubuntu in the official repositories we have to build Barnyard2 from source.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clone https://github.com/firnsy/barnyard2</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clone https://github.com/firnsy/barnyard2</code></pre></div>
 <p>To build Barnyard2 we need some developement tools</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo apt-get install build-essential libtool autoconf libpcap-dev libmysqld-dev</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo apt-get install build-essential libtool autoconf libpcap-dev libmysqld-dev</code></pre></div>
 <p>After changing to the Barnyard2 directory <code>cd barnyard2</code> we run <code>./autogen.sh</code>, configure it for MySQL <code>./configure --with-mysql --with-mysql-libraries=/usr/lib/x86_64-linux-gnu/</code> (the additional library and include path are necessary on Ubuntu to find MySQL) run <code>make</code>. I only enable MySQL here, but other outpus are possible. To eventually install Barnyard to we use <code>sudo make install</code>.</p>
 
 <p>After installing Barnyard2 it needs configuration. First I copy the example config file <code>sudo cp etc/barnyard2.conf /etc/</code> before modifying it to run as a daemon and write to the database</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">config daemon
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">config daemon
 config hostname: localhost
 config interface: eth0
 output database: log, mysql, user<span style="color:#f92672">=</span>root password<span style="color:#f92672">=</span>root dbname<span style="color:#f92672">=</span>snort host<span style="color:#f92672">=</span>localhost
@@ -290,21 +290,21 @@ config waldo_file: /var/log/barnyard2/barnyard2.waldo</code></pre></div>
 <h3 id="database-setup">Database Setup</h3>
 
 <p>We have to set up the Barnyard2 database. We create a new database <code>create database snort;</code>, get the Barnyard2 schema</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">wget https://raw.github.com/firnsy/barnyard2/master/schemas/create_mysql</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">wget https://raw.github.com/firnsy/barnyard2/master/schemas/create_mysql</code></pre></div>
 <p>and install it to our new database <code>mysql -u &lt;user&gt; -p snort &lt; create_mysql</code>.</p>
 
 <h3 id="troubleshooting">Troubleshooting</h3>
 
 <p>I ran into the problem that snort had no <code>sid-msg.map</code>. This can be created with</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># /usr/share/oinkmaster/create-sidmap.pl rules/ &gt; sid-msg.map</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># /usr/share/oinkmaster/create-sidmap.pl rules/ &gt; sid-msg.map</span></code></pre></div>
 <p>in <code>/etc/snort</code>. I ran into some further problems and had to create the waldo file manually, i.e.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo touch /var/log/barnyard2/barnyard2.waldo
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo touch /var/log/barnyard2/barnyard2.waldo
 sudo chown snort:snort /var/log/barnyard2/barnyard2.waldo</code></pre></div>
 <p>This still throws a warning that the waldo file is corrupt, but Barnyard2 is at least running. I got a lot of warnings of the form</p>
-<pre><code>WARNING: Can&#39;t extract timestamp extension from &#39;..&#39;using base &#39;&#39;
+<pre tabindex="0"><code>WARNING: Can&#39;t extract timestamp extension from &#39;..&#39;using base &#39;&#39;
 from old/corrupted snort log files. So I removed all logs from `/var/log/snort/`. Note that this warning is also shown when the snort log is empty!</code></pre>
 <p>To start Barnyard2 now we use</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo /usr/local/bin/barnyard2 -c /etc/barnyard2.conf -d /var/log/snort/ -f snort.out</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo /usr/local/bin/barnyard2 -c /etc/barnyard2.conf -d /var/log/snort/ -f snort.out</code></pre></div>
 <p>where the first parameter sets the config file to use, the second tells barynard2 in which folder to look for snort output files and the last one gives the base-name of snort output in that folder.</p>
 
 <h1 id="testing-the-setup">Testing the setup</h1>

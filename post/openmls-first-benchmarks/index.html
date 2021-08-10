@@ -7,7 +7,7 @@
     <title>OpenMLS Performance | Franziskus Kiefer</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="The Messaging Layer Security (MLS) protocol is an IETF proposal for group key establishment and message protection. OpenMLS is a Rust implementation of the MLS protocol in its current state (draft 11 as of the point of writing this) that is being implemented by Raphael, Konrad and myself. For more general information on MLS I refer to the spec and other blog posts. This blog post is only about MLS, and in particular OpenMLS, performance.">
-    <meta name="generator" content="Hugo 0.83.1" />
+    <meta name="generator" content="Hugo 0.87.0" />
     
     
       <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
@@ -31,12 +31,12 @@
 <meta property="og:description" content="The Messaging Layer Security (MLS) protocol is an IETF proposal for group key establishment and message protection. OpenMLS is a Rust implementation of the MLS protocol in its current state (draft 11 as of the point of writing this) that is being implemented by Raphael, Konrad and myself. For more general information on MLS I refer to the spec and other blog posts. This blog post is only about MLS, and in particular OpenMLS, performance." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.franziskuskiefer.de/post/openmls-first-benchmarks/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2021-05-18T00:00:00&#43;00:00" />
-<meta property="article:modified_time" content="2021-05-18T00:00:00&#43;00:00" />
+<meta property="article:published_time" content="2021-05-18T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-05-18T00:00:00+00:00" />
 
 <meta itemprop="name" content="OpenMLS Performance">
-<meta itemprop="description" content="The Messaging Layer Security (MLS) protocol is an IETF proposal for group key establishment and message protection. OpenMLS is a Rust implementation of the MLS protocol in its current state (draft 11 as of the point of writing this) that is being implemented by Raphael, Konrad and myself. For more general information on MLS I refer to the spec and other blog posts. This blog post is only about MLS, and in particular OpenMLS, performance."><meta itemprop="datePublished" content="2021-05-18T00:00:00&#43;00:00" />
-<meta itemprop="dateModified" content="2021-05-18T00:00:00&#43;00:00" />
+<meta itemprop="description" content="The Messaging Layer Security (MLS) protocol is an IETF proposal for group key establishment and message protection. OpenMLS is a Rust implementation of the MLS protocol in its current state (draft 11 as of the point of writing this) that is being implemented by Raphael, Konrad and myself. For more general information on MLS I refer to the spec and other blog posts. This blog post is only about MLS, and in particular OpenMLS, performance."><meta itemprop="datePublished" content="2021-05-18T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2021-05-18T00:00:00+00:00" />
 <meta itemprop="wordCount" content="1651">
 <meta itemprop="keywords" content="mls,openmls," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="OpenMLS Performance"/>
@@ -395,7 +395,7 @@ While the numbers in this post can be reliably reproduced a more thorough measur
 
 <p>All measurements were performed on <a href="https://github.com/openmls/openmls/tree/65030529e43716d482a6e57a432da5a388fd0a3c">this revision</a>.
 To reproduce them check out the revision and run</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#66d9ef">for</span> i in <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">5</span> <span style="color:#ae81ff">6</span> <span style="color:#ae81ff">7</span> <span style="color:#ae81ff">8</span> <span style="color:#ae81ff">9</span> <span style="color:#ae81ff">10</span> <span style="color:#ae81ff">20</span> <span style="color:#ae81ff">30</span> <span style="color:#ae81ff">40</span> <span style="color:#ae81ff">50</span> <span style="color:#ae81ff">100</span> <span style="color:#ae81ff">200</span> <span style="color:#ae81ff">300</span> <span style="color:#ae81ff">400</span> <span style="color:#ae81ff">500</span> 1000; <span style="color:#66d9ef">do</span> <span style="color:#ae81ff">\
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#66d9ef">for</span> i in <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">5</span> <span style="color:#ae81ff">6</span> <span style="color:#ae81ff">7</span> <span style="color:#ae81ff">8</span> <span style="color:#ae81ff">9</span> <span style="color:#ae81ff">10</span> <span style="color:#ae81ff">20</span> <span style="color:#ae81ff">30</span> <span style="color:#ae81ff">40</span> <span style="color:#ae81ff">50</span> <span style="color:#ae81ff">100</span> <span style="color:#ae81ff">200</span> <span style="color:#ae81ff">300</span> <span style="color:#ae81ff">400</span> <span style="color:#ae81ff">500</span> 1000; <span style="color:#66d9ef">do</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>    cargo bench --bench group -- $i; <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span><span style="color:#66d9ef">done</span></code></pre></div>
 <h2 id="conclusion-future-work">Conclusion &amp; Future work</h2>
