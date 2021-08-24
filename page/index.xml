@@ -1,40 +1,39 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Pages on Franziskus Kiefer</title>
+    <title>Pages on Dr Franziskus Kiefer</title>
     <link>https://www.franziskuskiefer.de/page/</link>
-    <description>Recent content in Pages on Franziskus Kiefer</description>
+    <description>Recent content in Pages on Dr Franziskus Kiefer</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language><atom:link href="https://www.franziskuskiefer.de/page/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>About</title>
-      <link>https://www.franziskuskiefer.de/page/about/</link>
+      <link>https://www.franziskuskiefer.de/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://www.franziskuskiefer.de/page/about/</guid>
+      <guid>https://www.franziskuskiefer.de/about/</guid>
       <description>Hi, I&amp;rsquo;m Franziskus, a security &amp;amp; cryptography engineer and researcher based in Berlin. In my most recent role I was leading the security engineering efforts at Wire.
 Previously, I was working on Mozilla&amp;rsquo;s cryptography library NSS and Firefox. I&amp;rsquo;m interested in everything around applied cryptography, in particular authentication and key exchange protocols, formally verifiable specifications and implementations of cryptographic primitives, and privacy preserving data collection and computation. I&amp;rsquo;m also the initiator and co-organiser of the Berlin Crypto Meetup.</description>
     </item>
     
     <item>
       <title>Publications</title>
-      <link>https://www.franziskuskiefer.de/page/publications/</link>
+      <link>https://www.franziskuskiefer.de/publications/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://www.franziskuskiefer.de/page/publications/</guid>
+      <guid>https://www.franziskuskiefer.de/publications/</guid>
       <description>dblp | Google Scholar
-Conferences  Asynchronous Remote Key Generation: An Analysis of Yubico&amp;rsquo;s Proposal for W3C WebAuthn @ CCS 2020 • with Nick Frymann, Daniel Gardham, Emil Lundberg, Mark Manulis, and Dain Nilsson (Full version)
- hacspec: towards verifiable crypto standard @ SSR 2018 • with Karthikeyan Bhargavan and Pierre-Yves Strub (Full version)
- Universally Composable Two-Server PAKE @ ISC 2016 • with Mark Manulis (Full version)
- Blind Password Registration for Two-Server Password Authenticated Key Exchange and Secret Sharing Protocols @ ISC 2016 • with Mark Manulis (Proceedings version)</description>
+Conferences   Asynchronous Remote Key Generation: An Analysis of Yubico&amp;rsquo;s Proposal for W3C WebAuthn @ CCS 2020 • with Nick Frymann, Daniel Gardham, Emil Lundberg, Mark Manulis, and Dain Nilsson (Full version)
+  hacspec: towards verifiable crypto standard @ SSR 2018 • with Karthikeyan Bhargavan and Pierre-Yves Strub (Full version)
+  Universally Composable Two-Server PAKE @ ISC 2016 • with Mark Manulis (Full version)</description>
     </item>
     
     <item>
       <title>Search</title>
-      <link>https://www.franziskuskiefer.de/page/search/</link>
+      <link>https://www.franziskuskiefer.de/search/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://www.franziskuskiefer.de/page/search/</guid>
+      <guid>https://www.franziskuskiefer.de/search/</guid>
       <description></description>
     </item>
     

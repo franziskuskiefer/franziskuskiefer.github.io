@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='At the Berlin Crypto this month we had a talk by Kevin about a shared-secret service they developed at Syselevn. After experimenting with PGP and deciding that it doesn&amp;rsquo;t do what they needed, they decided to go with a very simple, custom encrypt-then-mac scheme. You can find details here. When someone says they built their own encryption scheme and message format I get obviously curious. In this post I want to summarize the scheme, design decisions, compare it standard authenticated encryption schemes, and ponder the question of the right security definitions.'><title>Shared-Secrets Service</title>
+
+<link rel='canonical' href='https://www.franziskuskiefer.de/p/shared-secrets-service/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Shared-Secrets Service'>
+<meta property='og:description' content='At the Berlin Crypto this month we had a talk by Kevin about a shared-secret service they developed at Syselevn. After experimenting with PGP and deciding that it doesn&amp;rsquo;t do what they needed, they decided to go with a very simple, custom encrypt-then-mac scheme. You can find details here. When someone says they built their own encryption scheme and message format I get obviously curious. In this post I want to summarize the scheme, design decisions, compare it standard authenticated encryption schemes, and ponder the question of the right security definitions.'>
+<meta property='og:url' content='https://www.franziskuskiefer.de/p/shared-secrets-service/'>
+<meta property='og:site_name' content='Dr Franziskus Kiefer'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='berlin crypto' /><meta property='article:tag' content='crypto' /><meta property='article:tag' content='rwc' /><meta property='article:published_time' content='2019-12-23T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2019-12-23T00:00:00&#43;00:00'/><meta property='og:image' content='https://www.franziskuskiefer.de/p/shared-secrets-service/hero.jpg' />
+<meta name="twitter:site" content="@_franziskus_">
+    <meta name="twitter:creator" content="@_franziskus_"><meta name="twitter:title" content="Shared-Secrets Service">
+<meta name="twitter:description" content="At the Berlin Crypto this month we had a talk by Kevin about a shared-secret service they developed at Syselevn. After experimenting with PGP and deciding that it doesn&amp;rsquo;t do what they needed, they decided to go with a very simple, custom encrypt-then-mac scheme. You can find details here. When someone says they built their own encryption scheme and message format I get obviously curious. In this post I want to summarize the scheme, design decisions, compare it standard authenticated encryption schemes, and ponder the question of the right security definitions."><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://www.franziskuskiefer.de/p/shared-secrets-service/hero.jpg' />
+    </head>
+    <body class="
+    article-page has-toc
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        extended
+    
+">
+    
+        <div id="article-toolbar">
+            <a href="https://www.franziskuskiefer.de/" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>Back</span>
+            </a>
+        </div>
+    
+<main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/shared-secrets-service/">
+                <img src="/p/shared-secrets-service/hero_hu3d03a01dcc18bc5be0e67db3d8d209a6_233668_800x0_resize_q75_box.jpg"
+                        srcset="/p/shared-secrets-service/hero_hu3d03a01dcc18bc5be0e67db3d8d209a6_233668_800x0_resize_q75_box.jpg 800w, /p/shared-secrets-service/hero_hu3d03a01dcc18bc5be0e67db3d8d209a6_233668_1600x0_resize_q75_box.jpg 1600w"
+                        width="800" 
+                        height="534" 
+                        loading="lazy"
+                        alt="Featured image of post Shared-Secrets Service" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+
+    <h2 class="article-title">
+        <a href="/p/shared-secrets-service/">Shared-Secrets Service</a>
+    </h2>
+
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Dec 23, 2019</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    8 min read
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
+</header>
+
+    <section class="article-content">
+    <p>At the <a class="link" href="https://berlin-crypto.github.io"  target="_blank" rel="noopener"
+    >Berlin Crypto</a> this month we had a talk by <a class="link" href="https://twitter.com/xyahe/"  target="_blank" rel="noopener"
+    >Kevin</a> about a <a class="link" href="https://secrets.syseleven.de"  target="_blank" rel="noopener"
+    >shared-secret service</a> they developed at <a class="link" href="https://syseleven.de"  target="_blank" rel="noopener"
+    >Syselevn</a>.
+After experimenting with PGP and deciding that it doesn&rsquo;t do what they needed, they decided to go with a very simple, custom encrypt-then-mac scheme. You can find details <a class="link" href="https://github.com/syseleven/shared-secrets/blob/master/ENCRYPTION.md"  target="_blank" rel="noopener"
+    >here</a>.
+When someone says they built their own encryption scheme and message format I get obviously curious.
+In this post I want to summarize the scheme, design decisions, compare it standard authenticated encryption schemes, and ponder the question of the right security definitions.</p>
+<p>Note that I refrain from formal definitions in this post.
+I only want to give the intuition.
+Please read the linked documents for formal definitions and details.
+See for example the <a class="link" href="https://cseweb.ucsd.edu/~mihir/papers/oem.pdf"  target="_blank" rel="noopener"
+    >Authenticated Encryption paper by Bellare and Namprempre</a> for details on authenticated encryption and the <a class="link" href="https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.76.4921&amp;rep=rep1&amp;type=pdf"  target="_blank" rel="noopener"
+    >Authenticated Encryption with Associated Data by Rogaway</a> on AEADs.</p>
+<h2 id="shared-secrets">Shared-Secrets</h2>
+<p>The service and scheme are described as follows:</p>
+<blockquote>
+<p>Shared-Secrets is an application that helps you to simply share one-time secrets over the web.
+Using the Shared-Secrets service allows you to transfer the actual secret in an encrypted form.
+Retrieving the secret is as simple as following a link.
+In contrast to other secret sharing services, Shared-Secrets does not store the secret on the server, but puts the encrypted secret into the link that you share with the desired recipient.</p>
+</blockquote>
+<p>I leave aside the fact that any attacker that can intercept the message can trivially retrieve the secret and focus on the encryption scheme used for the service.
+Note that the service allows to encrypt the message with a password before sharing it to prevent the aforementioned attack.</p>
+<p>The encryption scheme used for this service is a basic encrypt-then-mac scheme that can be written as</p>
+<pre><code>(c, t) &lt;- EtM(key, nonce, msg, aad)
+</code></pre><p>where <code>aad</code> contains all meta-data (version etc.).
+Keys for the mac and encryption algorithms are derived as follows</p>
+<pre><code>key &lt;- random() # 32-byte
+(k_c, k_t) &lt;- (HMAC-SHA256(key, &quot;enc&quot;), HMAC-SHA256(key, &quot;mac&quot;))
+rsakey &lt;- RSA-OAEP(pk, key)
+</code></pre><p>The RSA key <code>pk</code> is the server&rsquo;s public key.
+Now we can compute the ciphertext and mac.</p>
+<pre><code>c &lt;- AES-256-CTR(k_c, nonce, msg)
+t &lt;- HMAC-SHA256(k_t, aad, c)
+</code></pre><p>The message format is defined as</p>
+<pre><code>[version:01][rsakeycount:02][rsakeyid:32][rsakeylength:02][rsakey:mm][...][rsakeyid:32][rsakeylength:02][rsakey:mm][nonce:16][message:nn][mac:32]
+</code></pre><p>with <code>rsakeyid := SHA256(pk)</code> and <code>nonce := $(date +%s)|0..0</code> (8-byte unix timestamp, padded 8 zero bytes).</p>
+<h3 id="observations">Observations</h3>
+<p>Looking at the scheme there are a two things that stand out.
+This is in addition to the unclear threat scenario that I won&rsquo;t discuss in this post.</p>
+<p>Note that there&rsquo;s currently no standardized way of doing  hybrid encryption. There&rsquo;s currently an <a class="link" href="https://tools.ietf.org/html/draft-irtf-cfrg-hpke-02"  target="_blank" rel="noopener"
+    >RFC in the making</a> but until that&rsquo;s finished it is necessary to define custom hybrid schemes as done here.</p>
+<h4 id="the-nonce-is-not-random">The nonce is not random</h4>
+<p>When using encryption schemes such as AES-CTR it is paramount that the nonce is unique.
+If this is not the case, the key-stream becomes known and allows full message recovery.
+Using a timestamp as nonce is usually a bad move as time is predictable and not random.</p>
+<h4 id="how-is-this-different-from-an-aead">How is this different from an AEAD</h4>
+<p>The scheme as described above looks like an AEAD scheme.
+So the question is why didn&rsquo;t they just use an established AEAD scheme such as AES-GCM or ChaCha20Poly1305.</p>
+<h2 id="encrypt-then-mac--aead">Encrypt-then-Mac == AEAD?</h2>
+<p>Let&rsquo;s talk about encryption and authentication first.
+Historically encryption offered confidentiality but no integrity.
+Something that&rsquo;s not immediately obvious to non-cryptographers who want to use encryption to protect their data.
+Authenticated Encryption (AE) and its relation to non-authenticated encryption was first described in the previously mentioned paper by <a class="link" href="https://cseweb.ucsd.edu/~mihir/papers/oem.pdf"  target="_blank" rel="noopener"
+    >Bellare and Namprempre</a> in 2000.</p>
+<p>Encryption was considered secure if it satisfied the indistinguishable under chosen plaintext property, i.e. if an attacker couldn&rsquo;t distinguish whether a ciphertext encrypts message <code>a</code> or message <code>b</code>.
+But &ldquo;security&rdquo; of an encryption scheme intuitively might mean something else as well.
+In addition to not being able to know which message is encrypted in a ciphertext it shouldn&rsquo;t be possible for an attacker to change the content of the message or the ciphertext without the recipient noticing it.
+This property can be described as ciphertext (or plaintext) integrity and allows the definition of authenticated encryption.
+Adding associated data (AD) that is not encrypted but authenticated we get Authenticated Encryption with Associated Data (AEAD).
+For a comprehensive overview of AEAD and its history I recommend checking out these <a class="link" href="https://summerschool-croatia.cs.ru.nl/2016/slides/PhilRogaway.pdf"  target="_blank" rel="noopener"
+    >slides by Phillip Rogaway</a>.</p>
+<h3 id="encrypt-then-mac--aead-1">Encrypt-then-Mac != AEAD</h3>
+<p>Generally encrypt-then-mac schemes can be considered AEADs.
+For this to be true however, the Mac has to be strongly unforgeable.
+Luckily this is the case for HMAC such that the scheme described above is fine in this regard.</p>
+<p>A MAC scheme is weakly unforgeable (WUF-CMA) if an attacker is not able to generate a tag for a new message, i.e. a message that she hasn&rsquo;t seen a tag for before.
+If a scheme is strongly unforgeable (SUF-CMA), it must me impossible for an attacker to generate a new message, tag pair, i.e. not only a new message but also a new tag.
+While SUF-CMA seems like an artificial extension of the intuitive notion of WUF-CMA it is necessary to build an AEAD as WUF-CMA doesn&rsquo;t provide integrity guarantees for the ciphertext or plaintext.</p>
+<h2 id="aead-properties">AEAD Properties</h2>
+<p>The motivation to build this custom AEAD scheme instead of using an existing one was a big point of discussion at the meetup.
+The essence is that Kenny didn&rsquo;t trust that an AEAD provided exactly what he needed.
+So what are properties of an AEAD?
+Generally AEADs are supposed to offer IND-CCA security where the attacker is allowed to decrypt arbitrary ciphertexts.
+Instead of thinking of AEAD as IND-CCA secure it is more intuitive to think of it as IND-CPA secure (i.e. the attacker can&rsquo;t do better than guessing which message is encrypted in a ciphertext when given the ciphertext to one of two adversarially chosen messages) and offering INT-CTXT, i.e. integrity of the ciphertext.
+Note that this <strong>does not</strong> imply authenticity of the plaintext because IND-CCA does not guarantee that it is impossible for an attacker to generate a valid ciphertext for a specially crafted message.</p>
+<h3 id="uniqueness-of-tags">Uniqueness of Tags</h3>
+<p>The property that was questioned to be part of the AEAD security definition but was important to the Shared-Secrets service is the uniqueness of the ciphertext and tag.
+This is necessary to make sure secrets can only be retrieved once.
+According to the <a class="link" href="https://secrets.syseleven.de/how"  target="_blank" rel="noopener"
+    >website</a> the server uses a fingerprint to achieve this.
+First I notice that fingerprint is not defined in the encryption scheme.
+Looking at <a class="link" href="https://github.com/syseleven/shared-secrets/blob/2fa63d5bf0673d497c7ee5afa766176ccb34b34f/lib/shared-secrets.exec.php#L256"  target="_blank" rel="noopener"
+    >the code</a> it appears that the fingerprint is the tag.
+The fingerprint is stored on the server and the service refuses to decrypt anything with the fingerprint if it did so once before.</p>
+<p>So the question is whether the used encrypt-then-mac scheme makes sure that the tag is unique and whether an AEAD would have offered this property as well.</p>
+<p>In other words, can an attacker generate a second, different, valid tag  <code>t'</code> for an existing ciphertext, tag pair <code>(c, t)</code>.
+Note that I do not consider encodings here.
+(Using base64 encoding for example it is possible to generate two different base64 strings that decode to the same binary message.)
+To this end there has to exist a pair <code>(c, t), (c', t')</code> with <code>Dec(c) == Dec(c') &amp;&amp; Verify(t) == Verify(t')</code> i.e. two ciphertext, tag pairs that decrypt to the same message and both tags are valid.
+First note that the unforgeability of the Mac ensures that it is impossible to generate a valid tag <code>t'</code> for a given ciphertext <code>c</code> without knowledge of the key.
+It follows that the ciphertext <code>c'</code> has to be different from the original ciphertext <code>c</code>.
+But without knowledge of the message <code>m</code> encrypted in <code>c</code> (or the key) it is impossible to generate a ciphertext <code>c'</code> that decrypts to <code>m</code>.
+Hence this is not possible.</p>
+<p>While everything else in this post were well established properties of AEADs this one doesn&rsquo;t appear to follow trivially.
+However, this applies to the custom scheme used in Shared-Secrets as well as an off-the-shelf AEAD.</p>
+<h2 id="timestamps-as-nonces">Timestamps as Nonces</h2>
+<p>Non-random nonces break most AEAD schemes.
+This is one reason <a class="link" href="https://web.cs.ucdavis.edu/~rogaway/papers/keywrap.pdf"  target="_blank" rel="noopener"
+    >Misuse-Resistant AE (MRAE)</a> was introduced and specified for schemes such as AES-GCM (<a class="link" href="https://tools.ietf.org/html/rfc8452"  target="_blank" rel="noopener"
+    >AES-GCM-SIV</a>).</p>
+<p>So how does choosing a timestamp as nonce fare in the Shared-Secret scheme?</p>
+<p>Recall that AES in counter mode, as used here, is an XOR of a plaintext block with the AES encryption of the concatenation of the nonce and the counter (<code>c_i = m_i xor AES(key, nonce||ctr)</code>).
+Thus, one can recover an unknown plaintext by computing the xor of its ciphertext with the xor of a known ciphertext, plaintext pair (<code>m_i = c_i xor (c'_i xor m'_i)</code>) when the nonce is known.</p>
+<p>While the Shared-Secrets scheme is very fragile here and not well-designed here (why not just take a random nonce?) I can&rsquo;t see how this can be exploited.
+Even if an attacker is able to generate two ciphertexts with the same nonce (this can be easily done by sending two requests to the server at the same time), the key will be different in both cases.</p>
+<h2 id="discussion-how-to-define-security">Discussion: How to define security?</h2>
+<p>This episode illustrates how important it is for security definitions to model real-world scenarios that people actually have when using a primitive.
+But it also shows that sometimes, even though standard primitives with appropriate security definitions exist, communicating these properties fail.
+The use case of the Shared-Secrets is a peculiar one but highlights these issues.
+Something I did not expect is that people rather define their own crypto schemes than using existing ones because they think they don&rsquo;t understand the properties properly.
+But this is all the more reason to make sure the exact security properties a scheme offers are communicated and well understood by everyone.</p>
+<p>For me this is another pointer that it is important to have properly working communication channels between people analyzing crypto and everyone using it in order to transport requirements and make sure everyone is on the same page.
+And this is, among others things, what we do at the <a class="link" href="https://berlin-crypto.github.io"  target="_blank" rel="noopener"
+    >Berlin Crypto</a> meetup in a very informal and local setting.</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/berlin-crypto/">berlin crypto</a>
+        
+            <a href="/tags/crypto/">crypto</a>
+        
+            <a href="/tags/rwc/">rwc</a>
+        
+    </section>
+
+
+    </footer>
+
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+</aside>
+
+     
+     
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2013 - 
+        
+        2021 Dr Franziskus Kiefer
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.1.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+        <aside class="sidebar right-sidebar sticky">
+            <section class="widget archives">
+                <div class="widget-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                </div>
+                <h2 class="widget-title section-title">Table of contents</h2>
+                
+                <div class="widget--toc">
+                    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#shared-secrets">Shared-Secrets</a>
+      <ol>
+        <li><a href="#observations">Observations</a>
+          <ol>
+            <li><a href="#the-nonce-is-not-random">The nonce is not random</a></li>
+            <li><a href="#how-is-this-different-from-an-aead">How is this different from an AEAD</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#encrypt-then-mac--aead">Encrypt-then-Mac == AEAD?</a>
+      <ol>
+        <li><a href="#encrypt-then-mac--aead-1">Encrypt-then-Mac != AEAD</a></li>
+      </ol>
+    </li>
+    <li><a href="#aead-properties">AEAD Properties</a>
+      <ol>
+        <li><a href="#uniqueness-of-tags">Uniqueness of Tags</a></li>
+      </ol>
+    </li>
+    <li><a href="#timestamps-as-nonces">Timestamps as Nonces</a></li>
+    <li><a href="#discussion-how-to-define-security">Discussion: How to define security?</a></li>
+  </ol>
+</nav>
+                </div>
+            </section>
+        </aside>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

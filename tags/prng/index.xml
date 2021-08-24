@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>prng on Franziskus Kiefer</title>
+    <title>prng on Dr Franziskus Kiefer</title>
     <link>https://www.franziskuskiefer.de/tags/prng/</link>
-    <description>Recent content in prng on Franziskus Kiefer</description>
+    <description>Recent content in prng on Dr Franziskus Kiefer</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 31 Aug 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/tags/prng/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CVE-2017-5462 - A PRNG issue</title>
-      <link>https://www.franziskuskiefer.de/post/cve-2017-5462/</link>
+      <link>https://www.franziskuskiefer.de/p/cve-2017-5462-a-prng-issue/</link>
       <pubDate>Thu, 31 Aug 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://www.franziskuskiefer.de/post/cve-2017-5462/</guid>
+      <guid>https://www.franziskuskiefer.de/p/cve-2017-5462-a-prng-issue/</guid>
       <description>On April 19, 2017, Mozilla Foundation published the Security Advisory 2017-10 outlining several recently fixed security vulnerabilities. One of these vulnerabilities, tracked as CVE-2017-5462, affects the Pseudo-Random Number Generator (PRNG) within the Network Security Services (NSS) library prior to version 3.29.5 and Firefox prior to version 53.
 This post describes the bug and how it was discovered.
 Inside the NSS PRNG NSS uses Hash_DRBG as PRNG, which is one of several PRNG schemes defined in the NIST Special Publication 800-90.</description>

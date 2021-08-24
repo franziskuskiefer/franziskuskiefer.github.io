@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Franziskus Kiefer</title>
+    <title>Posts on Dr Franziskus Kiefer</title>
     <link>https://www.franziskuskiefer.de/post/</link>
-    <description>Recent content in Posts on Franziskus Kiefer</description>
+    <description>Recent content in Posts on Dr Franziskus Kiefer</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 18 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>OpenMLS Performance</title>
-      <link>https://www.franziskuskiefer.de/post/openmls-first-benchmarks/</link>
+      <link>https://www.franziskuskiefer.de/p/openmls-performance/</link>
       <pubDate>Tue, 18 May 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://www.franziskuskiefer.de/post/openmls-first-benchmarks/</guid>
+      <guid>https://www.franziskuskiefer.de/p/openmls-performance/</guid>
       <description>The Messaging Layer Security (MLS) protocol is an IETF proposal for group key establishment and message protection. OpenMLS is a Rust implementation of the MLS protocol in its current state (draft 11 as of the point of writing this) that is being implemented by Raphael, Konrad and myself. For more general information on MLS I refer to the spec and other blog posts. This blog post is only about MLS, and in particular OpenMLS, performance.</description>
     </item>
     
     <item>
       <title>💲 Web Monetization 💲</title>
-      <link>https://www.franziskuskiefer.de/post/webmonetization/</link>
+      <link>https://www.franziskuskiefer.de/p/web-monetization/</link>
       <pubDate>Sun, 14 Feb 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://www.franziskuskiefer.de/post/webmonetization/</guid>
+      <guid>https://www.franziskuskiefer.de/p/web-monetization/</guid>
       <description>Thanks to Deez I gave web monetization a spin on this website today. Here I write up how I did it, how it went, and what I think about it.
 The proposed web monetization standard allows browsers to securely pay websites, and, in turn, allows for websites to react to being paid, for example by turning off ads or providing extra functionality to paying visitors. There is some good description of use cases on Coil&amp;rsquo;s website if you&amp;rsquo;re looking for a more general explainer.</description>
     </item>
     
     <item>
       <title>I&#39;m leaving AISEC</title>
-      <link>https://www.franziskuskiefer.de/post/leaving-aisec/</link>
+      <link>https://www.franziskuskiefer.de/p/im-leaving-aisec/</link>
       <pubDate>Mon, 04 May 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://www.franziskuskiefer.de/post/leaving-aisec/</guid>
+      <guid>https://www.franziskuskiefer.de/p/im-leaving-aisec/</guid>
       <description>I don&amp;rsquo;t like to write a post like this but I really feel that this one is necessary. After not even half a year I&amp;rsquo;m going to leave the Fraunhofer AISEC at the end of May. In this post I want to explain why.
 This is not a post about contact tracing!
 During the week of April 13 the controversy around PEPP-PT started to heat up. Articles from coindesk and other media such as Golem (German), started to pop up and I started to get a little concerned knowing that AISEC is part of the PEPP-PT organization.</description>
@@ -39,19 +39,19 @@ During the week of April 13 the controversy around PEPP-PT started to heat up. A
     
     <item>
       <title>Shared-Secrets Service</title>
-      <link>https://www.franziskuskiefer.de/post/shared-secrets-service/</link>
+      <link>https://www.franziskuskiefer.de/p/shared-secrets-service/</link>
       <pubDate>Mon, 23 Dec 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://www.franziskuskiefer.de/post/shared-secrets-service/</guid>
+      <guid>https://www.franziskuskiefer.de/p/shared-secrets-service/</guid>
       <description>At the Berlin Crypto this month we had a talk by Kevin about a shared-secret service they developed at Syselevn. After experimenting with PGP and deciding that it doesn&amp;rsquo;t do what they needed, they decided to go with a very simple, custom encrypt-then-mac scheme. You can find details here. When someone says they built their own encryption scheme and message format I get obviously curious. In this post I want to summarize the scheme, design decisions, compare it standard authenticated encryption schemes, and ponder the question of the right security definitions.</description>
     </item>
     
     <item>
       <title>Mozilla SURF Summit Vienna 2019</title>
-      <link>https://www.franziskuskiefer.de/post/surf-vienna-2019/</link>
+      <link>https://www.franziskuskiefer.de/p/mozilla-surf-summit-vienna-2019/</link>
       <pubDate>Tue, 12 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://www.franziskuskiefer.de/post/surf-vienna-2019/</guid>
+      <guid>https://www.franziskuskiefer.de/p/mozilla-surf-summit-vienna-2019/</guid>
       <description>Last week we had the third Security Engineering University Relationship Framework (SURF) summit in Vienna. The last SURF summit I attended was the first one in London 2018.
 This time we had four talks by Mozillians, three invited talks, as well as eight lightning talks. I live-tweeted a little during the event if you like slides on photos.
 Christoph talked about how to harden the content security landscape of Firefox and posed the question how we could do some of that on the web.</description>
@@ -59,71 +59,71 @@ Christoph talked about how to harden the content security landscape of Firefox a
     
     <item>
       <title>Wrapping arithmetic in Rust</title>
-      <link>https://www.franziskuskiefer.de/post/wrapping-arithmetic/</link>
+      <link>https://www.franziskuskiefer.de/p/wrapping-arithmetic-in-rust/</link>
       <pubDate>Mon, 21 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://www.franziskuskiefer.de/post/wrapping-arithmetic/</guid>
+      <guid>https://www.franziskuskiefer.de/p/wrapping-arithmetic-in-rust/</guid>
       <description>One of Rusts great feature is that it catches integer overflows at runtime and panics rather than wraps (in debug builds). I recommend you read Huon&amp;rsquo;s blog post about this from a couple years ago.
 While this is a desirable behaviour in general, integer overflows are commonly used when implementing cryptography primitives. Rust offers wrapping alternatives such as wrapping_add etc. to allow wrapping behaviour. However, this makes code very hard to read, e.</description>
     </item>
     
     <item>
       <title>Update on hacspec</title>
-      <link>https://www.franziskuskiefer.de/post/hacspec2/</link>
+      <link>https://www.franziskuskiefer.de/p/update-on-hacspec/</link>
       <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://www.franziskuskiefer.de/post/hacspec2/</guid>
+      <guid>https://www.franziskuskiefer.de/p/update-on-hacspec/</guid>
       <description>Earlier this year I introduced hacspec, a new specification language for cryptographic primitives. After Karthik presented the idea and very preliminary results at IETF 101 in March we made quite some progress and presented a paper with a little more detail at SSR earlier this week. In this blog post I&amp;rsquo;ll give the gist of the SSR paper and introduce the first version of hacspec.
 All information about hacspec can be found at https://hacs-workshop.</description>
     </item>
     
     <item>
       <title>Mozilla Security Research Summit London 2018</title>
-      <link>https://www.franziskuskiefer.de/post/surf-london-2018/</link>
+      <link>https://www.franziskuskiefer.de/p/mozilla-security-research-summit-london-2018/</link>
       <pubDate>Mon, 19 Nov 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://www.franziskuskiefer.de/post/surf-london-2018/</guid>
+      <guid>https://www.franziskuskiefer.de/p/mozilla-security-research-summit-london-2018/</guid>
       <description>The Security Engineering University Relationship Framework (SURF) is an initiative within the Firefox security engineering team to improve relations with privacy and security researchers. SURF includes a variety of possible relationships but is focused on building long-term relationships with researchers and organisations. The goal of SURF projects is to explore topics that are outside of Mozilla&amp;rsquo;s immediate product needs, influence Mozilla&amp;rsquo;s long-term product development and vision.
 On November 12th the first SURF summit was held in London.</description>
     </item>
     
     <item>
       <title>Shipping (some) HACL*</title>
-      <link>https://www.franziskuskiefer.de/post/hacl-nss-integration/</link>
+      <link>https://www.franziskuskiefer.de/p/shipping-some-hacl/</link>
       <pubDate>Thu, 12 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://www.franziskuskiefer.de/post/hacl-nss-integration/</guid>
+      <guid>https://www.franziskuskiefer.de/p/shipping-some-hacl/</guid>
       <description>If you didn&amp;rsquo;t read the article about the HACL* approach, go there first and read it. tl;dr
  HACL* is a cryptographic library written in F* that allows translation to C using kremlin. It guarantees memory safety, secret independent computation, and functional correctness with respect to a mathematical specification.
- In this second blog post I describe the process of integrating code from HACL*, a researchy crypto library, into NSS, a production library shipping to millions of people, running on a plethora of platforms.</description>
+  In this second blog post I describe the process of integrating code from HACL*, a researchy crypto library, into NSS, a production library shipping to millions of people, running on a plethora of platforms.</description>
     </item>
     
     <item>
       <title>The HACL* approach</title>
-      <link>https://www.franziskuskiefer.de/post/hacl-star/</link>
+      <link>https://www.franziskuskiefer.de/p/the-hacl-approach/</link>
       <pubDate>Wed, 14 Feb 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://www.franziskuskiefer.de/post/hacl-star/</guid>
+      <guid>https://www.franziskuskiefer.de/p/the-hacl-approach/</guid>
       <description>HACL* (High-Assurance Cryptographic Library) is a formally verified cryptographic library in F*, developed by the Prosecco team at INRIA Paris in collaboration with Microsoft Research, as part of Project Everest. HACL* was inspired by discussions at the HACS workshop and aims at developing a set of reference implementations in C for common cryptographic primitives.
 This is the first post in a series describing formal verification in NSS as an approach to improve confidence in highly complex, highly security critical code.</description>
     </item>
     
     <item>
       <title>Introducing HacSpec</title>
-      <link>https://www.franziskuskiefer.de/post/hacspec1/</link>
+      <link>https://www.franziskuskiefer.de/p/introducing-hacspec/</link>
       <pubDate>Thu, 08 Feb 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://www.franziskuskiefer.de/post/hacspec1/</guid>
+      <guid>https://www.franziskuskiefer.de/p/introducing-hacspec/</guid>
       <description>HacSpec is a proposal for a new specification language for cryptographic primitives that is succinct, that is easy to read and implement, and that lends itself to formal verification. It aims to formalise the pseudocode used in cryptographic standards by proposing a formal syntax that can be checked for simple errors. HacSpec specifications are further executable to test against test vectors specified in a common syntax.
 The main focus of HacSpec is to allow specifications to be compiled to formal languages such as cryptol, coq, F*, and easycrypt and thus make it easier to formally verify implementations.</description>
     </item>
     
     <item>
       <title>CVE-2017-5462 - A PRNG issue</title>
-      <link>https://www.franziskuskiefer.de/post/cve-2017-5462/</link>
+      <link>https://www.franziskuskiefer.de/p/cve-2017-5462-a-prng-issue/</link>
       <pubDate>Thu, 31 Aug 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://www.franziskuskiefer.de/post/cve-2017-5462/</guid>
+      <guid>https://www.franziskuskiefer.de/p/cve-2017-5462-a-prng-issue/</guid>
       <description>On April 19, 2017, Mozilla Foundation published the Security Advisory 2017-10 outlining several recently fixed security vulnerabilities. One of these vulnerabilities, tracked as CVE-2017-5462, affects the Pseudo-Random Number Generator (PRNG) within the Network Security Services (NSS) library prior to version 3.29.5 and Firefox prior to version 53.
 This post describes the bug and how it was discovered.
 Inside the NSS PRNG NSS uses Hash_DRBG as PRNG, which is one of several PRNG schemes defined in the NIST Special Publication 800-90.</description>
@@ -131,69 +131,70 @@ Inside the NSS PRNG NSS uses Hash_DRBG as PRNG, which is one of several PRNG sch
     
     <item>
       <title>New Website</title>
-      <link>https://www.franziskuskiefer.de/post/new-blog/</link>
+      <link>https://www.franziskuskiefer.de/p/new-website/</link>
       <pubDate>Tue, 29 Aug 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://www.franziskuskiefer.de/post/new-blog/</guid>
+      <guid>https://www.franziskuskiefer.de/p/new-website/</guid>
       <description>After a couple of years using ghost I switched to the static page generator hugo. Hugo is easy to write and easy to publish. But more importantly it doesn&amp;rsquo;t offer the attack surface ghost does and doesn&amp;rsquo;t require external ressources like ghost does. It further decreases the amount of ressources used on the server.</description>
     </item>
     
     <item>
       <title>Aes Gcm Speedup</title>
-      <link>https://www.franziskuskiefer.de/post/aes-gcm-speedup/</link>
+      <link>https://www.franziskuskiefer.de/p/aes-gcm-speedup/</link>
       <pubDate>Tue, 27 Jun 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://www.franziskuskiefer.de/post/aes-gcm-speedup/</guid>
+      <guid>https://www.franziskuskiefer.de/p/aes-gcm-speedup/</guid>
       <description>AES-GCM is a NIST standardised authenticated encryption algorithm (FIPS 800-38D). Since its standardisation in 2008 its usage increased to a point where it is the prevalent encryption used with TLS. With 85% it is by far the most widely used cipher.
+ Firefox 53 TLS cipher telemetry 
 Unfortunately the AES-GCM implementation used in Firefox (provided by NSS) does not take advantage of full hardware acceleration; it uses a slower software-only implementation on Mac, Linux 32-bit, or any device that doesn&amp;rsquo;t have the AVX, PCLMUL, and AES-NI hardware instructions.</description>
     </item>
     
     <item>
       <title>On Constant Time Division</title>
-      <link>https://www.franziskuskiefer.de/post/constant-time-division/</link>
+      <link>https://www.franziskuskiefer.de/p/on-constant-time-division/</link>
       <pubDate>Wed, 28 Dec 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://www.franziskuskiefer.de/post/constant-time-division/</guid>
+      <guid>https://www.franziskuskiefer.de/p/on-constant-time-division/</guid>
       <description>Writing constant time code is hard. We all know that. But I&amp;rsquo;m always amazed again on how difficult it is. In preparation for making NSS more constant time I looked into certain CPU instructions that are known to be not constant time. So I wrote a little thing to measure the time (CPU cycles) needed for division.
 div rcx ; eax is now a/b The CPU I&amp;rsquo;m using in this post is an Intel i7-4790 (haswell).</description>
     </item>
     
     <item>
       <title>NSS Static Analysis</title>
-      <link>https://www.franziskuskiefer.de/post/nss-static-analysis/</link>
+      <link>https://www.franziskuskiefer.de/p/nss-static-analysis/</link>
       <pubDate>Wed, 25 May 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://www.franziskuskiefer.de/post/nss-static-analysis/</guid>
+      <guid>https://www.franziskuskiefer.de/p/nss-static-analysis/</guid>
       <description>When I started working on NSS 7 months ago one of the tasks I was asked to do was to work through the related Coverity issues. This post summarises some learnings from this as we&amp;rsquo;ve since come a long way since over the last months.
 Static analysis plays a crucial part in locating vulnerabilities and bugs during development. For NSS we currently use multiple static analysis tools. While scan-build as well as infer are great applications to find bugs, they require a lot of manual management.</description>
     </item>
     
     <item>
       <title>RawGit Firefox Extension</title>
-      <link>https://www.franziskuskiefer.de/post/raw-github/</link>
+      <link>https://www.franziskuskiefer.de/p/rawgit-firefox-extension/</link>
       <pubDate>Sat, 02 Jan 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://www.franziskuskiefer.de/post/raw-github/</guid>
+      <guid>https://www.franziskuskiefer.de/p/rawgit-firefox-extension/</guid>
       <description>~This extension doesn&amp;rsquo;t work from Firefox 57 on. I might update it when I find time.~
 Ever wanted to view HTML pages directly from GitHub? Me too. Unfortunately the Raw button doesn&amp;rsquo;t render the HTML but only displays the source code. There are a bunch of Chrome extensions that add a button to open file from Github at rawgit directly, but none for Firefox. So I wrote one. It&amp;rsquo;s still an early version and more of a hack than a real extension, but it works (mostly).</description>
     </item>
     
     <item>
       <title>Submitting through Editorial Manager</title>
-      <link>https://www.franziskuskiefer.de/post/editorial-manager/</link>
+      <link>https://www.franziskuskiefer.de/p/submitting-through-editorial-manager/</link>
       <pubDate>Fri, 06 Mar 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://www.franziskuskiefer.de/post/editorial-manager/</guid>
+      <guid>https://www.franziskuskiefer.de/p/submitting-through-editorial-manager/</guid>
       <description>Today I had to submit a paper through the Editorial Manager (used by Springer) for the first time. Needless to say that it&amp;rsquo;s not as easy as it sounds. Therefore here some helpful links for everyone having to do the same. I ended up putting the references in the .tex file as nothing else worked for me.
  http://www.bartneck.de/2010/09/30/submitting-your-latex-manuscript-to-editorial-manager-springer-elsevier/ http://drezha.me.uk/post/22719621060/submitting-a-springerlink-elsvier-journal-using  </description>
     </item>
     
     <item>
       <title>OpenVPN HowTo</title>
-      <link>https://www.franziskuskiefer.de/post/openvpn/</link>
+      <link>https://www.franziskuskiefer.de/p/openvpn-howto/</link>
       <pubDate>Sun, 12 Oct 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://www.franziskuskiefer.de/post/openvpn/</guid>
+      <guid>https://www.franziskuskiefer.de/p/openvpn-howto/</guid>
       <description>OpenPVN is an easy to set-up and use VPN solution that offer TUN/TAP support. In this tutorial I describe how to set-up an OpenVPN connection between a Ubuntu server and an Arch client.
 Preparations (Server) First we have to install OpenVPN on the server.
 # apt-get install openvpn To see whether TUN/TAP is enabled in the kernel we can check the kernel log grep tun /var/log/kern.log and load it if it doesn&amp;rsquo;t show up modprobe tun.</description>
@@ -201,10 +202,10 @@ Preparations (Server) First we have to install OpenVPN on the server.
     
     <item>
       <title>Snort, Barnyard2 &amp; Snorby</title>
-      <link>https://www.franziskuskiefer.de/post/snort/</link>
+      <link>https://www.franziskuskiefer.de/p/snort-barnyard2-snorby/</link>
       <pubDate>Sun, 05 Oct 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://www.franziskuskiefer.de/post/snort/</guid>
+      <guid>https://www.franziskuskiefer.de/p/snort-barnyard2-snorby/</guid>
       <description>This post is work in progress but I never got around to finishing it. Sorry
 After a first failed attempt to install Snorby on an Arch Linux server (Snorby requires Ruby 1.9.x, Arch uses 2.x and I&amp;rsquo;m not willing to use the AUR version for this) I&amp;rsquo;m doing this on a Ubuntu 14.04 Server.
 Snort Before installing Snorby we have to install snort itself. This can be done with sudo apt-get install snort.</description>
@@ -212,19 +213,19 @@ Snort Before installing Snorby we have to install snort itself. This can be done
     
     <item>
       <title>The curious case of pgflibraryfadings</title>
-      <link>https://www.franziskuskiefer.de/post/pgflibraryfadings/</link>
+      <link>https://www.franziskuskiefer.de/p/the-curious-case-of-pgflibraryfadings/</link>
       <pubDate>Mon, 01 Sep 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://www.franziskuskiefer.de/post/pgflibraryfadings/</guid>
+      <guid>https://www.franziskuskiefer.de/p/the-curious-case-of-pgflibraryfadings/</guid>
       <description>Over the last year I was battling a strange error of reverse synctex search with evince and several latex editors. Everything works perfect with synctex unless I want to do a reverse search (click in the pdf docutment and get the according tex position) on the first page. Instead of getting the correct position my latex editor always opens the file pgflibraryfadings.code.tex. While I finally found the cause of the problem, I have no idea how to solve it.</description>
     </item>
     
     <item>
       <title>Display &amp; Inline Math</title>
-      <link>https://www.franziskuskiefer.de/post/displaymath/</link>
+      <link>https://www.franziskuskiefer.de/p/display-inline-math/</link>
       <pubDate>Sun, 17 Aug 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://www.franziskuskiefer.de/post/displaymath/</guid>
+      <guid>https://www.franziskuskiefer.de/p/display-inline-math/</guid>
       <description>Another day in latex wonderland &amp;hellip; Today I was writing an equation in an aligned environment using sum and those fancy things. Unfortunately aligned is a display math environment such that the limits of sum are displayed above and below, which was really not suitable in my case. So how do I display inline-math style in a display math environment?
 Let&amp;rsquo;s say we have an equation environment with an equation</description>
     </item>

@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Earlier this year I introduced hacspec, a new specification language for cryptographic primitives. After Karthik presented the idea and very preliminary results at IETF 101 in March we made quite some progress and presented a paper with a little more detail at SSR earlier this week. In this blog post I&amp;rsquo;ll give the gist of the SSR paper and introduce the first version of hacspec.
+All information about hacspec can be found at https://hacs-workshop.'><title>Update on hacspec</title>
+
+<link rel='canonical' href='https://www.franziskuskiefer.de/p/update-on-hacspec/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Update on hacspec'>
+<meta property='og:description' content='Earlier this year I introduced hacspec, a new specification language for cryptographic primitives. After Karthik presented the idea and very preliminary results at IETF 101 in March we made quite some progress and presented a paper with a little more detail at SSR earlier this week. In this blog post I&amp;rsquo;ll give the gist of the SSR paper and introduce the first version of hacspec.
+All information about hacspec can be found at https://hacs-workshop.'>
+<meta property='og:url' content='https://www.franziskuskiefer.de/p/update-on-hacspec/'>
+<meta property='og:site_name' content='Dr Franziskus Kiefer'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='hacspec' /><meta property='article:tag' content='formal verification' /><meta property='article:tag' content='specs' /><meta property='article:tag' content='crypto' /><meta property='article:published_time' content='2018-11-30T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2018-11-30T00:00:00&#43;00:00'/><meta property='og:image' content='https://www.franziskuskiefer.de/p/update-on-hacspec/hacspec2-architecture.png' />
+<meta name="twitter:site" content="@_franziskus_">
+    <meta name="twitter:creator" content="@_franziskus_"><meta name="twitter:title" content="Update on hacspec">
+<meta name="twitter:description" content="Earlier this year I introduced hacspec, a new specification language for cryptographic primitives. After Karthik presented the idea and very preliminary results at IETF 101 in March we made quite some progress and presented a paper with a little more detail at SSR earlier this week. In this blog post I&amp;rsquo;ll give the gist of the SSR paper and introduce the first version of hacspec.
+All information about hacspec can be found at https://hacs-workshop."><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://www.franziskuskiefer.de/p/update-on-hacspec/hacspec2-architecture.png' />
+    </head>
+    <body class="
+    article-page has-toc
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        extended
+    
+">
+    
+        <div id="article-toolbar">
+            <a href="https://www.franziskuskiefer.de/" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>Back</span>
+            </a>
+        </div>
+    
+<main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/update-on-hacspec/">
+                <img src="/p/update-on-hacspec/hacspec2-architecture_hu59cb5aa3cd237429216159464502cf06_303676_800x0_resize_box_3.png"
+                        srcset="/p/update-on-hacspec/hacspec2-architecture_hu59cb5aa3cd237429216159464502cf06_303676_800x0_resize_box_3.png 800w, /p/update-on-hacspec/hacspec2-architecture_hu59cb5aa3cd237429216159464502cf06_303676_1600x0_resize_box_3.png 1600w"
+                        width="800" 
+                        height="682" 
+                        loading="lazy"
+                        alt="Featured image of post Update on hacspec" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+
+    <h2 class="article-title">
+        <a href="/p/update-on-hacspec/">Update on hacspec</a>
+    </h2>
+
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Nov 30, 2018</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    6 min read
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
+</header>
+
+    <section class="article-content">
+    <p>Earlier this year I introduced <a class="link" href="../hacspec1" >hacspec, a new specification language for cryptographic primitives</a>.
+After Karthik presented the idea and very preliminary results at <a class="link" href="https://github.com/HACS-workshop/hacspec/blob/master/doc/hacspec-short-talk-CFRG-IETF-101.pdf"  target="_blank" rel="noopener"
+    >IETF 101</a> in March we made quite some progress and presented a paper with a little more detail at <a class="link" href="https://ssr2018.net/"  target="_blank" rel="noopener"
+    >SSR</a> earlier this week.
+In this blog post I&rsquo;ll give the gist of the <a class="link" href="https://github.com/HACS-workshop/hacspec/blob/master/doc/hacspec-ssr18-paper.pdf"  target="_blank" rel="noopener"
+    >SSR paper</a> and introduce the first version of <em>hacspec</em>.</p>
+<p>All information about <em>hacspec</em> can be found at <a class="link" href="https://hacs-workshop.github.io/hacspec/"  target="_blank" rel="noopener"
+    >https://hacs-workshop.github.io/hacspec/</a>.</p>
+<h2 id="the-language">The language</h2>
+<p>The <em>hacspec</em> language is a DSL for cryptographic algorithms.
+But it can also be seen as a typed subset of Python.
+The following describes the language.</p>
+<pre><code>  Values v ::=
+         n                             integer constants 
+       | True | False                  boolean constants 
+       | '...' | &quot;...&quot;                 string constants 
+       | (v1,...,vn)                   tuple constant 
+       | array([v1,...,vn])            array constant 
+
+  
+Expressions e ::=
+         v                             values 
+       | x | m.x                       local and global variables 
+       | (e1,...,en)                   tuple construction 
+       | array([e1,...,en])            array construction 
+       | array.length(e)               array length 
+       | e[e0]                         array access 
+       | e[e0:e1]                      array slice
+       | e(e1,...,en)                  function call
+       | e1 binop e2                   builtin binary operators
+       | unaryop e                     builtin unary operators
+  
+Types t ::=
+         int, str, bool                basic types 
+       | tuple_t(t1,...,tn)            tuples 
+       | vlarray_t(t)                  variable-length array 
+       | x                             user-defined or builtin type 
+       | x(t1,...,tn,e1,...,em)        builtin type application 
+  
+Statements s ::=
+         x: Type = t                   type declaration 
+       | x: t                          variable declaration  
+       | x = e                         variable assignment 
+       | x binop= e                    augmented variable assignment 
+       | (x1,..,xn) = e                tuple matching 
+       | x[i] = e                      array update 
+       | x[i] binop= e                 augmented array update 
+       | x[i:j] = e                    array slice update 
+       | if e:                         if-elif-else conditional 
+             s1...sn  
+         elif e:  
+             s1'...sn'  
+         else  
+             s1''...sn''  
+       | for i in range(e):            for loop 
+             s1...sn  
+       | break                         break from loop 
+       | def x(x1:t1,...,xn:tn) -&gt; t:  function declaration
+             s1 ... sn                
+       | return e                      return from function 
+       | from x import x1, x2,..., xn  module import 
+  
+Specs σ ::= s1...sn                    sequence of statements 
+</code></pre><h2 id="hacspec-architecture">hacspec architecture</h2>
+<p>The <em>hacspec</em> architecture is depicted in the following graph.</p>
+<p><figure style="flex-grow: 117; flex-basis: 281px">
+		<a href="/p/update-on-hacspec/hacspec2-architecture.png" data-size="2873x2451"><img src="/p/update-on-hacspec/hacspec2-architecture.png"
+				srcset="/p/update-on-hacspec/hacspec2-architecture_hu59cb5aa3cd237429216159464502cf06_303676_480x0_resize_box_3.png 480w, /p/update-on-hacspec/hacspec2-architecture_hu59cb5aa3cd237429216159464502cf06_303676_1024x0_resize_box_3.png 1024w"
+				width="2873"
+				height="2451"
+				loading="lazy"
+				>
+		</a>
+		
+	</figure></p>
+<h2 id="writing-hacspec">Writing hacspec</h2>
+<p>Every spec should be accompanied by a test and some test vectors leaving the author with at least two files, e.g. <code>poly.py</code> and <code>poly_test.py</code> (also see <a class="link" href="#Example" >Example section</a>).
+Note that only the spec file has to be <em>hacspec</em> syntax.
+The test file can make use of all of Python.
+<em>hacspec</em> comes with a standard library called speclib and a spec-checker.
+To use the <em>hacspec</em> speclib and spec-checker install them via <code>pip install hacspec</code> or from the source (the <code>setup.py</code> for the Python package can be found in <code>/build/</code>).
+Running <em>hacspec</em> requires a Python interpreter version 3.6.4 or newer.</p>
+<h3 id="speclib">speclib</h3>
+<p>Commonly used functionality is provided in <em>speclib</em> (<code>from hacspec.speclib import *</code>).
+The full speclib documentation can be found <a class="link" href="https://hacs-workshop.github.io/hacspec/docs/"  target="_blank" rel="noopener"
+    >here</a>.
+Some highlights are</p>
+<ul>
+<li><em>modular arithmetic</em>: <code>natmod_t</code> is an integer data type that provides modular arithmetic, e.g. <code>felem_t = natmod_t((2**130)-5)</code> defines field elements modulo <code>(2**130)-5</code>.</li>
+<li><em>machine integers</em>: <code>unitN_t</code> define commonly used machine integer types for <code>N = 8, 16, 32, 64, 128</code>.</li>
+<li><em>byte arrays, vectors, and matrices</em>: provided data structures are <code>array_t, bytes_t, vector_t, matrix_t</code> as well as the variable length versions <code>vlarray_t</code> and <code>vlbytes_t</code>. Note that the vector and matrix data types offer point-wise arithmetic.</li>
+<li><em>refinements</em>: <code>refine_t</code> allows to refine data types.</li>
+<li><em>contracts</em>: <code>@contract</code> annotation on functions can be used for pre- and post-conditions.<sup>1</sup></li>
+</ul>
+<h3 id="spec-checker">spec-checker</h3>
+<p>Since hacspecs are executed with a Python interpreter it is not sufficient to run <em>hacspec</em> to check their syntax.
+To check that the syntax is valid a spec-checker is provided.<sup>2</sup></p>
+<pre><code>hacspec-check &lt;your-hacspec&gt;
+</code></pre><h3 id="executing-hacspec">Executing hacspec</h3>
+<p><em>hacspec</em> tests are executed with the Python interpreter.
+Executing tests on a spec can yield three different results.</p>
+<ol>
+<li>The execution is successful and all test vectors pass. In this case the spec is most likely correct and doesn&rsquo;t contain any obvious typing issues.</li>
+<li>The execution fails because of a failing test case. In this case the spec is probably wrong (or the test vectors are incorrect).</li>
+<li>The execution fails because of a type error. The speclib as well as <a class="link" href="https://github.com/agronholm/typeguard/"  target="_blank" rel="noopener"
+    >typeguard</a> are used to perform runtime type checks.</li>
+</ol>
+<h2 id="checking-and-compiling-hacspec">Checking and compiling hacspec</h2>
+<p>To use <em>hacspecs</em> for formal verification such as verification of cryptographic properties of an algorithm, generating code in other languages from the spec, or verifying correctness of other implementations with it, a second set of tools is provided.
+These tools are written in OCaml and thus require additional setup and are not packaged right now.<sup>3</sup>
+Check out the <a class="link" href="https://github.com/HACS-workshop/hacspec"  target="_blank" rel="noopener"
+    >repository</a> to use them.
+All tools can be easily called via <code>make</code> (see documentation in the repo <code>/compiler/</code> for details).</p>
+<h3 id="type-checker">Type checker</h3>
+<p>To perform proper type checking Python is impractical.
+A native type checker is implemented in OCaml that performs syntax and type checking for <em>hacspec</em>.
+To run the type checker on a spec simply run <code>./checker.native &lt;your-spec&gt;</code>.</p>
+<h3 id="compiler">Compiler</h3>
+<p>The type checker also produces a typed AST that can be used to generate the spec in another formal language.
+There are currently compiler for EasyCrypt and F*.
+I&rsquo;ll only describe the F* compiler as it&rsquo;s more complete.</p>
+<h4 id="f-compiler">F* compiler</h4>
+<p>The F* compiler requires <a class="link" href="https://github.com/mitls/hacl-star/"  target="_blank" rel="noopener"
+    ><code>HACL_HOME</code></a> and <a class="link" href="https://github.com/FStarLang/FStar"  target="_blank" rel="noopener"
+    ><code>FSTAR_HOME</code></a> environment variables to be set.
+The compiler is then invoked like this <code>./to_fstar &lt;your-spec&gt;</code>.
+The generated F* spec can then be type checked or executed on test vectors to check correctness of the spec.
+Using <a class="link" href="https://github.com/FStarLang/kremlin"  target="_blank" rel="noopener"
+    >kremlin</a> the F* code can also be used to generate C code.</p>
+<h2 id="Example">Example</h2>
+<p>The <a class="link" href="https://github.com/HACS-workshop/hacspec/tree/master/specs"  target="_blank" rel="noopener"
+    ><em>hacspec</em> repo</a> has many examples.
+I&rsquo;ll only give a short one here.</p>
+<p>The spec <code>poly.py</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="kn">from</span> <span class="nn">hacspec.speclib</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">p130m5</span><span class="p">:</span> <span class="n">nat_t</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span> <span class="o">**</span> <span class="mi">130</span><span class="p">)</span> <span class="o">-</span> <span class="mi">5</span>
+<span class="n">felem_t</span> <span class="o">=</span> <span class="n">natmod_t</span><span class="p">(</span><span class="n">p130m5</span><span class="p">)</span>
+
+<span class="nd">@typechecked</span>
+<span class="k">def</span> <span class="nf">felem</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="n">nat_t</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">felem_t</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">natmod</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">p130m5</span><span class="p">)</span>
+
+
+<span class="nd">@typechecked</span>
+<span class="k">def</span> <span class="nf">poly</span><span class="p">(</span><span class="n">m</span><span class="p">:</span> <span class="n">vlarray_t</span><span class="p">(</span><span class="n">felem_t</span><span class="p">),</span> <span class="n">r</span><span class="p">:</span> <span class="n">felem_t</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">felem_t</span><span class="p">:</span>
+    <span class="n">acc</span><span class="p">:</span> <span class="n">felem_t</span> <span class="o">=</span> <span class="n">felem</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">array</span><span class="o">.</span><span class="n">length</span><span class="p">(</span><span class="n">m</span><span class="p">)):</span>
+        <span class="n">acc</span> <span class="o">=</span> <span class="p">(</span><span class="n">acc</span> <span class="o">+</span> <span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">*</span> <span class="n">r</span>
+    <span class="k">return</span> <span class="n">acc</span>
+</code></pre></div><p>The test <code>poly_test.py</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="kn">from</span> <span class="nn">poly</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">array</span><span class="p">([</span><span class="n">felem</span><span class="p">(</span><span class="mh">0x6f4620636968706172676f7470797243</span><span class="p">),</span>
+               <span class="n">felem</span><span class="p">(</span><span class="mh">0x6f7247206863726165736552206d7572</span><span class="p">)])</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="n">felem</span><span class="p">(</span><span class="mh">0xa806d542fe52447f336d555778bed685</span><span class="p">)</span>
+    <span class="n">expected</span> <span class="o">=</span> <span class="n">natmod</span><span class="p">(</span><span class="mh">0xa01b776a69ea8c1cd3ba00179dc218ab</span><span class="p">,</span> <span class="n">p130m5</span><span class="p">)</span>
+
+    <span class="n">p</span> <span class="o">=</span> <span class="n">poly</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">k</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">expected</span> <span class="o">==</span> <span class="n">p</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Error&#34;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Expected: &#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">expected</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Got:      &#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">p</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Test successful&#34;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</code></pre></div><p>This can now be run with <code>python poly_test.py</code> and checked with <code>hacspec-check poly.py</code> and <code>checker.native poly.py</code>.
+Compiling this to F* can be done with <code>to_fstar.native poly.py</code>, generating the following F* code.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ocaml" data-lang="ocaml"><span class="k">module</span> <span class="nc">Poly</span>
+<span class="k">open</span> <span class="nc">Speclib</span>
+
+<span class="k">let</span> <span class="n">p130m5</span> <span class="o">:</span> <span class="n">nat_t</span> <span class="o">=</span> <span class="o">(</span><span class="n">2</span> <span class="o">**.</span> <span class="n">130</span><span class="o">)</span> <span class="o">-.</span> <span class="n">5</span>
+<span class="k">let</span> <span class="n">felem_t</span> <span class="o">:</span> <span class="nc">Type0</span> <span class="o">=</span> <span class="n">natmod_t</span> <span class="n">p130m5</span>
+<span class="k">let</span> <span class="n">felem</span> <span class="o">(</span><span class="n">n</span> <span class="o">:</span> <span class="n">nat_t</span><span class="o">)</span> <span class="o">:</span> <span class="n">felem_t</span> <span class="o">=</span> <span class="n">natmod</span> <span class="n">n</span> <span class="n">p130m5</span>
+<span class="k">let</span> <span class="n">poly</span> <span class="o">(</span><span class="n">m</span> <span class="o">:</span> <span class="n">vlarray_t</span> <span class="n">felem_t</span><span class="o">)</span> <span class="o">(</span><span class="n">r</span> <span class="o">:</span> <span class="n">felem_t</span><span class="o">)</span> <span class="o">:</span> <span class="n">felem_t</span> <span class="o">=</span>
+  <span class="k">let</span> <span class="n">acc</span> <span class="o">=</span> <span class="n">felem</span> <span class="n">0</span> <span class="k">in</span>
+  <span class="k">let</span> <span class="n">acc</span> <span class="o">=</span> <span class="n">repeati</span> <span class="o">(</span><span class="n">array_length</span> <span class="n">m</span><span class="o">)</span> <span class="o">(</span><span class="k">fun</span> <span class="n">i</span> <span class="n">acc</span> <span class="o">-&gt;</span> <span class="o">(</span><span class="n">acc</span> <span class="o">+.</span> <span class="n">m</span><span class="o">.[</span><span class="n">i</span><span class="o">])</span> <span class="o">*.</span> <span class="n">r</span><span class="o">)</span> <span class="n">acc</span> <span class="k">in</span>
+  <span class="n">acc</span>
+</code></pre></div><h1 id="next-steps">Next steps</h1>
+<p>We hope that <em>hacspec</em> is a useful tool for spec authors and many people indeed voiced interest already.
+While the tooling isn&rsquo;t perfect yet, the language is developed enough to start using it.
+The next steps for <em>hacspec</em> is to get some usage from spec authors and improve tooling.
+We also hope to get more compilers for different formal languages implemented.</p>
+<br>
+<hr>
+<br>
+<ol>
+<li>Note that contracts are still in development and not fully supported yet.</li>
+<li>In future <em>hacspec</em> syntax checks and running test vectors on the spec should be done in one invocation.</li>
+<li>In future pre-built binaries should be distributed to make this easier.</li>
+</ol>
+<p><em>hacspec is mostly a spare time project for me at the moment. Development is therefore not always as fast as I&rsquo;d like.</em></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/hacspec/">hacspec</a>
+        
+            <a href="/tags/formal-verification/">formal verification</a>
+        
+            <a href="/tags/specs/">specs</a>
+        
+            <a href="/tags/crypto/">crypto</a>
+        
+    </section>
+
+
+    </footer>
+
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="has-image">
+    <a href="/p/introducing-hacspec/">
+        
+        
+            <div class="article-image">
+                <img src="/p/introducing-hacspec/hero.052d34e6dec3c77e38f02590af8406c3_hu0ce6fe0d9adc29c9a4ba1507bcf5cc23_31987_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy" 
+                        data-key="" 
+                        data-hash="md5-BS005t7Dx3448CWQr4QGww==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Introducing HacSpec</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/wrapping-arithmetic-in-rust/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Wrapping arithmetic in Rust</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/p/the-hacl-approach/">
+        
+        
+            <div class="article-image">
+                <img src="/p/the-hacl-approach/hacl-chart.6f092057acd5270c201289c9abd6cc4e_hubf5385a0c6763cff9ba6bbfffd88a9a5_61924_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy" 
+                        data-key="" 
+                        data-hash="md5-bwkgV6zVJwwgEonJq9bMTg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">The HACL* approach</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+     
+     
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2013 - 
+        
+        2021 Dr Franziskus Kiefer
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.1.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+        <aside class="sidebar right-sidebar sticky">
+            <section class="widget archives">
+                <div class="widget-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                </div>
+                <h2 class="widget-title section-title">Table of contents</h2>
+                
+                <div class="widget--toc">
+                    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#the-language">The language</a></li>
+    <li><a href="#hacspec-architecture">hacspec architecture</a></li>
+    <li><a href="#writing-hacspec">Writing hacspec</a>
+      <ol>
+        <li><a href="#speclib">speclib</a></li>
+        <li><a href="#spec-checker">spec-checker</a></li>
+        <li><a href="#executing-hacspec">Executing hacspec</a></li>
+      </ol>
+    </li>
+    <li><a href="#checking-and-compiling-hacspec">Checking and compiling hacspec</a>
+      <ol>
+        <li><a href="#type-checker">Type checker</a></li>
+        <li><a href="#compiler">Compiler</a>
+          <ol>
+            <li><a href="#f-compiler">F* compiler</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#Example">Example</a></li>
+  </ol>
+</nav>
+                </div>
+            </section>
+        </aside>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

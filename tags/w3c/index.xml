@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>w3c on Franziskus Kiefer</title>
+    <title>w3c on Dr Franziskus Kiefer</title>
     <link>https://www.franziskuskiefer.de/tags/w3c/</link>
-    <description>Recent content in w3c on Franziskus Kiefer</description>
+    <description>Recent content in w3c on Dr Franziskus Kiefer</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 14 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/tags/w3c/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>💲 Web Monetization 💲</title>
-      <link>https://www.franziskuskiefer.de/post/webmonetization/</link>
+      <link>https://www.franziskuskiefer.de/p/web-monetization/</link>
       <pubDate>Sun, 14 Feb 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://www.franziskuskiefer.de/post/webmonetization/</guid>
+      <guid>https://www.franziskuskiefer.de/p/web-monetization/</guid>
       <description>Thanks to Deez I gave web monetization a spin on this website today. Here I write up how I did it, how it went, and what I think about it.
 The proposed web monetization standard allows browsers to securely pay websites, and, in turn, allows for websites to react to being paid, for example by turning off ads or providing extra functionality to paying visitors. There is some good description of use cases on Coil&amp;rsquo;s website if you&amp;rsquo;re looking for a more general explainer.</description>
     </item>

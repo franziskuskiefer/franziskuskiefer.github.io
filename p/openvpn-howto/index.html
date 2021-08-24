@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='OpenPVN is an easy to set-up and use VPN solution that offer TUN/TAP support. In this tutorial I describe how to set-up an OpenVPN connection between a Ubuntu server and an Arch client.
+Preparations (Server) First we have to install OpenVPN on the server.
+# apt-get install openvpn To see whether TUN/TAP is enabled in the kernel we can check the kernel log grep tun /var/log/kern.log and load it if it doesn&amp;rsquo;t show up modprobe tun.'><title>OpenVPN HowTo</title>
+
+<link rel='canonical' href='https://www.franziskuskiefer.de/p/openvpn-howto/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='OpenVPN HowTo'>
+<meta property='og:description' content='OpenPVN is an easy to set-up and use VPN solution that offer TUN/TAP support. In this tutorial I describe how to set-up an OpenVPN connection between a Ubuntu server and an Arch client.
+Preparations (Server) First we have to install OpenVPN on the server.
+# apt-get install openvpn To see whether TUN/TAP is enabled in the kernel we can check the kernel log grep tun /var/log/kern.log and load it if it doesn&amp;rsquo;t show up modprobe tun.'>
+<meta property='og:url' content='https://www.franziskuskiefer.de/p/openvpn-howto/'>
+<meta property='og:site_name' content='Dr Franziskus Kiefer'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='linux' /><meta property='article:tag' content='openvpn' /><meta property='article:published_time' content='2014-10-12T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2014-10-12T00:00:00&#43;00:00'/><meta property='og:image' content='https://www.franziskuskiefer.de/images/profilepic.jpg' />
+<meta name="twitter:site" content="@_franziskus_">
+    <meta name="twitter:creator" content="@_franziskus_"><meta name="twitter:title" content="OpenVPN HowTo">
+<meta name="twitter:description" content="OpenPVN is an easy to set-up and use VPN solution that offer TUN/TAP support. In this tutorial I describe how to set-up an OpenVPN connection between a Ubuntu server and an Arch client.
+Preparations (Server) First we have to install OpenVPN on the server.
+# apt-get install openvpn To see whether TUN/TAP is enabled in the kernel we can check the kernel log grep tun /var/log/kern.log and load it if it doesn&amp;rsquo;t show up modprobe tun."><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://www.franziskuskiefer.de/images/profilepic.jpg' />
+    </head>
+    <body class="
+    article-page has-toc
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        extended
+    
+">
+    
+        <div id="article-toolbar">
+            <a href="https://www.franziskuskiefer.de/" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>Back</span>
+            </a>
+        </div>
+    
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <h2 class="article-title">
+        <a href="/p/openvpn-howto/">OpenVPN HowTo</a>
+    </h2>
+
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Oct 12, 2014</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    2 min read
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
+</header>
+
+    <section class="article-content">
+    <p><a class="link" href="https://openvpn.net"  target="_blank" rel="noopener"
+    >OpenPVN</a> is an easy to set-up and use VPN solution that offer <a class="link" href="https://en.wikipedia.org/wiki/TUN/TAP"  target="_blank" rel="noopener"
+    >TUN/TAP</a> support. In this tutorial I describe how to set-up an OpenVPN connection between a Ubuntu server and an Arch client.</p>
+<h1 id="preparations-server">Preparations (Server)</h1>
+<p>First we have to install OpenVPN on the server.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># apt-get install openvpn</span>
+</code></pre></div><p>To see whether TUN/TAP is enabled in the kernel we can check the kernel log <code>grep tun /var/log/kern.log</code> and load it if it doesn&rsquo;t show up <code>modprobe tun</code>.</p>
+<h2 id="creating-a-pki">Creating a PKI</h2>
+<p>To use OpenVPN we need a PKI and certificates. Fortunately there is a script for that.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># apt-get install easy-rsa</span>
+</code></pre></div><p>First we create a folder to store our certificates in <code>mkdir easy-rsa</code> and get the default variables file <code>cp /usr/share/easy-rsa/vars easy-rsa</code>. The file is prefilled but one may want to change</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C">    <span class="n">KEY_COUNTRY</span>
+    <span class="n">KEY_PROVINCE</span>
+    <span class="n">KEY_CITY</span>
+    <span class="n">KEY_ORG</span>
+    <span class="n">KEY_EMAIL</span>
+    <span class="n">KEY_OU</span>
+</code></pre></div><p>All other standard parameteres should usually be fine but can be changed if desired. Now we change to <code>/usr/share/easy-rsa</code> and load the variables <code># source &lt;PATH_TO_VARS&gt;/vars</code> and run <code>./build-ca</code>. If there have been keys before one should run <code>./clean-all</code> first.</p>
+<p>Now we can start creating keys and sign them. First we create the server key with</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># ./build-key-server my-test-server</span>
+</code></pre></div><p>and aswer with <code>yes</code> two times. We do the same for a client key</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># ./build-key my-test-client</span>
+</code></pre></div><p>To build Diffie-Hellman parameters we run <code>./build-dh</code> <em>(this can take some time)</em>. Eventually we create an HMAC key for our VPN and store it with the other keys</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># openvpn --genkey --secret /usr/share/easy-rsa/keys/ta.key</span>
+</code></pre></div><h1 id="configuring-openvpn-server">Configuring OpenVPN (Server)</h1>
+<p>Everything is set-up now to configure and run the OpenVPN server. First we copy the sample configuration file to the correct folder</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># cp /usr/share/doc/openvpn/examples/sample-config-files/server.conf.gz /etc/openvpn/</span>
+<span class="c1"># gzip -d /etc/openvpn/server.conf.gz</span>
+</code></pre></div><p>At least the following changes to <code>server.conf</code> should be made after copying keys, parameters and certificates.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">ca /etc/openvpn/ca.crt
+cert /etc/openvpn/my-test-server.crt
+key /etc/openvpn/my-test-server.key
+dh /etc/openvpn/dh2048.pem
+tls-auth /etc/openvpn/ta.key <span class="m">0</span>
+user nobody
+group nobody
+</code></pre></div><h1 id="starting-openvpn-server">Starting OpenVPN (Server)</h1>
+<p>The server can now be started with</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">openvpn /etc/openvpn/server.conf
+</code></pre></div><h1 id="configuring-openvpn-client">Configuring OpenVPN (Client)</h1>
+<p>First we have to get key, certificate and parameters from the server to the client. Now we install OpenVPN on the client <code>pacman -S openpvpn</code> copy the sample-configuration file somewhere nice <code># cp /usr/share/openvpn/examples/client.conf /etc/openvpn/client.conf</code> and modify at least the following</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">remote test-server-ip <span class="m">1194</span>
+ca /etc/openvpn/ca.crt
+cert /etc/openvpn/my-test-client.crt
+key /etc/openvpn/my-test-client.key
+dh /etc/openvpn/dh2048.pem
+tls-auth /etc/openvpn/ta.key <span class="m">1</span>
+user nobody
+group nobody
+</code></pre></div><p>The <em>test-server-ip</em> has to be replaced with the server&rsquo;s IP or URL. Now we can also start the client <code># openvpn /etc/openvpn/client.conf</code>. The start-up should end with</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">Initialization Sequence Completed
+</code></pre></div>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/linux/">linux</a>
+        
+            <a href="/tags/openvpn/">openvpn</a>
+        
+    </section>
+
+
+    </footer>
+
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+</aside>
+
+     
+     
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2013 - 
+        
+        2021 Dr Franziskus Kiefer
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.1.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+        <aside class="sidebar right-sidebar sticky">
+            <section class="widget archives">
+                <div class="widget-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                </div>
+                <h2 class="widget-title section-title">Table of contents</h2>
+                
+                <div class="widget--toc">
+                    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#creating-a-pki">Creating a PKI</a></li>
+  </ol>
+</nav>
+                </div>
+            </section>
+        </aside>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

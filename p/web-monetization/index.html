@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Thanks to Deez I gave web monetization a spin on this website today. Here I write up how I did it, how it went, and what I think about it.
+The proposed web monetization standard allows browsers to securely pay websites, and, in turn, allows for websites to react to being paid, for example by turning off ads or providing extra functionality to paying visitors. There is some good description of use cases on Coil&amp;rsquo;s website if you&amp;rsquo;re looking for a more general explainer.'><title>💲 Web Monetization 💲</title>
+
+<link rel='canonical' href='https://www.franziskuskiefer.de/p/web-monetization/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='💲 Web Monetization 💲'>
+<meta property='og:description' content='Thanks to Deez I gave web monetization a spin on this website today. Here I write up how I did it, how it went, and what I think about it.
+The proposed web monetization standard allows browsers to securely pay websites, and, in turn, allows for websites to react to being paid, for example by turning off ads or providing extra functionality to paying visitors. There is some good description of use cases on Coil&amp;rsquo;s website if you&amp;rsquo;re looking for a more general explainer.'>
+<meta property='og:url' content='https://www.franziskuskiefer.de/p/web-monetization/'>
+<meta property='og:site_name' content='Dr Franziskus Kiefer'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='webmonetization' /><meta property='article:tag' content='hugo' /><meta property='article:tag' content='w3c' /><meta property='article:published_time' content='2021-02-14T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2021-02-14T00:00:00&#43;00:00'/><meta property='og:image' content='https://www.franziskuskiefer.de/p/web-monetization/hero.jpg' />
+<meta name="twitter:site" content="@_franziskus_">
+    <meta name="twitter:creator" content="@_franziskus_"><meta name="twitter:title" content="💲 Web Monetization 💲">
+<meta name="twitter:description" content="Thanks to Deez I gave web monetization a spin on this website today. Here I write up how I did it, how it went, and what I think about it.
+The proposed web monetization standard allows browsers to securely pay websites, and, in turn, allows for websites to react to being paid, for example by turning off ads or providing extra functionality to paying visitors. There is some good description of use cases on Coil&amp;rsquo;s website if you&amp;rsquo;re looking for a more general explainer."><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://www.franziskuskiefer.de/p/web-monetization/hero.jpg' />
+    </head>
+    <body class="
+    article-page has-toc
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        extended
+    
+">
+    
+        <div id="article-toolbar">
+            <a href="https://www.franziskuskiefer.de/" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>Back</span>
+            </a>
+        </div>
+    
+<main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/web-monetization/">
+                <img src="/p/web-monetization/hero_hu3d03a01dcc18bc5be0e67db3d8d209a6_678427_800x0_resize_q75_box.jpg"
+                        srcset="/p/web-monetization/hero_hu3d03a01dcc18bc5be0e67db3d8d209a6_678427_800x0_resize_q75_box.jpg 800w, /p/web-monetization/hero_hu3d03a01dcc18bc5be0e67db3d8d209a6_678427_1600x0_resize_q75_box.jpg 1600w"
+                        width="800" 
+                        height="533" 
+                        loading="lazy"
+                        alt="Featured image of post 💲 Web Monetization 💲" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+
+    <h2 class="article-title">
+        <a href="/p/web-monetization/">💲 Web Monetization 💲</a>
+    </h2>
+
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Feb 14, 2021</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    7 min read
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
+</header>
+
+    <section class="article-content">
+    <p>Thanks to <a class="link" href="https://about.me/cyberdees"  target="_blank" rel="noopener"
+    >Deez</a> I gave <a class="link" href="https://webmonetization.org"  target="_blank" rel="noopener"
+    >web monetization</a> a spin on this website today.
+Here I write up how I did it, how it went, and what I think about it.</p>
+<p>The proposed <a class="link" href="https://webmonetization.org/specification.html"  target="_blank" rel="noopener"
+    >web monetization standard</a> allows browsers to securely pay websites, and, in turn, allows for websites to react to being paid, for example by turning off ads or providing extra functionality to paying visitors.
+There is some good description of use cases on <a class="link" href="https://developers.coil.com/"  target="_blank" rel="noopener"
+    >Coil&rsquo;s website</a> if you&rsquo;re looking for a more general explainer.</p>
+<p>The following diagram from the <a class="link" href="https://webmonetization.org/docs/explainer/"  target="_blank" rel="noopener"
+    >web monetization docs</a> illustrate the information flow.
+In short, the <code>monetization</code> meta-tag on the page is parsed by the browser, which initiates a session for a page visit and triggers the payment through the payment pointer.</p>
+<p><figure style="flex-grow: 184; flex-basis: 442px">
+		<a href="/p/web-monetization/webmonetization-flow.png" data-size="1050x570"><img src="/p/web-monetization/webmonetization-flow.png"
+				srcset="/p/web-monetization/webmonetization-flow_hu4b9a27d68db843b15861a92d09493226_35217_480x0_resize_box_3.png 480w, /p/web-monetization/webmonetization-flow_hu4b9a27d68db843b15861a92d09493226_35217_1024x0_resize_box_3.png 1024w"
+				width="1050"
+				height="570"
+				loading="lazy"
+				>
+		</a>
+		
+	</figure></p>
+<h2 id="payment-pointer-">Payment pointer 📬</h2>
+<p>To set up web monetization on a website like this, one first has to get a payment pointer that can receive payments.
+Getting this payment pointer was probably the hardest part for me.</p>
+<p>I selected one of the recommended wallet providers <a class="link" href="https://uphold.com"  target="_blank" rel="noopener"
+    >Uphold</a>.
+Uphold has a support page for <a class="link" href="https://support.uphold.com/hc/en-us/articles/360043227832-How-to-find-your-ILP-address-Interledger-payment-pointer-"  target="_blank" rel="noopener"
+    >how to get the ILP (Interledger payment pointer)</a>.
+The problem is that it&rsquo;s difficult to understand how to get to the &ldquo;sub-account for the asset&rdquo;.
+In fact I was only able to do this in <a class="link" href="https://brave.com/"  target="_blank" rel="noopener"
+    >Brave</a> because <a class="link" href="https://uphold.com/dashboard"  target="_blank" rel="noopener"
+    >uphold.com/dashboard</a> always forwards me to <a class="link" href="https://wallet.uphold.com/dashboard"  target="_blank" rel="noopener"
+    >wallet.uphold.com/dashboard</a>, which doesn&rsquo;t have the necessary information (or I just didn&rsquo;t find it).</p>
+<p>Setting all trust concerns aside (see the <a class="link" href="#security-privacy" >privacy section</a>) I tried to verify my Uphold account.
+The verification didn&rsquo;t go through yet 🤔.
+But I can still receive funds and have honestly no idea what&rsquo;s happening here.
+This is a pretty bad sign for a provider that&rsquo;s supposed to handle money for me.</p>
+<p><figure style="flex-grow: 356; flex-basis: 855px">
+		<a href="/p/web-monetization/UpholdWallet.png" data-size="845x237"><img src="/p/web-monetization/UpholdWallet.png"
+				srcset="/p/web-monetization/UpholdWallet_hu31f66a2b6192b48aa6e67561a26b0d79_14589_480x0_resize_box_3.png 480w, /p/web-monetization/UpholdWallet_hu31f66a2b6192b48aa6e67561a26b0d79_14589_1024x0_resize_box_3.png 1024w"
+				width="845"
+				height="237"
+				loading="lazy"
+				>
+		</a>
+		
+	</figure></p>
+<h3 id="the-interledger-">The Interledger 📒</h3>
+<p>The <a class="link" href="https://interledger.org/"  target="_blank" rel="noopener"
+    >Interledger</a> is an open protocol suite for sending payments across different ledgers.
+It is used by the web monetization framework to send the money to the website owner or content creator.
+You might know that I have opinions on cryptocurrencies and blockchain technologies (hint: they are not very positive).
+I understand that there aren&rsquo;t a lot of good ways of sending money to individuals or organisations that supports a lot of different technologies and currencies.
+But I don&rsquo;t understand why any sort of ledger needs to be involved.</p>
+<h3 id="security-privacy">Privacy &amp; Security considerations 🔐🕵🏻‍♀️</h3>
+<p>The first road block I hit was the registration of the uphold account.
+It looks like it requires registration with a government ID.
+While the banking industry is for obvious reasons heavily regulated, I don&rsquo;t understand why I need to send highly sensitive documents to a provider with a low trust level.
+Signing up with an existing bank account or credit card might have other privacy implications but would not have the trust issues a provider like Uphold has.</p>
+<p>If the web monetization protocol wants to be successful, it has to be better than existing solutions (ads).
+Also in terms of privacy.
+It is therefore paramount in my opinion that the protocol does not yield any information about the person visiting a website.
+But I can see a couple ways privacy could get compromised here and no documents addressing them.
+A particular concern I have is how tracking users across different websites is prevented given that the user is always sending from the same account.
+The subscription provider like <a class="link" href="https://coil.com/"  target="_blank" rel="noopener"
+    >Coil</a> is another big privacy risk as they see every transaction a user is taking.</p>
+<p>All this can be remedied but requires transparency and clear technical solutions.</p>
+<h2 id="getting-started-">Getting started 🌐</h2>
+<p>There is a <a class="link" href="https://github.com/sabinebertram/hugo-webmonetization-component"  target="_blank" rel="noopener"
+    >web monetization theme</a> for <a class="link" href="https://gohugo.io"  target="_blank" rel="noopener"
+    >hugo</a> (the framework I use for this site) that allows for easy integration of web monetization.</p>
+<p>First I added the hugo-webmonetization-component as second theme to my site:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">git submodule add git@github.com:sabinebertram/hugo-webmonetization-component.git themes/webmonetization
+</code></pre></div><p>Then I changed my theme in the <code>config.toml</code> as follows:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="nx">theme</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;gohugo-theme-ananke&#34;</span><span class="p">,</span> <span class="s2">&#34;webmonetization&#34;</span><span class="p">]</span>
+</code></pre></div><p>And then set my <a class="link" href="https://paymentpointers.org/"  target="_blank" rel="noopener"
+    >payment pointer</a> in the <code>params</code> section of the <code>config.toml</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">params</span><span class="p">]</span>
+  <span class="nx">monetization</span> <span class="p">=</span> <span class="s2">&#34;$ilp.uphold.com/NMNKYReeKNNw&#34;</span>
+</code></pre></div><p>In order to actually use the monetization parameter I added it to the ananke theme&rsquo;s <code>&lt;head&gt;</code>.
+The <code>head</code> is defined in <code>themes/gohugo-theme-ananke/layouts/_default/baseof.html</code>, which includes a <code>head-additions.html</code> where we can add the monetization partial.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html">{{ partial &#34;webmonetization.html&#34; .}}
+</code></pre></div><h3 id="sample-exclusive-content-">Sample exclusive content 💎</h3>
+<p>In hugo it is simple to add exclusive content with the following short code.
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="p">{{</span> <span class="o">%</span> <span class="n">exclusive</span> <span class="o">%</span> <span class="p">}}</span>
+ <span class="p">...</span> <span class="n">exclusive</span> <span class="n">content</span> <span class="p">...</span>
+<span class="p">{{</span> <span class="o">%</span> <span class="o">/</span><span class="n">exclusive</span> <span class="o">%</span> <span class="p">}}</span></code></pre></div>
+Note that this only works if <code>blackfriday</code> is used as markup engine and things like markdown code blocks don&rsquo;t work in there.
+This might be a shortcoming of the hugo theme I&rsquo;m using here.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">markup</span><span class="p">]</span>
+  <span class="nx">defaultMarkdownHandler</span> <span class="p">=</span> <span class="s2">&#34;blackfriday&#34;</span>
+</code></pre></div><p><strong>⚠️ I switched to a new theme on this blog that does not support webmonetization right now!</strong></p>
+<h3 id="issues-i-encountered-">Issues I encountered 🐞</h3>
+<p>First this only worked on the main page after following the instructions.
+It turned out that I had to update <a class="link" href="https://github.com/budparr/gohugo-theme-ananke"  target="_blank" rel="noopener"
+    >my hugo theme</a> to get support on every page.</p>
+<p>The description on the <a class="link" href="https://github.com/sabinebertram/hugo-webmonetization-component"  target="_blank" rel="noopener"
+    >web monetization theme</a> appears to be a little outdated.
+It is even easier to include it now.</p>
+<h2 id="the-consumer-side---coil-">The consumer side - Coil 👩🏾‍💻</h2>
+<p>To see how consumers visiting a website experience web monetization I used <a class="link" href="https://coil.com"  target="_blank" rel="noopener"
+    >Coil</a>.
+With an account and an <a class="link" href="https://coil.com/#Extension-Install-Section"  target="_blank" rel="noopener"
+    >extension for your favourite browser</a> we see that it is working.</p>
+<p><figure style="flex-grow: 128; flex-basis: 309px">
+		<a href="/p/web-monetization/franziskuskiefer.de-coil.png" data-size="1822x1414"><img src="/p/web-monetization/franziskuskiefer.de-coil.png"
+				srcset="/p/web-monetization/franziskuskiefer.de-coil_hua3dd889600459af75981609ff7dd6705_1508888_480x0_resize_box_3.png 480w, /p/web-monetization/franziskuskiefer.de-coil_hua3dd889600459af75981609ff7dd6705_1508888_1024x0_resize_box_3.png 1024w"
+				width="1822"
+				height="1414"
+				loading="lazy"
+				>
+		</a>
+		
+	</figure></p>
+<h3 id="thoughts-on-the-user-experience-">Thoughts on the user experience 🤔</h3>
+<p>Seeing the green <code>$</code> when visiting a page that uses web monetization shows the user that they are supporting the content creator and feels good.
+However, it takes a while for the monetization to kick in such that it looks like the page refreshes after a second for exclusive content.</p>
+<p><figure style="flex-grow: 553; flex-basis: 1329px">
+		<a href="/p/web-monetization/monetization-loading.gif" data-size="1296x234"><img src="/p/web-monetization/monetization-loading.gif"
+				srcset="/p/web-monetization/monetization-loading_hu06eafc1f96b3d27d408d84addaab345f_75104_480x0_resize_box.gif 480w, /p/web-monetization/monetization-loading_hu06eafc1f96b3d27d408d84addaab345f_75104_1024x0_resize_box.gif 1024w"
+				width="1296"
+				height="234"
+				loading="lazy"
+				>
+		</a>
+		
+	</figure></p>
+<p>It is also not entirely clear how the membership works from the popup.
+In particular what&rsquo;s included and how the money gets distributed.
+But this might be a trade-off for the sake of usability.
+A more detailed information panel would be nice though.
+The mobile <a class="link" href="https://www.pumabrowser.com/"  target="_blank" rel="noopener"
+    >Puma browser</a> is a little better here.</p>
+<p>Overall this reminds me a little of the donation system Amazon is running through smile.amazon.com, which is great idea but not very transparent (though this improved over time).</p>
+<div class="row">
+ <div class="column" style="float: left; width: 50%;">
+   <img src="../../images/webmonetization-puma1.png" alt="Puma1" style="width:90%">
+ </div>
+ <div class="column" style="float: left; width: 50%; margin-bottom: 25px;">
+   <img src="../../images/webmonetization-puma2.png" alt="Puma2" style="width:90%">
+ </div>
+</div>
+<h2 id="conclusion-">Conclusion 🚧</h2>
+<p>First, I really like the idea of allowing users to give money directly to websites and content creators.
+It is also relatively easy to get web monetization set up on a website.
+If this is through integration in a framework or by manually adding the header tag.</p>
+<p>My two main concerns are around privacy and the state of tooling.
+This is obviously not a final standard such that some hiccups are to be expected.
+Issues around more mature tools such as Uphold are a little more concerning though.
+To judge the real privacy impact a more in depth analysis of the standard as well as the implementations and services are needed.
+But it is worrying that the specification doesn&rsquo;t even mention privacy implications.</p>
+<hr>
+<h2 id="update">Update</h2>
+<p>I was pointed to a blog post on <a class="link" href="https://coil.com/p/sharafian/Doubling-Down-on-Privacy/cD_ZiwT2J"  target="_blank" rel="noopener"
+    >privacy in Coil</a> that explains how they use <a class="link" href="https://privacypass.github.io/"  target="_blank" rel="noopener"
+    >privacy pass</a> for user privacy (there&rsquo;s an <a class="link" href="https://datatracker.ietf.org/group/privacypass/documents/"  target="_blank" rel="noopener"
+    >IETF working group</a> in the process of standardising privacy pass) and something they call wallet privacy.</p>
+<p>I also filed <a class="link" href="https://github.com/WICG/webmonetization/issues/165"  target="_blank" rel="noopener"
+    >a spec issue</a> to get more explicit privacy treatment in the spec.</p>
+<h2 id="update-2">Update 2</h2>
+<p>I mentioned above that Uphold appears to be dubious.
+Now that they disabled my account I have to disable the web monetization experiment on this page.
+I don&rsquo;t really care, but Uphold appears to be as bad as I expected.
+There was no communication whatsoever from Uphold except the following screen when logging in.</p>
+<p><figure style="flex-grow: 69; flex-basis: 167px">
+		<a href="/p/web-monetization/uphold-account-lock.png" data-size="880x1262"><img src="/p/web-monetization/uphold-account-lock.png"
+				srcset="/p/web-monetization/uphold-account-lock_hu10c4aee958f27bc70be79fb2e16716b6_88296_480x0_resize_box_3.png 480w, /p/web-monetization/uphold-account-lock_hu10c4aee958f27bc70be79fb2e16716b6_88296_1024x0_resize_box_3.png 1024w"
+				width="880"
+				height="1262"
+				loading="lazy"
+				>
+		</a>
+		
+	</figure></p>
+<p>While being logged in it actually says &quot; Uphold is currently unavailable&quot; 🤷🏻‍♂️</p>
+<h2 id="update-3">Update 3</h2>
+<p>After getting in touch with Uphold (thanks Kaily!) it turned out that the account verification didn&rsquo;t go through for some reason and I had to redo it to unlock my account.</p>
+<p>I got an innocuous email saying</p>
+<blockquote>
+<p>We’ve had to temporarily restrict your account while we gather some more information. You can still trade but you won’t be able to withdraw funds.</p>
+</blockquote>
+<p>What this actually meant is that I had to get in touch with the Uphold support team to figure out what&rsquo;s going on.</p>
+<p>I re-enabled web-monetization on this page.
+While the initial experience on my end wasn&rsquo;t great it was unrelated to web-monetization and due to some shortcomings in Uphold&rsquo;s communication and me ignoring some of it 😬.</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/webmonetization/">webmonetization</a>
+        
+            <a href="/tags/hugo/">hugo</a>
+        
+            <a href="/tags/w3c/">w3c</a>
+        
+    </section>
+
+
+    </footer>
+
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+</aside>
+
+     
+     
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2013 - 
+        
+        2021 Dr Franziskus Kiefer
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.1.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+        <aside class="sidebar right-sidebar sticky">
+            <section class="widget archives">
+                <div class="widget-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                </div>
+                <h2 class="widget-title section-title">Table of contents</h2>
+                
+                <div class="widget--toc">
+                    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#payment-pointer-">Payment pointer 📬</a>
+      <ol>
+        <li><a href="#the-interledger-">The Interledger 📒</a></li>
+        <li><a href="#security-privacy">Privacy &amp; Security considerations 🔐🕵🏻‍♀️</a></li>
+      </ol>
+    </li>
+    <li><a href="#getting-started-">Getting started 🌐</a>
+      <ol>
+        <li><a href="#sample-exclusive-content-">Sample exclusive content 💎</a></li>
+        <li><a href="#issues-i-encountered-">Issues I encountered 🐞</a></li>
+      </ol>
+    </li>
+    <li><a href="#the-consumer-side---coil-">The consumer side - Coil 👩🏾‍💻</a>
+      <ol>
+        <li><a href="#thoughts-on-the-user-experience-">Thoughts on the user experience 🤔</a></li>
+      </ol>
+    </li>
+    <li><a href="#conclusion-">Conclusion 🚧</a></li>
+    <li><a href="#update">Update</a></li>
+    <li><a href="#update-2">Update 2</a></li>
+    <li><a href="#update-3">Update 3</a></li>
+  </ol>
+</nav>
+                </div>
+            </section>
+        </aside>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

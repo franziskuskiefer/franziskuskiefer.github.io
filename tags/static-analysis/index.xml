@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>static-analysis on Franziskus Kiefer</title>
+    <title>static-analysis on Dr Franziskus Kiefer</title>
     <link>https://www.franziskuskiefer.de/tags/static-analysis/</link>
-    <description>Recent content in static-analysis on Franziskus Kiefer</description>
+    <description>Recent content in static-analysis on Dr Franziskus Kiefer</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 25 May 2016 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/tags/static-analysis/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>NSS Static Analysis</title>
-      <link>https://www.franziskuskiefer.de/post/nss-static-analysis/</link>
+      <link>https://www.franziskuskiefer.de/p/nss-static-analysis/</link>
       <pubDate>Wed, 25 May 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://www.franziskuskiefer.de/post/nss-static-analysis/</guid>
+      <guid>https://www.franziskuskiefer.de/p/nss-static-analysis/</guid>
       <description>When I started working on NSS 7 months ago one of the tasks I was asked to do was to work through the related Coverity issues. This post summarises some learnings from this as we&amp;rsquo;ve since come a long way since over the last months.
 Static analysis plays a crucial part in locating vulnerabilities and bugs during development. For NSS we currently use multiple static analysis tools. While scan-build as well as infer are great applications to find bugs, they require a lot of manual management.</description>
     </item>

@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>latex on Franziskus Kiefer</title>
+    <title>latex on Dr Franziskus Kiefer</title>
     <link>https://www.franziskuskiefer.de/tags/latex/</link>
-    <description>Recent content in latex on Franziskus Kiefer</description>
+    <description>Recent content in latex on Dr Franziskus Kiefer</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 01 Sep 2014 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/tags/latex/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>The curious case of pgflibraryfadings</title>
-      <link>https://www.franziskuskiefer.de/post/pgflibraryfadings/</link>
+      <link>https://www.franziskuskiefer.de/p/the-curious-case-of-pgflibraryfadings/</link>
       <pubDate>Mon, 01 Sep 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://www.franziskuskiefer.de/post/pgflibraryfadings/</guid>
+      <guid>https://www.franziskuskiefer.de/p/the-curious-case-of-pgflibraryfadings/</guid>
       <description>Over the last year I was battling a strange error of reverse synctex search with evince and several latex editors. Everything works perfect with synctex unless I want to do a reverse search (click in the pdf docutment and get the according tex position) on the first page. Instead of getting the correct position my latex editor always opens the file pgflibraryfadings.code.tex. While I finally found the cause of the problem, I have no idea how to solve it.</description>
     </item>
     
     <item>
       <title>Display &amp; Inline Math</title>
-      <link>https://www.franziskuskiefer.de/post/displaymath/</link>
+      <link>https://www.franziskuskiefer.de/p/display-inline-math/</link>
       <pubDate>Sun, 17 Aug 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://www.franziskuskiefer.de/post/displaymath/</guid>
+      <guid>https://www.franziskuskiefer.de/p/display-inline-math/</guid>
       <description>Another day in latex wonderland &amp;hellip; Today I was writing an equation in an aligned environment using sum and those fancy things. Unfortunately aligned is a display math environment such that the limits of sum are displayed above and below, which was really not suitable in my case. So how do I display inline-math style in a display math environment?
 Let&amp;rsquo;s say we have an equation environment with an equation</description>
     </item>

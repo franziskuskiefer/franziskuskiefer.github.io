@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>openmls on Franziskus Kiefer</title>
+    <title>openmls on Dr Franziskus Kiefer</title>
     <link>https://www.franziskuskiefer.de/tags/openmls/</link>
-    <description>Recent content in openmls on Franziskus Kiefer</description>
+    <description>Recent content in openmls on Dr Franziskus Kiefer</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 18 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/tags/openmls/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>OpenMLS Performance</title>
-      <link>https://www.franziskuskiefer.de/post/openmls-first-benchmarks/</link>
+      <link>https://www.franziskuskiefer.de/p/openmls-performance/</link>
       <pubDate>Tue, 18 May 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://www.franziskuskiefer.de/post/openmls-first-benchmarks/</guid>
+      <guid>https://www.franziskuskiefer.de/p/openmls-performance/</guid>
       <description>The Messaging Layer Security (MLS) protocol is an IETF proposal for group key establishment and message protection. OpenMLS is a Rust implementation of the MLS protocol in its current state (draft 11 as of the point of writing this) that is being implemented by Raphael, Konrad and myself. For more general information on MLS I refer to the spec and other blog posts. This blog post is only about MLS, and in particular OpenMLS, performance.</description>
     </item>
     

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="284px" height="86px" viewBox="0 0 284 86" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>openMLS logo</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" font-family="HelveticaNeue-Light, Helvetica Neue" font-size="60" font-weight="300">
+        <text id="openMLS" fill="#000000">
+            <tspan x="0" y="58">open</tspan>
+            <tspan x="131.16" y="58" font-family="HelveticaNeue-Medium, Helvetica Neue" font-size="72" font-weight="400">MLS</tspan>
+        </text>
+    </g>
+</svg>
