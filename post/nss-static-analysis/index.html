@@ -37,7 +37,7 @@
 <meta itemprop="name" content="NSS Static Analysis">
 <meta itemprop="description" content="We do it. You should do it too."><meta itemprop="datePublished" content="2016-05-25T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2016-05-25T00:00:00+00:00" />
-<meta itemprop="wordCount" content="386">
+<meta itemprop="wordCount" content="379">
 <meta itemprop="keywords" content="static-analysis,NSS," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="NSS Static Analysis"/>
 <meta name="twitter:description" content="We do it. You should do it too."/>
@@ -106,20 +106,32 @@ window.onload = function(){
         <ul class="pl0 mr3">
           
           <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/post/" title="Articles page">
-              Articles
+            <a class="hover-white no-underline white-90" href="/page/about/" title="About page">
+              About
             </a>
           </li>
           
           <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/publications/" title="Publications page">
+            <a class="hover-white no-underline white-90" href="/page/publications/" title="Publications page">
               Publications
             </a>
           </li>
           
           <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/resume/" title="Résumé page">
-              Résumé
+            <a class="hover-white no-underline white-90" href="/page/search/" title="Search page">
+              Search
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/page/" title="Pages page">
+              Pages
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/post/" title="Posts page">
+              Posts
             </a>
           </li>
           
@@ -175,7 +187,7 @@ window.onload = function(){
     <header class="mt4 w-100">
       <aside class="instapaper_ignoref b helvetica tracked">
           
-        ARTICLES
+        POSTS
       </aside>
       
 
@@ -231,19 +243,11 @@ window.onload = function(){
 
 <p>A library as old as NSS naturally comes with a lot of technical debt, which creates a huge backlog of static analysis bugs. Mostly in code that hasn&rsquo;t been of big interested to most developers so far.</p>
 
-<figure><a href="../../images/static-analysis.png"><img src="../../images/static-analysis.png"/></a><figcaption>
-            <h4>Coverity Analysis Overview</h4>
-        </figcaption>
-</figure>
-
+<p><img src="static-analysis.png" alt="Coverity Analysis Overview" /></p>
 
 <p>In our case tools such as Coverity come in especially handy as they allow for regular incremental scans with automatic updates on new bugs. We still have a long way to go to fix old bugs but the good news is that new bugs are rarely introduced and newly introduced bugs get fixed right away.</p>
 
-<figure><a href="../../images/density.png"><img src="../../images/density.png"/></a><figcaption>
-            <h4>Coverity density over time</h4>
-        </figcaption>
-</figure>
-
+<p><img src="density.png" alt="Coverity density over time" /></p>
 
 <p>The long-term goal is obviously to reduce the backlog of bugs to an acceptable level by either fixing or removing the code. But I think static analysis tools already significantly improved the quality of all new code.</p>
 <ul class="pa0">

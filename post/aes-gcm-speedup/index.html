@@ -7,7 +7,7 @@
     <title>Aes Gcm Speedup | Franziskus Kiefer</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="AES-GCM is a NIST standardised authenticated encryption algorithm (FIPS 800-38D). Since its standardisation in 2008 its usage increased to a point where it is the prevalent encryption used with TLS. With 85% it is by far the most widely used cipher.
- Firefox 53 TLS cipher telemetry   Unfortunately the AES-GCM implementation used in Firefox (provided by NSS) does not take advantage of full hardware acceleration; it uses a slower software-only implementation on Mac, Linux 32-bit, or any device that doesn&rsquo;t have the AVX, PCLMUL, and AES-NI hardware instructions.">
+Unfortunately the AES-GCM implementation used in Firefox (provided by NSS) does not take advantage of full hardware acceleration; it uses a slower software-only implementation on Mac, Linux 32-bit, or any device that doesn&rsquo;t have the AVX, PCLMUL, and AES-NI hardware instructions.">
     <meta name="generator" content="Hugo 0.87.0" />
     
     
@@ -30,7 +30,7 @@
     
     <meta property="og:title" content="Aes Gcm Speedup" />
 <meta property="og:description" content="AES-GCM is a NIST standardised authenticated encryption algorithm (FIPS 800-38D). Since its standardisation in 2008 its usage increased to a point where it is the prevalent encryption used with TLS. With 85% it is by far the most widely used cipher.
- Firefox 53 TLS cipher telemetry   Unfortunately the AES-GCM implementation used in Firefox (provided by NSS) does not take advantage of full hardware acceleration; it uses a slower software-only implementation on Mac, Linux 32-bit, or any device that doesn&rsquo;t have the AVX, PCLMUL, and AES-NI hardware instructions." />
+Unfortunately the AES-GCM implementation used in Firefox (provided by NSS) does not take advantage of full hardware acceleration; it uses a slower software-only implementation on Mac, Linux 32-bit, or any device that doesn&rsquo;t have the AVX, PCLMUL, and AES-NI hardware instructions." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.franziskuskiefer.de/post/aes-gcm-speedup/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2017-06-27T00:00:00+00:00" />
@@ -38,13 +38,13 @@
 
 <meta itemprop="name" content="Aes Gcm Speedup">
 <meta itemprop="description" content="AES-GCM is a NIST standardised authenticated encryption algorithm (FIPS 800-38D). Since its standardisation in 2008 its usage increased to a point where it is the prevalent encryption used with TLS. With 85% it is by far the most widely used cipher.
- Firefox 53 TLS cipher telemetry   Unfortunately the AES-GCM implementation used in Firefox (provided by NSS) does not take advantage of full hardware acceleration; it uses a slower software-only implementation on Mac, Linux 32-bit, or any device that doesn&rsquo;t have the AVX, PCLMUL, and AES-NI hardware instructions."><meta itemprop="datePublished" content="2017-06-27T00:00:00+00:00" />
+Unfortunately the AES-GCM implementation used in Firefox (provided by NSS) does not take advantage of full hardware acceleration; it uses a slower software-only implementation on Mac, Linux 32-bit, or any device that doesn&rsquo;t have the AVX, PCLMUL, and AES-NI hardware instructions."><meta itemprop="datePublished" content="2017-06-27T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2017-06-27T00:00:00+00:00" />
-<meta itemprop="wordCount" content="1067">
+<meta itemprop="wordCount" content="1048">
 <meta itemprop="keywords" content="speed,NSS,crypto," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Aes Gcm Speedup"/>
 <meta name="twitter:description" content="AES-GCM is a NIST standardised authenticated encryption algorithm (FIPS 800-38D). Since its standardisation in 2008 its usage increased to a point where it is the prevalent encryption used with TLS. With 85% it is by far the most widely used cipher.
- Firefox 53 TLS cipher telemetry   Unfortunately the AES-GCM implementation used in Firefox (provided by NSS) does not take advantage of full hardware acceleration; it uses a slower software-only implementation on Mac, Linux 32-bit, or any device that doesn&rsquo;t have the AVX, PCLMUL, and AES-NI hardware instructions."/>
+Unfortunately the AES-GCM implementation used in Firefox (provided by NSS) does not take advantage of full hardware acceleration; it uses a slower software-only implementation on Mac, Linux 32-bit, or any device that doesn&rsquo;t have the AVX, PCLMUL, and AES-NI hardware instructions."/>
 
       
     
@@ -94,10 +94,8 @@ window.onload = function(){
    
   
 
-  
-  
-  <header class="cover bg-top" style="background-image: url('https://www.franziskuskiefer.de/images/linux64-encrypt.png');">
-    <div class="pb3-m pb6-l bg-black-60">
+  <header>
+    <div class="bg-black">
       <nav class="pv3 ph3 ph4-ns" role="navigation">
   <div class="flex-l justify-between items-center center">
     <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
@@ -112,20 +110,32 @@ window.onload = function(){
         <ul class="pl0 mr3">
           
           <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/post/" title="Articles page">
-              Articles
+            <a class="hover-white no-underline white-90" href="/page/about/" title="About page">
+              About
             </a>
           </li>
           
           <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/publications/" title="Publications page">
+            <a class="hover-white no-underline white-90" href="/page/publications/" title="Publications page">
               Publications
             </a>
           </li>
           
           <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/resume/" title="Résumé page">
-              Résumé
+            <a class="hover-white no-underline white-90" href="/page/search/" title="Search page">
+              Search
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/page/" title="Pages page">
+              Pages
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/post/" title="Posts page">
+              Posts
             </a>
           </li>
           
@@ -169,12 +179,6 @@ window.onload = function(){
   </div>
 </nav>
 
-      <div class="tc-l pv6 ph3 ph4-ns">
-        
-          <h1 class="f2 f1-l fw2 white-90 mb0 lh-title">Aes Gcm Speedup</h1>
-          
-        
-      </div>
     </div>
   </header>
 
@@ -187,7 +191,7 @@ window.onload = function(){
     <header class="mt4 w-100">
       <aside class="instapaper_ignoref b helvetica tracked">
           
-        ARTICLES
+        POSTS
       </aside>
       
 
@@ -231,11 +235,7 @@ window.onload = function(){
 
 <p>AES-GCM is a NIST standardised authenticated encryption algorithm (FIPS 800-38D). Since its standardisation in 2008 its usage increased to a point where it is the prevalent encryption used with TLS. With 85% it is by far the <a href="https://telemetry.mozilla.org/new-pipeline/dist.html#!cumulative=0&amp;end_date=2017-05-24&amp;keys=__none__!__none__!__none__&amp;max_channel_version=release%252F53&amp;measure=SSL_SYMMETRIC_CIPHER_FULL&amp;min_channel_version=null&amp;processType=*&amp;product=Firefox&amp;sanitize=1&amp;sort_keys=submissions&amp;start_date=2017-04-13&amp;table=0&amp;trim=1&amp;use_submission_date=0">most widely used cipher</a>.</p>
 
-<figure><a href="../../images/Screenshot-from-2017-06-14-10-09-27.png"><img src="../../images/Screenshot-from-2017-06-14-10-09-27.png"/></a><figcaption>
-            <h4>Firefox 53 TLS cipher telemetry</h4>
-        </figcaption>
-</figure>
-
+<p><img src="Screenshot-from-2017-06-14-10-09-27.png" alt="Firefox 53 TLS cipher telemetry" /></p>
 
 <p>Unfortunately the AES-GCM implementation used in Firefox (provided by NSS) does not take advantage of full hardware acceleration; it uses a slower software-only implementation on Mac, Linux 32-bit, or any device that doesn&rsquo;t have the <a href="https://en.wikipedia.org/wiki/Advanced_Vector_Extensions">AVX</a>, <a href="https://en.wikipedia.org/wiki/CLMUL_instruction_set">PCLMUL</a>, and <a href="https://en.wikipedia.org/wiki/AES_instruction_set">AES-NI</a> hardware instructions. Looking at these numbers about only 30% of Firefox users get full hardware acceleration.</p>
 
@@ -280,38 +280,19 @@ window.onload = function(){
 
 <p>Linux measurements are done on an Intel Core i7-4790, Windows measurements on a Surface Pro 2 with an Intel Core i5-4300U, and Mac (Core i7-4980HQ).</p>
 
-<p><figure><a href="../../images/linux64-encrypt.png"><img src="../../images/linux64-encrypt.png"/></a><figcaption>
-            <h4>Linux 64-bit encrypt</h4>
-        </figcaption>
-</figure>
-
-<figure><a href="../../images/linux32-encrypt.png"><img src="../../images/linux32-encrypt.png"/></a><figcaption>
-            <h4>Linux 64-bit encrypt</h4>
-        </figcaption>
-</figure>
-</p>
+<p><img src="linux64-encrypt.png" alt="Linux 64-bit encrypt" />
+<img src="linux32-encrypt.png" alt="Linux 32-bit encrypt" /></p>
 
 <p>On 64-bit Linux performance of any machine without AES, PCLMUL, or AVX instructions AES-GCM 128 is at least twice as fast now. If AES and PCLMUL is available, the new code only needs 33% of the time the old code took.
 The speed-up for 32-bit Linux is obviously more significant as it didn&rsquo;t have any hardware accelerated code before. With full hardware acceleration the new code is more than 5 times faster than before. In the worst case, when PCLMUL is not available, the speed-up is still more than 50%.</p>
 
 <p>The story is similar on Windows (though NSS had fast code for 32-bit there before).
-<figure><a href="../../images/win64-encrypt.png"><img src="../../images/win64-encrypt.png"/></a><figcaption>
-            <h4>Windows 64-bit encrypt</h4>
-        </figcaption>
-</figure>
+<img src="win64-encrypt.png" alt="Windows 64-bit encrypt" /></p>
 
-<figure><a href="../../images/win32-encrypt.png"><img src="../../images/win32-encrypt.png"/></a><figcaption>
-            <h4>Windows 32-bit encrypt</h4>
-        </figcaption>
-</figure>
-</p>
+<p><img src="win32-encrypt.png" alt="Windows 32-bit encrypt" /></p>
 
 <p>Performance improvements on Mac (64-bit only) range from 60% in the best case to 44% when AES-NI or PCLMUL is not available.
-<figure><a href="../../images/mac-encrypt.png"><img src="../../images/mac-encrypt.png"/></a><figcaption>
-            <h4>OS-X encrypt</h4>
-        </figcaption>
-</figure>
-</p>
+<img src="mac-encrypt.png" alt="OS-X encrypt" /></p>
 
 <h1 id="the-numbers-in-firefox">The numbers in Firefox</h1>
 

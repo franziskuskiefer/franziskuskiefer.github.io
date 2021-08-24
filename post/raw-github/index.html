@@ -40,7 +40,7 @@ Ever wanted to view HTML pages directly from GitHub? Me too. Unfortunately the R
 <meta itemprop="description" content="~This extension doesn&rsquo;t work from Firefox 57 on. I might update it when I find time.~
 Ever wanted to view HTML pages directly from GitHub? Me too. Unfortunately the Raw button doesn&rsquo;t render the HTML but only displays the source code. There are a bunch of Chrome extensions that add a button to open file from Github at rawgit directly, but none for Firefox. So I wrote one. It&rsquo;s still an early version and more of a hack than a real extension, but it works (mostly)."><meta itemprop="datePublished" content="2016-01-02T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2016-01-02T00:00:00+00:00" />
-<meta itemprop="wordCount" content="106">
+<meta itemprop="wordCount" content="102">
 <meta itemprop="keywords" content="github,Firefox," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="RawGit Firefox Extension"/>
 <meta name="twitter:description" content="~This extension doesn&rsquo;t work from Firefox 57 on. I might update it when I find time.~
@@ -110,20 +110,32 @@ window.onload = function(){
         <ul class="pl0 mr3">
           
           <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/post/" title="Articles page">
-              Articles
+            <a class="hover-white no-underline white-90" href="/page/about/" title="About page">
+              About
             </a>
           </li>
           
           <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/publications/" title="Publications page">
+            <a class="hover-white no-underline white-90" href="/page/publications/" title="Publications page">
               Publications
             </a>
           </li>
           
           <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/resume/" title="Résumé page">
-              Résumé
+            <a class="hover-white no-underline white-90" href="/page/search/" title="Search page">
+              Search
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/page/" title="Pages page">
+              Pages
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/post/" title="Posts page">
+              Posts
             </a>
           </li>
           
@@ -179,7 +191,7 @@ window.onload = function(){
     <header class="mt4 w-100">
       <aside class="instapaper_ignoref b helvetica tracked">
           
-        ARTICLES
+        POSTS
       </aside>
       
 
@@ -224,17 +236,11 @@ window.onload = function(){
 <p>Ever wanted to view HTML pages directly from GitHub? Me too. Unfortunately the <code>Raw</code> button doesn&rsquo;t render the HTML but only displays the source code. There are a bunch of Chrome extensions that add a button to open file from Github at <code>rawgit</code> directly, but none for Firefox. So I wrote one. It&rsquo;s still an early version and more of a hack than a real extension, but it works (mostly).</p>
 
 <p>Instead of
-<figure><a href="../../images/Screenshot-from-2016-01-02-15-19-58.png"><img src="../../images/Screenshot-from-2016-01-02-15-19-58.png"/></a><figcaption>
-            <h4>without extension</h4>
-        </figcaption>
-</figure>
+<img src="Screenshot-from-2016-01-02-15-19-58.png" alt="without extension" /></p>
 
-you get now
-<figure><a href="../../images/Screenshot-from-2016-01-02-15-19-28.png"><img src="../../images/Screenshot-from-2016-01-02-15-19-28.png"/></a><figcaption>
-            <h4>with extension</h4>
-        </figcaption>
-</figure>
-</p>
+<p>you get now</p>
+
+<p><img src="Screenshot-from-2016-01-02-15-19-28.png" alt="with extension" /></p>
 
 <p>Download the source code at <a href="https://github.com/franziskuskiefer/firefox-rawgit">Github</a> or download the <a href="https://github.com/franziskuskiefer/firefox-rawgit/releases">signed extension</a>.</p>
 <ul class="pa0">

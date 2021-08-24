@@ -114,20 +114,32 @@ window.onload = function(){
         <ul class="pl0 mr3">
           
           <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/post/" title="Articles page">
-              Articles
+            <a class="hover-white no-underline white-90" href="/page/about/" title="About page">
+              About
             </a>
           </li>
           
           <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/publications/" title="Publications page">
+            <a class="hover-white no-underline white-90" href="/page/publications/" title="Publications page">
               Publications
             </a>
           </li>
           
           <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/resume/" title="Résumé page">
-              Résumé
+            <a class="hover-white no-underline white-90" href="/page/search/" title="Search page">
+              Search
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/page/" title="Pages page">
+              Pages
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/post/" title="Posts page">
+              Posts
             </a>
           </li>
           
@@ -183,7 +195,7 @@ window.onload = function(){
     <header class="mt4 w-100">
       <aside class="instapaper_ignoref b helvetica tracked">
           
-        ARTICLES
+        POSTS
       </aside>
       
 
@@ -278,12 +290,8 @@ For every primitive I looked at so far the performance of HACL* was at least as 
 How readable is the generated code? Can it easily be changed if the need arises?
 The first versions we looked at weren&rsquo;t that great &hellip;</p>
 
-<p><figure><a href="../../images/hacl-review.png"><img src="../../images/hacl-review.png"/></a>
-</figure>
-
-<figure><a href="../../images/ugly-hacl.png"><img src="../../images/ugly-hacl.png"/></a>
-</figure>
-</p>
+<p><img src="hacl-review.png" alt="" />
+<img src="ugly-hacl.png" alt="" /></p>
 
 <p>But after a couple improvements to kremlin the code was good to go.
 While every new piece of code that&rsquo;s being integrated has to pass code review the C code produced by kremlin is good enough now to land new primitives without having to improve upstream code first.
@@ -311,12 +319,9 @@ NSS on the other hand has to run on most available platforms as well as a number
 While the NSS CI covers Windows, Linux, and Mac in different configurations such as Intel 32-bit, 64-bit, and aarch64, there are other platforms such as BSD using NSS that are not covered.
 As expected we ran into a couple issues on some platforms such as BSD and Solaris but they were quickly resolved.</p>
 
-<p><figure><a href="../../images/nss-bsd-hacl-bug.png"><img src="../../images/nss-bsd-hacl-bug.png"/></a>
-</figure>
+<p><img src="nss-bsd-hacl-bug.png" alt="" /></p>
 
-<figure><a href="../../images/nss-solaris-hacl-bug.png"><img src="../../images/nss-solaris-hacl-bug.png"/></a>
-</figure>
-</p>
+<p><img src="nss-solaris-hacl-bug.png" alt="" /></p>
 
 <p>Especially code that is hardware dependent such as Intel intrinsics needs extra attention.
 The <a href="https://github.com/mitls/hacl-star/blob/master/snapshots/kremlib/vec128.h"><code>vec128.h</code></a> header used by HACL* to abstract hardware instructions needed a couple iterations before it worked on all supported platforms.</p>
@@ -333,9 +338,7 @@ First the new code is generated with a new version of HACL*, formatted, and copi
 Then the docker image running the CI gets updated.
 Here&rsquo;s a diff for a recent update.</p>
 
-<figure><a href="../../images/nss-hacl-patch.png"><img src="../../images/nss-hacl-patch.png"/></a>
-</figure>
-
+<p><img src="nss-hacl-patch.png" alt="" /></p>
 
 <h2 id="running-the-verification-in-nss">Running the verification in NSS</h2>
 

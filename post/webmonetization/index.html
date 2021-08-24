@@ -40,7 +40,7 @@ The proposed web monetization standard allows browsers to securely pay websites,
 <meta itemprop="description" content="Thanks to Deez I gave web monetization a spin on this website today. Here I write up how I did it, how it went, and what I think about it.
 The proposed web monetization standard allows browsers to securely pay websites, and, in turn, allows for websites to react to being paid, for example by turning off ads or providing extra functionality to paying visitors. There is some good description of use cases on Coil&rsquo;s website if you&rsquo;re looking for a more general explainer."><meta itemprop="datePublished" content="2021-02-14T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2021-02-14T00:00:00+00:00" />
-<meta itemprop="wordCount" content="1378">
+<meta itemprop="wordCount" content="1370">
 <meta itemprop="keywords" content="webmonetization,hugo,w3c," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="💲 Web Monetization 💲"/>
 <meta name="twitter:description" content="Thanks to Deez I gave web monetization a spin on this website today. Here I write up how I did it, how it went, and what I think about it.
@@ -110,20 +110,32 @@ window.onload = function(){
         <ul class="pl0 mr3">
           
           <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/post/" title="Articles page">
-              Articles
+            <a class="hover-white no-underline white-90" href="/page/about/" title="About page">
+              About
             </a>
           </li>
           
           <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/publications/" title="Publications page">
+            <a class="hover-white no-underline white-90" href="/page/publications/" title="Publications page">
               Publications
             </a>
           </li>
           
           <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/resume/" title="Résumé page">
-              Résumé
+            <a class="hover-white no-underline white-90" href="/page/search/" title="Search page">
+              Search
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/page/" title="Pages page">
+              Pages
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/post/" title="Posts page">
+              Posts
             </a>
           </li>
           
@@ -179,7 +191,7 @@ window.onload = function(){
     <header class="mt4 w-100">
       <aside class="instapaper_ignoref b helvetica tracked">
           
-        ARTICLES
+        POSTS
       </aside>
       
 
@@ -230,9 +242,7 @@ There is some good description of use cases on <a href="https://developers.coil.
 <p>The following diagram from the <a href="https://webmonetization.org/docs/explainer/">web monetization docs</a> illustrate the information flow.
 In short, the <code>monetization</code> meta-tag on the page is parsed by the browser, which initiates a session for a page visit and triggers the payment through the payment pointer.</p>
 
-<figure><a href="../../images/webmonetization-flow.svg"><img src="../../images/webmonetization-flow.svg"/></a>
-</figure>
-
+<p><img src="webmonetization-flow.png" alt="" /></p>
 
 <h2 id="payment-pointer">Payment pointer 📬</h2>
 
@@ -249,9 +259,7 @@ The verification didn&rsquo;t go through yet 🤔.
 But I can still receive funds and have honestly no idea what&rsquo;s happening here.
 This is a pretty bad sign for a provider that&rsquo;s supposed to handle money for me.</p>
 
-<figure><a href="../../images/UpholdWallet.png"><img src="../../images/UpholdWallet.png"/></a>
-</figure>
-
+<p><img src="UpholdWallet.png" alt="" /></p>
 
 <h3 id="the-interledger">The Interledger 📒</h3>
 
@@ -301,15 +309,7 @@ Note that this only works if <code>blackfriday</code> is used as markup engine a
 This might be a shortcoming of the hugo theme I&rsquo;m using here.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-toml" data-lang="toml">[<span style="color:#a6e22e">markup</span>]
   <span style="color:#a6e22e">defaultMarkdownHandler</span> = <span style="color:#e6db74">&#34;blackfriday&#34;</span></code></pre></div>
-<p><p id="exclusiveError" align="center"> &mdash; <i class="fa fa-lock"></i> Exclusive content. Get a <a href="https://www.coil.com">Coil subscription</a> to unlock. &mdash; </p></p>
-
-<p><p id="exclusiveThanks" align="center"> &mdash; <i class="fa fa-unlock"></i> Thank you for supporting me! &mdash; </p></p>
-
-<div id="exclusive">
-  
-🎉 This paragraph is only visible to subscribers.
-
-</div>
+<p><strong>⚠️ I switched to a new theme on this blog that does not support webmonetization right now!</strong></p>
 
 <h3 id="issues-i-encountered">Issues I encountered 🐞</h3>
 
@@ -324,18 +324,14 @@ It is even easier to include it now.</p>
 <p>To see how consumers visiting a website experience web monetization I used <a href="https://coil.com">Coil</a>.
 With an account and an <a href="https://coil.com/#Extension-Install-Section">extension for your favourite browser</a> we see that it is working.</p>
 
-<figure><a href="../../images/franziskuskiefer.de-coil.png"><img src="../../images/franziskuskiefer.de-coil.png"/></a>
-</figure>
-
+<p><img src="franziskuskiefer.de-coil.png" alt="" /></p>
 
 <h3 id="thoughts-on-the-user-experience">Thoughts on the user experience 🤔</h3>
 
 <p>Seeing the green <code>$</code> when visiting a page that uses web monetization shows the user that they are supporting the content creator and feels good.
 However, it takes a while for the monetization to kick in such that it looks like the page refreshes after a second for exclusive content.</p>
 
-<figure><a href="../../images/monetization-loading.gif"><img src="../../images/monetization-loading.gif"/></a>
-</figure>
-
+<p><img src="monetization-loading.gif" alt="" /></p>
 
 <p>It is also not entirely clear how the membership works from the popup.
 In particular what&rsquo;s included and how the money gets distributed.
@@ -381,9 +377,7 @@ Now that they disabled my account I have to disable the web monetization experim
 I don&rsquo;t really care, but Uphold appears to be as bad as I expected.
 There was no communication whatsoever from Uphold except the following screen when logging in.</p>
 
-<figure><a href="../../images/uphold-account-lock.png"><img src="../../images/uphold-account-lock.png"/></a>
-</figure>
-
+<p><img src="uphold-account-lock.png" alt="" /></p>
 
 <p>While being logged in it actually says &ldquo; Uphold is currently unavailable&rdquo; 🤷🏻‍♂️</p>
 
@@ -422,34 +416,7 @@ While the initial experience on my end wasn&rsquo;t great it was unrelated to we
       </div>
     </div>
 
-    <aside class="w-30-l mt6-l"><div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
-    <p class="f5 b mb3">What&#39;s in this post</p>
-      <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#payment-pointer">Payment pointer 📬</a>
-<ul>
-<li><a href="#the-interledger">The Interledger 📒</a></li>
-<li><a href="#security-privacy">Privacy &amp; Security considerations 🔐🕵🏻‍♀️</a></li>
-</ul></li>
-<li><a href="#getting-started">Getting started 🌐</a>
-<ul>
-<li><a href="#sample-exclusive-content">Sample exclusive content 💎</a></li>
-<li><a href="#issues-i-encountered">Issues I encountered 🐞</a></li>
-</ul></li>
-<li><a href="#the-consumer-side-coil">The consumer side - Coil 👩🏾‍💻</a>
-<ul>
-<li><a href="#thoughts-on-the-user-experience">Thoughts on the user experience 🤔</a></li>
-</ul></li>
-<li><a href="#conclusion">Conclusion 🚧</a></li>
-<li><a href="#update">Update</a></li>
-<li><a href="#update-2">Update 2</a></li>
-<li><a href="#update-3">Update 3</a></li>
-</ul></li>
-</ul>
-</nav>
-  </div>
+    <aside class="w-30-l mt6-l">
 
 
 

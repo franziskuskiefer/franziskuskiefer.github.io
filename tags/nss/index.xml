@@ -36,7 +36,7 @@ Inside the NSS PRNG NSS uses Hash_DRBG as PRNG, which is one of several PRNG sch
       
       <guid>https://www.franziskuskiefer.de/post/aes-gcm-speedup/</guid>
       <description>AES-GCM is a NIST standardised authenticated encryption algorithm (FIPS 800-38D). Since its standardisation in 2008 its usage increased to a point where it is the prevalent encryption used with TLS. With 85% it is by far the most widely used cipher.
- Firefox 53 TLS cipher telemetry   Unfortunately the AES-GCM implementation used in Firefox (provided by NSS) does not take advantage of full hardware acceleration; it uses a slower software-only implementation on Mac, Linux 32-bit, or any device that doesn&amp;rsquo;t have the AVX, PCLMUL, and AES-NI hardware instructions.</description>
+Unfortunately the AES-GCM implementation used in Firefox (provided by NSS) does not take advantage of full hardware acceleration; it uses a slower software-only implementation on Mac, Linux 32-bit, or any device that doesn&amp;rsquo;t have the AVX, PCLMUL, and AES-NI hardware instructions.</description>
     </item>
     
     <item>

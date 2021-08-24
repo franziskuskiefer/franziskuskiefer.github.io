@@ -106,20 +106,32 @@ window.onload = function(){
         <ul class="pl0 mr3">
           
           <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/post/" title="Articles page">
-              Articles
+            <a class="hover-white no-underline white-90" href="/page/about/" title="About page">
+              About
             </a>
           </li>
           
           <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/publications/" title="Publications page">
+            <a class="hover-white no-underline white-90" href="/page/publications/" title="Publications page">
               Publications
             </a>
           </li>
           
           <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/resume/" title="Résumé page">
-              Résumé
+            <a class="hover-white no-underline white-90" href="/page/search/" title="Search page">
+              Search
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/page/" title="Pages page">
+              Pages
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/post/" title="Posts page">
+              Posts
             </a>
           </li>
           
@@ -175,7 +187,7 @@ window.onload = function(){
     <header class="mt4 w-100">
       <aside class="instapaper_ignoref b helvetica tracked">
           
-        ARTICLES
+        POSTS
       </aside>
       
 
@@ -304,9 +316,7 @@ Note that the processing time of subsequent messages is not significantly differ
 The blue line shows the actual measurements while the magenta one is a trend line showing the linear relation.
 This is what is to be expected because the performance is dominated by the creation of welcome messages, which have to be created for each member.</p>
 
-<figure><a href="../../images/group-creation.svg"><img src="../../images/group-creation.svg"/></a>
-</figure>
-
+<p><img src="group-creation.png" alt="" /></p>
 
 <h3 id="join-group">Join group</h3>
 
@@ -315,17 +325,13 @@ Note that it is not logarithmic because the tree needs to be constructed.
 This requires processing of each node in some way, which is linear in the group size.
 The blue line again shows the actual measurements while the magenta one is a trend line for the linear relation.</p>
 
-<figure><a href="../../images/join.svg"><img src="../../images/join.svg"/></a>
-</figure>
-
+<p><img src="join.png" alt="" /></p>
 
 <h3 id="update">Update</h3>
 
 <p>Sending and processing updates are both sub-linear in the number of group members because the number of computations depend on the height of the tree in the <em>base</em> case.</p>
 
-<figure><a href="../../images/update.svg"><img src="../../images/update.svg"/></a>
-</figure>
-
+<p><img src="update.png" alt="" /></p>
 
 <p>In the case of a very sparse tree, which we have in the <em>bare</em> case because every leaf only processed the welcome message, the performance of sending an update however is linear in the group size.
 When creating a commit for an update proposal the sender has to include a path and refresh the private tree.
@@ -333,12 +339,9 @@ The following two flamegraphs show the difference between the base and the bare 
 While it doesn&rsquo;t show directly what&rsquo;s going on, it can be seen that in the base case (first flamegraph) the <code>new_with_keys</code> function requires a lot more time relative to the rest of the <code>replace_private_tree</code> function.
 This is a strong indicator for where to look for the differences.</p>
 
-<p><figure><a href="../../images/send-update-base.png"><img src="../../images/send-update-base.png"/></a>
-</figure>
+<p><img src="send-update-base.png" alt="" /></p>
 
-<figure><a href="../../images/send-update-bare.png"><img src="../../images/send-update-bare.png"/></a>
-</figure>
-</p>
+<p><img src="send-update-bare.png" alt="" /></p>
 
 <p>Looking at a tree with 300 leaves for example we have to encrypt 299 times (for every other leaf) in the case of a bare tree.
 In a fully updated tree however only 9 encryptions are necessary, one for each level of the tree.
@@ -350,9 +353,7 @@ It is therefore expected that the performance of sending an update (with commit)
 This is almost independent of the state of the tree.
 The operations appear to be slightly more expensive in a fully updated tree though.</p>
 
-<figure><a href="../../images/add.svg"><img src="../../images/add.svg"/></a>
-</figure>
-
+<p><img src="add.png" alt="" /></p>
 
 <h3 id="removing-a-user">Removing a user</h3>
 
@@ -361,9 +362,7 @@ Removing in a very sparse tree is significantly more expensive than in a fully u
 The reason is the same as for updating the tree.
 The remove information has to be encrypted to all other remaining participants in the tree.</p>
 
-<figure><a href="../../images/remove.svg"><img src="../../images/remove.svg"/></a>
-</figure>
-
+<p><img src="remove.png" alt="" /></p>
 
 <h3 id="application-messages">Application messages</h3>
 
@@ -371,12 +370,9 @@ The remove information has to be encrypted to all other remaining participants i
 Receiving the first message within an epoch has a small overhead compared to subsequent message as seen in the second graph.
 This should be negligible in practice though.</p>
 
-<p><figure><a href="../../images/application-message-send.svg"><img src="../../images/application-message-send.svg"/></a>
-</figure>
+<p><img src="application-message-send.png" alt="" /></p>
 
-<figure><a href="../../images/application-message-receive.svg"><img src="../../images/application-message-receive.svg"/></a>
-</figure>
-</p>
+<p><img src="application-message-receive.png" alt="" /></p>
 
 <h2 id="analysis">Analysis</h2>
 
@@ -427,35 +423,7 @@ These might be complex procedures and impact the MLS performance as well.</p>
       </div>
     </div>
 
-    <aside class="w-30-l mt6-l"><div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
-    <p class="f5 b mb3">What&#39;s in this post</p>
-      <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#methodology">Methodology</a>
-<ul>
-<li><a href="#measurements">Measurements</a>
-<ul>
-<li><a href="#operations">Operations</a></li>
-</ul></li>
-</ul></li>
-<li><a href="#results">Results</a>
-<ul>
-<li><a href="#group-setup">Group setup</a></li>
-<li><a href="#join-group">Join group</a></li>
-<li><a href="#update">Update</a></li>
-<li><a href="#adding-a-user">Adding a user</a></li>
-<li><a href="#removing-a-user">Removing a user</a></li>
-<li><a href="#application-messages">Application messages</a></li>
-</ul></li>
-<li><a href="#analysis">Analysis</a></li>
-<li><a href="#technical-background">Technical background</a></li>
-<li><a href="#conclusion-future-work">Conclusion &amp; Future work</a></li>
-</ul></li>
-</ul>
-</nav>
-  </div>
+    <aside class="w-30-l mt6-l">
 
 
 
