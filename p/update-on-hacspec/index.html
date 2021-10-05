@@ -137,7 +137,7 @@ In this blog post I&rsquo;ll give the gist of the <a class="link" href="https://
 <p>The <em>hacspec</em> language is a DSL for cryptographic algorithms.
 But it can also be seen as a typed subset of Python.
 The following describes the language.</p>
-<pre><code>  Values v ::=
+<pre tabindex="0"><code>  Values v ::=
          n                             integer constants 
        | True | False                  boolean constants 
        | '...' | &quot;...&quot;                 string constants 
@@ -222,7 +222,7 @@ Some highlights are</p>
 <h3 id="spec-checker">spec-checker</h3>
 <p>Since hacspecs are executed with a Python interpreter it is not sufficient to run <em>hacspec</em> to check their syntax.
 To check that the syntax is valid a spec-checker is provided.<sup>2</sup></p>
-<pre><code>hacspec-check &lt;your-hacspec&gt;
+<pre tabindex="0"><code>hacspec-check &lt;your-hacspec&gt;
 </code></pre><h3 id="executing-hacspec">Executing hacspec</h3>
 <p><em>hacspec</em> tests are executed with the Python interpreter.
 Executing tests on a spec can yield three different results.</p>

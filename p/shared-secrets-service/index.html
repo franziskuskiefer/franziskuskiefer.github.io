@@ -148,18 +148,18 @@ In contrast to other secret sharing services, Shared-Secrets does not store the 
 <p>I leave aside the fact that any attacker that can intercept the message can trivially retrieve the secret and focus on the encryption scheme used for the service.
 Note that the service allows to encrypt the message with a password before sharing it to prevent the aforementioned attack.</p>
 <p>The encryption scheme used for this service is a basic encrypt-then-mac scheme that can be written as</p>
-<pre><code>(c, t) &lt;- EtM(key, nonce, msg, aad)
+<pre tabindex="0"><code>(c, t) &lt;- EtM(key, nonce, msg, aad)
 </code></pre><p>where <code>aad</code> contains all meta-data (version etc.).
 Keys for the mac and encryption algorithms are derived as follows</p>
-<pre><code>key &lt;- random() # 32-byte
+<pre tabindex="0"><code>key &lt;- random() # 32-byte
 (k_c, k_t) &lt;- (HMAC-SHA256(key, &quot;enc&quot;), HMAC-SHA256(key, &quot;mac&quot;))
 rsakey &lt;- RSA-OAEP(pk, key)
 </code></pre><p>The RSA key <code>pk</code> is the server&rsquo;s public key.
 Now we can compute the ciphertext and mac.</p>
-<pre><code>c &lt;- AES-256-CTR(k_c, nonce, msg)
+<pre tabindex="0"><code>c &lt;- AES-256-CTR(k_c, nonce, msg)
 t &lt;- HMAC-SHA256(k_t, aad, c)
 </code></pre><p>The message format is defined as</p>
-<pre><code>[version:01][rsakeycount:02][rsakeyid:32][rsakeylength:02][rsakey:mm][...][rsakeyid:32][rsakeylength:02][rsakey:mm][nonce:16][message:nn][mac:32]
+<pre tabindex="0"><code>[version:01][rsakeycount:02][rsakeyid:32][rsakeylength:02][rsakey:mm][...][rsakeyid:32][rsakeylength:02][rsakey:mm][nonce:16][message:nn][mac:32]
 </code></pre><p>with <code>rsakeyid := SHA256(pk)</code> and <code>nonce := $(date +%s)|0..0</code> (8-byte unix timestamp, padded 8 zero bytes).</p>
 <h3 id="observations">Observations</h3>
 <p>Looking at the scheme there are a two things that stand out.

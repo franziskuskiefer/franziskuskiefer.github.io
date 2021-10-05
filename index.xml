@@ -514,18 +514,18 @@ In contrast to other secret sharing services, Shared-Secrets does not store the 
 &lt;p&gt;I leave aside the fact that any attacker that can intercept the message can trivially retrieve the secret and focus on the encryption scheme used for the service.
 Note that the service allows to encrypt the message with a password before sharing it to prevent the aforementioned attack.&lt;/p&gt;
 &lt;p&gt;The encryption scheme used for this service is a basic encrypt-then-mac scheme that can be written as&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;(c, t) &amp;lt;- EtM(key, nonce, msg, aad)
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;(c, t) &amp;lt;- EtM(key, nonce, msg, aad)
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;where &lt;code&gt;aad&lt;/code&gt; contains all meta-data (version etc.).
 Keys for the mac and encryption algorithms are derived as follows&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;key &amp;lt;- random() # 32-byte
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;key &amp;lt;- random() # 32-byte
 (k_c, k_t) &amp;lt;- (HMAC-SHA256(key, &amp;quot;enc&amp;quot;), HMAC-SHA256(key, &amp;quot;mac&amp;quot;))
 rsakey &amp;lt;- RSA-OAEP(pk, key)
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;The RSA key &lt;code&gt;pk&lt;/code&gt; is the server&amp;rsquo;s public key.
 Now we can compute the ciphertext and mac.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;c &amp;lt;- AES-256-CTR(k_c, nonce, msg)
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;c &amp;lt;- AES-256-CTR(k_c, nonce, msg)
 t &amp;lt;- HMAC-SHA256(k_t, aad, c)
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;The message format is defined as&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;[version:01][rsakeycount:02][rsakeyid:32][rsakeylength:02][rsakey:mm][...][rsakeyid:32][rsakeylength:02][rsakey:mm][nonce:16][message:nn][mac:32]
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;[version:01][rsakeycount:02][rsakeyid:32][rsakeylength:02][rsakey:mm][...][rsakeyid:32][rsakeylength:02][rsakey:mm][nonce:16][message:nn][mac:32]
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;with &lt;code&gt;rsakeyid := SHA256(pk)&lt;/code&gt; and &lt;code&gt;nonce := $(date +%s)|0..0&lt;/code&gt; (8-byte unix timestamp, padded 8 zero bytes).&lt;/p&gt;
 &lt;h3 id=&#34;observations&#34;&gt;Observations&lt;/h3&gt;
 &lt;p&gt;Looking at the scheme there are a two things that stand out.
@@ -707,7 +707,7 @@ In this blog post I&amp;rsquo;ll give the gist of the &lt;a class=&#34;link&#34;
 &lt;p&gt;The &lt;em&gt;hacspec&lt;/em&gt; language is a DSL for cryptographic algorithms.
 But it can also be seen as a typed subset of Python.
 The following describes the language.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;  Values v ::=
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;  Values v ::=
          n                             integer constants 
        | True | False                  boolean constants 
        | &#39;...&#39; | &amp;quot;...&amp;quot;                 string constants 
@@ -792,7 +792,7 @@ Some highlights are&lt;/p&gt;
 &lt;h3 id=&#34;spec-checker&#34;&gt;spec-checker&lt;/h3&gt;
 &lt;p&gt;Since hacspecs are executed with a Python interpreter it is not sufficient to run &lt;em&gt;hacspec&lt;/em&gt; to check their syntax.
 To check that the syntax is valid a spec-checker is provided.&lt;sup&gt;2&lt;/sup&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;hacspec-check &amp;lt;your-hacspec&amp;gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;hacspec-check &amp;lt;your-hacspec&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;executing-hacspec&#34;&gt;Executing hacspec&lt;/h3&gt;
 &lt;p&gt;&lt;em&gt;hacspec&lt;/em&gt; tests are executed with the Python interpreter.
 Executing tests on a spec can yield three different results.&lt;/p&gt;
