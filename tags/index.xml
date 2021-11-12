@@ -6,7 +6,43 @@
     <description>Recent content in Tags on Dr Franziskus Kiefer</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 18 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 12 Nov 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>benchmarks</title>
+      <link>https://www.franziskuskiefer.de/tags/benchmarks/</link>
+      <pubDate>Fri, 12 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.franziskuskiefer.de/tags/benchmarks/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>crypto</title>
+      <link>https://www.franziskuskiefer.de/tags/crypto/</link>
+      <pubDate>Fri, 12 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.franziskuskiefer.de/tags/crypto/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hacl*</title>
+      <link>https://www.franziskuskiefer.de/tags/hacl/</link>
+      <pubDate>Fri, 12 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.franziskuskiefer.de/tags/hacl/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>rust</title>
+      <link>https://www.franziskuskiefer.de/tags/rust/</link>
+      <pubDate>Fri, 12 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.franziskuskiefer.de/tags/rust/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>mls</title>
       <link>https://www.franziskuskiefer.de/tags/mls/</link>
@@ -71,15 +107,6 @@
     </item>
     
     <item>
-      <title>crypto</title>
-      <link>https://www.franziskuskiefer.de/tags/crypto/</link>
-      <pubDate>Mon, 23 Dec 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.franziskuskiefer.de/tags/crypto/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>rwc</title>
       <link>https://www.franziskuskiefer.de/tags/rwc/</link>
       <pubDate>Mon, 23 Dec 2019 00:00:00 +0000</pubDate>
@@ -125,15 +152,6 @@
     </item>
     
     <item>
-      <title>rust</title>
-      <link>https://www.franziskuskiefer.de/tags/rust/</link>
-      <pubDate>Mon, 21 Oct 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.franziskuskiefer.de/tags/rust/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>specs</title>
       <link>https://www.franziskuskiefer.de/tags/specs/</link>
       <pubDate>Mon, 21 Oct 2019 00:00:00 +0000</pubDate>
@@ -148,15 +166,6 @@
       <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>https://www.franziskuskiefer.de/tags/hacspec/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>HACL*</title>
-      <link>https://www.franziskuskiefer.de/tags/hacl/</link>
-      <pubDate>Thu, 12 Apr 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.franziskuskiefer.de/tags/hacl/</guid>
       <description></description>
     </item>
     

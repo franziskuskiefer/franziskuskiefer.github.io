@@ -6,7 +6,18 @@
     <description>Recent content in Posts on Dr Franziskus Kiefer</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 18 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 12 Nov 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>(HACL*) AEAD Benchmarks</title>
+      <link>https://www.franziskuskiefer.de/p/hacl-aead-benchmarks/</link>
+      <pubDate>Fri, 12 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.franziskuskiefer.de/p/hacl-aead-benchmarks/</guid>
+      <description>This is in response to the blog post by Sylvain Kerkour benchmarking ring and Rust Crypto AEADs. I was curious how HACL* stacks up to these two with these parameters.
+ I&amp;rsquo;m maintaining the Evercrypt crate, a wrapper around the formally verified crypto library HACL*. HACL* is a customizable, fast, formally verified crypto library written in F* and extracted to C.
+ RustCrypto’s ChaCha20-Poly1305 RustCrypto’s AES-256-GCM ring’s ChaCha20-Poly1305 ring’s AES-256-GCM  Results I&amp;rsquo;m listing all results here for comparison as I&amp;rsquo;m (obviously) running the benchmarks on a different machine.</description>
+    </item>
+    
     <item>
       <title>OpenMLS Performance</title>
       <link>https://www.franziskuskiefer.de/p/openmls-performance/</link>

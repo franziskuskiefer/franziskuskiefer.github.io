@@ -127,7 +127,7 @@ However, this makes code very hard to read, e.g. <code>let c = a + b</code> is e
 </span><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">zero</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Wrapping</span><span class="p">(</span><span class="mi">0</span><span class="k">u32</span><span class="p">);</span><span class="w">
 </span><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">one</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Wrapping</span><span class="p">(</span><span class="mi">1</span><span class="k">u32</span><span class="p">);</span><span class="w">
 </span><span class="w">
-</span><span class="w"></span><span class="n">assert_eq</span><span class="o">!</span><span class="p">(</span><span class="n">std</span>::<span class="kt">u32</span>::<span class="n">MAX</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">zero</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">one</span><span class="p">).</span><span class="mi">0</span><span class="p">);</span><span class="w">
+</span><span class="w"></span><span class="fm">assert_eq!</span><span class="p">(</span><span class="n">std</span>::<span class="kt">u32</span>::<span class="n">MAX</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">zero</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">one</span><span class="p">).</span><span class="mi">0</span><span class="p">);</span><span class="w">
 </span></code></pre></div><p>This is a good solution when you want to be explicit about what you&rsquo;re doing.
 However, its readability is still not great.</p>
 <h2 id="wrappit">#[wrappit]</h2>
@@ -226,6 +226,28 @@ To use <code>#[wrappit]</code> add <code>wrapping_arithmetic = &quot;0.1&quot;</
 
         <div class="article-details">
             <h2 class="article-title">Introducing HacSpec</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/p/hacl-aead-benchmarks/">
+        
+        
+            <div class="article-image">
+                <img src="/p/hacl-aead-benchmarks/AeadBenchHero.4a473a9057e85996c965338f94994c45_hu4d2264c1e56b93287cb70a42d67b2c16_100959_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy" 
+                        data-key="" 
+                        data-hash="md5-Skc6kFfoWZbJZTOPlJlMRQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">(HACL*) AEAD Benchmarks</h2>
         </div>
     </a>
 </article>

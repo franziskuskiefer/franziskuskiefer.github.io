@@ -2,8 +2,29 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://www.franziskuskiefer.de/p/hacl-aead-benchmarks/</loc>
+    <lastmod>2021-11-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.franziskuskiefer.de/tags/benchmarks/</loc>
+    <lastmod>2021-11-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.franziskuskiefer.de/tags/crypto/</loc>
+    <lastmod>2021-11-12T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://www.franziskuskiefer.de/</loc>
-    <lastmod>2021-05-18T00:00:00+00:00</lastmod>
+    <lastmod>2021-11-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.franziskuskiefer.de/tags/hacl/</loc>
+    <lastmod>2021-11-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.franziskuskiefer.de/post/</loc>
+    <lastmod>2021-11-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.franziskuskiefer.de/tags/rust/</loc>
+    <lastmod>2021-11-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.franziskuskiefer.de/tags/</loc>
+    <lastmod>2021-11-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.franziskuskiefer.de/tags/mls/</loc>
     <lastmod>2021-05-18T00:00:00+00:00</lastmod>
@@ -12,12 +33,6 @@
     <lastmod>2021-05-18T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.franziskuskiefer.de/p/openmls-performance/</loc>
-    <lastmod>2021-05-18T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.franziskuskiefer.de/post/</loc>
-    <lastmod>2021-05-18T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.franziskuskiefer.de/tags/</loc>
     <lastmod>2021-05-18T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.franziskuskiefer.de/tags/hugo/</loc>
@@ -41,9 +56,6 @@
     <loc>https://www.franziskuskiefer.de/tags/berlin-crypto/</loc>
     <lastmod>2019-12-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.franziskuskiefer.de/tags/crypto/</loc>
-    <lastmod>2019-12-23T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://www.franziskuskiefer.de/tags/rwc/</loc>
     <lastmod>2019-12-23T00:00:00+00:00</lastmod>
   </url><url>
@@ -65,9 +77,6 @@
     <loc>https://www.franziskuskiefer.de/tags/formal-verification/</loc>
     <lastmod>2019-10-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.franziskuskiefer.de/tags/rust/</loc>
-    <lastmod>2019-10-21T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://www.franziskuskiefer.de/tags/specs/</loc>
     <lastmod>2019-10-21T00:00:00+00:00</lastmod>
   </url><url>
@@ -82,9 +91,6 @@
   </url><url>
     <loc>https://www.franziskuskiefer.de/p/mozilla-security-research-summit-london-2018/</loc>
     <lastmod>2018-11-19T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.franziskuskiefer.de/tags/hacl/</loc>
-    <lastmod>2018-04-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.franziskuskiefer.de/tags/nss/</loc>
     <lastmod>2018-04-12T00:00:00+00:00</lastmod>

@@ -1,0 +1,374 @@
+Architecture:            x86_64
+  CPU op-mode(s):        32-bit, 64-bit
+  Address sizes:         39 bits physical, 48 bits virtual
+  Byte Order:            Little Endian
+CPU(s):                  8
+  On-line CPU(s) list:   0-7
+Vendor ID:               GenuineIntel
+  Model name:            Intel(R) Core(TM) i7-4900MQ CPU @ 2.80GHz
+    CPU family:          6
+    Model:               60
+    Thread(s) per core:  2
+    Core(s) per socket:  4
+    Socket(s):           1
+    Stepping:            3
+    CPU max MHz:         3800.0000
+    CPU min MHz:         800.0000
+    BogoMIPS:            5589.60
+    Flags:               fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx f
+                         xsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_
+                         good nopl xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx e
+                         st tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c
+                          rdrand lahf_lm abm cpuid_fault epb invpcid_single pti tpr_shadow vnmi flexpriority ept vpid e
+                         pt_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid xsaveopt dtherm ida arat pln pts
+Virtualization features: 
+  Virtualization:        VT-x
+Caches (sum of all):     
+  L1d:                   128 KiB (4 instances)
+  L1i:                   128 KiB (4 instances)
+  L2:                    1 MiB (4 instances)
+  L3:                    8 MiB (1 instance)
+NUMA:                    
+  NUMA node(s):          1
+  NUMA node0 CPU(s):     0-7
+Vulnerabilities:         
+  Itlb multihit:         KVM: Mitigation: VMX disabled
+  L1tf:                  Mitigation; PTE Inversion; VMX conditional cache flushes, SMT vulnerable
+  Mds:                   Vulnerable: Clear CPU buffers attempted, no microcode; SMT vulnerable
+  Meltdown:              Mitigation; PTI
+  Spec store bypass:     Vulnerable
+  Spectre v1:            Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+  Spectre v2:            Mitigation; Full generic retpoline, STIBP disabled, RSB filling
+  Srbds:                 Vulnerable: No microcode
+  Tsx async abort:       Not affected
+
+
+100B/RustCrypto XChaCha20-Poly1305                                                                             
+                        time:   [1.7225 us 1.7239 us 1.7254 us]
+                        thrpt:  [55.273 MiB/s 55.322 MiB/s 55.366 MiB/s]
+Found 14 outliers among 100 measurements (14.00%)
+  3 (3.00%) low mild
+  5 (5.00%) high mild
+  6 (6.00%) high severe
+100B/RustCrypto ChaCha20-Poly1305                                                                             
+                        time:   [1.6206 us 1.6232 us 1.6262 us]
+                        thrpt:  [58.644 MiB/s 58.753 MiB/s 58.848 MiB/s]
+Found 8 outliers among 100 measurements (8.00%)
+  1 (1.00%) low mild
+  2 (2.00%) high mild
+  5 (5.00%) high severe
+100B/RustCrypto AES-256-GCM                                                                            
+                        time:   [448.47 ns 448.97 ns 449.50 ns]
+                        thrpt:  [212.16 MiB/s 212.42 MiB/s 212.65 MiB/s]
+Found 7 outliers among 100 measurements (7.00%)
+  1 (1.00%) low mild
+  3 (3.00%) high mild
+  3 (3.00%) high severe
+100B/ring ChaCha20-Poly1305                                                                            
+                        time:   [193.53 ns 193.82 ns 194.11 ns]
+                        thrpt:  [491.30 MiB/s 492.04 MiB/s 492.77 MiB/s]
+Found 5 outliers among 100 measurements (5.00%)
+  2 (2.00%) low mild
+  1 (1.00%) high mild
+  2 (2.00%) high severe
+100B/ring AES-256-GCM   time:   [235.24 ns 235.57 ns 235.92 ns]                                  
+                        thrpt:  [404.24 MiB/s 404.83 MiB/s 405.40 MiB/s]
+Found 9 outliers among 100 measurements (9.00%)
+  1 (1.00%) low mild
+  5 (5.00%) high mild
+  3 (3.00%) high severe
+100B/HACL* AES-256-GCM  time:   [237.71 ns 238.12 ns 238.56 ns]                                   
+                        thrpt:  [399.76 MiB/s 400.51 MiB/s 401.19 MiB/s]
+Found 5 outliers among 100 measurements (5.00%)
+  1 (1.00%) high mild
+  4 (4.00%) high severe
+100B/HACL* ChaCha20-Poly1305                                                                             
+                        time:   [860.42 ns 862.79 ns 865.79 ns]
+                        thrpt:  [110.15 MiB/s 110.53 MiB/s 110.84 MiB/s]
+Found 10 outliers among 100 measurements (10.00%)
+  3 (3.00%) high mild
+  7 (7.00%) high severe
+
+1kB/RustCrypto XChaCha20-Poly1305                                                                             
+                        time:   [2.8037 us 2.8092 us 2.8159 us]
+                        thrpt:  [338.67 MiB/s 339.49 MiB/s 340.15 MiB/s]
+Found 1 outliers among 100 measurements (1.00%)
+  1 (1.00%) high mild
+1kB/RustCrypto ChaCha20-Poly1305                                                                             
+                        time:   [2.6912 us 2.6941 us 2.6973 us]
+                        thrpt:  [353.57 MiB/s 353.98 MiB/s 354.37 MiB/s]
+Found 8 outliers among 100 measurements (8.00%)
+  2 (2.00%) low mild
+  4 (4.00%) high mild
+  2 (2.00%) high severe
+1kB/RustCrypto AES-256-GCM                                                                             
+                        time:   [1.5070 us 1.5090 us 1.5109 us]
+                        thrpt:  [631.18 MiB/s 632.01 MiB/s 632.83 MiB/s]
+Found 7 outliers among 100 measurements (7.00%)
+  3 (3.00%) high mild
+  4 (4.00%) high severe
+1kB/ring ChaCha20-Poly1305                                                                             
+                        time:   [729.38 ns 730.23 ns 731.11 ns]
+                        thrpt:  [1.2738 GiB/s 1.2754 GiB/s 1.2769 GiB/s]
+Found 7 outliers among 100 measurements (7.00%)
+  3 (3.00%) high mild
+  4 (4.00%) high severe
+1kB/ring AES-256-GCM    time:   [555.79 ns 556.64 ns 557.50 ns]                                  
+                        thrpt:  [1.6705 GiB/s 1.6731 GiB/s 1.6757 GiB/s]
+Found 7 outliers among 100 measurements (7.00%)
+  7 (7.00%) high mild
+1kB/HACL* AES-256-GCM   time:   [597.80 ns 598.56 ns 599.38 ns]                                   
+                        thrpt:  [1.5538 GiB/s 1.5560 GiB/s 1.5579 GiB/s]
+Found 8 outliers among 100 measurements (8.00%)
+  2 (2.00%) low mild
+  3 (3.00%) high mild
+  3 (3.00%) high severe
+1kB/HACL* ChaCha20-Poly1305                                                                             
+                        time:   [1.2787 us 1.2804 us 1.2822 us]
+                        thrpt:  [743.76 MiB/s 744.81 MiB/s 745.79 MiB/s]
+Found 7 outliers among 100 measurements (7.00%)
+  5 (5.00%) high mild
+  2 (2.00%) high severe
+
+100kB/RustCrypto XChaCha20-Poly1305                                                                            
+                        time:   [119.86 us 120.02 us 120.20 us]
+                        thrpt:  [793.43 MiB/s 794.57 MiB/s 795.68 MiB/s]
+Found 6 outliers among 100 measurements (6.00%)
+  4 (4.00%) high mild
+  2 (2.00%) high severe
+100kB/RustCrypto ChaCha20-Poly1305                                                                            
+                        time:   [119.93 us 120.10 us 120.27 us]
+                        thrpt:  [792.96 MiB/s 794.10 MiB/s 795.20 MiB/s]
+Found 6 outliers among 100 measurements (6.00%)
+  1 (1.00%) low mild
+  2 (2.00%) high mild
+  3 (3.00%) high severe
+100kB/RustCrypto AES-256-GCM                                                                            
+                        time:   [118.01 us 118.13 us 118.26 us]
+                        thrpt:  [806.44 MiB/s 807.33 MiB/s 808.16 MiB/s]
+Found 12 outliers among 100 measurements (12.00%)
+  4 (4.00%) high mild
+  8 (8.00%) high severe
+100kB/ring ChaCha20-Poly1305                                                                             
+                        time:   [48.171 us 48.293 us 48.482 us]
+                        thrpt:  [1.9210 GiB/s 1.9285 GiB/s 1.9334 GiB/s]
+Found 10 outliers among 100 measurements (10.00%)
+  1 (1.00%) low mild
+  6 (6.00%) high mild
+  3 (3.00%) high severe
+100kB/ring AES-256-GCM  time:   [34.548 us 34.609 us 34.682 us]                                    
+                        thrpt:  [2.6853 GiB/s 2.6910 GiB/s 2.6957 GiB/s]
+Found 9 outliers among 100 measurements (9.00%)
+  4 (4.00%) high mild
+  5 (5.00%) high severe
+100kB/HACL* AES-256-GCM time:   [38.946 us 38.997 us 39.054 us]                                     
+                        thrpt:  [2.3847 GiB/s 2.3882 GiB/s 2.3913 GiB/s]
+Found 7 outliers among 100 measurements (7.00%)
+  2 (2.00%) low mild
+  4 (4.00%) high mild
+  1 (1.00%) high severe
+100kB/HACL* ChaCha20-Poly1305                                                                            
+                        time:   [55.377 us 55.550 us 55.722 us]
+                        thrpt:  [1.6714 GiB/s 1.6765 GiB/s 1.6818 GiB/s]
+Found 5 outliers among 100 measurements (5.00%)
+  2 (2.00%) high mild
+  3 (3.00%) high severe
+
+Benchmarking 1MB/RustCrypto XChaCha20-Poly1305: Warming up for 3.0000 s
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 6.1s, enable flat sampling, or reduce sample count to 60.
+1MB/RustCrypto XChaCha20-Poly1305                                                                             
+                        time:   [1.1914 ms 1.1930 ms 1.1946 ms]
+                        thrpt:  [798.31 MiB/s 799.42 MiB/s 800.45 MiB/s]
+Found 7 outliers among 100 measurements (7.00%)
+  1 (1.00%) low mild
+  2 (2.00%) high mild
+  4 (4.00%) high severe
+Benchmarking 1MB/RustCrypto ChaCha20-Poly1305: Warming up for 3.0000 s
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 6.0s, enable flat sampling, or reduce sample count to 60.
+1MB/RustCrypto ChaCha20-Poly1305                                                                             
+                        time:   [1.1905 ms 1.1921 ms 1.1937 ms]
+                        thrpt:  [798.90 MiB/s 800.02 MiB/s 801.08 MiB/s]
+Found 7 outliers among 100 measurements (7.00%)
+  5 (5.00%) high mild
+  2 (2.00%) high severe
+Benchmarking 1MB/RustCrypto AES-256-GCM: Warming up for 3.0000 s
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 6.0s, enable flat sampling, or reduce sample count to 60.
+1MB/RustCrypto AES-256-GCM                                                                             
+                        time:   [1.1924 ms 1.1947 ms 1.1978 ms]
+                        thrpt:  [796.22 MiB/s 798.24 MiB/s 799.81 MiB/s]
+Found 10 outliers among 100 measurements (10.00%)
+  1 (1.00%) low mild
+  4 (4.00%) high mild
+  5 (5.00%) high severe
+1MB/ring ChaCha20-Poly1305                                                                            
+                        time:   [490.14 us 490.64 us 491.19 us]
+                        thrpt:  [1.8961 GiB/s 1.8982 GiB/s 1.9001 GiB/s]
+Found 8 outliers among 100 measurements (8.00%)
+  1 (1.00%) low mild
+  3 (3.00%) high mild
+  4 (4.00%) high severe
+1MB/ring AES-256-GCM    time:   [343.11 us 343.41 us 343.71 us]                                 
+                        thrpt:  [2.7096 GiB/s 2.7120 GiB/s 2.7144 GiB/s]
+Found 15 outliers among 100 measurements (15.00%)
+  2 (2.00%) low mild
+  3 (3.00%) high mild
+  10 (10.00%) high severe
+1MB/HACL* AES-256-GCM   time:   [391.48 us 391.87 us 392.28 us]                                  
+                        thrpt:  [2.3741 GiB/s 2.3766 GiB/s 2.3790 GiB/s]
+Found 8 outliers among 100 measurements (8.00%)
+  2 (2.00%) high mild
+  6 (6.00%) high severe
+1MB/HACL* ChaCha20-Poly1305                                                                            
+                        time:   [548.35 us 549.11 us 549.93 us]
+                        thrpt:  [1.6935 GiB/s 1.6961 GiB/s 1.6984 GiB/s]
+Found 9 outliers among 100 measurements (9.00%)
+  3 (3.00%) high mild
+  6 (6.00%) high severe
+
+10MB/RustCrypto XChaCha20-Poly1305                                                                            
+                        time:   [11.978 ms 12.026 ms 12.095 ms]
+                        thrpt:  [788.49 MiB/s 792.98 MiB/s 796.21 MiB/s]
+Found 10 outliers among 100 measurements (10.00%)
+  4 (4.00%) high mild
+  6 (6.00%) high severe
+10MB/RustCrypto ChaCha20-Poly1305                                                                            
+                        time:   [11.997 ms 12.015 ms 12.034 ms]
+                        thrpt:  [792.46 MiB/s 793.75 MiB/s 794.91 MiB/s]
+Found 8 outliers among 100 measurements (8.00%)
+  1 (1.00%) low mild
+  6 (6.00%) high mild
+  1 (1.00%) high severe
+10MB/RustCrypto AES-256-GCM                                                                            
+                        time:   [11.971 ms 11.986 ms 12.001 ms]
+                        thrpt:  [794.65 MiB/s 795.68 MiB/s 796.69 MiB/s]
+Found 2 outliers among 100 measurements (2.00%)
+  2 (2.00%) high mild
+10MB/ring ChaCha20-Poly1305                                                                             
+                        time:   [5.0384 ms 5.0475 ms 5.0577 ms]
+                        thrpt:  [1.8414 GiB/s 1.8451 GiB/s 1.8484 GiB/s]
+Found 3 outliers among 100 measurements (3.00%)
+  1 (1.00%) high mild
+  2 (2.00%) high severe
+10MB/ring AES-256-GCM   time:   [3.5431 ms 3.5471 ms 3.5512 ms]                                   
+                        thrpt:  [2.6226 GiB/s 2.6256 GiB/s 2.6286 GiB/s]
+Found 2 outliers among 100 measurements (2.00%)
+  2 (2.00%) high mild
+10MB/HACL* AES-256-GCM  time:   [4.0159 ms 4.0217 ms 4.0289 ms]                                    
+                        thrpt:  [2.3116 GiB/s 2.3157 GiB/s 2.3191 GiB/s]
+Found 2 outliers among 100 measurements (2.00%)
+  1 (1.00%) high mild
+  1 (1.00%) high severe
+10MB/HACL* ChaCha20-Poly1305                                                                            
+                        time:   [5.8689 ms 5.8844 ms 5.9023 ms]
+                        thrpt:  [1.5779 GiB/s 1.5827 GiB/s 1.5869 GiB/s]
+Found 5 outliers among 100 measurements (5.00%)
+  3 (3.00%) high mild
+  2 (2.00%) high severe
+
+Benchmarking 100MB/RustCrypto XChaCha20-Poly1305: Warming up for 3.0000 s
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 12.3s, or reduce sample count to 40.
+100MB/RustCrypto XChaCha20-Poly1305                                                                            
+                        time:   [120.62 ms 120.72 ms 120.83 ms]
+                        thrpt:  [789.24 MiB/s 789.96 MiB/s 790.64 MiB/s]
+Found 4 outliers among 100 measurements (4.00%)
+  4 (4.00%) high mild
+Benchmarking 100MB/RustCrypto ChaCha20-Poly1305: Warming up for 3.0000 s
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 12.0s, or reduce sample count to 40.
+100MB/RustCrypto ChaCha20-Poly1305                                                                            
+                        time:   [119.74 ms 119.87 ms 120.01 ms]
+                        thrpt:  [794.63 MiB/s 795.58 MiB/s 796.46 MiB/s]
+Found 2 outliers among 100 measurements (2.00%)
+  1 (1.00%) high mild
+  1 (1.00%) high severe
+Benchmarking 100MB/RustCrypto AES-256-GCM: Warming up for 3.0000 s
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 12.0s, or reduce sample count to 40.
+100MB/RustCrypto AES-256-GCM                                                                            
+                        time:   [119.28 ms 119.39 ms 119.50 ms]
+                        thrpt:  [798.03 MiB/s 798.81 MiB/s 799.55 MiB/s]
+Found 4 outliers among 100 measurements (4.00%)
+  3 (3.00%) high mild
+  1 (1.00%) high severe
+Benchmarking 100MB/ring ChaCha20-Poly1305: Warming up for 3.0000 s
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 5.2s, or reduce sample count to 90.
+100MB/ring ChaCha20-Poly1305                                                                            
+                        time:   [51.362 ms 51.438 ms 51.522 ms]
+                        thrpt:  [1.8076 GiB/s 1.8106 GiB/s 1.8132 GiB/s]
+Found 4 outliers among 100 measurements (4.00%)
+  2 (2.00%) high mild
+  2 (2.00%) high severe
+100MB/ring AES-256-GCM  time:   [34.829 ms 34.873 ms 34.922 ms]                                   
+                        thrpt:  [2.6669 GiB/s 2.6706 GiB/s 2.6740 GiB/s]
+Found 2 outliers among 100 measurements (2.00%)
+  1 (1.00%) high mild
+  1 (1.00%) high severe
+Benchmarking 100MB/HACL* AES-256-GCM: Warming up for 3.0000 s
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 6.8s, or reduce sample count to 70.
+100MB/HACL* AES-256-GCM time:   [67.913 ms 68.004 ms 68.100 ms]                                    
+                        thrpt:  [1.3676 GiB/s 1.3695 GiB/s 1.3713 GiB/s]
+Found 3 outliers among 100 measurements (3.00%)
+  2 (2.00%) high mild
+  1 (1.00%) high severe
+Benchmarking 100MB/HACL* ChaCha20-Poly1305: Warming up for 3.0000 s
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 8.9s, or reduce sample count to 50.
+100MB/HACL* ChaCha20-Poly1305                                                                            
+                        time:   [88.599 ms 88.801 ms 89.014 ms]
+                        thrpt:  [1.0463 GiB/s 1.0488 GiB/s 1.0512 GiB/s]
+Found 2 outliers among 100 measurements (2.00%)
+  2 (2.00%) high mild
+
+Benchmarking 1GB/RustCrypto XChaCha20-Poly1305: Warming up for 3.0000 s
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 135.4s, or reduce sample count to 10.
+1GB/RustCrypto XChaCha20-Poly1305                                                                            
+                        time:   [1.1970 s 1.1976 s 1.1984 s]
+                        thrpt:  [795.79 MiB/s 796.29 MiB/s 796.74 MiB/s]
+Found 6 outliers among 100 measurements (6.00%)
+  5 (5.00%) high mild
+  1 (1.00%) high severe
+Benchmarking 1GB/RustCrypto ChaCha20-Poly1305: Warming up for 3.0000 s
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 119.8s, or reduce sample count to 10.
+1GB/RustCrypto ChaCha20-Poly1305                                                                            
+                        time:   [1.1940 s 1.1947 s 1.1954 s]
+                        thrpt:  [797.82 MiB/s 798.27 MiB/s 798.70 MiB/s]
+Found 2 outliers among 100 measurements (2.00%)
+  1 (1.00%) high mild
+  1 (1.00%) high severe
+Benchmarking 1GB/RustCrypto AES-256-GCM: Warming up for 3.0000 s
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 119.8s, or reduce sample count to 10.
+1GB/RustCrypto AES-256-GCM                                                                            
+                        time:   [1.1961 s 1.1974 s 1.1990 s]
+                        thrpt:  [795.38 MiB/s 796.43 MiB/s 797.35 MiB/s]
+Found 9 outliers among 100 measurements (9.00%)
+  4 (4.00%) high mild
+  5 (5.00%) high severe
+Benchmarking 1GB/ring ChaCha20-Poly1305: Warming up for 3.0000 s
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 51.8s, or reduce sample count to 10.
+1GB/ring ChaCha20-Poly1305                                                                            
+                        time:   [514.67 ms 514.99 ms 515.36 ms]
+                        thrpt:  [1.8071 GiB/s 1.8084 GiB/s 1.8095 GiB/s]
+Found 3 outliers among 100 measurements (3.00%)
+  1 (1.00%) high mild
+  2 (2.00%) high severe
+Benchmarking 1GB/ring AES-256-GCM: Warming up for 3.0000 s
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 35.0s, or reduce sample count to 10.
+1GB/ring AES-256-GCM    time:   [348.17 ms 348.51 ms 348.89 ms]                                 
+                        thrpt:  [2.6694 GiB/s 2.6723 GiB/s 2.6749 GiB/s]
+Found 7 outliers among 100 measurements (7.00%)
+  4 (4.00%) high mild
+  3 (3.00%) high severe
+Benchmarking 1GB/HACL* AES-256-GCM: Warming up for 3.0000 s
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 64.2s, or reduce sample count to 10.
+1GB/HACL* AES-256-GCM   time:   [641.72 ms 642.12 ms 642.54 ms]                                  
+                        thrpt:  [1.4494 GiB/s 1.4504 GiB/s 1.4513 GiB/s]
+Found 2 outliers among 100 measurements (2.00%)
+  1 (1.00%) high mild
+  1 (1.00%) high severe
+Benchmarking 1GB/HACL* ChaCha20-Poly1305: Warming up for 3.0000 s
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 85.3s, or reduce sample count to 10.
+1GB/HACL* ChaCha20-Poly1305                                                                            
+                        time:   [846.59 ms 847.39 ms 848.30 ms]
+                        thrpt:  [1.0979 GiB/s 1.0990 GiB/s 1.1001 GiB/s]
+Found 5 outliers among 100 measurements (5.00%)
+  1 (1.00%) high mild
+  4 (4.00%) high severe
+
+cargo bench  1969.91s user 80.61s system 171% cpu 19:54.13 total
