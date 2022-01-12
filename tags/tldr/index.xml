@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>tl;dr on Dr Franziskus Kiefer</title>
+    <link>https://www.franziskuskiefer.de/tags/tldr/</link>
+    <description>Recent content in tl;dr on Dr Franziskus Kiefer</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 11 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/tags/tldr/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>TL;DR - Hybrid Public Key Encryption</title>
+      <link>https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/</link>
+      <pubDate>Tue, 11 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/</guid>
+      <description>HPKE is a CFRG RFC that describes a scheme for hybrid public key encryption. It is co-authored by my Cryspen co-founder Karthikeyan Bhargavan and one of his PhD students Benjamin Lipp as part of his research at Inria.
+This blog post will give a brief overview of the specification and describes some use cases.
+If you want to learn more about the security proofs behind HPKE and the RFC process, Benjamin wrote an excellent blog post about it.</description>
+    </item>
+    
+  </channel>
+</rss>
