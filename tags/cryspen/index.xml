@@ -6,16 +6,15 @@
     <description>Recent content in Cryspen on Dr Franziskus Kiefer</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 11 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/tags/cryspen/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 10 Feb 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/tags/cryspen/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>TL;DR - Hybrid Public Key Encryption</title>
-      <link>https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/</link>
-      <pubDate>Tue, 11 Jan 2022 00:00:00 +0000</pubDate>
+      <title>Cryspen ERC PoC Grant</title>
+      <link>https://www.franziskuskiefer.de/p/cryspen-erc-poc-grant/</link>
+      <pubDate>Thu, 10 Feb 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/</guid>
-      <description>HPKE is a CFRG RFC that describes a scheme for hybrid public key encryption. It is co-authored by my Cryspen co-founder Karthikeyan Bhargavan and one of his PhD students Benjamin Lipp as part of his research at Inria.
-This blog post will give a brief overview of the specification and describes some use cases.
-If you want to learn more about the security proofs behind HPKE and the RFC process, Benjamin wrote an excellent blog post about it.</description>
+      <guid>https://www.franziskuskiefer.de/p/cryspen-erc-poc-grant/</guid>
+      <description>My co-founder Karthik got awarded an ERC Proof of Concept grant for commercialising the know-how and landmark research results from his Inria research group PROSECCO through Cryspen.
+Announcement Cryptographic mechanisms are crucial to the security of our digital lives but their design and implementation remains notoriously difficult and error-prone. With the help of two ERC Grants, Karthikeyan Bhargavan and the Prosecco team at Inria have developed state-of-the-art formal verification techniques that can be applied to real-world cryptographic software.</description>
     </item>
     
   </channel>

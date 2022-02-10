@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>grant on Dr Franziskus Kiefer</title>
+    <link>https://www.franziskuskiefer.de/tags/grant/</link>
+    <description>Recent content in grant on Dr Franziskus Kiefer</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 10 Feb 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/tags/grant/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cryspen ERC PoC Grant</title>
+      <link>https://www.franziskuskiefer.de/p/cryspen-erc-poc-grant/</link>
+      <pubDate>Thu, 10 Feb 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.franziskuskiefer.de/p/cryspen-erc-poc-grant/</guid>
+      <description>My co-founder Karthik got awarded an ERC Proof of Concept grant for commercialising the know-how and landmark research results from his Inria research group PROSECCO through Cryspen.
+Announcement Cryptographic mechanisms are crucial to the security of our digital lives but their design and implementation remains notoriously difficult and error-prone. With the help of two ERC Grants, Karthikeyan Bhargavan and the Prosecco team at Inria have developed state-of-the-art formal verification techniques that can be applied to real-world cryptographic software.</description>
+    </item>
+    
+  </channel>
+</rss>

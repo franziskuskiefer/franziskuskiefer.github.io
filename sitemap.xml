@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://www.franziskuskiefer.de/tags/cryspen/</loc>
+    <lastmod>2022-02-10T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.franziskuskiefer.de/p/cryspen-erc-poc-grant/</loc>
+    <lastmod>2022-02-10T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.franziskuskiefer.de/</loc>
+    <lastmod>2022-02-10T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.franziskuskiefer.de/tags/erc/</loc>
+    <lastmod>2022-02-10T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.franziskuskiefer.de/tags/grant/</loc>
+    <lastmod>2022-02-10T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.franziskuskiefer.de/post/</loc>
+    <lastmod>2022-02-10T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.franziskuskiefer.de/tags/</loc>
+    <lastmod>2022-02-10T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://www.franziskuskiefer.de/p/hacl-aead-benchmarks/</loc>
     <lastmod>2021-11-12T00:00:00+00:00</lastmod>
   </url><url>
@@ -11,19 +32,10 @@
     <loc>https://www.franziskuskiefer.de/tags/crypto/</loc>
     <lastmod>2021-11-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.franziskuskiefer.de/</loc>
-    <lastmod>2021-11-12T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://www.franziskuskiefer.de/tags/hacl/</loc>
     <lastmod>2021-11-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.franziskuskiefer.de/post/</loc>
-    <lastmod>2021-11-12T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://www.franziskuskiefer.de/tags/rust/</loc>
-    <lastmod>2021-11-12T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.franziskuskiefer.de/tags/</loc>
     <lastmod>2021-11-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.franziskuskiefer.de/tags/mls/</loc>

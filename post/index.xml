@@ -6,7 +6,17 @@
     <description>Recent content in Posts on Dr Franziskus Kiefer</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 12 Nov 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 10 Feb 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cryspen ERC PoC Grant</title>
+      <link>https://www.franziskuskiefer.de/p/cryspen-erc-poc-grant/</link>
+      <pubDate>Thu, 10 Feb 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.franziskuskiefer.de/p/cryspen-erc-poc-grant/</guid>
+      <description>My co-founder Karthik got awarded an ERC Proof of Concept grant for commercialising the know-how and landmark research results from his Inria research group PROSECCO through Cryspen.
+Announcement Cryptographic mechanisms are crucial to the security of our digital lives but their design and implementation remains notoriously difficult and error-prone. With the help of two ERC Grants, Karthikeyan Bhargavan and the Prosecco team at Inria have developed state-of-the-art formal verification techniques that can be applied to real-world cryptographic software.</description>
+    </item>
+    
     <item>
       <title>(HACL*) AEAD Benchmarks</title>
       <link>https://www.franziskuskiefer.de/p/hacl-aead-benchmarks/</link>

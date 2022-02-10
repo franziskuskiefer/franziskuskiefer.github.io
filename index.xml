@@ -6,7 +6,25 @@
         <description>Recent content on Dr Franziskus Kiefer</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Fri, 12 Nov 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 10 Feb 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Cryspen ERC PoC Grant</title>
+        <link>https://www.franziskuskiefer.de/p/cryspen-erc-poc-grant/</link>
+        <pubDate>Thu, 10 Feb 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://www.franziskuskiefer.de/p/cryspen-erc-poc-grant/</guid>
+        <description>&lt;img src="https://www.franziskuskiefer.de/p/cryspen-erc-poc-grant/erc.jpg" alt="Featured image of post Cryspen ERC PoC Grant" /&gt;&lt;p&gt;My co-founder &lt;a class=&#34;link&#34; href=&#34;https://bhargavan.info/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Karthik&lt;/a&gt; got awarded an &lt;a class=&#34;link&#34; href=&#34;https://erc.europa.eu/funding/proof-concept&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;ERC Proof of Concept grant&lt;/a&gt; for
+commercialising the know-how and landmark research results from his Inria
+research group &lt;a class=&#34;link&#34; href=&#34;https://team.inria.fr/prosecco/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;PROSECCO&lt;/a&gt; through Cryspen.&lt;/p&gt;
+&lt;h2 id=&#34;announcement&#34;&gt;Announcement&lt;/h2&gt;
+&lt;p&gt;Cryptographic mechanisms are crucial to the security of our digital lives but their design and implementation remains notoriously difficult and error-prone. With the help of two ERC Grants, Karthikeyan Bhargavan and the Prosecco team at Inria have developed state-of-the-art formal verification techniques that can be applied to real-world cryptographic software. In particular, they used these techniques to help design and analyze the TLS 1.3 protocol standard, as well to build the HACL* verified cryptographic library, code from which has been incorporated in mainstream software projects including Mozilla Firefox, the Linux Kernel, the Tezos Blockchain, the WireGuard VPN, and the ElectionGuard voting system.&lt;/p&gt;
+&lt;p&gt;The goal of this new ERC Proof of Concept grant is to build upon these these landmark research results and to commercialise the associated know-how through a new company called Cryspen. Cryspen will build a verified cryptographic software stack and an associated verification toolchain that is well-documented and easy to use for security developers. Cryspen will offer consulting and support contracts for this stack as well as software contracts for developing new cryptographic applications, ranging from secure messaging system to privacy-preserving machine learning.&lt;/p&gt;
+&lt;p&gt;Cryspen is co-founded by Franziskus Kiefer (CEO), Karthikeyan Bhargavan, and Jonathan Protzenko. For more information, email &lt;a class=&#34;link&#34; href=&#34;mailto:info@cryspen.com&#34; &gt;info@cryspen.com&lt;/a&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>(HACL*) AEAD Benchmarks</title>
         <link>https://www.franziskuskiefer.de/p/hacl-aead-benchmarks/</link>
         <pubDate>Fri, 12 Nov 2021 00:00:00 +0000</pubDate>
