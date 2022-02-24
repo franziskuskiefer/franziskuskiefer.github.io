@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='A hacspec implementation of the HPKE RFC.'><title>An Executable HPKE Specification</title>
+
+<link rel='canonical' href='https://www.franziskuskiefer.de/p/an-executable-hpke-specification/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='An Executable HPKE Specification'>
+<meta property='og:description' content='A hacspec implementation of the HPKE RFC.'>
+<meta property='og:url' content='https://www.franziskuskiefer.de/p/an-executable-hpke-specification/'>
+<meta property='og:site_name' content='Dr Franziskus Kiefer'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='hacspec' /><meta property='article:tag' content='hpke' /><meta property='article:tag' content='ietf' /><meta property='article:tag' content='Cryspen' /><meta property='article:published_time' content='2022-02-24T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2022-02-24T00:00:00&#43;00:00'/><meta property='og:image' content='https://www.franziskuskiefer.de/p/an-executable-hpke-specification/header.png' />
+<meta name="twitter:site" content="@_franziskus_">
+    <meta name="twitter:creator" content="@_franziskus_"><meta name="twitter:title" content="An Executable HPKE Specification">
+<meta name="twitter:description" content="A hacspec implementation of the HPKE RFC."><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://www.franziskuskiefer.de/p/an-executable-hpke-specification/header.png' />
+    </head>
+    <body class="
+    article-page has-toc
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        extended
+    
+">
+    
+        <div id="article-toolbar">
+            <a href="https://www.franziskuskiefer.de/" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>Back</span>
+            </a>
+        </div>
+    
+<main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/an-executable-hpke-specification/">
+                <img src="/p/an-executable-hpke-specification/header_hu4cb9b0bb4d1bfca6e45e87162bd8ddf2_355178_800x0_resize_box_3.png"
+                        srcset="/p/an-executable-hpke-specification/header_hu4cb9b0bb4d1bfca6e45e87162bd8ddf2_355178_800x0_resize_box_3.png 800w, /p/an-executable-hpke-specification/header_hu4cb9b0bb4d1bfca6e45e87162bd8ddf2_355178_1600x0_resize_box_3.png 1600w"
+                        width="800" 
+                        height="591" 
+                        loading="lazy"
+                        alt="Featured image of post An Executable HPKE Specification" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+
+    <h2 class="article-title">
+        <a href="/p/an-executable-hpke-specification/">An Executable HPKE Specification</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        A hacspec implementation of the HPKE RFC.
+    </h3>
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Feb 24, 2022</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    9 min read
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
+</header>
+
+    <section class="article-content">
+    <p><a class="link" href="https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/"  target="_blank" rel="noopener"
+    >HPKE</a> is published <a class="link" href="https://datatracker.ietf.org/rg/cfrg/about/"  target="_blank" rel="noopener"
+    >CFRG</a> as <a class="link" href="https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/"  target="_blank" rel="noopener"
+    >RFC 9180</a> that describes a scheme for hybrid public key encryption.</p>
+<blockquote>
+<p>📚 Please go and read our <a class="link" href="/p/tldr-hybrid-public-key-encryption/" >TL;DR on HPKE</a> if you nee more background on HPKE.</p>
+</blockquote>
+<p>In this I describe the first executable HPKE specification using <a class="link" href="https://hacspec.org"  target="_blank" rel="noopener"
+    >hacspec</a>.
+It is not only an executable specification of <a class="link" href="https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/"  target="_blank" rel="noopener"
+    >HPKE</a>, it is also an annotated version
+of the RFC that can be read instead of (or in addition to) the RFC.
+While the <a class="link" href="/p/tldr-hybrid-public-key-encryption/" >TL;DR on HPKE</a> was intended for consumers or potential users of HPKE,
+this blog post is aimed at implementators that want to implement HPKE or understand
+it better.</p>
+<p>It is a showcase for Cryspen&rsquo;s technology stack.
+In a follow up blog post we will describe how to connect the <a class="link" href="https://hacspec.org"  target="_blank" rel="noopener"
+    >hacspec</a> specification
+to efficient cryptographic primitives and formal proofs.</p>
+<p><em>This blog post focuses on the Base and Auth mode with DHKEM to demonstrate the capabilities
+of hacspec.
+For the full specification please read the full <a class="link" href="https://tech.cryspen.com/hpke-spec"  target="_blank" rel="noopener"
+    >documentation</a>, or look at the
+<a class="link" href="https://github.com/cryspen/hpke-spec"  target="_blank" rel="noopener"
+    >Github repository</a> for the HPKE hacspec source code.</em></p>
+<p>Recall that HPKE provides a variant of public-key encryption of arbitrary-sized plaintexts for a recipient public key.
+It works for any combination of an asymmetric key encapsulation mechanism (KEM), key derivation function (KDF), and authenticated encryption with additional data (AEAD) encryption function.</p>
+<p>In the following I&rsquo;ll first show the high-level API of HPKE works before giving
+details on the core functions within HPKE.
+All code examples are in hacspec.</p>
+<blockquote>
+<p>💡 Go ahead and <a class="link" href="/p/tldr-hybrid-public-key-encryption/#try-it-out-now" >run the hacspec HPKE in the browser</a>.</p>
+</blockquote>
+<h2 id="encrypting-to-a-public-key">Encrypting to a Public Key</h2>
+<p>This is the most basic functionality HPKE offers; encrypting a payload to a public key.
+So how does this look on the outside?</p>
+<p>The process consists of two steps.
+<em>First</em> a random <code>shared_secret</code> is generated that can be used for
+symmetric encryption with an AEAD, and an encapsulation that can be used by the
+receiver in combination with their private key to compute the same <code>shared_secret</code>.
+This function is denoted <code>SetupBaseS</code> below (because this is setting up the sender
+in the HPKE base mode).
+Note that the setup function expands the <code>shared_secret</code> to a key schedule that
+is used by the AEAD.
+More details in the <a class="link" href="#setup" >Setup</a> section.
+<em>Then</em> the <code>shared_secret</code> is used to encrypt the payload with an AEAD.
+This function is denoted <code>AeadSeal</code> below.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="p">(</span><span class="n">enc</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="n">nonce</span><span class="p">,</span><span class="w"> </span><span class="n">_</span><span class="p">,</span><span class="w"> </span><span class="n">_</span><span class="p">))</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SetupBaseS</span><span class="p">(</span><span class="n">config</span><span class="p">,</span><span class="w"> </span><span class="n">pkR</span><span class="p">,</span><span class="w"> </span><span class="n">info</span><span class="p">,</span><span class="w"> </span><span class="n">randomness</span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
+</span><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">cipher_text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AeadSeal</span><span class="p">(</span><span class="n">aead_id</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">nonce</span><span class="p">,</span><span class="w"> </span><span class="n">aad</span><span class="p">,</span><span class="w"> </span><span class="n">payload</span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
+</span></code></pre></div><p>The receiver gets <code>cipher_text</code> and <code>enc</code> that it can use to retrieve the <code>payload</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="n">nonce</span><span class="p">,</span><span class="w"> </span><span class="n">_</span><span class="p">,</span><span class="w"> </span><span class="n">_</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SetupBaseR</span><span class="p">(</span><span class="n">config</span><span class="p">,</span><span class="w"> </span><span class="n">enc</span><span class="p">,</span><span class="w"> </span><span class="n">skR</span><span class="p">,</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
+</span><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">payload</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AeadOpen</span><span class="p">(</span><span class="n">aead</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">nonce</span><span class="p">,</span><span class="w"> </span><span class="n">aad</span><span class="p">,</span><span class="w"> </span><span class="n">ct</span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
+</span></code></pre></div><p>In the remainder of this blog post we&rsquo;ll show how <code>SetupBaseS</code> is defined.
+For a description of the receiver please check out the <a class="link" href="https://tech.cryspen.com/hpke-spec"  target="_blank" rel="noopener"
+    >documentation</a>.
+We will not define <code>AeadSeal</code> and <code>AeadOpen</code> here as they follow the definition
+of <a class="link" href="https://www.rfc-editor.org/info/rfc5116"  target="_blank" rel="noopener"
+    >RFC 5116</a>.</p>
+<details>
+<summary>💡  Background on hacspec Syntax</summary>
+In case you are not familiar with hacspec (Rust) syntax, here are some short explainers
+to understand the hacspec code.
+<p><strong>The Question mark <code>?</code></strong></p>
+<p>The question mark <code>?</code> at the end of most lines in the hacspec code is the
+way Rust performs error propagation.
+If the function that is called before the <code>?</code> does not return an error result,
+the program continues as expected.
+But if the function returns an error, the function stops and returns with the error
+instead.</p>
+<p><strong>The Result Type</strong></p>
+<p>hacspec (and Rust) uses a <code>Result</code> type such as <code>Result&lt;OkType, ErrorType&gt;</code> to return errors.
+In hacspec result types are often wrapped into type aliases.
+For example the <code>SenderContextResult</code> type in the code snippet for <code>SetupBaseS</code>
+below is a type alias for <code>Result&lt;(Encapsulation, KeySchedule), Error&gt;</code>.
+If the function is successful and we reach line 10, the function returns success,
+which is written as <code>SenderContextResult::Ok(...)</code>.</p>
+</details>
+<h3 id="the-auth-mode">The Auth Mode</h3>
+<p>In the Auth mode HPKE requires additional input to the <code>Setup</code> functions.
+The sender needs to provide their private key <code>skS</code> to authenticate themselves.
+The receiver uses the sender&rsquo;s public key <code>pkS</code> in addition to authenticate the sender.
+The two functions are defined as follows.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="n">SetupAuthS</span><span class="p">(</span><span class="n">config</span><span class="p">,</span><span class="w"> </span><span class="n">pkR</span>:<span class="p">,</span><span class="w"> </span><span class="n">info</span><span class="p">,</span><span class="w"> </span><span class="n">skS</span><span class="p">,</span><span class="w"> </span><span class="n">randomness</span><span class="p">);</span><span class="w">
+</span><span class="w"></span><span class="n">SetupAuthR</span><span class="p">(</span><span class="n">config</span><span class="p">,</span><span class="w"> </span><span class="n">enc</span><span class="p">,</span><span class="w"> </span><span class="n">skR</span><span class="p">,</span><span class="w"> </span><span class="n">info</span><span class="p">,</span><span class="w"> </span><span class="n">pkS</span><span class="p">);</span><span class="w">
+</span></code></pre></div><h3 id="setup">Setup</h3>
+<p>In order to set up the KEM and key schedule the sender uses the following <code>SetupBaseS</code>
+function.
+Recall that the <code>BaseS</code> refers to the HPKE base mode and sender.</p>
+<p>The function takes the receiver&rsquo;s public key <code>pkR</code> and context information <code>info</code>
+(a sequence of bytes to bind the setup to a specific context).
+In addition we need to pass in the <code>configuration</code> that contains the mode as well
+as the algorithm identifiers for the KEM.
+Because hacspec can&rsquo;t draw its own <code>randomness</code>, as explained <a class="link" href="#randomness" >below</a>,
+it is passed in as well.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="k">pub</span><span class="w"> </span><span class="k">fn</span> <span class="nf">SetupBaseS</span><span class="p">(</span><span class="w">
+</span><span class="w">    </span><span class="n">configuration</span>: <span class="nc">HPKEConfig</span><span class="p">,</span><span class="w">
+</span><span class="w">    </span><span class="n">pkR</span>: <span class="kp">&amp;</span><span class="nc">HpkePublicKey</span><span class="p">,</span><span class="w">
+</span><span class="w">    </span><span class="n">info</span>: <span class="kp">&amp;</span><span class="nc">Info</span><span class="p">,</span><span class="w">
+</span><span class="w">    </span><span class="n">randomness</span>: <span class="nc">Randomness</span><span class="p">,</span><span class="w">
+</span><span class="w"></span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">SenderContextResult</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="p">(</span><span class="n">shared_secret</span><span class="p">,</span><span class="w"> </span><span class="n">enc</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Encap</span><span class="p">(</span><span class="n">kem</span><span class="p">(</span><span class="n">configuration</span><span class="p">),</span><span class="w"> </span><span class="n">pkR</span><span class="p">,</span><span class="w"> </span><span class="n">randomness</span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
+</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">key_schedule</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">KeySchedule</span><span class="p">(</span><span class="w">
+</span><span class="w">        </span><span class="n">config</span><span class="p">,</span><span class="w">
+</span><span class="w">        </span><span class="o">&amp;</span><span class="n">shared_secret</span><span class="p">,</span><span class="w">
+</span><span class="w">        </span><span class="n">info</span><span class="p">,</span><span class="w">
+</span><span class="w">        </span><span class="o">&amp;</span><span class="n">default_psk</span><span class="p">(),</span><span class="w">
+</span><span class="w">        </span><span class="o">&amp;</span><span class="n">default_psk_id</span><span class="p">(),</span><span class="w">
+</span><span class="w">    </span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
+</span><span class="w">    </span><span class="n">SenderContextResult</span>::<span class="nb">Ok</span><span class="p">((</span><span class="n">enc</span><span class="p">,</span><span class="w"> </span><span class="n">key_schedule</span><span class="p">))</span><span class="w">
+</span><span class="w"></span><span class="p">}</span><span class="w">
+</span></code></pre></div><p>For comparison you can find the RFC pseudocode definition of <code>SetupBaseS</code> below
+(which is not well defined as is because it is missing the algorithm identifiers).
+The main difference between the two functions is the explicit configuration and
+randomness required in hacspec.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text">def SetupBaseS(pkR, info):
+  shared_secret, enc = Encap(pkR)
+  return enc, KeyScheduleS(mode_base, shared_secret, info,
+                           default_psk, default_psk_id)
+</code></pre></div><p>The setup function calls the two functions <a class="link" href="#encap" ><code>Encap</code></a> and <a class="link" href="#keyschedule" ><code>KeySchedule</code></a>.</p>
+<h3 id="encap">Encap</h3>
+<p><em>(Reminder: For demonstration purposes we use the DHKEM defined in the RFC.)</em></p>
+<p>The <code>Encap</code> function takes the receiver&rsquo;s public key <code>pkR</code> and generates a <code>shared_secret</code> as well
+as an <code>encapsulation</code>.</p>
+<p>It is necessary to pass in the algorithm identifier to know
+which KEM to use and the randomness to generate a new ephemeral key pair for the
+KEM.
+See the <a class="link" href="#implementation-considerations" >discussion section below</a> on the necessity of the API changes.
+Because the function can fail it returns a result instead of simply the computed
+values as described in the RFC pseudocode.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text">def Encap(pkR):
+  skE, pkE = GenerateKeyPair()
+  dh = DH(skE, pkR)
+  enc = SerializePublicKey(pkE)
+
+  pkRm = SerializePublicKey(pkR)
+  kem_context = concat(enc, pkRm)
+
+  shared_secret = ExtractAndExpand(dh, kem_context)
+  return shared_secret, enc
+</code></pre></div><p>All these changes make it much clearer what can happen within the function and
+in particular which error states might occur.</p>
+<p>The <code>Encap</code> function generates a fresh DH key pair and computes the DH between the
+receivers public key and the ephemeral private key $\text{dh}=\text{skE}*\text{pkR}$.
+The <code>shared_secret</code> is then computed as the output of a key derivation function (HKDF)
+on input of the <code>dh</code> value and the context that binds the key derivation to the
+parameters and public values.
+The encapsulation <code>enc</code> is the serialized public key <code>pkE</code> generated in the first
+step.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="k">pub</span><span class="w"> </span><span class="k">fn</span> <span class="nf">Encap</span><span class="p">(</span><span class="n">pkR</span>: <span class="kp">&amp;</span><span class="nc">PublicKey</span><span class="p">,</span><span class="w"> </span><span class="n">alg</span>: <span class="nc">KEM</span><span class="p">,</span><span class="w"> </span><span class="n">rand</span>: <span class="nc">Randomness</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">EncapResult</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="p">(</span><span class="n">skE</span><span class="p">,</span><span class="w"> </span><span class="n">pkE</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GenerateKeyPair</span><span class="p">(</span><span class="n">alg</span><span class="p">,</span><span class="w"> </span><span class="n">rand</span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
+</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">dh</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DH</span><span class="p">(</span><span class="n">alg</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">skE</span><span class="p">,</span><span class="w"> </span><span class="n">pkR</span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
+</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">encapsulation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SerializePublicKey</span><span class="p">(</span><span class="n">alg</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">pkE</span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">pkRm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SerializePublicKey</span><span class="p">(</span><span class="n">alg</span><span class="p">,</span><span class="w"> </span><span class="n">pkR</span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
+</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">kem_context</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">enc</span><span class="p">.</span><span class="n">concat</span><span class="p">(</span><span class="o">&amp;</span><span class="n">pkRm</span><span class="p">);</span><span class="w">
+</span><span class="w">
+</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">shared_secret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ExtractAndExpand</span><span class="p">(</span><span class="n">alg</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">suite_id</span><span class="p">(</span><span class="n">alg</span><span class="p">),</span><span class="w"> </span><span class="n">dh</span><span class="p">,</span><span class="w"> </span><span class="n">kem_context</span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
+</span><span class="w">    </span><span class="n">EncapResult</span>::<span class="nb">Ok</span><span class="p">((</span><span class="n">shared_secret</span><span class="p">,</span><span class="w"> </span><span class="n">encapsulation</span><span class="p">))</span><span class="w">
+</span><span class="w"></span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id="keyschedule">KeySchedule</h3>
+<p>In order to use the <code>shared_secret</code> with an AEAD and allow exporting additional
+key material, the following <code>KeySchedule</code> derives the <code>key</code> and <code>base_nonce</code> for the
+AEAD and an <code>exporter_secret</code> to export other keys.
+The key schedule is essentially a series of HKDF calls to extract different keys
+from the shared secret.</p>
+<p>The main difference to the RFC here is again that it is necessary to pass in algorithm
+identifiers and the <code>suite_id</code> to <code>LabeledExtract</code> and <code>LabeledExpand</code>.
+The <code>suite_id</code> binds the KDF extract and expand functions to the specific context
+and is implicit in the RFC.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="k">pub</span><span class="w"> </span><span class="k">fn</span> <span class="nf">KeySchedule</span><span class="p">(</span><span class="w">
+</span><span class="w">    </span><span class="n">config</span>: <span class="nc">HPKEConfig</span><span class="p">,</span><span class="w">
+</span><span class="w">    </span><span class="n">shared_secret</span>: <span class="kp">&amp;</span><span class="nc">SharedSecret</span><span class="p">,</span><span class="w">
+</span><span class="w">    </span><span class="n">info</span>: <span class="kp">&amp;</span><span class="nc">Info</span><span class="p">,</span><span class="w">
+</span><span class="w">    </span><span class="n">psk</span>: <span class="kp">&amp;</span><span class="nc">Psk</span><span class="p">,</span><span class="w">
+</span><span class="w">    </span><span class="n">psk_id</span>: <span class="kp">&amp;</span><span class="nc">PskId</span><span class="p">,</span><span class="w">
+</span><span class="w"></span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">ContextResult</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">    </span><span class="n">VerifyPSKInputs</span><span class="p">(</span><span class="n">config</span><span class="p">,</span><span class="w"> </span><span class="n">psk</span><span class="p">,</span><span class="w"> </span><span class="n">psk_id</span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
+</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">HPKEConfig</span><span class="p">(</span><span class="n">mode</span><span class="p">,</span><span class="w"> </span><span class="n">_kem</span><span class="p">,</span><span class="w"> </span><span class="n">kdf</span><span class="p">,</span><span class="w"> </span><span class="n">aead</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">config</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">psk_id_hash</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LabeledExtract</span><span class="p">(</span><span class="w">
+</span><span class="w">        </span><span class="n">kdf</span><span class="p">,</span><span class="w">
+</span><span class="w">        </span><span class="o">&amp;</span><span class="n">suite_id</span><span class="p">(</span><span class="n">config</span><span class="p">),</span><span class="w">
+</span><span class="w">        </span><span class="o">&amp;</span><span class="n">empty_bytes</span><span class="p">(),</span><span class="w">
+</span><span class="w">        </span><span class="o">&amp;</span><span class="n">psk_id_hash_label</span><span class="p">(),</span><span class="w">
+</span><span class="w">        </span><span class="n">psk_id</span><span class="p">,</span><span class="w">
+</span><span class="w">    </span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
+</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">info_hash</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LabeledExtract</span><span class="p">(</span><span class="w">
+</span><span class="w">        </span><span class="n">kdf</span><span class="p">,</span><span class="w">
+</span><span class="w">        </span><span class="o">&amp;</span><span class="n">suite_id</span><span class="p">(</span><span class="n">config</span><span class="p">),</span><span class="w">
+</span><span class="w">        </span><span class="o">&amp;</span><span class="n">empty_bytes</span><span class="p">(),</span><span class="w">
+</span><span class="w">        </span><span class="o">&amp;</span><span class="n">info_hash_label</span><span class="p">(),</span><span class="w">
+</span><span class="w">        </span><span class="n">info</span><span class="p">,</span><span class="w">
+</span><span class="w">    </span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
+</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">key_schedule_context</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hpke_mode_label</span><span class="p">(</span><span class="n">mode</span><span class="p">)</span><span class="w">
+</span><span class="w">        </span><span class="p">.</span><span class="n">concat_owned</span><span class="p">(</span><span class="n">psk_id_hash</span><span class="p">)</span><span class="w">
+</span><span class="w">        </span><span class="p">.</span><span class="n">concat_owned</span><span class="p">(</span><span class="n">info_hash</span><span class="p">);</span><span class="w">
+</span><span class="w">
+</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">secret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LabeledExtract</span><span class="p">(</span><span class="n">kdf</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">suite_id</span><span class="p">(</span><span class="n">config</span><span class="p">),</span><span class="w"> </span><span class="n">shared_secret</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">secret_label</span><span class="p">(),</span><span class="w"> </span><span class="n">psk</span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LabeledExpand</span><span class="p">(</span><span class="w">
+</span><span class="w">        </span><span class="n">kdf</span><span class="p">,</span><span class="w">
+</span><span class="w">        </span><span class="o">&amp;</span><span class="n">suite_id</span><span class="p">(</span><span class="n">config</span><span class="p">),</span><span class="w">
+</span><span class="w">        </span><span class="o">&amp;</span><span class="n">secret</span><span class="p">,</span><span class="w">
+</span><span class="w">        </span><span class="o">&amp;</span><span class="n">key_label</span><span class="p">(),</span><span class="w">
+</span><span class="w">        </span><span class="o">&amp;</span><span class="n">key_schedule_context</span><span class="p">,</span><span class="w">
+</span><span class="w">        </span><span class="n">Nk</span><span class="p">(</span><span class="n">aead</span><span class="p">),</span><span class="w">
+</span><span class="w">    </span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
+</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">base_nonce</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LabeledExpand</span><span class="p">(</span><span class="w">
+</span><span class="w">        </span><span class="n">kdf</span><span class="p">,</span><span class="w">
+</span><span class="w">        </span><span class="o">&amp;</span><span class="n">suite_id</span><span class="p">(</span><span class="n">config</span><span class="p">),</span><span class="w">
+</span><span class="w">        </span><span class="o">&amp;</span><span class="n">secret</span><span class="p">,</span><span class="w">
+</span><span class="w">        </span><span class="o">&amp;</span><span class="n">base_nonce_label</span><span class="p">(),</span><span class="w">
+</span><span class="w">        </span><span class="o">&amp;</span><span class="n">key_schedule_context</span><span class="p">,</span><span class="w">
+</span><span class="w">        </span><span class="n">Nn</span><span class="p">(</span><span class="n">aead</span><span class="p">),</span><span class="w">
+</span><span class="w">    </span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
+</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">exporter_secret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LabeledExpand</span><span class="p">(</span><span class="w">
+</span><span class="w">        </span><span class="n">kdf</span><span class="p">,</span><span class="w">
+</span><span class="w">        </span><span class="o">&amp;</span><span class="n">suite_id</span><span class="p">(</span><span class="n">config</span><span class="p">),</span><span class="w">
+</span><span class="w">        </span><span class="o">&amp;</span><span class="n">secret</span><span class="p">,</span><span class="w">
+</span><span class="w">        </span><span class="o">&amp;</span><span class="n">exp_label</span><span class="p">(),</span><span class="w">
+</span><span class="w">        </span><span class="o">&amp;</span><span class="n">key_schedule_context</span><span class="p">,</span><span class="w">
+</span><span class="w">        </span><span class="n">Nh</span><span class="p">(</span><span class="n">kdf</span><span class="p">),</span><span class="w">
+</span><span class="w">    </span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
+</span><span class="w"></span><span class="p">}</span><span class="w">
+</span></code></pre></div><p>For comparison you can find the RFC pseudocode definition of <code>KeySchedule</code> below.
+Note that the significantly longer hacspec definition above is not in fact longer
+but has longer lines that are wrapped.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text">def KeySchedule&lt;ROLE&gt;(mode, shared_secret, info, psk, psk_id):
+  VerifyPSKInputs(mode, psk, psk_id)
+
+  psk_id_hash = LabeledExtract(&#34;&#34;, &#34;psk_id_hash&#34;, psk_id)
+  info_hash = LabeledExtract(&#34;&#34;, &#34;info_hash&#34;, info)
+  key_schedule_context = concat(mode, psk_id_hash, info_hash)
+
+  secret = LabeledExtract(shared_secret, &#34;secret&#34;, psk)
+
+  key = LabeledExpand(secret, &#34;key&#34;, key_schedule_context, Nk)
+  base_nonce = LabeledExpand(secret, &#34;base_nonce&#34;, key_schedule_context, Nn)
+  exporter_secret = LabeledExpand(secret, &#34;exp&#34;, key_schedule_context, Nh)
+
+  return Context&lt;ROLE&gt;(key, base_nonce, 0, exporter_secret)
+</code></pre></div><p>This is all that is needed to implement <a class="link" href="https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/"  target="_blank" rel="noopener"
+    >HPKE</a>.
+All code examples here are taken directly from the Cryspen HPKE reference implementation.
+You can find the full code in the <a class="link" href="https://github.com/cryspen/hpke-spec"  target="_blank" rel="noopener"
+    >Github repository</a> as well as the <a class="link" href="https://tech.cryspen.com/hpke-spec"  target="_blank" rel="noopener"
+    >documentation</a>.</p>
+<h2 id="implementation-considerations">Implementation Considerations</h2>
+<p>When defining HPKE in hacspec, or most other programming languages, there are a
+number of considerations that impact the way the code looks.</p>
+<p>The hacspec code is as close to the RFC pseudocode as possible.
+But some changes are needed.</p>
+<h3 id="randomness">Randomness</h3>
+<p>hacspec does not allow to draw randomness.
+It is therefore necessary to pass in randomness every time it is needed.</p>
+<p>This approach is pretty close to the way this would be implemented in native Rust
+where a random-number generator is passed in and used to generate randomness.
+For simplicity hacspec expects the randomness to be drawn on the outside instead
+of doing it within the specification.</p>
+<p>Note that it is possible to pre-determine the amount of randomness needed by HPKE
+calls because randomness is only needed when setting up the sender.
+At this point the KEM mechanisms and hence the required randomness is known.</p>
+<h3 id="configuration-parameters">Configuration Parameters</h3>
+<p>The <a class="link" href="https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/"  target="_blank" rel="noopener"
+    >HPKE</a> RFC makes most of the configuration implicit to the functions rather than
+passing the algorithm identifiers around.
+Because the hacspec implementation has to know which algorithm to pick, this is
+of course not possible here.</p>
+<p>HPKE hacspec functions take either an <a class="link" href="https://tech.cryspen.com/hpke-spec/hpke/struct.HPKEConfig.html"  target="_blank" rel="noopener"
+    ><code>HPKEConfig</code></a> object with all algorithms
+in it or the specific algorithm identifier needed for the operation.</p>
+<h3 id="naming">Naming</h3>
+<p>The <a class="link" href="https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/"  target="_blank" rel="noopener"
+    >HPKE</a> RFC uses, in some cases, names that are impossible to use in hacspec
+because they are keywords or contain illegal characters.
+Further does hacspec not support member functions as defined for the <code>Context</code>.</p>
+<p>We therefore replace <code>.</code> in member function calls such as <code>Context.Export</code> with an underscore,
+i.e. write <code>Context_Export</code>.
+Keywords such as <code>open</code> are replaced with a semantically equivalent version, i.e.
+<code>HpkeOpen</code> in this example.</p>
+<h3 id="secret-bytes">Secret bytes</h3>
+<p>hacspec has the notion of secret integers that can&rsquo;t be used for certain operations
+and should enforce secret-independent computation time.</p>
+<p>For simplicity the hacspec HPKE implementation uses secret bytes everywhere even
+if not necessary, e.g. for cipher texts.</p>
+<h3 id="errors">Errors</h3>
+<p>While the RFC defines a set of errors it does not always define which errors
+are raised.
+For example, it leaves open whether implementations convert errors from the
+Diffie-Hellman operations into KEM errors (<code>EncapError</code>/<code>DecapError</code>) or not.</p>
+<p>With the specific implementation in hacspec here the errors are clearly defined.</p>
+<h2 id="about-hacspec">About hacspec</h2>
+<p><a class="link" href="https://hacspec.org"  target="_blank" rel="noopener"
+    >hacspec</a> is a specification language for cryptographic mechanisms, and more, embedded in <a class="link" href="https://www.rust-lang.org/"  target="_blank" rel="noopener"
+    >Rust</a>.
+It is a language for writing succinct, executable, formal specifications for cryptographic components.
+Syntactically, hacspec is a purely functional subset of Rust that aims to be readable by developers, cryptographers, and verification experts.
+An application developer can use hacspec to specify and prototype cryptographic components in Rust, and then either replace this specification with a verified implementation before deployment
+or use the hacspec code directly.</p>
+<p>We used <a class="link" href="https://hacspec.org"  target="_blank" rel="noopener"
+    >hacspec</a> here to write an executable, succinct, specification of <a class="link" href="https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/"  target="_blank" rel="noopener"
+    >HPKE</a>
+that&rsquo;s embedding the full RFC into its <a class="link" href="https://tech.cryspen.com/hpke-spec"  target="_blank" rel="noopener"
+    >documentation</a></p>
+<p><a class="link" href="https://hacspec.org"  target="_blank" rel="noopener"
+    >hacspec</a> is at the heart of a novel, modular verification framework for Rust
+applications developed by <a class="link" href="https://www.cryspen.com"  target="_blank" rel="noopener"
+    >Cryspen</a> in cooperation with the <a class="link" href="https://team.inria.fr/prosecco/"  target="_blank" rel="noopener"
+    >Prosecco</a> team.</p>
+<h2 id="summary">Summary</h2>
+<p>Even though <a class="link" href="https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/"  target="_blank" rel="noopener"
+    >HPKE</a> is a relatively simple scheme it requires care when implementing.
+This blog post gives an overview of how <a class="link" href="https://hacspec.org"  target="_blank" rel="noopener"
+    >hacspec</a> can be used to achieve an executable
+version of the <a class="link" href="https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/"  target="_blank" rel="noopener"
+    >HPKE</a> RFC that can be used as implementation on its own or as
+specification and reference implementation when implementing HPKE.</p>
+<p>My company <a class="link" href="https://www.cryspen.com"  target="_blank" rel="noopener"
+    >Cryspen</a> offers support for using <a class="link" href="https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/"  target="_blank" rel="noopener"
+    >HPKE</a> as well as high assurance implementations
+of HPKE and other protocols.
+<a class="link" href="mailto:franziskus@cryspen.com" >Get in touch for more information.</a></p>
+<hr>
+<ul>
+<li><i class="fab fa-github"></i> <a class="link" href="https://github.com/cryspen/hpke-spec"  target="_blank" rel="noopener"
+    >Github repository</a></li>
+<li><i class="fa fa-book" aria-hidden="true"></i> <a class="link" href="https://tech.cryspen.com/hpke-spec"  target="_blank" rel="noopener"
+    >Documentation</a></li>
+<li><i class="fa fa-file" aria-hidden="true"></i> <a class="link" href="https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/"  target="_blank" rel="noopener"
+    >RFC</a></li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/hacspec/">hacspec</a>
+        
+            <a href="/tags/hpke/">hpke</a>
+        
+            <a href="/tags/ietf/">ietf</a>
+        
+            <a href="/tags/cryspen/">Cryspen</a>
+        
+    </section>
+
+
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css"integrity="sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js"integrity="sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8"crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js"integrity="sha384-vZTG03m&#43;2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl"crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ]
+        });})
+</script>
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">Related contents</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="has-image">
+    <a href="/p/tldr-hybrid-public-key-encryption/">
+        
+        
+            <div class="article-image">
+                <img src="/p/tldr-hybrid-public-key-encryption/hybrid.0c3605516a00dfaeb7b176448e62a0a7_hu08cb25aae405155d9080e0a0f66756a3_268000_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy" 
+                        data-key="" 
+                        data-hash="md5-DDYFUWoA3663sXZEjmKgpw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">TL;DR - Hybrid Public Key Encryption</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+     
+     
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2013 - 
+        
+        2022 Dr Franziskus Kiefer
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.1.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+        <aside class="sidebar right-sidebar sticky">
+            <section class="widget archives">
+                <div class="widget-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                </div>
+                <h2 class="widget-title section-title">Table of contents</h2>
+                
+                <div class="widget--toc">
+                    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#encrypting-to-a-public-key">Encrypting to a Public Key</a>
+      <ol>
+        <li><a href="#the-auth-mode">The Auth Mode</a></li>
+        <li><a href="#setup">Setup</a></li>
+        <li><a href="#encap">Encap</a></li>
+        <li><a href="#keyschedule">KeySchedule</a></li>
+      </ol>
+    </li>
+    <li><a href="#implementation-considerations">Implementation Considerations</a>
+      <ol>
+        <li><a href="#randomness">Randomness</a></li>
+        <li><a href="#configuration-parameters">Configuration Parameters</a></li>
+        <li><a href="#naming">Naming</a></li>
+        <li><a href="#secret-bytes">Secret bytes</a></li>
+        <li><a href="#errors">Errors</a></li>
+      </ol>
+    </li>
+    <li><a href="#about-hacspec">About hacspec</a></li>
+    <li><a href="#summary">Summary</a></li>
+  </ol>
+</nav>
+                </div>
+            </section>
+        </aside>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

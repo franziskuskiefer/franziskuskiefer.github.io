@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Tanja Lange: The Standardization Ecosystem: A Fertile Ground for Bad Ideas and Backdoors (invited talk) On the example of the Dual-EC DRBG Tanja talked about the potential for backdoors in standardisation processes.
+hacspec See hacspec post for details on my hacspec talk.
+Formal Verification of Ephemeral Diffie-Hellman Over COSE (EDHOC) EDHOC is a light-weight key-exchange protocol for IoT devices. Think TLS in light. The authors formally verified that the protocol is secure (forward secrecy, ?'><title>Security Standardisation Research 2018</title>
+
+<link rel='canonical' href='https://www.franziskuskiefer.de/p/security-standardisation-research-2018/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Security Standardisation Research 2018'>
+<meta property='og:description' content='Tanja Lange: The Standardization Ecosystem: A Fertile Ground for Bad Ideas and Backdoors (invited talk) On the example of the Dual-EC DRBG Tanja talked about the potential for backdoors in standardisation processes.
+hacspec See hacspec post for details on my hacspec talk.
+Formal Verification of Ephemeral Diffie-Hellman Over COSE (EDHOC) EDHOC is a light-weight key-exchange protocol for IoT devices. Think TLS in light. The authors formally verified that the protocol is secure (forward secrecy, ?'>
+<meta property='og:url' content='https://www.franziskuskiefer.de/p/security-standardisation-research-2018/'>
+<meta property='og:site_name' content='Dr Franziskus Kiefer'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='conference' /><meta property='article:published_time' content='2018-11-28T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2018-11-28T00:00:00&#43;00:00'/><meta property='og:image' content='https://www.franziskuskiefer.de/images/profilepic.jpg' />
+<meta name="twitter:site" content="@_franziskus_">
+    <meta name="twitter:creator" content="@_franziskus_"><meta name="twitter:title" content="Security Standardisation Research 2018">
+<meta name="twitter:description" content="Tanja Lange: The Standardization Ecosystem: A Fertile Ground for Bad Ideas and Backdoors (invited talk) On the example of the Dual-EC DRBG Tanja talked about the potential for backdoors in standardisation processes.
+hacspec See hacspec post for details on my hacspec talk.
+Formal Verification of Ephemeral Diffie-Hellman Over COSE (EDHOC) EDHOC is a light-weight key-exchange protocol for IoT devices. Think TLS in light. The authors formally verified that the protocol is secure (forward secrecy, ?"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://www.franziskuskiefer.de/images/profilepic.jpg' />
+    </head>
+    <body class="
+    article-page has-toc
+">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex 
+    
+        extended
+    
+">
+    
+        <div id="article-toolbar">
+            <a href="https://www.franziskuskiefer.de/" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>Back</span>
+            </a>
+        </div>
+    
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <h2 class="article-title">
+        <a href="/p/security-standardisation-research-2018/">Security Standardisation Research 2018</a>
+    </h2>
+
+    
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Nov 28, 2018</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    2 min read
+                </time>
+            </div>
+        
+    </footer>
+    
+</div>
+</header>
+
+    <section class="article-content">
+    <h2 id="tanja-lange-the-standardization-ecosystem-a-fertile-ground-for-bad-ideas-and-backdoors">Tanja Lange: The Standardization Ecosystem: A Fertile Ground for Bad Ideas and Backdoors</h2>
+<p>(invited talk)
+On the example of the Dual-EC DRBG Tanja talked about the potential for backdoors in standardisation processes.</p>
+<h2 id="hacspec">hacspec</h2>
+<p>See <a class="link" href="../hacspec2" >hacspec post</a> for details on my hacspec talk.</p>
+<h2 id="formal-verification-of-ephemeral-diffie-hellman-over-cose-edhoc">Formal Verification of Ephemeral Diffie-Hellman Over COSE (EDHOC)</h2>
+<p><a class="link" href="https://datatracker.ietf.org/doc/html/draft-selander-ace-cose-ecdhe-10"  target="_blank" rel="noopener"
+    >EDHOC</a> is a light-weight key-exchange protocol for IoT devices.
+Think TLS in light.
+The authors formally verified that the protocol is secure (forward secrecy, ???).
+Unfortunately the protocol has many pitfalls (data used earl without authentication, etc.)</p>
+<h2 id="andreas-hülsing-to-be-standardized-hash-based-signature-schemes">Andreas Hülsing: (To be) Standardized Hash-Based Signature Schemes</h2>
+<ul>
+<li>It&rsquo;s likeyl that at some point pq will be real -&gt; risk</li>
+<li>hash based signatures (merkle): no new hardness, easy construction, stateful</li>
+<li><a class="link" href="https://datatracker.ietf.org/doc/html/draft-mcgrew-hash-sigs-13"  target="_blank" rel="noopener"
+    >LMS</a> vs <a class="link" href="https://tools.ietf.org/html/rfc8391"  target="_blank" rel="noopener"
+    >XMSS</a> currently in standardisation (mostly the same, but slightly different security assumptions, LMS is faster)</li>
+<li>Look at tweakable functions more</li>
+<li><a class="link" href="https://sphincs.org"  target="_blank" rel="noopener"
+    >SPHINCS</a>: get rid of state</li>
+<li>XMSS<sup>MT</sup> + HORST</li>
+<li>HORS (few time signature scheme)</li>
+<li>also SPHINCS, Gravity-SPHINCS, (PICNIC)</li>
+</ul>
+<h2 id="experimental-evaluation-of-attacks-on-tesla-secured-time-synchronization-protocols">Experimental Evaluation of Attacks on TESLA-secured Time Synchronization Protocols</h2>
+<ul>
+<li>PTB has to distribute secure time</li>
+<li>IEEE 1588/IETF/Galileo all use TESLA</li>
+<li>TESLA: one-way sync</li>
+<li>small-step/big-step attack (always possible, not specific to TESLA)</li>
+<li>countermeasures: make it take longer; reset via two-way sync</li>
+</ul>
+<h2 id="co-ordinating-developers-and-high-risk-users-of-privacy-enhanced-secure-messaging-protocols">Co-ordinating Developers and High-Risk Users of Privacy-Enhanced Secure Messaging Protocols</h2>
+<ul>
+<li>security as a social problems: understand threat model of real users</li>
+<li>
+<ol>
+<li>Developer-User disconnect 2) High-risk user problem (could die)</li>
+</ol>
+</li>
+<li>first study on high-risk users to compare with &ldquo;normal&rdquo; users</li>
+</ul>
+<h2 id="building-blocks-in-standards-improving-consistency-in-standardization-with-ontology-and-reasoning">Building Blocks in Standards: Improving Consistency in Standardization with Ontology and Reasoning</h2>
+<ul>
+<li>Using ontology to model standards</li>
+<li>make it easier to write/combine standards</li>
+</ul>
+<h1 id="day2">Day2</h1>
+<h2 id="bertram-poettering-recent-results-on-the-cryptanalysis-of-ocb2">Bertram Poettering: Recent Results on the Cryptanalysis of OCB2</h2>
+<ul>
+<li>Recently attacks on AUTH and IND-CCA of OCB2</li>
+<li>Combining XE and XEX is pitfall</li>
+<li>Full decryption of OCB2 possible (if more than 2 blocks)</li>
+</ul>
+<h2 id="karthik-bhargavan-verified-cryptography-for-verified-protocols">Karthik Bhargavan: Verified Cryptography for Verified Protocols</h2>
+<ul>
+<li>Implementations of specs suck (specs at fault)</li>
+<li>get clear security definitions and assumptions in specs</li>
+<li>make clear APIs between layers</li>
+</ul>
+<h2 id="defeating-the-downgrade-attack-on-identity-privacy-in-5g">Defeating the Downgrade Attack on Identity Privacy in 5G</h2>
+<ul>
+<li>Pseudonyms or PK to prevent IMSI catching</li>
+<li>New solution for preventing downgrade attacks to 2/3/4G etc. using pseudonyms</li>
+</ul>
+<h2 id="identity-confidentiality-in-5g-mobile-telephony-systems">Identity Confidentiality in 5G Mobile Telephony Systems</h2>
+<ul>
+<li>ECIES-based soltuion for privacy (send encrypted SUPI.MSIN)</li>
+<li>PK scheme has security issues and vulnerable to qunatum computers</li>
+<li>Propose symmetric solution</li>
+<li>Proven secure in a BPR-like security model</li>
+</ul>
+<h2 id="thyla-van-der-merwe-on-the-evolution-of-standards-development">Thyla van der Merwe: On the Evolution of Standards Development</h2>
+<h2 id="great-expectations-a-critique-of-current-statistical-testing--certification-of-random-number-generators">Great Expectations: A Critique of Current Statistical Testing &amp; Certification of Random Number Generators</h2>
+<h2 id="building-a-beacon-format-standard-an-exercise-in-limiting-the-power-of-a-ttp">Building a Beacon Format Standard: An Exercise in Limiting the Power of a TTP</h2>
+<ul>
+<li></li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/conference/">conference</a>
+        
+    </section>
+
+
+    </footer>
+
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+</aside>
+
+     
+     
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2013 - 
+        
+        2022 Dr Franziskus Kiefer
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.1.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer="true"
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    
+        <aside class="sidebar right-sidebar sticky">
+            <section class="widget archives">
+                <div class="widget-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                </div>
+                <h2 class="widget-title section-title">Table of contents</h2>
+                
+                <div class="widget--toc">
+                    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#tanja-lange-the-standardization-ecosystem-a-fertile-ground-for-bad-ideas-and-backdoors">Tanja Lange: The Standardization Ecosystem: A Fertile Ground for Bad Ideas and Backdoors</a></li>
+    <li><a href="#hacspec">hacspec</a></li>
+    <li><a href="#formal-verification-of-ephemeral-diffie-hellman-over-cose-edhoc">Formal Verification of Ephemeral Diffie-Hellman Over COSE (EDHOC)</a></li>
+    <li><a href="#andreas-hülsing-to-be-standardized-hash-based-signature-schemes">Andreas Hülsing: (To be) Standardized Hash-Based Signature Schemes</a></li>
+    <li><a href="#experimental-evaluation-of-attacks-on-tesla-secured-time-synchronization-protocols">Experimental Evaluation of Attacks on TESLA-secured Time Synchronization Protocols</a></li>
+    <li><a href="#co-ordinating-developers-and-high-risk-users-of-privacy-enhanced-secure-messaging-protocols">Co-ordinating Developers and High-Risk Users of Privacy-Enhanced Secure Messaging Protocols</a></li>
+    <li><a href="#building-blocks-in-standards-improving-consistency-in-standardization-with-ontology-and-reasoning">Building Blocks in Standards: Improving Consistency in Standardization with Ontology and Reasoning</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#bertram-poettering-recent-results-on-the-cryptanalysis-of-ocb2">Bertram Poettering: Recent Results on the Cryptanalysis of OCB2</a></li>
+    <li><a href="#karthik-bhargavan-verified-cryptography-for-verified-protocols">Karthik Bhargavan: Verified Cryptography for Verified Protocols</a></li>
+    <li><a href="#defeating-the-downgrade-attack-on-identity-privacy-in-5g">Defeating the Downgrade Attack on Identity Privacy in 5G</a></li>
+    <li><a href="#identity-confidentiality-in-5g-mobile-telephony-systems">Identity Confidentiality in 5G Mobile Telephony Systems</a></li>
+    <li><a href="#thyla-van-der-merwe-on-the-evolution-of-standards-development">Thyla van der Merwe: On the Evolution of Standards Development</a></li>
+    <li><a href="#great-expectations-a-critique-of-current-statistical-testing--certification-of-random-number-generators">Great Expectations: A Critique of Current Statistical Testing &amp; Certification of Random Number Generators</a></li>
+    <li><a href="#building-a-beacon-format-standard-an-exercise-in-limiting-the-power-of-a-ttp">Building a Beacon Format Standard: An Exercise in Limiting the Power of a TTP</a></li>
+  </ol>
+</nav>
+                </div>
+            </section>
+        </aside>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                defer="false"
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

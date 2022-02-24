@@ -6,7 +6,554 @@
         <description>Recent content on Dr Franziskus Kiefer</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Thu, 10 Feb 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 24 Feb 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>An Executable HPKE Specification</title>
+        <link>https://www.franziskuskiefer.de/p/an-executable-hpke-specification/</link>
+        <pubDate>Thu, 24 Feb 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://www.franziskuskiefer.de/p/an-executable-hpke-specification/</guid>
+        <description>&lt;img src="https://www.franziskuskiefer.de/p/an-executable-hpke-specification/header.png" alt="Featured image of post An Executable HPKE Specification" /&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;HPKE&lt;/a&gt; is published &lt;a class=&#34;link&#34; href=&#34;https://datatracker.ietf.org/rg/cfrg/about/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;CFRG&lt;/a&gt; as &lt;a class=&#34;link&#34; href=&#34;https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;RFC 9180&lt;/a&gt; that describes a scheme for hybrid public key encryption.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;📚 Please go and read our &lt;a class=&#34;link&#34; href=&#34;https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/&#34; &gt;TL;DR on HPKE&lt;/a&gt; if you nee more background on HPKE.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;In this I describe the first executable HPKE specification using &lt;a class=&#34;link&#34; href=&#34;https://hacspec.org&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;hacspec&lt;/a&gt;.
+It is not only an executable specification of &lt;a class=&#34;link&#34; href=&#34;https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;HPKE&lt;/a&gt;, it is also an annotated version
+of the RFC that can be read instead of (or in addition to) the RFC.
+While the &lt;a class=&#34;link&#34; href=&#34;https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/&#34; &gt;TL;DR on HPKE&lt;/a&gt; was intended for consumers or potential users of HPKE,
+this blog post is aimed at implementators that want to implement HPKE or understand
+it better.&lt;/p&gt;
+&lt;p&gt;It is a showcase for Cryspen&amp;rsquo;s technology stack.
+In a follow up blog post we will describe how to connect the &lt;a class=&#34;link&#34; href=&#34;https://hacspec.org&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;hacspec&lt;/a&gt; specification
+to efficient cryptographic primitives and formal proofs.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;This blog post focuses on the Base and Auth mode with DHKEM to demonstrate the capabilities
+of hacspec.
+For the full specification please read the full &lt;a class=&#34;link&#34; href=&#34;https://tech.cryspen.com/hpke-spec&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;documentation&lt;/a&gt;, or look at the
+&lt;a class=&#34;link&#34; href=&#34;https://github.com/cryspen/hpke-spec&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Github repository&lt;/a&gt; for the HPKE hacspec source code.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Recall that HPKE provides a variant of public-key encryption of arbitrary-sized plaintexts for a recipient public key.
+It works for any combination of an asymmetric key encapsulation mechanism (KEM), key derivation function (KDF), and authenticated encryption with additional data (AEAD) encryption function.&lt;/p&gt;
+&lt;p&gt;In the following I&amp;rsquo;ll first show the high-level API of HPKE works before giving
+details on the core functions within HPKE.
+All code examples are in hacspec.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 Go ahead and &lt;a class=&#34;link&#34; href=&#34;https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/#try-it-out-now&#34; &gt;run the hacspec HPKE in the browser&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;encrypting-to-a-public-key&#34;&gt;Encrypting to a Public Key&lt;/h2&gt;
+&lt;p&gt;This is the most basic functionality HPKE offers; encrypting a payload to a public key.
+So how does this look on the outside?&lt;/p&gt;
+&lt;p&gt;The process consists of two steps.
+&lt;em&gt;First&lt;/em&gt; a random &lt;code&gt;shared_secret&lt;/code&gt; is generated that can be used for
+symmetric encryption with an AEAD, and an encapsulation that can be used by the
+receiver in combination with their private key to compute the same &lt;code&gt;shared_secret&lt;/code&gt;.
+This function is denoted &lt;code&gt;SetupBaseS&lt;/code&gt; below (because this is setting up the sender
+in the HPKE base mode).
+Note that the setup function expands the &lt;code&gt;shared_secret&lt;/code&gt; to a key schedule that
+is used by the AEAD.
+More details in the &lt;a class=&#34;link&#34; href=&#34;#setup&#34; &gt;Setup&lt;/a&gt; section.
+&lt;em&gt;Then&lt;/em&gt; the &lt;code&gt;shared_secret&lt;/code&gt; is used to encrypt the payload with an AEAD.
+This function is denoted &lt;code&gt;AeadSeal&lt;/code&gt; below.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-rust&#34; data-lang=&#34;rust&#34;&gt;&lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;enc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;key&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;nonce&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;_&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;_&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;SetupBaseS&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;config&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pkR&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;info&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;randomness&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;cipher_text&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;AeadSeal&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;aead_id&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;key&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;nonce&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;aad&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;payload&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The receiver gets &lt;code&gt;cipher_text&lt;/code&gt; and &lt;code&gt;enc&lt;/code&gt; that it can use to retrieve the &lt;code&gt;payload&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-rust&#34; data-lang=&#34;rust&#34;&gt;&lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;key&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;nonce&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;_&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;_&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;SetupBaseR&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;config&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;enc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;skR&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;info&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;payload&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;AeadOpen&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;aead&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;key&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;nonce&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;aad&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ct&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;In the remainder of this blog post we&amp;rsquo;ll show how &lt;code&gt;SetupBaseS&lt;/code&gt; is defined.
+For a description of the receiver please check out the &lt;a class=&#34;link&#34; href=&#34;https://tech.cryspen.com/hpke-spec&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;documentation&lt;/a&gt;.
+We will not define &lt;code&gt;AeadSeal&lt;/code&gt; and &lt;code&gt;AeadOpen&lt;/code&gt; here as they follow the definition
+of &lt;a class=&#34;link&#34; href=&#34;https://www.rfc-editor.org/info/rfc5116&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;RFC 5116&lt;/a&gt;.&lt;/p&gt;
+&lt;details&gt;
+&lt;summary&gt;💡  Background on hacspec Syntax&lt;/summary&gt;
+In case you are not familiar with hacspec (Rust) syntax, here are some short explainers
+to understand the hacspec code.
+&lt;p&gt;&lt;strong&gt;The Question mark &lt;code&gt;?&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The question mark &lt;code&gt;?&lt;/code&gt; at the end of most lines in the hacspec code is the
+way Rust performs error propagation.
+If the function that is called before the &lt;code&gt;?&lt;/code&gt; does not return an error result,
+the program continues as expected.
+But if the function returns an error, the function stops and returns with the error
+instead.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The Result Type&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;hacspec (and Rust) uses a &lt;code&gt;Result&lt;/code&gt; type such as &lt;code&gt;Result&amp;lt;OkType, ErrorType&amp;gt;&lt;/code&gt; to return errors.
+In hacspec result types are often wrapped into type aliases.
+For example the &lt;code&gt;SenderContextResult&lt;/code&gt; type in the code snippet for &lt;code&gt;SetupBaseS&lt;/code&gt;
+below is a type alias for &lt;code&gt;Result&amp;lt;(Encapsulation, KeySchedule), Error&amp;gt;&lt;/code&gt;.
+If the function is successful and we reach line 10, the function returns success,
+which is written as &lt;code&gt;SenderContextResult::Ok(...)&lt;/code&gt;.&lt;/p&gt;
+&lt;/details&gt;
+&lt;h3 id=&#34;the-auth-mode&#34;&gt;The Auth Mode&lt;/h3&gt;
+&lt;p&gt;In the Auth mode HPKE requires additional input to the &lt;code&gt;Setup&lt;/code&gt; functions.
+The sender needs to provide their private key &lt;code&gt;skS&lt;/code&gt; to authenticate themselves.
+The receiver uses the sender&amp;rsquo;s public key &lt;code&gt;pkS&lt;/code&gt; in addition to authenticate the sender.
+The two functions are defined as follows.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-rust&#34; data-lang=&#34;rust&#34;&gt;&lt;span class=&#34;n&#34;&gt;SetupAuthS&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;config&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pkR&lt;/span&gt;:&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;info&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;skS&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;randomness&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;SetupAuthR&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;config&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;enc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;skR&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;info&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pkS&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;setup&#34;&gt;Setup&lt;/h3&gt;
+&lt;p&gt;In order to set up the KEM and key schedule the sender uses the following &lt;code&gt;SetupBaseS&lt;/code&gt;
+function.
+Recall that the &lt;code&gt;BaseS&lt;/code&gt; refers to the HPKE base mode and sender.&lt;/p&gt;
+&lt;p&gt;The function takes the receiver&amp;rsquo;s public key &lt;code&gt;pkR&lt;/code&gt; and context information &lt;code&gt;info&lt;/code&gt;
+(a sequence of bytes to bind the setup to a specific context).
+In addition we need to pass in the &lt;code&gt;configuration&lt;/code&gt; that contains the mode as well
+as the algorithm identifiers for the KEM.
+Because hacspec can&amp;rsquo;t draw its own &lt;code&gt;randomness&lt;/code&gt;, as explained &lt;a class=&#34;link&#34; href=&#34;#randomness&#34; &gt;below&lt;/a&gt;,
+it is passed in as well.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-rust&#34; data-lang=&#34;rust&#34;&gt;&lt;span class=&#34;k&#34;&gt;pub&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;fn&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;SetupBaseS&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;configuration&lt;/span&gt;: &lt;span class=&#34;nc&#34;&gt;HPKEConfig&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pkR&lt;/span&gt;: &lt;span class=&#34;kp&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;nc&#34;&gt;HpkePublicKey&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;info&lt;/span&gt;: &lt;span class=&#34;kp&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;nc&#34;&gt;Info&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;randomness&lt;/span&gt;: &lt;span class=&#34;nc&#34;&gt;Randomness&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;-&amp;gt; &lt;span class=&#34;nc&#34;&gt;SenderContextResult&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;shared_secret&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;enc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Encap&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;kem&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;configuration&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pkR&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;randomness&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;key_schedule&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;KeySchedule&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;config&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;shared_secret&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;info&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;default_psk&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(),&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;default_psk_id&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(),&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;SenderContextResult&lt;/span&gt;::&lt;span class=&#34;nb&#34;&gt;Ok&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;((&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;enc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;key_schedule&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;For comparison you can find the RFC pseudocode definition of &lt;code&gt;SetupBaseS&lt;/code&gt; below
+(which is not well defined as is because it is missing the algorithm identifiers).
+The main difference between the two functions is the explicit configuration and
+randomness required in hacspec.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;def SetupBaseS(pkR, info):
+  shared_secret, enc = Encap(pkR)
+  return enc, KeyScheduleS(mode_base, shared_secret, info,
+                           default_psk, default_psk_id)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The setup function calls the two functions &lt;a class=&#34;link&#34; href=&#34;#encap&#34; &gt;&lt;code&gt;Encap&lt;/code&gt;&lt;/a&gt; and &lt;a class=&#34;link&#34; href=&#34;#keyschedule&#34; &gt;&lt;code&gt;KeySchedule&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;encap&#34;&gt;Encap&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;(Reminder: For demonstration purposes we use the DHKEM defined in the RFC.)&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;Encap&lt;/code&gt; function takes the receiver&amp;rsquo;s public key &lt;code&gt;pkR&lt;/code&gt; and generates a &lt;code&gt;shared_secret&lt;/code&gt; as well
+as an &lt;code&gt;encapsulation&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;It is necessary to pass in the algorithm identifier to know
+which KEM to use and the randomness to generate a new ephemeral key pair for the
+KEM.
+See the &lt;a class=&#34;link&#34; href=&#34;#implementation-considerations&#34; &gt;discussion section below&lt;/a&gt; on the necessity of the API changes.
+Because the function can fail it returns a result instead of simply the computed
+values as described in the RFC pseudocode.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;def Encap(pkR):
+  skE, pkE = GenerateKeyPair()
+  dh = DH(skE, pkR)
+  enc = SerializePublicKey(pkE)
+
+  pkRm = SerializePublicKey(pkR)
+  kem_context = concat(enc, pkRm)
+
+  shared_secret = ExtractAndExpand(dh, kem_context)
+  return shared_secret, enc
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;All these changes make it much clearer what can happen within the function and
+in particular which error states might occur.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;Encap&lt;/code&gt; function generates a fresh DH key pair and computes the DH between the
+receivers public key and the ephemeral private key $\text{dh}=\text{skE}*\text{pkR}$.
+The &lt;code&gt;shared_secret&lt;/code&gt; is then computed as the output of a key derivation function (HKDF)
+on input of the &lt;code&gt;dh&lt;/code&gt; value and the context that binds the key derivation to the
+parameters and public values.
+The encapsulation &lt;code&gt;enc&lt;/code&gt; is the serialized public key &lt;code&gt;pkE&lt;/code&gt; generated in the first
+step.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-rust&#34; data-lang=&#34;rust&#34;&gt;&lt;span class=&#34;k&#34;&gt;pub&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;fn&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;Encap&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pkR&lt;/span&gt;: &lt;span class=&#34;kp&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;nc&#34;&gt;PublicKey&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;alg&lt;/span&gt;: &lt;span class=&#34;nc&#34;&gt;KEM&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;rand&lt;/span&gt;: &lt;span class=&#34;nc&#34;&gt;Randomness&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;-&amp;gt; &lt;span class=&#34;nc&#34;&gt;EncapResult&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;skE&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pkE&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;GenerateKeyPair&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;alg&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;rand&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;dh&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;DH&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;alg&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;skE&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pkR&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;encapsulation&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;SerializePublicKey&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;alg&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pkE&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pkRm&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;SerializePublicKey&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;alg&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pkR&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;kem_context&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;enc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;concat&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pkRm&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;shared_secret&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ExtractAndExpand&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;alg&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;suite_id&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;alg&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;dh&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;kem_context&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;EncapResult&lt;/span&gt;::&lt;span class=&#34;nb&#34;&gt;Ok&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;((&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;shared_secret&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;encapsulation&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;keyschedule&#34;&gt;KeySchedule&lt;/h3&gt;
+&lt;p&gt;In order to use the &lt;code&gt;shared_secret&lt;/code&gt; with an AEAD and allow exporting additional
+key material, the following &lt;code&gt;KeySchedule&lt;/code&gt; derives the &lt;code&gt;key&lt;/code&gt; and &lt;code&gt;base_nonce&lt;/code&gt; for the
+AEAD and an &lt;code&gt;exporter_secret&lt;/code&gt; to export other keys.
+The key schedule is essentially a series of HKDF calls to extract different keys
+from the shared secret.&lt;/p&gt;
+&lt;p&gt;The main difference to the RFC here is again that it is necessary to pass in algorithm
+identifiers and the &lt;code&gt;suite_id&lt;/code&gt; to &lt;code&gt;LabeledExtract&lt;/code&gt; and &lt;code&gt;LabeledExpand&lt;/code&gt;.
+The &lt;code&gt;suite_id&lt;/code&gt; binds the KDF extract and expand functions to the specific context
+and is implicit in the RFC.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-rust&#34; data-lang=&#34;rust&#34;&gt;&lt;span class=&#34;k&#34;&gt;pub&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;fn&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;KeySchedule&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;config&lt;/span&gt;: &lt;span class=&#34;nc&#34;&gt;HPKEConfig&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;shared_secret&lt;/span&gt;: &lt;span class=&#34;kp&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;nc&#34;&gt;SharedSecret&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;info&lt;/span&gt;: &lt;span class=&#34;kp&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;nc&#34;&gt;Info&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;psk&lt;/span&gt;: &lt;span class=&#34;kp&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;nc&#34;&gt;Psk&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;psk_id&lt;/span&gt;: &lt;span class=&#34;kp&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;nc&#34;&gt;PskId&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;-&amp;gt; &lt;span class=&#34;nc&#34;&gt;ContextResult&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;VerifyPSKInputs&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;config&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;psk&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;psk_id&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;HPKEConfig&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;mode&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;_kem&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;kdf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;aead&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;config&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;psk_id_hash&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;LabeledExtract&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;kdf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;suite_id&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;config&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;empty_bytes&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(),&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;psk_id_hash_label&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(),&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;psk_id&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;info_hash&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;LabeledExtract&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;kdf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;suite_id&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;config&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;empty_bytes&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(),&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;info_hash_label&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(),&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;info&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;key_schedule_context&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;hpke_mode_label&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;mode&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;concat_owned&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;psk_id_hash&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;concat_owned&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;info_hash&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;secret&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;LabeledExtract&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;kdf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;suite_id&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;config&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;shared_secret&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;secret_label&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(),&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;psk&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;key&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;LabeledExpand&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;kdf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;suite_id&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;config&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;secret&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;key_label&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(),&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;key_schedule_context&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Nk&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;aead&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;base_nonce&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;LabeledExpand&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;kdf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;suite_id&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;config&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;secret&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;base_nonce_label&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(),&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;key_schedule_context&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Nn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;aead&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;exporter_secret&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;LabeledExpand&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;kdf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;suite_id&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;config&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;secret&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;exp_label&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(),&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;key_schedule_context&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Nh&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;kdf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;For comparison you can find the RFC pseudocode definition of &lt;code&gt;KeySchedule&lt;/code&gt; below.
+Note that the significantly longer hacspec definition above is not in fact longer
+but has longer lines that are wrapped.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;def KeySchedule&amp;lt;ROLE&amp;gt;(mode, shared_secret, info, psk, psk_id):
+  VerifyPSKInputs(mode, psk, psk_id)
+
+  psk_id_hash = LabeledExtract(&amp;#34;&amp;#34;, &amp;#34;psk_id_hash&amp;#34;, psk_id)
+  info_hash = LabeledExtract(&amp;#34;&amp;#34;, &amp;#34;info_hash&amp;#34;, info)
+  key_schedule_context = concat(mode, psk_id_hash, info_hash)
+
+  secret = LabeledExtract(shared_secret, &amp;#34;secret&amp;#34;, psk)
+
+  key = LabeledExpand(secret, &amp;#34;key&amp;#34;, key_schedule_context, Nk)
+  base_nonce = LabeledExpand(secret, &amp;#34;base_nonce&amp;#34;, key_schedule_context, Nn)
+  exporter_secret = LabeledExpand(secret, &amp;#34;exp&amp;#34;, key_schedule_context, Nh)
+
+  return Context&amp;lt;ROLE&amp;gt;(key, base_nonce, 0, exporter_secret)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This is all that is needed to implement &lt;a class=&#34;link&#34; href=&#34;https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;HPKE&lt;/a&gt;.
+All code examples here are taken directly from the Cryspen HPKE reference implementation.
+You can find the full code in the &lt;a class=&#34;link&#34; href=&#34;https://github.com/cryspen/hpke-spec&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Github repository&lt;/a&gt; as well as the &lt;a class=&#34;link&#34; href=&#34;https://tech.cryspen.com/hpke-spec&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;documentation&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;implementation-considerations&#34;&gt;Implementation Considerations&lt;/h2&gt;
+&lt;p&gt;When defining HPKE in hacspec, or most other programming languages, there are a
+number of considerations that impact the way the code looks.&lt;/p&gt;
+&lt;p&gt;The hacspec code is as close to the RFC pseudocode as possible.
+But some changes are needed.&lt;/p&gt;
+&lt;h3 id=&#34;randomness&#34;&gt;Randomness&lt;/h3&gt;
+&lt;p&gt;hacspec does not allow to draw randomness.
+It is therefore necessary to pass in randomness every time it is needed.&lt;/p&gt;
+&lt;p&gt;This approach is pretty close to the way this would be implemented in native Rust
+where a random-number generator is passed in and used to generate randomness.
+For simplicity hacspec expects the randomness to be drawn on the outside instead
+of doing it within the specification.&lt;/p&gt;
+&lt;p&gt;Note that it is possible to pre-determine the amount of randomness needed by HPKE
+calls because randomness is only needed when setting up the sender.
+At this point the KEM mechanisms and hence the required randomness is known.&lt;/p&gt;
+&lt;h3 id=&#34;configuration-parameters&#34;&gt;Configuration Parameters&lt;/h3&gt;
+&lt;p&gt;The &lt;a class=&#34;link&#34; href=&#34;https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;HPKE&lt;/a&gt; RFC makes most of the configuration implicit to the functions rather than
+passing the algorithm identifiers around.
+Because the hacspec implementation has to know which algorithm to pick, this is
+of course not possible here.&lt;/p&gt;
+&lt;p&gt;HPKE hacspec functions take either an &lt;a class=&#34;link&#34; href=&#34;https://tech.cryspen.com/hpke-spec/hpke/struct.HPKEConfig.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;&lt;code&gt;HPKEConfig&lt;/code&gt;&lt;/a&gt; object with all algorithms
+in it or the specific algorithm identifier needed for the operation.&lt;/p&gt;
+&lt;h3 id=&#34;naming&#34;&gt;Naming&lt;/h3&gt;
+&lt;p&gt;The &lt;a class=&#34;link&#34; href=&#34;https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;HPKE&lt;/a&gt; RFC uses, in some cases, names that are impossible to use in hacspec
+because they are keywords or contain illegal characters.
+Further does hacspec not support member functions as defined for the &lt;code&gt;Context&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;We therefore replace &lt;code&gt;.&lt;/code&gt; in member function calls such as &lt;code&gt;Context.Export&lt;/code&gt; with an underscore,
+i.e. write &lt;code&gt;Context_Export&lt;/code&gt;.
+Keywords such as &lt;code&gt;open&lt;/code&gt; are replaced with a semantically equivalent version, i.e.
+&lt;code&gt;HpkeOpen&lt;/code&gt; in this example.&lt;/p&gt;
+&lt;h3 id=&#34;secret-bytes&#34;&gt;Secret bytes&lt;/h3&gt;
+&lt;p&gt;hacspec has the notion of secret integers that can&amp;rsquo;t be used for certain operations
+and should enforce secret-independent computation time.&lt;/p&gt;
+&lt;p&gt;For simplicity the hacspec HPKE implementation uses secret bytes everywhere even
+if not necessary, e.g. for cipher texts.&lt;/p&gt;
+&lt;h3 id=&#34;errors&#34;&gt;Errors&lt;/h3&gt;
+&lt;p&gt;While the RFC defines a set of errors it does not always define which errors
+are raised.
+For example, it leaves open whether implementations convert errors from the
+Diffie-Hellman operations into KEM errors (&lt;code&gt;EncapError&lt;/code&gt;/&lt;code&gt;DecapError&lt;/code&gt;) or not.&lt;/p&gt;
+&lt;p&gt;With the specific implementation in hacspec here the errors are clearly defined.&lt;/p&gt;
+&lt;h2 id=&#34;about-hacspec&#34;&gt;About hacspec&lt;/h2&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://hacspec.org&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;hacspec&lt;/a&gt; is a specification language for cryptographic mechanisms, and more, embedded in &lt;a class=&#34;link&#34; href=&#34;https://www.rust-lang.org/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Rust&lt;/a&gt;.
+It is a language for writing succinct, executable, formal specifications for cryptographic components.
+Syntactically, hacspec is a purely functional subset of Rust that aims to be readable by developers, cryptographers, and verification experts.
+An application developer can use hacspec to specify and prototype cryptographic components in Rust, and then either replace this specification with a verified implementation before deployment
+or use the hacspec code directly.&lt;/p&gt;
+&lt;p&gt;We used &lt;a class=&#34;link&#34; href=&#34;https://hacspec.org&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;hacspec&lt;/a&gt; here to write an executable, succinct, specification of &lt;a class=&#34;link&#34; href=&#34;https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;HPKE&lt;/a&gt;
+that&amp;rsquo;s embedding the full RFC into its &lt;a class=&#34;link&#34; href=&#34;https://tech.cryspen.com/hpke-spec&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;documentation&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://hacspec.org&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;hacspec&lt;/a&gt; is at the heart of a novel, modular verification framework for Rust
+applications developed by &lt;a class=&#34;link&#34; href=&#34;https://www.cryspen.com&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Cryspen&lt;/a&gt; in cooperation with the &lt;a class=&#34;link&#34; href=&#34;https://team.inria.fr/prosecco/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Prosecco&lt;/a&gt; team.&lt;/p&gt;
+&lt;h2 id=&#34;summary&#34;&gt;Summary&lt;/h2&gt;
+&lt;p&gt;Even though &lt;a class=&#34;link&#34; href=&#34;https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;HPKE&lt;/a&gt; is a relatively simple scheme it requires care when implementing.
+This blog post gives an overview of how &lt;a class=&#34;link&#34; href=&#34;https://hacspec.org&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;hacspec&lt;/a&gt; can be used to achieve an executable
+version of the &lt;a class=&#34;link&#34; href=&#34;https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;HPKE&lt;/a&gt; RFC that can be used as implementation on its own or as
+specification and reference implementation when implementing HPKE.&lt;/p&gt;
+&lt;p&gt;My company &lt;a class=&#34;link&#34; href=&#34;https://www.cryspen.com&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Cryspen&lt;/a&gt; offers support for using &lt;a class=&#34;link&#34; href=&#34;https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;HPKE&lt;/a&gt; as well as high assurance implementations
+of HPKE and other protocols.
+&lt;a class=&#34;link&#34; href=&#34;mailto:franziskus@cryspen.com&#34; &gt;Get in touch for more information.&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;i class=&#34;fab fa-github&#34;&gt;&lt;/i&gt; &lt;a class=&#34;link&#34; href=&#34;https://github.com/cryspen/hpke-spec&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Github repository&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;i class=&#34;fa fa-book&#34; aria-hidden=&#34;true&#34;&gt;&lt;/i&gt; &lt;a class=&#34;link&#34; href=&#34;https://tech.cryspen.com/hpke-spec&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Documentation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;i class=&#34;fa fa-file&#34; aria-hidden=&#34;true&#34;&gt;&lt;/i&gt; &lt;a class=&#34;link&#34; href=&#34;https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;RFC&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
+        <title>TL;DR - Hybrid Public Key Encryption</title>
+        <link>https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/</link>
+        <pubDate>Thu, 24 Feb 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/</guid>
+        <description>&lt;img src="https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/hybrid.jpg" alt="Featured image of post TL;DR - Hybrid Public Key Encryption" /&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;HPKE&lt;/a&gt; is a &lt;a class=&#34;link&#34; href=&#34;https://datatracker.ietf.org/rg/cfrg/about/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;CFRG&lt;/a&gt; in &lt;a class=&#34;link&#34; href=&#34;https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;RFC 9180&lt;/a&gt; that describes a scheme for hybrid public key encryption.
+It is co-authored by my &lt;a class=&#34;link&#34; href=&#34;https://www.cryspen.com&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Cryspen&lt;/a&gt; co-founder &lt;a class=&#34;link&#34; href=&#34;https://bhargavan.info/index.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Karthikeyan Bhargavan&lt;/a&gt; and one of
+his PhD students &lt;a class=&#34;link&#34; href=&#34;https://www.benjaminlipp.de&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Benjamin Lipp&lt;/a&gt; as part of his research at &lt;a class=&#34;link&#34; href=&#34;https://team.inria.fr/prosecco&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Inria&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This blog post will give a brief overview of the specification and describes some use cases.&lt;/p&gt;
+&lt;p&gt;If you want to learn more about the security proofs behind HPKE and the RFC process,
+Benjamin wrote an &lt;a class=&#34;link&#34; href=&#34;https://www.benjaminlipp.de/p/hpke-cryptographic-standard/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;excellent blog post&lt;/a&gt; about it.&lt;/p&gt;
+&lt;p&gt;Hybrid Public Key Encryption, or short HPKE, is a cyrptographic mechanism that
+allows encrypting payload to a public key.
+It is called &amp;ldquo;hybrid&amp;rdquo; because the payload is encrypted with a symmetric scheme.
+The symmetric key is then encrypted to the receivers public key.
+The &lt;a class=&#34;link&#34; href=&#34;https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;HPKE&lt;/a&gt; standard defines a number of natural extensions to the basic setting
+that allow the sender to authenticate themselves.&lt;/p&gt;
+&lt;h2 id=&#34;hybrid-crypto-systems&#34;&gt;Hybrid Crypto Systems&lt;/h2&gt;
+&lt;p&gt;Hybrid public key encryption has been used in different ways since the early 1990s in protocols such as &lt;a class=&#34;link&#34; href=&#34;https://en.wikipedia.org/wiki/Pretty_Good_Privacy&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;PGP&lt;/a&gt; or &lt;a class=&#34;link&#34; href=&#34;https://en.wikipedia.org/wiki/Cryptographic_Message_Syntax&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;SMIME&lt;/a&gt;.
+While these two protocols are for a very specific use case a more general version of hybrid encryption is described in &lt;a class=&#34;link&#34; href=&#34;https://en.wikipedia.org/wiki/Integrated_Encryption_Scheme&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;ECIES&lt;/a&gt;.
+&lt;a class=&#34;link&#34; href=&#34;https://en.wikipedia.org/wiki/Integrated_Encryption_Scheme&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;ECIES&lt;/a&gt; is part of many systems nowadays.
+&lt;a class=&#34;link&#34; href=&#34;https://developer.apple.com/documentation/security/certificate_key_and_trust_services/keys/storing_keys_in_the_secure_enclave&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Storing keys in the secure enclave on an iOS&lt;/a&gt; device for example uses &lt;a class=&#34;link&#34; href=&#34;https://en.wikipedia.org/wiki/Integrated_Encryption_Scheme&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;ECIES&lt;/a&gt;.&lt;/p&gt;
+&lt;!-- For a deeper explanation and history of hybrid crypto systems I recommend reading
+[Christopher Wood&#39;s blog post]. --&gt;
+&lt;p&gt;However, there&amp;rsquo;s no general description of hybrid public key encryption with modern primitives.
+The &lt;a class=&#34;link&#34; href=&#34;https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;HPKE&lt;/a&gt; standard solves this issue.
+Even before the RFC is finalised it is used in specifications for &lt;a class=&#34;link&#34; href=&#34;https://datatracker.ietf.org/doc/draft-ietf-tls-esni/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;ECH&lt;/a&gt;, &lt;a class=&#34;link&#34; href=&#34;https://datatracker.ietf.org/doc/draft-ietf-mls-protocol/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;MLS&lt;/a&gt;, &lt;a class=&#34;link&#34; href=&#34;https://datatracker.ietf.org/doc/draft-pauly-dprive-oblivious-doh/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;ODOH&lt;/a&gt;, and &lt;a class=&#34;link&#34; href=&#34;https://datatracker.ietf.org/doc/draft-gpew-priv-ppm/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;PPM&lt;/a&gt;.
+This shows the high demand for &lt;a class=&#34;link&#34; href=&#34;https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;HPKE&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;HPKE has four distinct modes of operation: Base, Auth, PSK, AuthPSK.
+In this blog post we only describe the two most commonly used modes Base and Auth.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;HPKE Modes&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The &lt;em&gt;Base&lt;/em&gt; mode is the most common use case for HPKE where payload is encrypted
+to a public key.
+All other modes are authenticated in different ways.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Auth&lt;/em&gt; uses the sender&amp;rsquo;s private key for authentication&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;PSK&lt;/em&gt; uses a pre-shared, high-entropy, key for authentication&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;AuthPSK&lt;/em&gt; uses the sender&amp;rsquo;s private key as well as a pre-shared, high-entropy, key for authentication&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;encrypting-to-a-public-key&#34;&gt;Encrypting to a public key&lt;/h3&gt;
+&lt;p&gt;The following figure depicts the general flow of encrypting to a public key.
+This is the Base mode in HPKE.
+This is the most basic application of hybrid crypto systems.
+Alex knows the public key from Sasha and wants to send some &lt;code&gt;Data&lt;/code&gt; to them.
+Shasha&amp;rsquo;s public key is used to encrypt a shared secret, which is used to encrypt
+the &lt;code&gt;Data&lt;/code&gt;.
+The encrypted shared secret as well as the encrypted data is sent to Sasha, who
+can retrieve the shared secret with their corresponding private key.&lt;/p&gt;
+&lt;p&gt;&lt;figure style=&#34;flex-grow: 99; flex-basis: 238px&#34;&gt;
+		&lt;a href=&#34;https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/hybrid-encryption.png&#34; data-size=&#34;1229x1237&#34;&gt;&lt;img src=&#34;https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/hybrid-encryption.png&#34;
+				srcset=&#34;https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/hybrid-encryption_hu0ec71786f79143a99e1764e382ce63cf_316986_480x0_resize_box_3.png 480w, https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/hybrid-encryption_hu0ec71786f79143a99e1764e382ce63cf_316986_1024x0_resize_box_3.png 1024w&#34;
+				width=&#34;1229&#34;
+				height=&#34;1237&#34;
+				loading=&#34;lazy&#34;
+				&gt;
+		&lt;/a&gt;
+		
+	&lt;/figure&gt;&lt;/p&gt;
+&lt;h3 id=&#34;encrypting-to-a-public-key--authenticating-with-an-asymmetric-key&#34;&gt;Encrypting to a public key &amp;amp; Authenticating with an asymmetric key&lt;/h3&gt;
+&lt;p&gt;Sometimes it is useful or necessary to authenticate the sender of the data.
+This is depicted in the figure below and represents the HPKE Auth mode.
+The authentication is achieved by mixing in the sender&amp;rsquo;s private key such that
+the receiver will only retrieve the correct shared secret if the public key
+they use for the sender corresponds to the used private key.&lt;/p&gt;
+&lt;p&gt;&lt;figure style=&#34;flex-grow: 118; flex-basis: 285px&#34;&gt;
+		&lt;a href=&#34;https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/authenticated-hybrid-encryption.png&#34; data-size=&#34;1470x1237&#34;&gt;&lt;img src=&#34;https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/authenticated-hybrid-encryption.png&#34;
+				srcset=&#34;https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/authenticated-hybrid-encryption_hu2a8758be36ffa4ce890f3eb2a453dd08_355212_480x0_resize_box_3.png 480w, https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/authenticated-hybrid-encryption_hu2a8758be36ffa4ce890f3eb2a453dd08_355212_1024x0_resize_box_3.png 1024w&#34;
+				width=&#34;1470&#34;
+				height=&#34;1237&#34;
+				loading=&#34;lazy&#34;
+				&gt;
+		&lt;/a&gt;
+		
+	&lt;/figure&gt;&lt;/p&gt;
+&lt;h2 id=&#34;hpke&#34;&gt;HPKE&lt;/h2&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;HPKE&lt;/a&gt; is essentially standardising how to use &lt;a class=&#34;link&#34; href=&#34;https://en.wikipedia.org/wiki/Key_encapsulation&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Key Encapsulation Mechanisms (KEM)&lt;/a&gt;
+for hybrid encryption.
+The sender in &lt;a class=&#34;link&#34; href=&#34;https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;HPKE&lt;/a&gt; uses a KEM to generate the shared secret as well as the
+encapsulation.
+The shared secret is then used in an &lt;a class=&#34;link&#34; href=&#34;https://en.wikipedia.org/wiki/Authenticated_encryption#Authenticated_encryption_with_associated_data_%28AEAD%29&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;AEAD&lt;/a&gt; (after running it through a key schedule)
+in order to encrypt a payload.&lt;/p&gt;
+&lt;p&gt;All HPKE use cases so far only take advantage of the single-shot APIs from HPKE.
+In order to encrypt a payload to a public key the sender needs to provide the
+receiver&amp;rsquo;s public key &lt;code&gt;pkR&lt;/code&gt;, some information &lt;code&gt;info&lt;/code&gt; and additional data &lt;code&gt;aad&lt;/code&gt; to bind the encryption
+to a certain context, as well as the payload &lt;code&gt;pt&lt;/code&gt;.
+HPKE returns the cipher text &lt;code&gt;ct&lt;/code&gt; as well as the encapsulation &lt;code&gt;enc&lt;/code&gt; that are both sent to
+the receiver.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;enc, ct &amp;lt;- Seal(pkR, info, aad, pt)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;When using the Auth mode the sender&amp;rsquo;s private key &lt;code&gt;sk&lt;/code&gt; is needed in addition.&lt;/p&gt;
+&lt;p&gt;The receiver takes the encapsulation &lt;code&gt;enc&lt;/code&gt; and cipher text &lt;code&gt;ct&lt;/code&gt; together with their
+private key to retrieve the payload.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;pt &amp;lt;- Open(enc, skR, info, aad, ct)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;When using the Auth mode the sender&amp;rsquo;s public key &lt;code&gt;pkS&lt;/code&gt; is needed in addition.&lt;/p&gt;
+&lt;h3 id=&#34;multiple-encryptions&#34;&gt;Multiple Encryptions&lt;/h3&gt;
+&lt;p&gt;HPKE allows multiple encryptions with the same shared secret.
+This is favourable if multiple messages are sent from the sender to the receiver.
+To this end HPKE generates a context that allows encrypting (and decrypting) multiple
+messages.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;enc, ContextS &amp;lt;- SetupS(pkR, info)
+ContextR &amp;lt;- SetupR(enc, skR, info)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Note that HPKE goes a step further than the &lt;a class=&#34;link&#34; href=&#34;https://datatracker.ietf.org/doc/html/rfc5116&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;AEAD RFC&lt;/a&gt; and simplifies the API.
+The consumer only needs to provide the payload and (potentially empty) additional
+data.
+HPKE takes care of providing unique nonces to the AEAD and fails if the maximum
+number of encryptions with the context have been performed &amp;mdash; in particular if
+the nonce would overflow.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;ct &amp;lt;- ContextS.Seal(aad, pt)
+pt &amp;lt;- ContextR.Open(aad, ct)
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;exporting-secrets&#34;&gt;Exporting Secrets&lt;/h3&gt;
+&lt;p&gt;In some scenarios applications need to establish additional shared secrets.
+This can be achieved with the HPKE exporter interface.
+The API is similar to the &lt;code&gt;Seal&lt;/code&gt; and &lt;code&gt;Open&lt;/code&gt; functions above but don&amp;rsquo;t require
+a payload or additional data.
+Instead an &lt;code&gt;exporter_context&lt;/code&gt; and the length of the exported secret &lt;code&gt;L&lt;/code&gt; have to
+be provided.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;enc, exported_secret &amp;lt;- SendExport(pkR, info, exporter_context, L)
+exported_secret &amp;lt;- ReceiveExport(enc, skR, info, exporter_context, L)
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;use-cases&#34;&gt;Use Cases&lt;/h3&gt;
+&lt;p&gt;Instead of inventing new use cases for HPKE we describe how HPKE is used in &lt;a class=&#34;link&#34; href=&#34;https://datatracker.ietf.org/doc/draft-ietf-mls-protocol/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;MLS&lt;/a&gt;
+and &lt;a class=&#34;link&#34; href=&#34;https://datatracker.ietf.org/doc/draft-ietf-tls-esni/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;ECH&lt;/a&gt; as they reflect common uses of hybrid public key encryption.&lt;/p&gt;
+&lt;h4 id=&#34;hpke-in-mls&#34;&gt;HPKE in MLS&lt;/h4&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://datatracker.ietf.org/doc/draft-ietf-mls-protocol/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;MLS&lt;/a&gt; (Message Layer Security) is an IETF draft that standardises a new way of efficiently encrypting messages
+between participants in groups.
+It aims to solve the problem of end-to-end encryption in instant messaging.
+&lt;a class=&#34;link&#34; href=&#34;https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;HPKE&lt;/a&gt; is a core building block.
+In order to encrypt a message to a specific entity in the protocol, &lt;a class=&#34;link&#34; href=&#34;https://datatracker.ietf.org/doc/draft-ietf-mls-protocol/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;MLS&lt;/a&gt; uses &lt;a class=&#34;link&#34; href=&#34;https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;HPKE&lt;/a&gt;
+to encrypt the message to the specific public key.&lt;/p&gt;
+&lt;h4 id=&#34;hpke-in-ech&#34;&gt;HPKE in ECH&lt;/h4&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://datatracker.ietf.org/doc/draft-ietf-tls-esni/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;ECH&lt;/a&gt; (Encrypted Client Hello) is a mechanism in &lt;a class=&#34;link&#34; href=&#34;https://tools.ietf.org/html/rfc8446&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;TLS&lt;/a&gt; (Transport Layer Security)
+for encrypting a ClientHello message under a server public key.
+This description from the &lt;a class=&#34;link&#34; href=&#34;https://datatracker.ietf.org/doc/draft-ietf-tls-esni/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;ECH&lt;/a&gt; draft corresponds directly to the Base mode of &lt;a class=&#34;link&#34; href=&#34;https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;HPKE&lt;/a&gt;
+as described above.
+This allows &lt;a class=&#34;link&#34; href=&#34;https://tools.ietf.org/html/rfc8446&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;TLS&lt;/a&gt; connections to become more private because they don&amp;rsquo;t leak
+information about the connection, in particular the exact server the client wants
+to connect to.&lt;/p&gt;
+&lt;h2 id=&#34;demo&#34;&gt;Demo&lt;/h2&gt;
+&lt;p&gt;In order to better understand the message flow and working of HPKE we put together
+an interactive demo below to demonstrate how HPKE works.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;First generate a key pair for the receiver.&lt;/li&gt;
+&lt;li&gt;Then populate the info, additional data, and payload fields on the sender side.&lt;/li&gt;
+&lt;li&gt;When clicking the &amp;ldquo;HPKE Seal&amp;rdquo; button on the sender the following happens&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;The sender retrieves the public key from the receiver that has been generated in the first step.&lt;/li&gt;
+&lt;li&gt;The sender uses HPKE to encrypt the payload together with the info and additional data to the receiver&amp;rsquo;s public key.&lt;/li&gt;
+&lt;li&gt;The result is written into the Encoded Shared Secret and Ciphertext fields.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;When clicking &amp;ldquo;HPKE Open&amp;rdquo; the receiver uses the private key to retrieve the shared secret and decrypt the ciphertext.
+The &amp;ldquo;Info&amp;rdquo; and &amp;ldquo;Additional Data&amp;rdquo; are the same as entered on the sender&amp;rsquo;s side.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;try-it-out-now&#34;&gt;Try it out now!&lt;/h3&gt;
+&lt;iframe width=&#34;100%&#34; height=&#34;800px&#34; src=&#34;./hpke_demo/index.html&#34;&gt;&lt;/iframe&gt;
+&lt;p&gt;The demo is written in &lt;a class=&#34;link&#34; href=&#34;https://hacspec.org&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;hacspec&lt;/a&gt; (a subset of Rust) with a &lt;a class=&#34;link&#34; href=&#34;https://webassembly.org/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;WASM&lt;/a&gt; frontend.
+Please stay tuned for a follow-up blog post diving into the details of this implementation.&lt;/p&gt;
+&lt;h2 id=&#34;summary&#34;&gt;Summary&lt;/h2&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;HPKE&lt;/a&gt; is a simple, but very powerful new tool that allows to efficiently solve
+key distribution problems (see the MLS use case) as well as increase privacy
+in existing protocols (see the ECH use case).&lt;/p&gt;
+&lt;p&gt;My company &lt;a class=&#34;link&#34; href=&#34;https://www.cryspen.com&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Cryspen&lt;/a&gt; offers support for using &lt;a class=&#34;link&#34; href=&#34;https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;HPKE&lt;/a&gt; as well as high assurance implementations
+of HPKE and other protocols.
+&lt;a class=&#34;link&#34; href=&#34;mailto:franziskus@cryspen.com&#34; &gt;Get in touch for more information.&lt;/a&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>Cryspen ERC PoC Grant</title>
         <link>https://www.franziskuskiefer.de/p/cryspen-erc-poc-grant/</link>
         <pubDate>Thu, 10 Feb 2022 00:00:00 +0000</pubDate>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>opinion on Dr Franziskus Kiefer</title>
+    <link>https://www.franziskuskiefer.de/tags/opinion/</link>
+    <description>Recent content in opinion on Dr Franziskus Kiefer</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 09 Oct 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/tags/opinion/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Thoughts on MLS, the WG, and the current draft</title>
+      <link>https://www.franziskuskiefer.de/p/thoughts-on-mls-the-wg-and-the-current-draft/</link>
+      <pubDate>Fri, 09 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.franziskuskiefer.de/p/thoughts-on-mls-the-wg-and-the-current-draft/</guid>
+      <description>I recently sent an e-mail to the MLS working group with some comments on the draft. Because there appears to be little interest in improving the draft I want to use this post to elaborate on the issues I see with the draft an the working group.
+This is an opinion piece.
+MLS Let&amp;rsquo;s first recap on MLS. According to messaginglayersecurity.rocks the Messaging Layer Security (MLS)
+ is a security layer for encrypting messages in groups of size two to many.</description>
+    </item>
+    
+  </channel>
+</rss>

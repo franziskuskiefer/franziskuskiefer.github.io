@@ -6,7 +6,18 @@
     <description>Recent content in hacspec on Dr Franziskus Kiefer</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 30 Nov 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/tags/hacspec/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 24 Feb 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/tags/hacspec/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>An Executable HPKE Specification</title>
+      <link>https://www.franziskuskiefer.de/p/an-executable-hpke-specification/</link>
+      <pubDate>Thu, 24 Feb 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.franziskuskiefer.de/p/an-executable-hpke-specification/</guid>
+      <description>HPKE is published CFRG as RFC 9180 that describes a scheme for hybrid public key encryption.
+ 📚 Please go and read our TL;DR on HPKE if you nee more background on HPKE.
+ In this I describe the first executable HPKE specification using hacspec. It is not only an executable specification of HPKE, it is also an annotated version of the RFC that can be read instead of (or in addition to) the RFC.</description>
+    </item>
+    
     <item>
       <title>Update on hacspec</title>
       <link>https://www.franziskuskiefer.de/p/update-on-hacspec/</link>
