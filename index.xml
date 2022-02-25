@@ -13,9 +13,8 @@
         
         <guid>https://www.franziskuskiefer.de/p/an-executable-hpke-specification/</guid>
         <description>&lt;img src="https://www.franziskuskiefer.de/p/an-executable-hpke-specification/header.png" alt="Featured image of post An Executable HPKE Specification" /&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;HPKE&lt;/a&gt; is published &lt;a class=&#34;link&#34; href=&#34;https://datatracker.ietf.org/rg/cfrg/about/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;CFRG&lt;/a&gt; as &lt;a class=&#34;link&#34; href=&#34;https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;RFC 9180&lt;/a&gt; that describes a scheme for hybrid public key encryption.&lt;/p&gt;
+    &gt;HPKE&lt;/a&gt;, published as &lt;a class=&#34;link&#34; href=&#34;https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;RFC 9180&lt;/a&gt;, describes a scheme for hybrid public key encryption.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;📚 Please go and read our &lt;a class=&#34;link&#34; href=&#34;https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/&#34; &gt;TL;DR on HPKE&lt;/a&gt; if you nee more background on HPKE.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -340,7 +339,7 @@ of HPKE and other protocols.
     &gt;Github repository&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;i class=&#34;fa fa-book&#34; aria-hidden=&#34;true&#34;&gt;&lt;/i&gt; &lt;a class=&#34;link&#34; href=&#34;https://tech.cryspen.com/hpke-spec&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Documentation&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;i class=&#34;fa fa-file&#34; aria-hidden=&#34;true&#34;&gt;&lt;/i&gt; &lt;a class=&#34;link&#34; href=&#34;https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;li&gt;&lt;i class=&#34;fa fa-file&#34; aria-hidden=&#34;true&#34;&gt;&lt;/i&gt; &lt;a class=&#34;link&#34; href=&#34;https://www.rfc-editor.org/rfc/rfc9180.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;RFC&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
@@ -353,7 +352,7 @@ of HPKE and other protocols.
         <guid>https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/</guid>
         <description>&lt;img src="https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/hybrid.jpg" alt="Featured image of post TL;DR - Hybrid Public Key Encryption" /&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;HPKE&lt;/a&gt; is a &lt;a class=&#34;link&#34; href=&#34;https://datatracker.ietf.org/rg/cfrg/about/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;CFRG&lt;/a&gt; in &lt;a class=&#34;link&#34; href=&#34;https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;CFRG&lt;/a&gt; in &lt;a class=&#34;link&#34; href=&#34;https://www.rfc-editor.org/rfc/rfc9180.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;RFC 9180&lt;/a&gt; that describes a scheme for hybrid public key encryption.
 It is co-authored by my &lt;a class=&#34;link&#34; href=&#34;https://www.cryspen.com&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Cryspen&lt;/a&gt; co-founder &lt;a class=&#34;link&#34; href=&#34;https://bhargavan.info/index.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -382,9 +381,10 @@ While these two protocols are for a very specific use case a more general versio
     &gt;ECIES&lt;/a&gt; is part of many systems nowadays.
 &lt;a class=&#34;link&#34; href=&#34;https://developer.apple.com/documentation/security/certificate_key_and_trust_services/keys/storing_keys_in_the_secure_enclave&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Storing keys in the secure enclave on an iOS&lt;/a&gt; device for example uses &lt;a class=&#34;link&#34; href=&#34;https://en.wikipedia.org/wiki/Integrated_Encryption_Scheme&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;ECIES&lt;/a&gt;.&lt;/p&gt;
-&lt;!-- For a deeper explanation and history of hybrid crypto systems I recommend reading
-[Christopher Wood&#39;s blog post]. --&gt;
+    &gt;ECIES&lt;/a&gt;.
+For a deeper explanation and history of hybrid crypto systems I recommend reading
+&lt;a class=&#34;link&#34; href=&#34;https://blog.cloudflare.com/hybrid-public-key-encryption/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Christopher Wood&amp;rsquo;s blog post&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;However, there&amp;rsquo;s no general description of hybrid public key encryption with modern primitives.
 The &lt;a class=&#34;link&#34; href=&#34;https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;HPKE&lt;/a&gt; standard solves this issue.

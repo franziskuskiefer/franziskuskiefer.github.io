@@ -13,7 +13,7 @@
       <pubDate>Thu, 24 Feb 2022 00:00:00 +0000</pubDate>
       
       <guid>https://www.franziskuskiefer.de/p/an-executable-hpke-specification/</guid>
-      <description>HPKE is published CFRG as RFC 9180 that describes a scheme for hybrid public key encryption.
+      <description>HPKE, published as RFC 9180, describes a scheme for hybrid public key encryption.
  📚 Please go and read our TL;DR on HPKE if you nee more background on HPKE.
  In this I describe the first executable HPKE specification using hacspec. It is not only an executable specification of HPKE, it is also an annotated version of the RFC that can be read instead of (or in addition to) the RFC.</description>
     </item>
