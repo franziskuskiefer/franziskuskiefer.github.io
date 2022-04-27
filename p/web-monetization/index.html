@@ -197,26 +197,26 @@ The subscription provider like <a class="link" href="https://coil.com/"  target=
     >web monetization theme</a> for <a class="link" href="https://gohugo.io"  target="_blank" rel="noopener"
     >hugo</a> (the framework I use for this site) that allows for easy integration of web monetization.</p>
 <p>First I added the hugo-webmonetization-component as second theme to my site:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">git submodule add git@github.com:sabinebertram/hugo-webmonetization-component.git themes/webmonetization
-</code></pre></div><p>Then I changed my theme in the <code>config.toml</code> as follows:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="nx">theme</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;gohugo-theme-ananke&#34;</span><span class="p">,</span> <span class="s2">&#34;webmonetization&#34;</span><span class="p">]</span>
-</code></pre></div><p>And then set my <a class="link" href="https://paymentpointers.org/"  target="_blank" rel="noopener"
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git submodule add git@github.com:sabinebertram/hugo-webmonetization-component.git themes/webmonetization
+</span></span></code></pre></div><p>Then I changed my theme in the <code>config.toml</code> as follows:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="nx">theme</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;gohugo-theme-ananke&#34;</span><span class="p">,</span> <span class="s2">&#34;webmonetization&#34;</span><span class="p">]</span>
+</span></span></code></pre></div><p>And then set my <a class="link" href="https://paymentpointers.org/"  target="_blank" rel="noopener"
     >payment pointer</a> in the <code>params</code> section of the <code>config.toml</code>:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">params</span><span class="p">]</span>
-  <span class="nx">monetization</span> <span class="p">=</span> <span class="s2">&#34;$ilp.uphold.com/NMNKYReeKNNw&#34;</span>
-</code></pre></div><p>In order to actually use the monetization parameter I added it to the ananke theme&rsquo;s <code>&lt;head&gt;</code>.
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">params</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">monetization</span> <span class="p">=</span> <span class="s2">&#34;$ilp.uphold.com/NMNKYReeKNNw&#34;</span>
+</span></span></code></pre></div><p>In order to actually use the monetization parameter I added it to the ananke theme&rsquo;s <code>&lt;head&gt;</code>.
 The <code>head</code> is defined in <code>themes/gohugo-theme-ananke/layouts/_default/baseof.html</code>, which includes a <code>head-additions.html</code> where we can add the monetization partial.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html">{{ partial &#34;webmonetization.html&#34; .}}
-</code></pre></div><h3 id="sample-exclusive-content-">Sample exclusive content 💎</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">{{ partial &#34;webmonetization.html&#34; .}}
+</span></span></code></pre></div><h3 id="sample-exclusive-content-">Sample exclusive content 💎</h3>
 <p>In hugo it is simple to add exclusive content with the following short code.
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="p">{{</span> <span class="o">%</span> <span class="n">exclusive</span> <span class="o">%</span> <span class="p">}}</span>
- <span class="p">...</span> <span class="n">exclusive</span> <span class="n">content</span> <span class="p">...</span>
-<span class="p">{{</span> <span class="o">%</span> <span class="o">/</span><span class="n">exclusive</span> <span class="o">%</span> <span class="p">}}</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="p">{{</span> <span class="o">%</span> <span class="n">exclusive</span> <span class="o">%</span> <span class="p">}}</span>
+</span></span><span class="line"><span class="cl"> <span class="p">...</span> <span class="n">exclusive</span> <span class="n">content</span> <span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">{{</span> <span class="o">%</span> <span class="o">/</span><span class="n">exclusive</span> <span class="o">%</span> <span class="p">}}</span></span></span></code></pre></div>
 Note that this only works if <code>blackfriday</code> is used as markup engine and things like markdown code blocks don&rsquo;t work in there.
 This might be a shortcoming of the hugo theme I&rsquo;m using here.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">markup</span><span class="p">]</span>
-  <span class="nx">defaultMarkdownHandler</span> <span class="p">=</span> <span class="s2">&#34;blackfriday&#34;</span>
-</code></pre></div><p><strong>⚠️ I switched to a new theme on this blog that does not support webmonetization right now!</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">markup</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">defaultMarkdownHandler</span> <span class="p">=</span> <span class="s2">&#34;blackfriday&#34;</span>
+</span></span></code></pre></div><p><strong>⚠️ I switched to a new theme on this blog that does not support webmonetization right now!</strong></p>
 <h3 id="issues-i-encountered-">Issues I encountered 🐞</h3>
 <p>First this only worked on the main page after following the instructions.
 It turned out that I had to update <a class="link" href="https://github.com/budparr/gohugo-theme-ananke"  target="_blank" rel="noopener"

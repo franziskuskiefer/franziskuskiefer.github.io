@@ -172,12 +172,12 @@ is used by the AEAD.
 More details in the <a class="link" href="#setup" >Setup</a> section.
 <em>Then</em> the <code>shared_secret</code> is used to encrypt the payload with an AEAD.
 This function is denoted <code>AeadSeal</code> below.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="p">(</span><span class="n">enc</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="n">nonce</span><span class="p">,</span><span class="w"> </span><span class="n">_</span><span class="p">,</span><span class="w"> </span><span class="n">_</span><span class="p">))</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SetupBaseS</span><span class="p">(</span><span class="n">config</span><span class="p">,</span><span class="w"> </span><span class="n">pkR</span><span class="p">,</span><span class="w"> </span><span class="n">info</span><span class="p">,</span><span class="w"> </span><span class="n">randomness</span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
-</span><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">cipher_text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AeadSeal</span><span class="p">(</span><span class="n">aead_id</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">nonce</span><span class="p">,</span><span class="w"> </span><span class="n">aad</span><span class="p">,</span><span class="w"> </span><span class="n">payload</span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
-</span></code></pre></div><p>The receiver gets <code>cipher_text</code> and <code>enc</code> that it can use to retrieve the <code>payload</code>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="n">nonce</span><span class="p">,</span><span class="w"> </span><span class="n">_</span><span class="p">,</span><span class="w"> </span><span class="n">_</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SetupBaseR</span><span class="p">(</span><span class="n">config</span><span class="p">,</span><span class="w"> </span><span class="n">enc</span><span class="p">,</span><span class="w"> </span><span class="n">skR</span><span class="p">,</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
-</span><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">payload</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AeadOpen</span><span class="p">(</span><span class="n">aead</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">nonce</span><span class="p">,</span><span class="w"> </span><span class="n">aad</span><span class="p">,</span><span class="w"> </span><span class="n">ct</span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
-</span></code></pre></div><p>In the remainder of this blog post we&rsquo;ll show how <code>SetupBaseS</code> is defined.
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="kd">let</span><span class="w"> </span><span class="p">(</span><span class="n">enc</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="n">nonce</span><span class="p">,</span><span class="w"> </span><span class="n">_</span><span class="p">,</span><span class="w"> </span><span class="n">_</span><span class="p">))</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SetupBaseS</span><span class="p">(</span><span class="n">config</span><span class="p">,</span><span class="w"> </span><span class="n">pkR</span><span class="p">,</span><span class="w"> </span><span class="n">info</span><span class="p">,</span><span class="w"> </span><span class="n">randomness</span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">cipher_text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AeadSeal</span><span class="p">(</span><span class="n">aead_id</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">nonce</span><span class="p">,</span><span class="w"> </span><span class="n">aad</span><span class="p">,</span><span class="w"> </span><span class="n">payload</span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><p>The receiver gets <code>cipher_text</code> and <code>enc</code> that it can use to retrieve the <code>payload</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="kd">let</span><span class="w"> </span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="n">nonce</span><span class="p">,</span><span class="w"> </span><span class="n">_</span><span class="p">,</span><span class="w"> </span><span class="n">_</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SetupBaseR</span><span class="p">(</span><span class="n">config</span><span class="p">,</span><span class="w"> </span><span class="n">enc</span><span class="p">,</span><span class="w"> </span><span class="n">skR</span><span class="p">,</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">payload</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AeadOpen</span><span class="p">(</span><span class="n">aead</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">nonce</span><span class="p">,</span><span class="w"> </span><span class="n">aad</span><span class="p">,</span><span class="w"> </span><span class="n">ct</span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><p>In the remainder of this blog post we&rsquo;ll show how <code>SetupBaseS</code> is defined.
 For a description of the receiver please check out the <a class="link" href="https://tech.cryspen.com/hpke-spec"  target="_blank" rel="noopener"
     >documentation</a>.
 We will not define <code>AeadSeal</code> and <code>AeadOpen</code> here as they follow the definition
@@ -207,9 +207,9 @@ which is written as <code>SenderContextResult::Ok(...)</code>.</p>
 The sender needs to provide their private key <code>skS</code> to authenticate themselves.
 The receiver uses the sender&rsquo;s public key <code>pkS</code> in addition to authenticate the sender.
 The two functions are defined as follows.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="n">SetupAuthS</span><span class="p">(</span><span class="n">config</span><span class="p">,</span><span class="w"> </span><span class="n">pkR</span>:<span class="p">,</span><span class="w"> </span><span class="n">info</span><span class="p">,</span><span class="w"> </span><span class="n">skS</span><span class="p">,</span><span class="w"> </span><span class="n">randomness</span><span class="p">);</span><span class="w">
-</span><span class="w"></span><span class="n">SetupAuthR</span><span class="p">(</span><span class="n">config</span><span class="p">,</span><span class="w"> </span><span class="n">enc</span><span class="p">,</span><span class="w"> </span><span class="n">skR</span><span class="p">,</span><span class="w"> </span><span class="n">info</span><span class="p">,</span><span class="w"> </span><span class="n">pkS</span><span class="p">);</span><span class="w">
-</span></code></pre></div><h3 id="setup">Setup</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="n">SetupAuthS</span><span class="p">(</span><span class="n">config</span><span class="p">,</span><span class="w"> </span><span class="n">pkR</span>:<span class="p">,</span><span class="w"> </span><span class="n">info</span><span class="p">,</span><span class="w"> </span><span class="n">skS</span><span class="p">,</span><span class="w"> </span><span class="n">randomness</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">SetupAuthR</span><span class="p">(</span><span class="n">config</span><span class="p">,</span><span class="w"> </span><span class="n">enc</span><span class="p">,</span><span class="w"> </span><span class="n">skR</span><span class="p">,</span><span class="w"> </span><span class="n">info</span><span class="p">,</span><span class="w"> </span><span class="n">pkS</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></div><h3 id="setup">Setup</h3>
 <p>In order to set up the KEM and key schedule the sender uses the following <code>SetupBaseS</code>
 function.
 Recall that the <code>BaseS</code> refers to the HPKE base mode and sender.</p>
@@ -219,31 +219,31 @@ In addition we need to pass in the <code>configuration</code> that contains the 
 as the algorithm identifiers for the KEM.
 Because hacspec can&rsquo;t draw its own <code>randomness</code>, as explained <a class="link" href="#randomness" >below</a>,
 it is passed in as well.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="k">pub</span><span class="w"> </span><span class="k">fn</span> <span class="nf">SetupBaseS</span><span class="p">(</span><span class="w">
-</span><span class="w">    </span><span class="n">configuration</span>: <span class="nc">HPKEConfig</span><span class="p">,</span><span class="w">
-</span><span class="w">    </span><span class="n">pkR</span>: <span class="kp">&amp;</span><span class="nc">HpkePublicKey</span><span class="p">,</span><span class="w">
-</span><span class="w">    </span><span class="n">info</span>: <span class="kp">&amp;</span><span class="nc">Info</span><span class="p">,</span><span class="w">
-</span><span class="w">    </span><span class="n">randomness</span>: <span class="nc">Randomness</span><span class="p">,</span><span class="w">
-</span><span class="w"></span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">SenderContextResult</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="p">(</span><span class="n">shared_secret</span><span class="p">,</span><span class="w"> </span><span class="n">enc</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Encap</span><span class="p">(</span><span class="n">kem</span><span class="p">(</span><span class="n">configuration</span><span class="p">),</span><span class="w"> </span><span class="n">pkR</span><span class="p">,</span><span class="w"> </span><span class="n">randomness</span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
-</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">key_schedule</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">KeySchedule</span><span class="p">(</span><span class="w">
-</span><span class="w">        </span><span class="n">config</span><span class="p">,</span><span class="w">
-</span><span class="w">        </span><span class="o">&amp;</span><span class="n">shared_secret</span><span class="p">,</span><span class="w">
-</span><span class="w">        </span><span class="n">info</span><span class="p">,</span><span class="w">
-</span><span class="w">        </span><span class="o">&amp;</span><span class="n">default_psk</span><span class="p">(),</span><span class="w">
-</span><span class="w">        </span><span class="o">&amp;</span><span class="n">default_psk_id</span><span class="p">(),</span><span class="w">
-</span><span class="w">    </span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
-</span><span class="w">    </span><span class="n">SenderContextResult</span>::<span class="nb">Ok</span><span class="p">((</span><span class="n">enc</span><span class="p">,</span><span class="w"> </span><span class="n">key_schedule</span><span class="p">))</span><span class="w">
-</span><span class="w"></span><span class="p">}</span><span class="w">
-</span></code></pre></div><p>For comparison you can find the RFC pseudocode definition of <code>SetupBaseS</code> below
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">pub</span><span class="w"> </span><span class="k">fn</span> <span class="nf">SetupBaseS</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">configuration</span>: <span class="nc">HPKEConfig</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">pkR</span>: <span class="kp">&amp;</span><span class="nc">HpkePublicKey</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">info</span>: <span class="kp">&amp;</span><span class="nc">Info</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">randomness</span>: <span class="nc">Randomness</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">SenderContextResult</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="p">(</span><span class="n">shared_secret</span><span class="p">,</span><span class="w"> </span><span class="n">enc</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Encap</span><span class="p">(</span><span class="n">kem</span><span class="p">(</span><span class="n">configuration</span><span class="p">),</span><span class="w"> </span><span class="n">pkR</span><span class="p">,</span><span class="w"> </span><span class="n">randomness</span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">key_schedule</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">KeySchedule</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">config</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="o">&amp;</span><span class="n">shared_secret</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">info</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="o">&amp;</span><span class="n">default_psk</span><span class="p">(),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="o">&amp;</span><span class="n">default_psk_id</span><span class="p">(),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">SenderContextResult</span>::<span class="nb">Ok</span><span class="p">((</span><span class="n">enc</span><span class="p">,</span><span class="w"> </span><span class="n">key_schedule</span><span class="p">))</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>For comparison you can find the RFC pseudocode definition of <code>SetupBaseS</code> below
 (which is not well defined as is because it is missing the algorithm identifiers).
 The main difference between the two functions is the explicit configuration and
 randomness required in hacspec.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text">def SetupBaseS(pkR, info):
-  shared_secret, enc = Encap(pkR)
-  return enc, KeyScheduleS(mode_base, shared_secret, info,
-                           default_psk, default_psk_id)
-</code></pre></div><p>The setup function calls the two functions <a class="link" href="#encap" ><code>Encap</code></a> and <a class="link" href="#keyschedule" ><code>KeySchedule</code></a>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">def SetupBaseS(pkR, info):
+</span></span><span class="line"><span class="cl">  shared_secret, enc = Encap(pkR)
+</span></span><span class="line"><span class="cl">  return enc, KeyScheduleS(mode_base, shared_secret, info,
+</span></span><span class="line"><span class="cl">                           default_psk, default_psk_id)
+</span></span></code></pre></div><p>The setup function calls the two functions <a class="link" href="#encap" ><code>Encap</code></a> and <a class="link" href="#keyschedule" ><code>KeySchedule</code></a>.</p>
 <h3 id="encap">Encap</h3>
 <p><em>(Reminder: For demonstration purposes we use the DHKEM defined in the RFC.)</em></p>
 <p>The <code>Encap</code> function takes the receiver&rsquo;s public key <code>pkR</code> and generates a <code>shared_secret</code> as well
@@ -254,17 +254,17 @@ KEM.
 See the <a class="link" href="#implementation-considerations" >discussion section below</a> on the necessity of the API changes.
 Because the function can fail it returns a result instead of simply the computed
 values as described in the RFC pseudocode.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text">def Encap(pkR):
-  skE, pkE = GenerateKeyPair()
-  dh = DH(skE, pkR)
-  enc = SerializePublicKey(pkE)
-
-  pkRm = SerializePublicKey(pkR)
-  kem_context = concat(enc, pkRm)
-
-  shared_secret = ExtractAndExpand(dh, kem_context)
-  return shared_secret, enc
-</code></pre></div><p>All these changes make it much clearer what can happen within the function and
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">def Encap(pkR):
+</span></span><span class="line"><span class="cl">  skE, pkE = GenerateKeyPair()
+</span></span><span class="line"><span class="cl">  dh = DH(skE, pkR)
+</span></span><span class="line"><span class="cl">  enc = SerializePublicKey(pkE)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  pkRm = SerializePublicKey(pkR)
+</span></span><span class="line"><span class="cl">  kem_context = concat(enc, pkRm)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  shared_secret = ExtractAndExpand(dh, kem_context)
+</span></span><span class="line"><span class="cl">  return shared_secret, enc
+</span></span></code></pre></div><p>All these changes make it much clearer what can happen within the function and
 in particular which error states might occur.</p>
 <p>The <code>Encap</code> function generates a fresh DH key pair and computes the DH between the
 receivers public key and the ephemeral private key $\text{dh}=\text{skE}*\text{pkR}$.
@@ -273,18 +273,18 @@ on input of the <code>dh</code> value and the context that binds the key derivat
 parameters and public values.
 The encapsulation <code>enc</code> is the serialized public key <code>pkE</code> generated in the first
 step.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="k">pub</span><span class="w"> </span><span class="k">fn</span> <span class="nf">Encap</span><span class="p">(</span><span class="n">pkR</span>: <span class="kp">&amp;</span><span class="nc">PublicKey</span><span class="p">,</span><span class="w"> </span><span class="n">alg</span>: <span class="nc">KEM</span><span class="p">,</span><span class="w"> </span><span class="n">rand</span>: <span class="nc">Randomness</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">EncapResult</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="p">(</span><span class="n">skE</span><span class="p">,</span><span class="w"> </span><span class="n">pkE</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GenerateKeyPair</span><span class="p">(</span><span class="n">alg</span><span class="p">,</span><span class="w"> </span><span class="n">rand</span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
-</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">dh</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DH</span><span class="p">(</span><span class="n">alg</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">skE</span><span class="p">,</span><span class="w"> </span><span class="n">pkR</span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
-</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">encapsulation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SerializePublicKey</span><span class="p">(</span><span class="n">alg</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">pkE</span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
-</span><span class="w">
-</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">pkRm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SerializePublicKey</span><span class="p">(</span><span class="n">alg</span><span class="p">,</span><span class="w"> </span><span class="n">pkR</span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
-</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">kem_context</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">enc</span><span class="p">.</span><span class="n">concat</span><span class="p">(</span><span class="o">&amp;</span><span class="n">pkRm</span><span class="p">);</span><span class="w">
-</span><span class="w">
-</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">shared_secret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ExtractAndExpand</span><span class="p">(</span><span class="n">alg</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">suite_id</span><span class="p">(</span><span class="n">alg</span><span class="p">),</span><span class="w"> </span><span class="n">dh</span><span class="p">,</span><span class="w"> </span><span class="n">kem_context</span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
-</span><span class="w">    </span><span class="n">EncapResult</span>::<span class="nb">Ok</span><span class="p">((</span><span class="n">shared_secret</span><span class="p">,</span><span class="w"> </span><span class="n">encapsulation</span><span class="p">))</span><span class="w">
-</span><span class="w"></span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id="keyschedule">KeySchedule</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">pub</span><span class="w"> </span><span class="k">fn</span> <span class="nf">Encap</span><span class="p">(</span><span class="n">pkR</span>: <span class="kp">&amp;</span><span class="nc">PublicKey</span><span class="p">,</span><span class="w"> </span><span class="n">alg</span>: <span class="nc">KEM</span><span class="p">,</span><span class="w"> </span><span class="n">rand</span>: <span class="nc">Randomness</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">EncapResult</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="p">(</span><span class="n">skE</span><span class="p">,</span><span class="w"> </span><span class="n">pkE</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GenerateKeyPair</span><span class="p">(</span><span class="n">alg</span><span class="p">,</span><span class="w"> </span><span class="n">rand</span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">dh</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DH</span><span class="p">(</span><span class="n">alg</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">skE</span><span class="p">,</span><span class="w"> </span><span class="n">pkR</span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">encapsulation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SerializePublicKey</span><span class="p">(</span><span class="n">alg</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">pkE</span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">pkRm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SerializePublicKey</span><span class="p">(</span><span class="n">alg</span><span class="p">,</span><span class="w"> </span><span class="n">pkR</span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">kem_context</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">enc</span><span class="p">.</span><span class="n">concat</span><span class="p">(</span><span class="o">&amp;</span><span class="n">pkRm</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">shared_secret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ExtractAndExpand</span><span class="p">(</span><span class="n">alg</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">suite_id</span><span class="p">(</span><span class="n">alg</span><span class="p">),</span><span class="w"> </span><span class="n">dh</span><span class="p">,</span><span class="w"> </span><span class="n">kem_context</span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">EncapResult</span>::<span class="nb">Ok</span><span class="p">((</span><span class="n">shared_secret</span><span class="p">,</span><span class="w"> </span><span class="n">encapsulation</span><span class="p">))</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><h3 id="keyschedule">KeySchedule</h3>
 <p>In order to use the <code>shared_secret</code> with an AEAD and allow exporting additional
 key material, the following <code>KeySchedule</code> derives the <code>key</code> and <code>base_nonce</code> for the
 AEAD and an <code>exporter_secret</code> to export other keys.
@@ -294,79 +294,79 @@ from the shared secret.</p>
 identifiers and the <code>suite_id</code> to <code>LabeledExtract</code> and <code>LabeledExpand</code>.
 The <code>suite_id</code> binds the KDF extract and expand functions to the specific context
 and is implicit in the RFC.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="k">pub</span><span class="w"> </span><span class="k">fn</span> <span class="nf">KeySchedule</span><span class="p">(</span><span class="w">
-</span><span class="w">    </span><span class="n">config</span>: <span class="nc">HPKEConfig</span><span class="p">,</span><span class="w">
-</span><span class="w">    </span><span class="n">shared_secret</span>: <span class="kp">&amp;</span><span class="nc">SharedSecret</span><span class="p">,</span><span class="w">
-</span><span class="w">    </span><span class="n">info</span>: <span class="kp">&amp;</span><span class="nc">Info</span><span class="p">,</span><span class="w">
-</span><span class="w">    </span><span class="n">psk</span>: <span class="kp">&amp;</span><span class="nc">Psk</span><span class="p">,</span><span class="w">
-</span><span class="w">    </span><span class="n">psk_id</span>: <span class="kp">&amp;</span><span class="nc">PskId</span><span class="p">,</span><span class="w">
-</span><span class="w"></span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">ContextResult</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="w">    </span><span class="n">VerifyPSKInputs</span><span class="p">(</span><span class="n">config</span><span class="p">,</span><span class="w"> </span><span class="n">psk</span><span class="p">,</span><span class="w"> </span><span class="n">psk_id</span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
-</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">HPKEConfig</span><span class="p">(</span><span class="n">mode</span><span class="p">,</span><span class="w"> </span><span class="n">_kem</span><span class="p">,</span><span class="w"> </span><span class="n">kdf</span><span class="p">,</span><span class="w"> </span><span class="n">aead</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">config</span><span class="p">;</span><span class="w">
-</span><span class="w">
-</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">psk_id_hash</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LabeledExtract</span><span class="p">(</span><span class="w">
-</span><span class="w">        </span><span class="n">kdf</span><span class="p">,</span><span class="w">
-</span><span class="w">        </span><span class="o">&amp;</span><span class="n">suite_id</span><span class="p">(</span><span class="n">config</span><span class="p">),</span><span class="w">
-</span><span class="w">        </span><span class="o">&amp;</span><span class="n">empty_bytes</span><span class="p">(),</span><span class="w">
-</span><span class="w">        </span><span class="o">&amp;</span><span class="n">psk_id_hash_label</span><span class="p">(),</span><span class="w">
-</span><span class="w">        </span><span class="n">psk_id</span><span class="p">,</span><span class="w">
-</span><span class="w">    </span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
-</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">info_hash</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LabeledExtract</span><span class="p">(</span><span class="w">
-</span><span class="w">        </span><span class="n">kdf</span><span class="p">,</span><span class="w">
-</span><span class="w">        </span><span class="o">&amp;</span><span class="n">suite_id</span><span class="p">(</span><span class="n">config</span><span class="p">),</span><span class="w">
-</span><span class="w">        </span><span class="o">&amp;</span><span class="n">empty_bytes</span><span class="p">(),</span><span class="w">
-</span><span class="w">        </span><span class="o">&amp;</span><span class="n">info_hash_label</span><span class="p">(),</span><span class="w">
-</span><span class="w">        </span><span class="n">info</span><span class="p">,</span><span class="w">
-</span><span class="w">    </span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
-</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">key_schedule_context</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hpke_mode_label</span><span class="p">(</span><span class="n">mode</span><span class="p">)</span><span class="w">
-</span><span class="w">        </span><span class="p">.</span><span class="n">concat_owned</span><span class="p">(</span><span class="n">psk_id_hash</span><span class="p">)</span><span class="w">
-</span><span class="w">        </span><span class="p">.</span><span class="n">concat_owned</span><span class="p">(</span><span class="n">info_hash</span><span class="p">);</span><span class="w">
-</span><span class="w">
-</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">secret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LabeledExtract</span><span class="p">(</span><span class="n">kdf</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">suite_id</span><span class="p">(</span><span class="n">config</span><span class="p">),</span><span class="w"> </span><span class="n">shared_secret</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">secret_label</span><span class="p">(),</span><span class="w"> </span><span class="n">psk</span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
-</span><span class="w">
-</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LabeledExpand</span><span class="p">(</span><span class="w">
-</span><span class="w">        </span><span class="n">kdf</span><span class="p">,</span><span class="w">
-</span><span class="w">        </span><span class="o">&amp;</span><span class="n">suite_id</span><span class="p">(</span><span class="n">config</span><span class="p">),</span><span class="w">
-</span><span class="w">        </span><span class="o">&amp;</span><span class="n">secret</span><span class="p">,</span><span class="w">
-</span><span class="w">        </span><span class="o">&amp;</span><span class="n">key_label</span><span class="p">(),</span><span class="w">
-</span><span class="w">        </span><span class="o">&amp;</span><span class="n">key_schedule_context</span><span class="p">,</span><span class="w">
-</span><span class="w">        </span><span class="n">Nk</span><span class="p">(</span><span class="n">aead</span><span class="p">),</span><span class="w">
-</span><span class="w">    </span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
-</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">base_nonce</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LabeledExpand</span><span class="p">(</span><span class="w">
-</span><span class="w">        </span><span class="n">kdf</span><span class="p">,</span><span class="w">
-</span><span class="w">        </span><span class="o">&amp;</span><span class="n">suite_id</span><span class="p">(</span><span class="n">config</span><span class="p">),</span><span class="w">
-</span><span class="w">        </span><span class="o">&amp;</span><span class="n">secret</span><span class="p">,</span><span class="w">
-</span><span class="w">        </span><span class="o">&amp;</span><span class="n">base_nonce_label</span><span class="p">(),</span><span class="w">
-</span><span class="w">        </span><span class="o">&amp;</span><span class="n">key_schedule_context</span><span class="p">,</span><span class="w">
-</span><span class="w">        </span><span class="n">Nn</span><span class="p">(</span><span class="n">aead</span><span class="p">),</span><span class="w">
-</span><span class="w">    </span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
-</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">exporter_secret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LabeledExpand</span><span class="p">(</span><span class="w">
-</span><span class="w">        </span><span class="n">kdf</span><span class="p">,</span><span class="w">
-</span><span class="w">        </span><span class="o">&amp;</span><span class="n">suite_id</span><span class="p">(</span><span class="n">config</span><span class="p">),</span><span class="w">
-</span><span class="w">        </span><span class="o">&amp;</span><span class="n">secret</span><span class="p">,</span><span class="w">
-</span><span class="w">        </span><span class="o">&amp;</span><span class="n">exp_label</span><span class="p">(),</span><span class="w">
-</span><span class="w">        </span><span class="o">&amp;</span><span class="n">key_schedule_context</span><span class="p">,</span><span class="w">
-</span><span class="w">        </span><span class="n">Nh</span><span class="p">(</span><span class="n">kdf</span><span class="p">),</span><span class="w">
-</span><span class="w">    </span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
-</span><span class="w"></span><span class="p">}</span><span class="w">
-</span></code></pre></div><p>For comparison you can find the RFC pseudocode definition of <code>KeySchedule</code> below.
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">pub</span><span class="w"> </span><span class="k">fn</span> <span class="nf">KeySchedule</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">config</span>: <span class="nc">HPKEConfig</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">shared_secret</span>: <span class="kp">&amp;</span><span class="nc">SharedSecret</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">info</span>: <span class="kp">&amp;</span><span class="nc">Info</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">psk</span>: <span class="kp">&amp;</span><span class="nc">Psk</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">psk_id</span>: <span class="kp">&amp;</span><span class="nc">PskId</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">ContextResult</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">VerifyPSKInputs</span><span class="p">(</span><span class="n">config</span><span class="p">,</span><span class="w"> </span><span class="n">psk</span><span class="p">,</span><span class="w"> </span><span class="n">psk_id</span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">HPKEConfig</span><span class="p">(</span><span class="n">mode</span><span class="p">,</span><span class="w"> </span><span class="n">_kem</span><span class="p">,</span><span class="w"> </span><span class="n">kdf</span><span class="p">,</span><span class="w"> </span><span class="n">aead</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">config</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">psk_id_hash</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LabeledExtract</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">kdf</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="o">&amp;</span><span class="n">suite_id</span><span class="p">(</span><span class="n">config</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="o">&amp;</span><span class="n">empty_bytes</span><span class="p">(),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="o">&amp;</span><span class="n">psk_id_hash_label</span><span class="p">(),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">psk_id</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">info_hash</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LabeledExtract</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">kdf</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="o">&amp;</span><span class="n">suite_id</span><span class="p">(</span><span class="n">config</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="o">&amp;</span><span class="n">empty_bytes</span><span class="p">(),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="o">&amp;</span><span class="n">info_hash_label</span><span class="p">(),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">info</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">key_schedule_context</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hpke_mode_label</span><span class="p">(</span><span class="n">mode</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="n">concat_owned</span><span class="p">(</span><span class="n">psk_id_hash</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="n">concat_owned</span><span class="p">(</span><span class="n">info_hash</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">secret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LabeledExtract</span><span class="p">(</span><span class="n">kdf</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">suite_id</span><span class="p">(</span><span class="n">config</span><span class="p">),</span><span class="w"> </span><span class="n">shared_secret</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">secret_label</span><span class="p">(),</span><span class="w"> </span><span class="n">psk</span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LabeledExpand</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">kdf</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="o">&amp;</span><span class="n">suite_id</span><span class="p">(</span><span class="n">config</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="o">&amp;</span><span class="n">secret</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="o">&amp;</span><span class="n">key_label</span><span class="p">(),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="o">&amp;</span><span class="n">key_schedule_context</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Nk</span><span class="p">(</span><span class="n">aead</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">base_nonce</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LabeledExpand</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">kdf</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="o">&amp;</span><span class="n">suite_id</span><span class="p">(</span><span class="n">config</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="o">&amp;</span><span class="n">secret</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="o">&amp;</span><span class="n">base_nonce_label</span><span class="p">(),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="o">&amp;</span><span class="n">key_schedule_context</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Nn</span><span class="p">(</span><span class="n">aead</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">exporter_secret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LabeledExpand</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">kdf</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="o">&amp;</span><span class="n">suite_id</span><span class="p">(</span><span class="n">config</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="o">&amp;</span><span class="n">secret</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="o">&amp;</span><span class="n">exp_label</span><span class="p">(),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="o">&amp;</span><span class="n">key_schedule_context</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Nh</span><span class="p">(</span><span class="n">kdf</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>For comparison you can find the RFC pseudocode definition of <code>KeySchedule</code> below.
 Note that the significantly longer hacspec definition above is not in fact longer
 but has longer lines that are wrapped.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text">def KeySchedule&lt;ROLE&gt;(mode, shared_secret, info, psk, psk_id):
-  VerifyPSKInputs(mode, psk, psk_id)
-
-  psk_id_hash = LabeledExtract(&#34;&#34;, &#34;psk_id_hash&#34;, psk_id)
-  info_hash = LabeledExtract(&#34;&#34;, &#34;info_hash&#34;, info)
-  key_schedule_context = concat(mode, psk_id_hash, info_hash)
-
-  secret = LabeledExtract(shared_secret, &#34;secret&#34;, psk)
-
-  key = LabeledExpand(secret, &#34;key&#34;, key_schedule_context, Nk)
-  base_nonce = LabeledExpand(secret, &#34;base_nonce&#34;, key_schedule_context, Nn)
-  exporter_secret = LabeledExpand(secret, &#34;exp&#34;, key_schedule_context, Nh)
-
-  return Context&lt;ROLE&gt;(key, base_nonce, 0, exporter_secret)
-</code></pre></div><p>This is all that is needed to implement <a class="link" href="https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/"  target="_blank" rel="noopener"
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">def KeySchedule&lt;ROLE&gt;(mode, shared_secret, info, psk, psk_id):
+</span></span><span class="line"><span class="cl">  VerifyPSKInputs(mode, psk, psk_id)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  psk_id_hash = LabeledExtract(&#34;&#34;, &#34;psk_id_hash&#34;, psk_id)
+</span></span><span class="line"><span class="cl">  info_hash = LabeledExtract(&#34;&#34;, &#34;info_hash&#34;, info)
+</span></span><span class="line"><span class="cl">  key_schedule_context = concat(mode, psk_id_hash, info_hash)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  secret = LabeledExtract(shared_secret, &#34;secret&#34;, psk)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  key = LabeledExpand(secret, &#34;key&#34;, key_schedule_context, Nk)
+</span></span><span class="line"><span class="cl">  base_nonce = LabeledExpand(secret, &#34;base_nonce&#34;, key_schedule_context, Nn)
+</span></span><span class="line"><span class="cl">  exporter_secret = LabeledExpand(secret, &#34;exp&#34;, key_schedule_context, Nh)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  return Context&lt;ROLE&gt;(key, base_nonce, 0, exporter_secret)
+</span></span></code></pre></div><p>This is all that is needed to implement <a class="link" href="https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/"  target="_blank" rel="noopener"
     >HPKE</a>.
 All code examples here are taken directly from the Cryspen HPKE reference implementation.
 You can find the full code in the <a class="link" href="https://github.com/cryspen/hpke-spec"  target="_blank" rel="noopener"

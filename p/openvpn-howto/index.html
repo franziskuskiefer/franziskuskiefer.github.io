@@ -121,53 +121,53 @@ Preparations (Server) First we have to install OpenVPN on the server.
     >TUN/TAP</a> support. In this tutorial I describe how to set-up an OpenVPN connection between a Ubuntu server and an Arch client.</p>
 <h1 id="preparations-server">Preparations (Server)</h1>
 <p>First we have to install OpenVPN on the server.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># apt-get install openvpn</span>
-</code></pre></div><p>To see whether TUN/TAP is enabled in the kernel we can check the kernel log <code>grep tun /var/log/kern.log</code> and load it if it doesn&rsquo;t show up <code>modprobe tun</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># apt-get install openvpn</span>
+</span></span></code></pre></div><p>To see whether TUN/TAP is enabled in the kernel we can check the kernel log <code>grep tun /var/log/kern.log</code> and load it if it doesn&rsquo;t show up <code>modprobe tun</code>.</p>
 <h2 id="creating-a-pki">Creating a PKI</h2>
 <p>To use OpenVPN we need a PKI and certificates. Fortunately there is a script for that.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># apt-get install easy-rsa</span>
-</code></pre></div><p>First we create a folder to store our certificates in <code>mkdir easy-rsa</code> and get the default variables file <code>cp /usr/share/easy-rsa/vars easy-rsa</code>. The file is prefilled but one may want to change</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C">    <span class="n">KEY_COUNTRY</span>
-    <span class="n">KEY_PROVINCE</span>
-    <span class="n">KEY_CITY</span>
-    <span class="n">KEY_ORG</span>
-    <span class="n">KEY_EMAIL</span>
-    <span class="n">KEY_OU</span>
-</code></pre></div><p>All other standard parameteres should usually be fine but can be changed if desired. Now we change to <code>/usr/share/easy-rsa</code> and load the variables <code># source &lt;PATH_TO_VARS&gt;/vars</code> and run <code>./build-ca</code>. If there have been keys before one should run <code>./clean-all</code> first.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># apt-get install easy-rsa</span>
+</span></span></code></pre></div><p>First we create a folder to store our certificates in <code>mkdir easy-rsa</code> and get the default variables file <code>cp /usr/share/easy-rsa/vars easy-rsa</code>. The file is prefilled but one may want to change</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl">    <span class="n">KEY_COUNTRY</span>
+</span></span><span class="line"><span class="cl">    <span class="n">KEY_PROVINCE</span>
+</span></span><span class="line"><span class="cl">    <span class="n">KEY_CITY</span>
+</span></span><span class="line"><span class="cl">    <span class="n">KEY_ORG</span>
+</span></span><span class="line"><span class="cl">    <span class="n">KEY_EMAIL</span>
+</span></span><span class="line"><span class="cl">    <span class="n">KEY_OU</span>
+</span></span></code></pre></div><p>All other standard parameteres should usually be fine but can be changed if desired. Now we change to <code>/usr/share/easy-rsa</code> and load the variables <code># source &lt;PATH_TO_VARS&gt;/vars</code> and run <code>./build-ca</code>. If there have been keys before one should run <code>./clean-all</code> first.</p>
 <p>Now we can start creating keys and sign them. First we create the server key with</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># ./build-key-server my-test-server</span>
-</code></pre></div><p>and aswer with <code>yes</code> two times. We do the same for a client key</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># ./build-key my-test-client</span>
-</code></pre></div><p>To build Diffie-Hellman parameters we run <code>./build-dh</code> <em>(this can take some time)</em>. Eventually we create an HMAC key for our VPN and store it with the other keys</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># openvpn --genkey --secret /usr/share/easy-rsa/keys/ta.key</span>
-</code></pre></div><h1 id="configuring-openvpn-server">Configuring OpenVPN (Server)</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># ./build-key-server my-test-server</span>
+</span></span></code></pre></div><p>and aswer with <code>yes</code> two times. We do the same for a client key</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># ./build-key my-test-client</span>
+</span></span></code></pre></div><p>To build Diffie-Hellman parameters we run <code>./build-dh</code> <em>(this can take some time)</em>. Eventually we create an HMAC key for our VPN and store it with the other keys</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># openvpn --genkey --secret /usr/share/easy-rsa/keys/ta.key</span>
+</span></span></code></pre></div><h1 id="configuring-openvpn-server">Configuring OpenVPN (Server)</h1>
 <p>Everything is set-up now to configure and run the OpenVPN server. First we copy the sample configuration file to the correct folder</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># cp /usr/share/doc/openvpn/examples/sample-config-files/server.conf.gz /etc/openvpn/</span>
-<span class="c1"># gzip -d /etc/openvpn/server.conf.gz</span>
-</code></pre></div><p>At least the following changes to <code>server.conf</code> should be made after copying keys, parameters and certificates.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">ca /etc/openvpn/ca.crt
-cert /etc/openvpn/my-test-server.crt
-key /etc/openvpn/my-test-server.key
-dh /etc/openvpn/dh2048.pem
-tls-auth /etc/openvpn/ta.key <span class="m">0</span>
-user nobody
-group nobody
-</code></pre></div><h1 id="starting-openvpn-server">Starting OpenVPN (Server)</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># cp /usr/share/doc/openvpn/examples/sample-config-files/server.conf.gz /etc/openvpn/</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># gzip -d /etc/openvpn/server.conf.gz</span>
+</span></span></code></pre></div><p>At least the following changes to <code>server.conf</code> should be made after copying keys, parameters and certificates.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ca /etc/openvpn/ca.crt
+</span></span><span class="line"><span class="cl">cert /etc/openvpn/my-test-server.crt
+</span></span><span class="line"><span class="cl">key /etc/openvpn/my-test-server.key
+</span></span><span class="line"><span class="cl">dh /etc/openvpn/dh2048.pem
+</span></span><span class="line"><span class="cl">tls-auth /etc/openvpn/ta.key <span class="m">0</span>
+</span></span><span class="line"><span class="cl">user nobody
+</span></span><span class="line"><span class="cl">group nobody
+</span></span></code></pre></div><h1 id="starting-openvpn-server">Starting OpenVPN (Server)</h1>
 <p>The server can now be started with</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">openvpn /etc/openvpn/server.conf
-</code></pre></div><h1 id="configuring-openvpn-client">Configuring OpenVPN (Client)</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">openvpn /etc/openvpn/server.conf
+</span></span></code></pre></div><h1 id="configuring-openvpn-client">Configuring OpenVPN (Client)</h1>
 <p>First we have to get key, certificate and parameters from the server to the client. Now we install OpenVPN on the client <code>pacman -S openpvpn</code> copy the sample-configuration file somewhere nice <code># cp /usr/share/openvpn/examples/client.conf /etc/openvpn/client.conf</code> and modify at least the following</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">remote test-server-ip <span class="m">1194</span>
-ca /etc/openvpn/ca.crt
-cert /etc/openvpn/my-test-client.crt
-key /etc/openvpn/my-test-client.key
-dh /etc/openvpn/dh2048.pem
-tls-auth /etc/openvpn/ta.key <span class="m">1</span>
-user nobody
-group nobody
-</code></pre></div><p>The <em>test-server-ip</em> has to be replaced with the server&rsquo;s IP or URL. Now we can also start the client <code># openvpn /etc/openvpn/client.conf</code>. The start-up should end with</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">Initialization Sequence Completed
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">remote test-server-ip <span class="m">1194</span>
+</span></span><span class="line"><span class="cl">ca /etc/openvpn/ca.crt
+</span></span><span class="line"><span class="cl">cert /etc/openvpn/my-test-client.crt
+</span></span><span class="line"><span class="cl">key /etc/openvpn/my-test-client.key
+</span></span><span class="line"><span class="cl">dh /etc/openvpn/dh2048.pem
+</span></span><span class="line"><span class="cl">tls-auth /etc/openvpn/ta.key <span class="m">1</span>
+</span></span><span class="line"><span class="cl">user nobody
+</span></span><span class="line"><span class="cl">group nobody
+</span></span></code></pre></div><p>The <em>test-server-ip</em> has to be replaced with the server&rsquo;s IP or URL. Now we can also start the client <code># openvpn /etc/openvpn/client.conf</code>. The start-up should end with</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">Initialization Sequence Completed
+</span></span></code></pre></div>
 </section>
 
 

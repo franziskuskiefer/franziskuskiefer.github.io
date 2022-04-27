@@ -140,7 +140,7 @@ The following describes the language.</p>
 <pre tabindex="0"><code>  Values v ::=
          n                             integer constants 
        | True | False                  boolean constants 
-       | '...' | &quot;...&quot;                 string constants 
+       | &#39;...&#39; | &#34;...&#34;                 string constants 
        | (v1,...,vn)                   tuple constant 
        | array([v1,...,vn])            array constant 
 
@@ -176,9 +176,9 @@ Statements s ::=
        | if e:                         if-elif-else conditional 
              s1...sn  
          elif e:  
-             s1'...sn'  
+             s1&#39;...sn&#39;  
          else  
-             s1''...sn''  
+             s1&#39;&#39;...sn&#39;&#39;  
        | for i in range(e):            for loop 
              s1...sn  
        | break                         break from loop 
@@ -259,54 +259,54 @@ Using <a class="link" href="https://github.com/FStarLang/kremlin"  target="_blan
     ><em>hacspec</em> repo</a> has many examples.
 I&rsquo;ll only give a short one here.</p>
 <p>The spec <code>poly.py</code>:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="kn">from</span> <span class="nn">hacspec.speclib</span> <span class="kn">import</span> <span class="o">*</span>
-
-<span class="n">p130m5</span><span class="p">:</span> <span class="n">nat_t</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span> <span class="o">**</span> <span class="mi">130</span><span class="p">)</span> <span class="o">-</span> <span class="mi">5</span>
-<span class="n">felem_t</span> <span class="o">=</span> <span class="n">natmod_t</span><span class="p">(</span><span class="n">p130m5</span><span class="p">)</span>
-
-<span class="nd">@typechecked</span>
-<span class="k">def</span> <span class="nf">felem</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="n">nat_t</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">felem_t</span><span class="p">:</span>
-    <span class="k">return</span> <span class="n">natmod</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">p130m5</span><span class="p">)</span>
-
-
-<span class="nd">@typechecked</span>
-<span class="k">def</span> <span class="nf">poly</span><span class="p">(</span><span class="n">m</span><span class="p">:</span> <span class="n">vlarray_t</span><span class="p">(</span><span class="n">felem_t</span><span class="p">),</span> <span class="n">r</span><span class="p">:</span> <span class="n">felem_t</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">felem_t</span><span class="p">:</span>
-    <span class="n">acc</span><span class="p">:</span> <span class="n">felem_t</span> <span class="o">=</span> <span class="n">felem</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">array</span><span class="o">.</span><span class="n">length</span><span class="p">(</span><span class="n">m</span><span class="p">)):</span>
-        <span class="n">acc</span> <span class="o">=</span> <span class="p">(</span><span class="n">acc</span> <span class="o">+</span> <span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">*</span> <span class="n">r</span>
-    <span class="k">return</span> <span class="n">acc</span>
-</code></pre></div><p>The test <code>poly_test.py</code>:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="kn">from</span> <span class="nn">poly</span> <span class="kn">import</span> <span class="o">*</span>
-
-<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="n">m</span> <span class="o">=</span> <span class="n">array</span><span class="p">([</span><span class="n">felem</span><span class="p">(</span><span class="mh">0x6f4620636968706172676f7470797243</span><span class="p">),</span>
-               <span class="n">felem</span><span class="p">(</span><span class="mh">0x6f7247206863726165736552206d7572</span><span class="p">)])</span>
-    <span class="n">k</span> <span class="o">=</span> <span class="n">felem</span><span class="p">(</span><span class="mh">0xa806d542fe52447f336d555778bed685</span><span class="p">)</span>
-    <span class="n">expected</span> <span class="o">=</span> <span class="n">natmod</span><span class="p">(</span><span class="mh">0xa01b776a69ea8c1cd3ba00179dc218ab</span><span class="p">,</span> <span class="n">p130m5</span><span class="p">)</span>
-
-    <span class="n">p</span> <span class="o">=</span> <span class="n">poly</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">k</span><span class="p">)</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">expected</span> <span class="o">==</span> <span class="n">p</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Error&#34;</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Expected: &#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">expected</span><span class="p">))</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Got:      &#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">p</span><span class="p">))</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Test successful&#34;</span><span class="p">)</span>
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
-    <span class="n">main</span><span class="p">()</span>
-</code></pre></div><p>This can now be run with <code>python poly_test.py</code> and checked with <code>hacspec-check poly.py</code> and <code>checker.native poly.py</code>.
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">hacspec.speclib</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">p130m5</span><span class="p">:</span> <span class="n">nat_t</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span> <span class="o">**</span> <span class="mi">130</span><span class="p">)</span> <span class="o">-</span> <span class="mi">5</span>
+</span></span><span class="line"><span class="cl"><span class="n">felem_t</span> <span class="o">=</span> <span class="n">natmod_t</span><span class="p">(</span><span class="n">p130m5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@typechecked</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">felem</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="n">nat_t</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">felem_t</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">natmod</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">p130m5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@typechecked</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">poly</span><span class="p">(</span><span class="n">m</span><span class="p">:</span> <span class="n">vlarray_t</span><span class="p">(</span><span class="n">felem_t</span><span class="p">),</span> <span class="n">r</span><span class="p">:</span> <span class="n">felem_t</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">felem_t</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">acc</span><span class="p">:</span> <span class="n">felem_t</span> <span class="o">=</span> <span class="n">felem</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">array</span><span class="o">.</span><span class="n">length</span><span class="p">(</span><span class="n">m</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">acc</span> <span class="o">=</span> <span class="p">(</span><span class="n">acc</span> <span class="o">+</span> <span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">*</span> <span class="n">r</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">acc</span>
+</span></span></code></pre></div><p>The test <code>poly_test.py</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">poly</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">m</span> <span class="o">=</span> <span class="n">array</span><span class="p">([</span><span class="n">felem</span><span class="p">(</span><span class="mh">0x6f4620636968706172676f7470797243</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">               <span class="n">felem</span><span class="p">(</span><span class="mh">0x6f7247206863726165736552206d7572</span><span class="p">)])</span>
+</span></span><span class="line"><span class="cl">    <span class="n">k</span> <span class="o">=</span> <span class="n">felem</span><span class="p">(</span><span class="mh">0xa806d542fe52447f336d555778bed685</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">expected</span> <span class="o">=</span> <span class="n">natmod</span><span class="p">(</span><span class="mh">0xa01b776a69ea8c1cd3ba00179dc218ab</span><span class="p">,</span> <span class="n">p130m5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">p</span> <span class="o">=</span> <span class="n">poly</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">k</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="ow">not</span> <span class="n">expected</span> <span class="o">==</span> <span class="n">p</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Error&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Expected: &#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">expected</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Got:      &#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">p</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Test successful&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">main</span><span class="p">()</span>
+</span></span></code></pre></div><p>This can now be run with <code>python poly_test.py</code> and checked with <code>hacspec-check poly.py</code> and <code>checker.native poly.py</code>.
 Compiling this to F* can be done with <code>to_fstar.native poly.py</code>, generating the following F* code.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ocaml" data-lang="ocaml"><span class="k">module</span> <span class="nc">Poly</span>
-<span class="k">open</span> <span class="nc">Speclib</span>
-
-<span class="k">let</span> <span class="n">p130m5</span> <span class="o">:</span> <span class="n">nat_t</span> <span class="o">=</span> <span class="o">(</span><span class="n">2</span> <span class="o">**.</span> <span class="n">130</span><span class="o">)</span> <span class="o">-.</span> <span class="n">5</span>
-<span class="k">let</span> <span class="n">felem_t</span> <span class="o">:</span> <span class="nc">Type0</span> <span class="o">=</span> <span class="n">natmod_t</span> <span class="n">p130m5</span>
-<span class="k">let</span> <span class="n">felem</span> <span class="o">(</span><span class="n">n</span> <span class="o">:</span> <span class="n">nat_t</span><span class="o">)</span> <span class="o">:</span> <span class="n">felem_t</span> <span class="o">=</span> <span class="n">natmod</span> <span class="n">n</span> <span class="n">p130m5</span>
-<span class="k">let</span> <span class="n">poly</span> <span class="o">(</span><span class="n">m</span> <span class="o">:</span> <span class="n">vlarray_t</span> <span class="n">felem_t</span><span class="o">)</span> <span class="o">(</span><span class="n">r</span> <span class="o">:</span> <span class="n">felem_t</span><span class="o">)</span> <span class="o">:</span> <span class="n">felem_t</span> <span class="o">=</span>
-  <span class="k">let</span> <span class="n">acc</span> <span class="o">=</span> <span class="n">felem</span> <span class="n">0</span> <span class="k">in</span>
-  <span class="k">let</span> <span class="n">acc</span> <span class="o">=</span> <span class="n">repeati</span> <span class="o">(</span><span class="n">array_length</span> <span class="n">m</span><span class="o">)</span> <span class="o">(</span><span class="k">fun</span> <span class="n">i</span> <span class="n">acc</span> <span class="o">-&gt;</span> <span class="o">(</span><span class="n">acc</span> <span class="o">+.</span> <span class="n">m</span><span class="o">.[</span><span class="n">i</span><span class="o">])</span> <span class="o">*.</span> <span class="n">r</span><span class="o">)</span> <span class="n">acc</span> <span class="k">in</span>
-  <span class="n">acc</span>
-</code></pre></div><h1 id="next-steps">Next steps</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ocaml" data-lang="ocaml"><span class="line"><span class="cl"><span class="k">module</span> <span class="nc">Poly</span>
+</span></span><span class="line"><span class="cl"><span class="k">open</span> <span class="nc">Speclib</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">let</span> <span class="n">p130m5</span> <span class="o">:</span> <span class="n">nat_t</span> <span class="o">=</span> <span class="o">(</span><span class="n">2</span> <span class="o">**.</span> <span class="n">130</span><span class="o">)</span> <span class="o">-.</span> <span class="n">5</span>
+</span></span><span class="line"><span class="cl"><span class="k">let</span> <span class="n">felem_t</span> <span class="o">:</span> <span class="nc">Type0</span> <span class="o">=</span> <span class="n">natmod_t</span> <span class="n">p130m5</span>
+</span></span><span class="line"><span class="cl"><span class="k">let</span> <span class="n">felem</span> <span class="o">(</span><span class="n">n</span> <span class="o">:</span> <span class="n">nat_t</span><span class="o">)</span> <span class="o">:</span> <span class="n">felem_t</span> <span class="o">=</span> <span class="n">natmod</span> <span class="n">n</span> <span class="n">p130m5</span>
+</span></span><span class="line"><span class="cl"><span class="k">let</span> <span class="n">poly</span> <span class="o">(</span><span class="n">m</span> <span class="o">:</span> <span class="n">vlarray_t</span> <span class="n">felem_t</span><span class="o">)</span> <span class="o">(</span><span class="n">r</span> <span class="o">:</span> <span class="n">felem_t</span><span class="o">)</span> <span class="o">:</span> <span class="n">felem_t</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">  <span class="k">let</span> <span class="n">acc</span> <span class="o">=</span> <span class="n">felem</span> <span class="n">0</span> <span class="k">in</span>
+</span></span><span class="line"><span class="cl">  <span class="k">let</span> <span class="n">acc</span> <span class="o">=</span> <span class="n">repeati</span> <span class="o">(</span><span class="n">array_length</span> <span class="n">m</span><span class="o">)</span> <span class="o">(</span><span class="k">fun</span> <span class="n">i</span> <span class="n">acc</span> <span class="o">-&gt;</span> <span class="o">(</span><span class="n">acc</span> <span class="o">+.</span> <span class="n">m</span><span class="o">.[</span><span class="n">i</span><span class="o">])</span> <span class="o">*.</span> <span class="n">r</span><span class="o">)</span> <span class="n">acc</span> <span class="k">in</span>
+</span></span><span class="line"><span class="cl">  <span class="n">acc</span>
+</span></span></code></pre></div><h1 id="next-steps">Next steps</h1>
 <p>We hope that <em>hacspec</em> is a useful tool for spec authors and many people indeed voiced interest already.
 While the tooling isn&rsquo;t perfect yet, the language is developed enough to start using it.
 The next steps for <em>hacspec</em> is to get some usage from spec authors and improve tooling.

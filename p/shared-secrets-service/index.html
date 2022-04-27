@@ -152,7 +152,7 @@ Note that the service allows to encrypt the message with a password before shari
 </code></pre><p>where <code>aad</code> contains all meta-data (version etc.).
 Keys for the mac and encryption algorithms are derived as follows</p>
 <pre tabindex="0"><code>key &lt;- random() # 32-byte
-(k_c, k_t) &lt;- (HMAC-SHA256(key, &quot;enc&quot;), HMAC-SHA256(key, &quot;mac&quot;))
+(k_c, k_t) &lt;- (HMAC-SHA256(key, &#34;enc&#34;), HMAC-SHA256(key, &#34;mac&#34;))
 rsakey &lt;- RSA-OAEP(pk, key)
 </code></pre><p>The RSA key <code>pk</code> is the server&rsquo;s public key.
 Now we can compute the ciphertext and mac.</p>
