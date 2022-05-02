@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>high-assurance on Dr Franziskus Kiefer</title>
+    <link>https://www.franziskuskiefer.de/tags/high-assurance/</link>
+    <description>Recent content in high-assurance on Dr Franziskus Kiefer</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 02 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/tags/high-assurance/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>What is High Assurance Cryptography?</title>
+      <link>https://www.franziskuskiefer.de/p/what-is-high-assurance-cryptography/</link>
+      <pubDate>Mon, 02 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.franziskuskiefer.de/p/what-is-high-assurance-cryptography/</guid>
+      <description>With my company Cryspen we build high assurance cryptography. But what does this actually mean?
+Before focusing on cryptography it is interesting to look at high assurance software in general. How is high assurance software different from other software?
+High assurance software is usually seen as being more trustworthy than other software. This is especially interesting in high-risk/high-stakes environments such as financial institutions or governments. There are different ways to achieve better guarantees for software.</description>
+    </item>
+    
+  </channel>
+</rss>

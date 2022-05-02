@@ -6,7 +6,18 @@
     <description>Recent content in Posts on Dr Franziskus Kiefer</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 24 Feb 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 02 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>What is High Assurance Cryptography?</title>
+      <link>https://www.franziskuskiefer.de/p/what-is-high-assurance-cryptography/</link>
+      <pubDate>Mon, 02 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.franziskuskiefer.de/p/what-is-high-assurance-cryptography/</guid>
+      <description>With my company Cryspen we build high assurance cryptography. But what does this actually mean?
+Before focusing on cryptography it is interesting to look at high assurance software in general. How is high assurance software different from other software?
+High assurance software is usually seen as being more trustworthy than other software. This is especially interesting in high-risk/high-stakes environments such as financial institutions or governments. There are different ways to achieve better guarantees for software.</description>
+    </item>
+    
     <item>
       <title>An Executable HPKE Specification</title>
       <link>https://www.franziskuskiefer.de/p/an-executable-hpke-specification/</link>

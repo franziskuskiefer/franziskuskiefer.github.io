@@ -6,7 +6,292 @@
         <description>Recent content on Dr Franziskus Kiefer</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Thu, 24 Feb 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 02 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>What is High Assurance Cryptography?</title>
+        <link>https://www.franziskuskiefer.de/p/what-is-high-assurance-cryptography/</link>
+        <pubDate>Mon, 02 May 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://www.franziskuskiefer.de/p/what-is-high-assurance-cryptography/</guid>
+        <description>&lt;img src="https://www.franziskuskiefer.de/p/what-is-high-assurance-cryptography/header.jpg" alt="Featured image of post What is High Assurance Cryptography?" /&gt;&lt;p&gt;With my company &lt;a class=&#34;link&#34; href=&#34;https://www.cryspen.com&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Cryspen&lt;/a&gt; we build high assurance cryptography.
+But what does this actually mean?&lt;/p&gt;
+&lt;p&gt;Before focusing on cryptography it is interesting to look at high assurance
+software in general.
+How is high assurance software different from other software?&lt;/p&gt;
+&lt;p&gt;High assurance software is usually seen as being more trustworthy than other
+software.
+This is especially interesting in high-risk/high-stakes environments such as
+financial institutions or governments.
+There are different ways to achieve better guarantees for software.
+Today the most commonly used technique to increase trust into software is using
+certifications like &lt;a class=&#34;link&#34; href=&#34;https://en.wikipedia.org/wiki/Common_Criteria&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;common criteria&lt;/a&gt;
+or &lt;a class=&#34;link&#34; href=&#34;https://en.wikipedia.org/wiki/FIPS_140-2&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;FIPS&lt;/a&gt;.
+While these certifications offer a certain level of additional guarantees, only
+the highest levels require some form of formal verification of the production
+source code.
+As such certification usually reaches only up to a certain level of high assurance.&lt;/p&gt;
+&lt;p&gt;Instead, using formal methods to increase trust in software offers real tangible
+guarantees on a software artifact.
+But in order to get actual guarantees we have to define the properties that are
+guaranteed and put it into perspective by defining different assurance levels.
+Before doing this we look at the different techniques used in high assurance
+software engineering.&lt;/p&gt;
+&lt;h2 id=&#34;techniques&#34;&gt;Techniques&lt;/h2&gt;
+&lt;p&gt;There are a number of different techniques used in (high assurance) software engineering.
+Some are simply good engineering practice while others go beyond what is done for most software.
+The following picture gives a high-level overview of the different techniques.
+(The list is of course not exhaustive and some grouping might be arbitrary.)&lt;/p&gt;
+&lt;p&gt;&lt;figure style=&#34;flex-grow: 200; flex-basis: 480px&#34;&gt;
+		&lt;a href=&#34;https://www.franziskuskiefer.de/p/what-is-high-assurance-cryptography/overview1.png&#34; data-size=&#34;1440x720&#34;&gt;&lt;img src=&#34;https://www.franziskuskiefer.de/p/what-is-high-assurance-cryptography/overview1.png&#34;
+				srcset=&#34;https://www.franziskuskiefer.de/p/what-is-high-assurance-cryptography/overview1_hu3cede752948e24ef3b92606ea47496ec_569899_480x0_resize_box_3.png 480w, https://www.franziskuskiefer.de/p/what-is-high-assurance-cryptography/overview1_hu3cede752948e24ef3b92606ea47496ec_569899_1024x0_resize_box_3.png 1024w&#34;
+				width=&#34;1440&#34;
+				height=&#34;720&#34;
+				loading=&#34;lazy&#34;
+				alt=&#34;High assurance tools - an overview&#34;&gt;
+		&lt;/a&gt;
+		
+		&lt;figcaption&gt;High assurance tools - an overview&lt;/figcaption&gt;
+		
+	&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;On the left side we have safe programming languages and engineering processes
+that are the bedrock of high assurance software engineering.
+Processes ensure that the development and maintenance process is safe while
+using a safe programming language such as Rust that gives memory safety
+guarantees provides a safety baseline for the software.&lt;/p&gt;
+&lt;p&gt;The engineering infrastructure in the center is used to enforce policies and link
+everything together.
+It is the glue that implements engineering processes and ensures safe operations
+of the code at all times.
+On the right hand side we have engineering practices divided into dynamic and
+static tools, or testing and formal methods.
+There are a lot of different testing techniques from fuzzing to known answer
+tests that ensure that the code is operating correctly and safely for a certain
+set of inputs.
+With static analysis and formal methods we can go a step further and ensure that
+the code is correct and safe for all inputs.&lt;/p&gt;
+&lt;h2 id=&#34;assurance-levels&#34;&gt;Assurance Levels&lt;/h2&gt;
+&lt;p&gt;Speaking about “high assurance” is so vague that it can be considered meaningless.
+When speaking about high assurance software it is paramount to define a set of
+properties the software guarantees.
+To this end we define a set of assurance levels a software artifact can achieve
+and a set of techniques used to get there.
+The following picture sorts the previously defined techniques according to the
+level of assurance they provide and the complexity required to use them.&lt;/p&gt;
+&lt;p&gt;&lt;figure style=&#34;flex-grow: 192; flex-basis: 462px&#34;&gt;
+		&lt;a href=&#34;https://www.franziskuskiefer.de/p/what-is-high-assurance-cryptography/overview2.png&#34; data-size=&#34;2018x1047&#34;&gt;&lt;img src=&#34;https://www.franziskuskiefer.de/p/what-is-high-assurance-cryptography/overview2.png&#34;
+				srcset=&#34;https://www.franziskuskiefer.de/p/what-is-high-assurance-cryptography/overview2_hu6645ebbbb45afaa59acb0d3491403de9_661764_480x0_resize_box_3.png 480w, https://www.franziskuskiefer.de/p/what-is-high-assurance-cryptography/overview2_hu6645ebbbb45afaa59acb0d3491403de9_661764_1024x0_resize_box_3.png 1024w&#34;
+				width=&#34;2018&#34;
+				height=&#34;1047&#34;
+				loading=&#34;lazy&#34;
+				alt=&#34;High assurance - an overview&#34;&gt;
+		&lt;/a&gt;
+		
+		&lt;figcaption&gt;High assurance - an overview&lt;/figcaption&gt;
+		
+	&lt;/figure&gt;&lt;/p&gt;
+&lt;h3 id=&#34;ca-1&#34;&gt;CA-1&lt;/h3&gt;
+&lt;p&gt;The first level of high assurance software is what I’d flippantly call “well
+written software”.
+At this level no complex tools are required. Instead good engineering principles
+are applied.&lt;/p&gt;
+&lt;p&gt;Note that this level must not be used for cryptographic software.
+&lt;strong&gt;Cryptography requires at least CA-2.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The programming language and how it is used is the first important point.
+A programming language like Rust that is memory safe and has a lot of additional
+features that allow to ensure that the code is “safe” is paramount.
+It is well known that memory safety is the root cause for most security issues
+with about 70% (see what &lt;a class=&#34;link&#34; href=&#34;https://www.chromium.org/Home/chromium-security/memory-safety/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Google&lt;/a&gt;, &lt;a class=&#34;link&#34; href=&#34;https://msrnd-cdn-stor.azureedge.net/bluehat/bluehatil/2019/assets/doc/Trends%2C%20Challenges%2C%20and%20Strategic%20Shifts%20in%20the%20Software%20Vulnerability%20Mitigation%20Landscape.pdf&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Microsoft&lt;/a&gt;, or the &lt;a class=&#34;link&#34; href=&#34;https://www.memorysafety.org/docs/memory-safety/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;ISRG&lt;/a&gt; say about this).
+They are only possible because languages like C and C++ are not memory safe.&lt;/p&gt;
+&lt;p&gt;The code requires a sufficient amount of tests. It is difficult and arbitrary to
+define an exact number for test coverage.
+But I think it is safe to say that a test coverage of less than 70% is not
+acceptable.
+Defining test coverage, quantitatively and qualitatively, is part of the
+engineering process.&lt;/p&gt;
+&lt;p&gt;Because testing against itself is not sufficient, test vectors with known answer
+tests must be used.
+If the implementation does not have a generally accepted specification or
+(de-facto) reference implementation that can be used to get test vectors, a
+reference implementation (specification) must be written to produce test vectors.&lt;/p&gt;
+&lt;p&gt;Engineering processes must be implemented that ensure that the code can be safely
+maintained in the long-run.
+An engineering infrastructure must be in place to enforce processes and help the engineering process.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Properties:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Memory safety&lt;/li&gt;
+&lt;li&gt;Adequate test coverage&lt;/li&gt;
+&lt;li&gt;Known answer tests&lt;/li&gt;
+&lt;li&gt;Engineering best practices
+&lt;ul&gt;
+&lt;li&gt;Review guidelines&lt;/li&gt;
+&lt;li&gt;Continuous integration&lt;/li&gt;
+&lt;li&gt;Documentation&lt;/li&gt;
+&lt;li&gt;(Security) bug reporting&lt;/li&gt;
+&lt;li&gt;Release management&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;ca-2&#34;&gt;CA-2&lt;/h3&gt;
+&lt;p&gt;The second level includes everything from the first level but adds properties
+specific to cryptographic code and more advanced testing methods.&lt;/p&gt;
+&lt;p&gt;In cryptographic code it is important that no decisions are made based on secret
+information.
+It is therefore necessary to avoid any branching on secret data or memory access
+based on secret data.
+There is research tooling out there that tries to ensure this and a lot of good
+practices to avoid it. But there’s no comprehensive way of doing this right now.
+With Cryspen we develop a set of tools to ensure secret independent computation that we use and maintain.&lt;/p&gt;
+&lt;p&gt;On this level more advanced testing such as fuzzing and property based testing
+is required as well to make sure that the code is not only safe in well defined
+states but can handle any input.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Properties:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Secret independent computation
+&lt;ul&gt;
+&lt;li&gt;No secret-dependent branching&lt;/li&gt;
+&lt;li&gt;No secret-dependent memory access&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Advanced testing
+&lt;ul&gt;
+&lt;li&gt;Fuzzing&lt;/li&gt;
+&lt;li&gt;Sanitizer builds&lt;/li&gt;
+&lt;li&gt;Property based testing&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;ca-2-1&#34;&gt;CA-2+&lt;/h4&gt;
+&lt;p&gt;The secret independent computation properties in CA-2 can be shown on different
+levels.
+Often this is done only on the programming language level rather than the machine
+code.
+If the secret independent computation is ensured on the machine code level, we
+call this CA-2+.
+Higher levels are augmented with the + in the same way if the secret independence
+is given after compilation.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Properties:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Secret independent computation ensured on the machine code level&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;ca-3a&#34;&gt;CA-3a&lt;/h3&gt;
+&lt;p&gt;The third assurance level includes the first two but requires formal methods.
+This is what we will always aim for. But because of the complexity and real world
+constraints it is not always feasible to achieve this level for all code.&lt;/p&gt;
+&lt;p&gt;Cryptographic primitives are one building block used to build cryptographic
+protocols.
+Because they require highly efficient implementations but usually have a rather
+succinct mathematical definition, functional and semantic correctness are the
+properties we are interested in.
+In particular, the efficient implementation of a cryptographic primitive must be
+shown equivalent to a self-evidently correct specification.
+Additionally semantic properties such as “decryption is the inverse of encryption”
+can be shown.
+The exact properties proven must be clearly stated for every artifact.&lt;/p&gt;
+&lt;p&gt;Data structures and other building blocks are needed to build cryptographic
+protocols in addition to the primitives.
+They must be similarly shown to be correct and safe to use by using functional
+and semantic correctness proofs.&lt;/p&gt;
+&lt;p&gt;On this level the cryptographic protocols themselves are written in a succinct
+way such that they can be inspected by hand and compared to a general
+specification if available.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Properties:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Functional and semantic security proofs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;ca-3b&#34;&gt;CA-3b&lt;/h3&gt;
+&lt;p&gt;The third level can be extended to require formal proofs on the protocol layer.
+While cryptographic protocols can often be written in a way that they are
+self-evidently correct and efficient, this is not enough if the protocol is not
+standardized or is too complex to inspect manually.&lt;/p&gt;
+&lt;p&gt;Security models and properties are defined for a protocol and they are proven on
+the implementation of the cryptographic protocols using formal methods.
+These properties are very specific to each protocol and can range from the
+correctness of a state machine to the security against a certain type of attacker.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Properties:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Security proofs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;high-assurance&#34;&gt;High-Assurance?&lt;/h2&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://highassurance.rs&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://highassurance.rs&lt;/a&gt; has some great documentation on writing good Rust code.
+However, it also has a good example of what I &lt;em&gt;don’t&lt;/em&gt; consider high assurance software
+and exemplifies why it is so important to specify all claims precisely instead of
+simply claiming high assurance.
+&lt;em&gt;(Note that this is just an example to show why it is so important to exactly specify what assurances are given. This is not supposed to bash the &lt;a class=&#34;link&#34; href=&#34;https://highassurance.rs&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://highassurance.rs&lt;/a&gt; folks. I think it&amp;rsquo;s a great effort.)&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Let’s take a look at chapters &lt;a class=&#34;link&#34; href=&#34;https://highassurance.rs/chp2/dynamic_assurance_1.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;2.4-2.6&lt;/a&gt; that describe a high assurance
+implementation of the RC4 stream cipher. At the end of the section the authors
+state the following:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;You&amp;rsquo;ve now built your first piece of high assurance software (sans the RC4 algorithm itself). Your RC4 library is:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Fully memory-safe, hence &lt;code&gt;#![forbid(unsafe_code)]&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Stand-alone and capable for running almost anywhere, hence &lt;code&gt;#![no_std]&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Functionally validated, using official IETF test vectors&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;While these points are all on the list above they are what I would consider good
+engineering principles (known answer tests with test vectors, and memory safety).
+In particular, they lay the foundation for high assurance software but don’t
+constitute high assurance in itself. As is, the code itself would be CA-1 but
+additional mechanisms in the form of engineering processes and infrastructure
+are needed for full CA-1 compliance.
+(Similar additional mechanisms are mentioned in &lt;a class=&#34;link&#34; href=&#34;https://highassurance.rs/chp2/_index.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Chapter 2&lt;/a&gt;.)&lt;/p&gt;
+&lt;p&gt;However, CA-1 is not sufficient for cryptographic primitives as stated above.
+To reach CA-2 the code needs to be rewritten though because &lt;strong&gt;it has secret
+dependent memory access&lt;/strong&gt;.
+After doing this property based testing, fuzzing, and techniques ensuring secret
+independent computation have to be added.&lt;/p&gt;
+&lt;p&gt;Because the code can be seen as a spec one can argue that it reaches CA-3a now
+as well.
+CA-3b is not applicable.
+However it is not very efficient but rather a specification.
+In order to use the algorithm in a real application one might want to implement
+an efficient version that would then require an equivalence proof with the
+specification.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;RC4 itself is of course not secure and must not be used! This is just taking the example from &lt;a class=&#34;link&#34; href=&#34;https://highassurance.rs&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://highassurance.rs&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&#34;cryspen-high-assurance-cryptography&#34;&gt;Cryspen High Assurance Cryptography&lt;/h2&gt;
+&lt;p&gt;At Cryspen we consider CA-1 regular software.
+Cryptographic code at Cryspen must always be CA-2 or higher.&lt;/p&gt;
+&lt;p&gt;We are working on different high assurance cryptographic primitives and
+protocols right now.&lt;/p&gt;
+&lt;h3 id=&#34;hacl&#34;&gt;HACL&lt;/h3&gt;
+&lt;p&gt;The &lt;a class=&#34;link&#34; href=&#34;https://github.com/cryspen/hacl-packages&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;HACL packages&lt;/a&gt; wrap the HACL* research artifacts and constitute a high
+assurance cryptographic library.
+The library is CA-3a because it is proven to be memory safe, has correctness
+proofs with respect to a specification and ensures secret independent computation
+on a programming language level.&lt;/p&gt;
+&lt;h3 id=&#34;hpke&#34;&gt;HPKE&lt;/h3&gt;
+&lt;p&gt;The &lt;a class=&#34;link&#34; href=&#34;https://github.com/cryspen/hpke-spec/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;HPKE implementation&lt;/a&gt; is a specification of the &lt;a class=&#34;link&#34; href=&#34;https://datatracker.ietf.org/doc/rfc9180/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;HPKE RFC&lt;/a&gt; and as such is CA-3a
+because it is self-evidently correct as a specification and uses formally
+verified cryptography with CA-3a.
+In a next step the &lt;a class=&#34;link&#34; href=&#34;https://github.com/cryspen/hpke-spec/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;HPKE implementation&lt;/a&gt; will be connected to the &lt;a class=&#34;link&#34; href=&#34;https://www.benjaminlipp.de/p/hpke-cryptographic-standard/#pre&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Cryptoverif&lt;/a&gt;
+models to prove security properties and thus reach the highest assurance
+level CA-3b.&lt;/p&gt;
+&lt;h3 id=&#34;tls-13&#34;&gt;TLS 1.3&lt;/h3&gt;
+&lt;p&gt;In an &lt;a class=&#34;link&#34; href=&#34;https://www.assure.ngi.eu/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;NGI Assure&lt;/a&gt; project we develop the first formally verified, production
+ready TLS 1.3 implementation.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.cryspen.com&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Cryspen&lt;/a&gt; offers high assurance cryptographic implementations.
+&lt;a class=&#34;link&#34; href=&#34;mailto:franziskus@cryspen.com&#34; &gt;Get in touch for more information.&lt;/a&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>An Executable HPKE Specification</title>
         <link>https://www.franziskuskiefer.de/p/an-executable-hpke-specification/</link>
         <pubDate>Thu, 24 Feb 2022 00:00:00 +0000</pubDate>
