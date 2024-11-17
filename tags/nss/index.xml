@@ -1,64 +1,440 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>NSS on Dr Franziskus Kiefer</title>
-    <link>https://www.franziskuskiefer.de/tags/nss/</link>
-    <description>Recent content in NSS on Dr Franziskus Kiefer</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Thu, 12 Apr 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/tags/nss/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Shipping (some) HACL*</title>
-      <link>https://www.franziskuskiefer.de/p/shipping-some-hacl/</link>
-      <pubDate>Thu, 12 Apr 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.franziskuskiefer.de/p/shipping-some-hacl/</guid>
-      <description>If you didn&amp;rsquo;t read the article about the HACL* approach, go there first and read it. tl;dr
- HACL* is a cryptographic library written in F* that allows translation to C using kremlin. It guarantees memory safety, secret independent computation, and functional correctness with respect to a mathematical specification.
-  In this second blog post I describe the process of integrating code from HACL*, a researchy crypto library, into NSS, a production library shipping to millions of people, running on a plethora of platforms.</description>
-    </item>
-    
-    <item>
-      <title>CVE-2017-5462 - A PRNG issue</title>
-      <link>https://www.franziskuskiefer.de/p/cve-2017-5462-a-prng-issue/</link>
-      <pubDate>Thu, 31 Aug 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.franziskuskiefer.de/p/cve-2017-5462-a-prng-issue/</guid>
-      <description>On April 19, 2017, Mozilla Foundation published the Security Advisory 2017-10 outlining several recently fixed security vulnerabilities. One of these vulnerabilities, tracked as CVE-2017-5462, affects the Pseudo-Random Number Generator (PRNG) within the Network Security Services (NSS) library prior to version 3.29.5 and Firefox prior to version 53.
-This post describes the bug and how it was discovered.
-Inside the NSS PRNG NSS uses Hash_DRBG as PRNG, which is one of several PRNG schemes defined in the NIST Special Publication 800-90.</description>
-    </item>
-    
-    <item>
-      <title>Aes Gcm Speedup</title>
-      <link>https://www.franziskuskiefer.de/p/aes-gcm-speedup/</link>
-      <pubDate>Tue, 27 Jun 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.franziskuskiefer.de/p/aes-gcm-speedup/</guid>
-      <description>AES-GCM is a NIST standardised authenticated encryption algorithm (FIPS 800-38D). Since its standardisation in 2008 its usage increased to a point where it is the prevalent encryption used with TLS. With 85% it is by far the most widely used cipher.
- Firefox 53 TLS cipher telemetry 
-Unfortunately the AES-GCM implementation used in Firefox (provided by NSS) does not take advantage of full hardware acceleration; it uses a slower software-only implementation on Mac, Linux 32-bit, or any device that doesn&amp;rsquo;t have the AVX, PCLMUL, and AES-NI hardware instructions.</description>
-    </item>
-    
-    <item>
-      <title>On Constant Time Division</title>
-      <link>https://www.franziskuskiefer.de/p/on-constant-time-division/</link>
-      <pubDate>Wed, 28 Dec 2016 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.franziskuskiefer.de/p/on-constant-time-division/</guid>
-      <description>Writing constant time code is hard. We all know that. But I&amp;rsquo;m always amazed again on how difficult it is. In preparation for making NSS more constant time I looked into certain CPU instructions that are known to be not constant time. So I wrote a little thing to measure the time (CPU cycles) needed for division.
-div rcx ; eax is now a/b The CPU I&amp;rsquo;m using in this post is an Intel i7-4790 (haswell).</description>
-    </item>
-    
-    <item>
-      <title>NSS Static Analysis</title>
-      <link>https://www.franziskuskiefer.de/p/nss-static-analysis/</link>
-      <pubDate>Wed, 25 May 2016 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.franziskuskiefer.de/p/nss-static-analysis/</guid>
-      <description>When I started working on NSS 7 months ago one of the tasks I was asked to do was to work through the related Coverity issues. This post summarises some learnings from this as we&amp;rsquo;ve since come a long way since over the last months.
-Static analysis plays a crucial part in locating vulnerabilities and bugs during development. For NSS we currently use multiple static analysis tools. While scan-build as well as infer are great applications to find bugs, they require a lot of manual management.</description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>NSS on Dr Franziskus Kiefer</title><link>https://www.franziskuskiefer.de/tags/nss/</link><description>Recent content in NSS on Dr Franziskus Kiefer</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 12 Apr 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/tags/nss/index.xml" rel="self" type="application/rss+xml"/><item><title>Shipping (some) HACL*</title><link>https://www.franziskuskiefer.de/p/shipping-some-hacl/</link><pubDate>Thu, 12 Apr 2018 00:00:00 +0000</pubDate><guid>https://www.franziskuskiefer.de/p/shipping-some-hacl/</guid><description>&lt;img src="https://www.franziskuskiefer.de/p/shipping-some-hacl/hero.jpg" alt="Featured image of post Shipping (some) HACL*" />&lt;p>If you didn&amp;rsquo;t read the article about the &lt;a class="link" href="../hacl-star/" >HACL* approach&lt;/a>, go there first and read it. tl;dr&lt;/p>
+&lt;blockquote>
+&lt;p>&lt;a class="link" href="https://github.com/mitls/hacl-star/" target="_blank" rel="noopener"
+>HACL*&lt;/a> is a cryptographic library written in &lt;a class="link" href="https://www.fstar-lang.org/" target="_blank" rel="noopener"
+>F*&lt;/a> that allows translation to C using kremlin.
+It guarantees memory safety, secret independent computation, and functional correctness with respect to a mathematical specification.&lt;/p>
+&lt;/blockquote>
+&lt;hr>
+&lt;p>In this second blog post I describe the process of integrating code from HACL*, a researchy crypto library, into NSS, a production library shipping to millions of people, running on a plethora of platforms.
+In short, how to ship (some parts of) HACL*.&lt;/p>
+&lt;h1 id="shipping-formally-verified-code">Shipping formally verified code
+&lt;/h1>&lt;p>Before integrating any code from HACL* into NSS there had to be some criteria the code had to fulfil in order to get considered and a process of integrating, maintaining, and updating the code.
+The criteria roughly looked like this:&lt;/p>
+&lt;ul>
+&lt;li>The code has to be correct.&lt;/li>
+&lt;li>Performance must not be degraded by any new code.&lt;/li>
+&lt;li>The code has to be human readable and modifiable, i.e. it must pass a code review process.&lt;/li>
+&lt;li>The code must run on all platforms supported by NSS or must have fallback code for platforms that are not supported.&lt;/li>
+&lt;li>Upstream changes can to be integrated easily into NSS and fixes can be integrated upstream.&lt;/li>
+&lt;li>The verification and generation toolchain has to run in the NSS world.&lt;/li>
+&lt;/ul>
+&lt;p>We started integrating HACL* crypto primitives into NSS with &lt;a class="link" href="https://tools.ietf.org/html/rfc7748" target="_blank" rel="noopener"
+>Curve25519&lt;/a>.
+At the time of writing NSS contains code from HACL* for Curve25519 64-bit, &lt;a class="link" href="https://tools.ietf.org/html/rfc7539" target="_blank" rel="noopener"
+>Poly1305&lt;/a> 32-bit and 64-bit, &lt;a class="link" href="https://tools.ietf.org/html/rfc7539" target="_blank" rel="noopener"
+>ChaCha20&lt;/a>, and ChaCha20 with SSSE3 hardware acceleration.
+More primitives are in the pipeline and will be integrated in the near future.&lt;/p>
+&lt;h2 id="correctness">Correctness
+&lt;/h2>&lt;p>Any code that lands in NSS has to be correct, obviously.
+This might be evident but when talking about HACL* generated C code, correctness is not so simple.
+Correctness can be checked relatively easily by looking at the HACL* specification of a given primitive.
+This code is relatively easy to review (when familiar with F*) as it closely resembles the mathematical specification of the primitive.
+The correctness of the C code is guaranteed by the formal proofs from HACL*.
+In addition we run all the usual test vectors on it of course.
+To catch any errors in the extraction chain from F* to C the extracted C code is reviewed for correctness as well.&lt;/p>
+&lt;h2 id="performance">Performance
+&lt;/h2>&lt;p>Performance was not a big concern.
+As shown in the &lt;a class="link" href="https://github.com/mitls/hacl-star/blob/master/doc/papers/hacl-star-ccs2017.pdf" target="_blank" rel="noopener"
+>HACL* paper from CCS 2017&lt;/a>, performance of most primitives is on par with or better than the fastest C implementations out there.
+Nonetheless, performance of each primitive is compared between HACL* and the NSS to make sure not to degrade performance.
+For every primitive I looked at so far the performance of HACL* was at least as good as the performance of the NSS code.&lt;/p>
+&lt;h2 id="code-quality">Code quality
+&lt;/h2>&lt;p>Code quality was, as with any generated code, a big concern.
+How readable is the generated code? Can it easily be changed if the need arises?
+The first versions we looked at weren&amp;rsquo;t that great &amp;hellip;&lt;/p>
+&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/shipping-some-hacl/hacl-review.png"
+width="1983"
+height="747"
+srcset="https://www.franziskuskiefer.de/p/shipping-some-hacl/hacl-review_hu4499019627654614460.png 480w, https://www.franziskuskiefer.de/p/shipping-some-hacl/hacl-review_hu14670101420540871018.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="265"
+data-flex-basis="637px"
+>
+&lt;img src="https://www.franziskuskiefer.de/p/shipping-some-hacl/ugly-hacl.png"
+width="755"
+height="147"
+srcset="https://www.franziskuskiefer.de/p/shipping-some-hacl/ugly-hacl_hu6016185786980744563.png 480w, https://www.franziskuskiefer.de/p/shipping-some-hacl/ugly-hacl_hu14117722760368656323.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="513"
+data-flex-basis="1232px"
+>&lt;/p>
+&lt;p>But after a couple improvements to kremlin the code was good to go.
+While every new piece of code that&amp;rsquo;s being integrated has to pass code review the C code produced by kremlin is good enough now to land new primitives without having to improve upstream code first.
+Note however that code passes review here that wouldn&amp;rsquo;t pass if it were hand-written.
+The code generator is not perfect.
+We have to live with some rough edges.
+The most important point is that the code is understandable.&lt;/p>
+&lt;p>NSS if formatted with &lt;code>clang-format&lt;/code>, which is checked on CI.
+So the only change to the verified C code imported from HACL* is formatting.&lt;/p>
+&lt;h3 id="some-pain-points-remain">Some pain points remain
+&lt;/h3>&lt;p>There are some outstanding issues that I hope get fixed in kremlin and would improve code quality significantly.
+Kremlin doesn&amp;rsquo;t know &lt;code>const&lt;/code>, which is one of the few nice helpers one can use in C to control what&amp;rsquo;s happening to your pointer.
+While &lt;code>const&lt;/code> is not necessary because of the HACL* proofs, it would be nice to have.
+Kremlin further generates unnecessary casts such as &lt;code>(uint32_t)4U&lt;/code>.
+This is not a big deal but makes code harder to read.
+There&amp;rsquo;s also a big number of temporary variables that aren&amp;rsquo;t necessary and make the code harder to read.&lt;/p>
+&lt;h2 id="platform-support">Platform support
+&lt;/h2>&lt;p>Being a researchy library HACL* is not tested on a big variety of platforms.
+NSS on the other hand has to run on most available platforms as well as a number of legacy platforms.
+While the NSS CI covers Windows, Linux, and Mac in different configurations such as Intel 32-bit, 64-bit, and aarch64, there are other platforms such as BSD using NSS that are not covered.
+As expected we ran into a couple issues on some platforms such as BSD and Solaris but they were quickly resolved.&lt;/p>
+&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/shipping-some-hacl/nss-bsd-hacl-bug.png"
+width="2048"
+height="184"
+srcset="https://www.franziskuskiefer.de/p/shipping-some-hacl/nss-bsd-hacl-bug_hu5090590584940457725.png 480w, https://www.franziskuskiefer.de/p/shipping-some-hacl/nss-bsd-hacl-bug_hu14518716714003580782.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="1113"
+data-flex-basis="2671px"
+>&lt;/p>
+&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/shipping-some-hacl/nss-solaris-hacl-bug.png"
+width="2048"
+height="184"
+srcset="https://www.franziskuskiefer.de/p/shipping-some-hacl/nss-solaris-hacl-bug_hu5722108412057574063.png 480w, https://www.franziskuskiefer.de/p/shipping-some-hacl/nss-solaris-hacl-bug_hu1645630068384567860.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="1113"
+data-flex-basis="2671px"
+>&lt;/p>
+&lt;p>Especially code that is hardware dependent such as Intel intrinsics needs extra attention.
+The &lt;a class="link" href="https://github.com/mitls/hacl-star/blob/master/snapshots/kremlib/vec128.h" target="_blank" rel="noopener"
+>&lt;code>vec128.h&lt;/code>&lt;/a> header used by HACL* to abstract hardware instructions needed a couple iterations before it worked on all supported platforms.&lt;/p>
+&lt;h2 id="handling-change">Handling change
+&lt;/h2>&lt;p>The code imported from HACL* into NSS is not expected to change a lot.
+But there are always reasons why the code has to get updated and a process is required to do so.
+To fix issues like broken platforms, changes to the upstream projects have to be landed and the snapshot in NSS has to get updated to the new upstream version.
+For this process to run smoothly it&amp;rsquo;s necessary for both teams to work together.&lt;/p>
+&lt;p>Updating the HACL* code in NSS is pretty easy.
+First the new code is generated with a new version of HACL*, formatted, and copied to NSS.
+Then the docker image running the CI gets updated.
+Here&amp;rsquo;s a diff for a recent update.&lt;/p>
+&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/shipping-some-hacl/nss-hacl-patch.png"
+width="2922"
+height="1264"
+srcset="https://www.franziskuskiefer.de/p/shipping-some-hacl/nss-hacl-patch_hu12663953578200761238.png 480w, https://www.franziskuskiefer.de/p/shipping-some-hacl/nss-hacl-patch_hu5796332706377407724.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="231"
+data-flex-basis="554px"
+>&lt;/p>
+&lt;h2 id="running-the-verification-in-nss">Running the verification in NSS
+&lt;/h2>&lt;p>To make sure that whatever we use in NSS actually verifies and the generated code isn&amp;rsquo;t changed manually, the NSS CI has to verify the HACL* snapshot it uses on every run.
+NSS uses &lt;a class="link" href="https://github.com/taskcluster" target="_blank" rel="noopener"
+>taskcluster&lt;/a> as CI, which allows us to use a &lt;a class="link" href="https://searchfox.org/nss/source/automation/taskcluster/docker-hacl" target="_blank" rel="noopener"
+>docker image&lt;/a> that re-verifies the used HACL* revision on every push.
+Checking the code in NSS is then a simple diff.&lt;/p>
+&lt;h1 id="lessons-learned">Lessons learned
+&lt;/h1>&lt;p>The first lesson is that it&amp;rsquo;s possible to ship formally verified software.
+The code is relatively simple and self-contained, which makes this easier.
+But it shows that formal verification tools are good enough to be used in production.&lt;/p>
+&lt;p>The second lesson we learned is probably the more valuable one.&lt;/p>
+&lt;blockquote>
+&lt;p>&lt;em>Talk to each other and work together.&lt;/em>&lt;/p>
+&lt;/blockquote>
+&lt;p>From an engineering standpoint it might be frightening to start looking at formal verification tools and corresponding languages.
+But people working with these tools are happy to help out if that means more people are using their tools.
+It will need some effort getting used to the tools and languages but it&amp;rsquo;s well worth it.&lt;/p>
+&lt;p>For people working on formal methods; You might have to learn a little more than you wanted to know about differences between different platforms and compilers and how to ship software.
+But that might be worth the effort if it means your proofs are used in production software that&amp;rsquo;s used by millions of people.&lt;/p>
+&lt;hr>
+&lt;p>Looking for more material on this?
+There&amp;rsquo;s a high-level &lt;a class="link" href="https://blog.mozilla.org/security/2017/09/13/verified-cryptography-firefox-57/" target="_blank" rel="noopener"
+>blog post&lt;/a> that talks about the formal verification work in NSS happening at Mozilla.
+There has also been a talk at RWC 2018 earlier this year on this work (&lt;a class="link" href="https://rwc.iacr.org/2018/Slides/Beurdouche.pdf" target="_blank" rel="noopener"
+>slides&lt;/a>, &lt;a class="link" href="https://www.youtube.com/watch?v=xrZTVRICpSs" target="_blank" rel="noopener"
+>video&lt;/a>).&lt;/p></description></item><item><title>CVE-2017-5462 - A PRNG issue</title><link>https://www.franziskuskiefer.de/p/cve-2017-5462-a-prng-issue/</link><pubDate>Thu, 31 Aug 2017 00:00:00 +0000</pubDate><guid>https://www.franziskuskiefer.de/p/cve-2017-5462-a-prng-issue/</guid><description>&lt;img src="https://www.franziskuskiefer.de/p/cve-2017-5462-a-prng-issue/hero.jpg" alt="Featured image of post CVE-2017-5462 - A PRNG issue" />&lt;p>On April 19, 2017, Mozilla Foundation published the &lt;a class="link" href="https://www.mozilla.org/en-US/security/advisories/mfsa2017-10/%5c#CVE-2017-5462" target="_blank" rel="noopener"
+>Security Advisory 2017-10&lt;/a> outlining several recently fixed security vulnerabilities.
+One of these vulnerabilities, tracked as CVE-2017-5462, affects the Pseudo-Random Number Generator (PRNG) within the Network Security Services (NSS) library prior to version 3.29.5 and Firefox prior to version 53.&lt;/p>
+&lt;p>This post describes the bug and how it was discovered.&lt;/p>
+&lt;h1 id="inside-the-nss-prng">Inside the NSS PRNG
+&lt;/h1>&lt;p>NSS uses &lt;code>Hash_DRBG&lt;/code> as PRNG, which is one of several PRNG schemes defined in the &lt;a class="link" href="http://csrc.nist.gov/publications/nistpubs/" target="_blank" rel="noopener"
+>NIST Special Publication 800-90&lt;/a>.
+Like most widely used PRNGs the &lt;code>Hash_DRBG&lt;/code> is a Deterministic Random Bit Generator (DRBG). (Even though this term is usually only used for NIST PRNGs.)
+While the standard contains all the details, the relevant features can be summarised as follows.&lt;/p>
+&lt;p>The state of &lt;code>Hash_DRBG&lt;/code> is composed of three values:&lt;/p>
+&lt;ul>
+&lt;li>A 55-byte integer state variable &lt;code>V&lt;/code>, which is updated with each
+request of new bits&lt;/li>
+&lt;li>A 55-byte integer constant &lt;code>C&lt;/code> that depends on the seed and is updated when re-seeding the PRNG.&lt;/li>
+&lt;li>A counter &lt;code>c&lt;/code> tracking when the next re-seeding is needed.&lt;/li>
+&lt;/ul>
+&lt;p>To generate random bits, &lt;code>Hash_DRBG&lt;/code> concatenates &lt;code>H(V) || H(V+1) || H(V+2) || ...&lt;/code> until enough bits are generated.
+&lt;code>H&lt;/code> denotes a cryptographic hash function here.
+NSS uses the SHA-256 hash function for &lt;code>H&lt;/code> with a digest length of 32 bytes.
+After generating new bits the state variable &lt;code>V&lt;/code> is updated according to the rule &lt;code>V&lt;/code>&lt;sub>&lt;code>c+1&lt;/code>&lt;/sub> &lt;code> = V + H(0x03 || V&lt;/code>&lt;sub>&lt;code>c&lt;/code>&lt;/sub> &lt;code>) + C + c&lt;/code> and counter &lt;code>c&lt;/code> is incremented by one.
+Addition is performed modulo &lt;code>2&lt;/code>&lt;sup>&lt;code>440&lt;/code>&lt;/sup> &lt;code> = 2&lt;/code>&lt;sup>&lt;code>8*55&lt;/code>&lt;/sup> to fit it in the 55 bytes of &lt;code>V&lt;/code>.&lt;/p>
+&lt;p>The PRNG implementation can be found in the file &lt;a class="link" href="https://searchfox.org/nss/rev/fcdcad1fc1ddb6e70653637b0ea0f3359b8533f2/lib/freebl/drbg.c" target="_blank" rel="noopener"
+>drbg.c&lt;/a> within the NSS codebase.&lt;/p>
+&lt;h1 id="cve-2017-5462">CVE-2017-5462
+&lt;/h1>&lt;p>The issue identified in CVE-2017-5462 is in the code implementing the addition.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-C" data-lang="C">&lt;span class="line">&lt;span class="cl">&lt;span class="cm">/*
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cm"> * build some fast inline functions for adding.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cm"> */&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#define PRNG_ADD_CARRY_ONLY(dest, start, carry) \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"> { \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"> int k1; \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"> for (k1 = start; carry &amp;amp;&amp;amp; k1 &amp;gt;= 0; k1--) { \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"> carry = !(++dest[k1]); \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"> } \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"> }
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cm">/*
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cm"> * NOTE: dest must be an array for the following to work.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cm"> */&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#define PRNG_ADD_BITS(dest, dest_len, add, len, carry) \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"> carry = 0; \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"> PORT_Assert((dest_len) &amp;gt;= (len)); \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"> { \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"> int k1, k2; \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"> for (k1 = dest_len - 1, k2 = len - 1; k2 &amp;gt;= 0; --k1, --k2) { \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"> carry += dest[k1] + add[k2]; \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"> dest[k1] = (PRUint8)carry; \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"> carry &amp;gt;&amp;gt;= 8; \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"> } \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"> }
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#define PRNG_ADD_BITS_AND_CARRY(dest, dest_len, add, len, carry) \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"> PRNG_ADD_BITS(dest, dest_len, add, len, carry) \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"> PRNG_ADD_CARRY_ONLY(dest, dest_len - len, carry)
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>When the PRNG performs addition to update &lt;code>V&lt;/code> it uses the macro &lt;code>PRNG_ADD_BITS_AND_CARRY&lt;/code>, which first delegates to the macro &lt;code>PRNG_ADD_BITS&lt;/code> to add the two summands without considering the final carry and then the macro &lt;code>PRNG_ADD_CARRY_ONLY&lt;/code> to add the carry.&lt;/p>
+&lt;p>In this addition code it is clear that the carry should be added at the position &lt;em>preceding&lt;/em> the original most-significant-byte of the shorter of the two summands.
+This fact was supposed to be represented by the index &lt;code>dest_len-len&lt;/code> supplied as parameter to &lt;code>PRNG_ADD_CARRY_ONLY&lt;/code>.
+Note that numbers are represented as sequences of bytes with byte number zero being the most-significant byte.
+The essence of the bug is that &lt;code>dest_len-len&lt;/code> does not point to the correct position of the carry, which should have been added at position &lt;code>dest_len-len-1&lt;/code> instead.&lt;/p>
+&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/cve-2017-5462-a-prng-issue/CVE-2017-5462-bug.png"
+width="822"
+height="302"
+srcset="https://www.franziskuskiefer.de/p/cve-2017-5462-a-prng-issue/CVE-2017-5462-bug_hu8192818250878528882.png 480w, https://www.franziskuskiefer.de/p/cve-2017-5462-a-prng-issue/CVE-2017-5462-bug_hu13844593303691259105.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="272"
+data-flex-basis="653px"
+>&lt;/p>
+&lt;h2 id="example">Example
+&lt;/h2>&lt;p>We note that &lt;code>3 * 0x40 = 0xc0&lt;/code> under both proper and broken addition (the latter due to absence of carrying in this example).
+However, &lt;code>3 * 0x95 = 0x01bf&lt;/code> under proper unbounded addition resp. &lt;code>0xbf&lt;/code> under proper modulo addition.
+Yet, the result under broken addition is &lt;code>0x01 + 0xbf = 0xc0&lt;/code>.&lt;/p>
+&lt;h1 id="finding-the-bug-with-testing">Finding the Bug with Testing
+&lt;/h1>&lt;p>The easiest way to find most types of bugs in PRNGs following NIST SP 800-90 is by testing the implementation with the official test vectors (seeds and outputs) provided in the standard.
+I found the bug after implementing these test vectors.
+Functional unit testing would probably have caught this particular bug as well.
+For PRNGs not following the NIST standard, defining corresponding test vectors is a good idea to avoid regressions during maintenance.&lt;/p>
+&lt;p>Statistical tests such as NIST SP 800-22 or &lt;a class="link" href="https://github.com/ticki/diehardest" target="_blank" rel="noopener"
+>DIEHARDEST&lt;/a> are not very useful for testing cryptographic PRNGs.
+They can be used for testing the entropy pool that is fed into the PRNG.
+But such tests will not fail as long as the internal state does not stay constant and output passes through a cryptographic primitive (such as SHA-256) before reaching the consumer.&lt;/p>
+&lt;h1 id="formal-analysis">Formal Analysis
+&lt;/h1>&lt;p>Independ of my investigation, &lt;a class="link" href="https://formal.iti.kit.edu/klebanov/" target="_blank" rel="noopener"
+>Vladimir Klebanov&lt;/a> found this bug using &lt;a class="link" href="https://formal.iti.kit.edu/~klebanov/software/entroposcope/" target="_blank" rel="noopener"
+>Entroposcope&lt;/a>, a static analysis tool created for finding implementation bugs in pseudo-random number generators.&lt;/p>
+&lt;p>Entropy loss occurs when the number of possible output streams is less than the number of possible seeds.
+This is equivalent to the case when two different seeds produce the same output stream (also called a collision).
+Entroposcope is built on top of the bounded model checker &lt;a class="link" href="https://link.springer.com/chapter/10.1007/978-3-642-54862-8_26" target="_blank" rel="noopener"
+>CBMC&lt;/a>, which in turn transforms the problem into a challenge for a &lt;a class="link" href="https://en.wikipedia.org/wiki/Boolean_satisfiability_problem" target="_blank" rel="noopener"
+>SAT solver&lt;/a>.&lt;/p>
+&lt;p>Considering the &lt;code>Hash_DRBG&lt;/code>, the question whether &lt;code>V&lt;/code>&lt;sub>&lt;code>c+1&lt;/code>&lt;/sub> &lt;code> = V + H(0x03 || V&lt;/code>&lt;sub>&lt;code>c&lt;/code>&lt;/sub> &lt;code>) + C + c&lt;/code> produces a collision and the DRBG loses entropy or not boils down to whether distinct 55-byte values &lt;code>x&lt;/code>&lt;sub>&lt;code>1&lt;/code>&lt;/sub>, &lt;code>x&lt;/code>&lt;sub>&lt;code>2&lt;/code>&lt;/sub> exist, such that &lt;code>x&lt;/code>&lt;sub>&lt;code>1&lt;/code>&lt;/sub> &lt;code> + H(x&lt;/code>&lt;sub>&lt;code>1&lt;/code>&lt;/sub>&lt;code>) = x&lt;/code>&lt;sub>&lt;code>2&lt;/code>&lt;/sub> &lt;code> + H(x&lt;/code>&lt;sub>&lt;code>2&lt;/code>&lt;/sub>&lt;code>)&lt;/code>.
+Now, it is clear that this question cannot be answered without either knowing the output of &lt;code>H&lt;/code> for each 55-byte input (which is infeasible) or some (unknown to us and certainly also to the tool) nontrivial mathematical argument on the nature of &lt;code>H&lt;/code> in this context.
+In this regard, the &lt;code>Hash_DRBG&lt;/code> differs from many other PRNGs that employ significantly simpler operations on the output of &lt;code>H&lt;/code> before it makes its way to the PRNG caller.&lt;/p>
+&lt;p>As a consequence of this design, Entroposcope can not be used to prove absence of entropy loss in the &lt;code>Hash_DRBG&lt;/code>.
+Nonetheless, Entroposcope can check collision-freedom of the PRNG under an idealised &lt;code>H&lt;/code> and find bugs in the parts of the implementation that are not &lt;code>H&lt;/code>.
+For this purpose we consider an idealised PRNG with &lt;code>H(b||V) = V&lt;/code> and &lt;code>C = V&lt;/code>&lt;sub>&lt;code>0&lt;/code>&lt;/sub>.
+This is the same kind of idealisation that helped Vladimir to uncover previously unknown bugs in OpenSSL and &lt;a class="link" href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-6313" target="_blank" rel="noopener"
+>GnuPG&lt;/a>.
+With the idealisation, on the first iteration (&lt;code>c = 0&lt;/code>) updating the state becomes &lt;code>V&lt;/code>&lt;sub>&lt;code>1&lt;/code>&lt;/sub> &lt;code> = 3 * V&lt;/code>&lt;sub>&lt;code>0&lt;/code>&lt;/sub>.
+Because &lt;code>3&lt;/code> and &lt;code>2&lt;/code>&lt;sup>&lt;code>440&lt;/code>&lt;/sup> are co-prime, &lt;code>V&lt;/code>&lt;sub>&lt;code>1&lt;/code>&lt;/sub> will not produce a collision if implemented properly.&lt;/p>
+&lt;p>Indeed, given the idealised code, Entroposcope produced a counterexample to entropy preservation with two concrete seeds leading to the same output stream.
+Tracing these two executions makes it easy to pinpoint the cause of the collision in the addition code.&lt;/p>
+&lt;p>Thanks to Vladimir for finding this bug and helping to write this post.&lt;/p></description></item><item><title>Aes Gcm Speedup</title><link>https://www.franziskuskiefer.de/p/aes-gcm-speedup/</link><pubDate>Tue, 27 Jun 2017 00:00:00 +0000</pubDate><guid>https://www.franziskuskiefer.de/p/aes-gcm-speedup/</guid><description>&lt;img src="https://www.franziskuskiefer.de/p/aes-gcm-speedup/linux64-encrypt.png" alt="Featured image of post Aes Gcm Speedup" />&lt;p>AES-GCM is a NIST standardised authenticated encryption algorithm (FIPS 800-38D). Since its standardisation in 2008 its usage increased to a point where it is the prevalent encryption used with TLS. With 85% it is by far the &lt;a class="link" href="https://telemetry.mozilla.org/new-pipeline/dist.html#!cumulative=0&amp;amp;end_date=2017-05-24&amp;amp;keys=__none__!__none__!__none__&amp;amp;max_channel_version=release%252F53&amp;amp;measure=SSL_SYMMETRIC_CIPHER_FULL&amp;amp;min_channel_version=null&amp;amp;processType=*&amp;amp;product=Firefox&amp;amp;sanitize=1&amp;amp;sort_keys=submissions&amp;amp;start_date=2017-04-13&amp;amp;table=0&amp;amp;trim=1&amp;amp;use_submission_date=0" target="_blank" rel="noopener"
+>most widely used cipher&lt;/a>.&lt;/p>
+&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/aes-gcm-speedup/Screenshot-from-2017-06-14-10-09-27.png"
+width="2136"
+height="996"
+srcset="https://www.franziskuskiefer.de/p/aes-gcm-speedup/Screenshot-from-2017-06-14-10-09-27_hu8631148032516591515.png 480w, https://www.franziskuskiefer.de/p/aes-gcm-speedup/Screenshot-from-2017-06-14-10-09-27_hu2776092876382993494.png 1024w"
+loading="lazy"
+alt="Firefox 53 TLS cipher telemetry"
+class="gallery-image"
+data-flex-grow="214"
+data-flex-basis="514px"
+>&lt;/p>
+&lt;p>Unfortunately the AES-GCM implementation used in Firefox (provided by NSS) does not take advantage of full hardware acceleration; it uses a slower software-only implementation on Mac, Linux 32-bit, or any device that doesn&amp;rsquo;t have the &lt;a class="link" href="https://en.wikipedia.org/wiki/Advanced_Vector_Extensions" target="_blank" rel="noopener"
+>AVX&lt;/a>, &lt;a class="link" href="https://en.wikipedia.org/wiki/CLMUL_instruction_set" target="_blank" rel="noopener"
+>PCLMUL&lt;/a>, and &lt;a class="link" href="https://en.wikipedia.org/wiki/AES_instruction_set" target="_blank" rel="noopener"
+>AES-NI&lt;/a> hardware instructions. Looking at these numbers about only 30% of Firefox users get full hardware acceleration.&lt;/p>
+&lt;p>Before jumping on the obvious issue of Firefox’s AES-GCM code being comparatively slow – as well as not being resistant to &lt;a class="link" href="https://en.wikipedia.org/wiki/Side-channel_attack" target="_blank" rel="noopener"
+>side channel analysis&lt;/a> – I wanted to see what the actual impact on Firefox users is. Downloading a file on a mid-2015 MacBook Pro Retina with Firefox incurs CPU usage of 50% with 17% of Firefox&amp;rsquo;s CPU usage is in &lt;code>ssl3_AESGCM&lt;/code>. In comparison, Chrome only creates 15% CPU usage with the same download. On a Windows laptop with an AMD C-70 (no AES-NI) Firefox CPU usage is 60% and the download speed is capped at 3.5MB/s. Chrome on the same machine needs 50% of the CPU and downloads with 10MB/s. This doesn&amp;rsquo;t seem to be only an academic issue: Particularly for battery-operated devices, the energy consumption difference would be noticeable.&lt;/p>
+&lt;h1 id="improving-gcm-performance">Improving GCM performance
+&lt;/h1>&lt;p>Speeding up the GCM multiplication function is the first obvious step to improve AES-GCM performance. A &lt;a class="link" href="https://bugzilla.mozilla.org/show_bug.cgi?id=868948" target="_blank" rel="noopener"
+>bug&lt;/a> was opened on integration of the original AES-GCM code to provide an alternative to the textbook implementation of &lt;code>gcm_HashMult&lt;/code>. This code is not only slow but has timing side channels. Here an excerpt from the &lt;a class="link" href="https://searchfox.org/mozilla-central/rev/d67ef71097da4d1aa344c9d9c672e49a7228e765/security/nss/lib/freebl/mpi/mp_gf2m.c#337" target="_blank" rel="noopener"
+>binary multiplication&lt;/a> algorithm.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-C++" data-lang="C++">&lt;span class="line">&lt;span class="cl">&lt;span class="k">for&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">ib&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="n">ib&lt;/span> &lt;span class="o">&amp;lt;&lt;/span> &lt;span class="n">b_used&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="n">ib&lt;/span>&lt;span class="o">++&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">b_i&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">pb&lt;/span>&lt;span class="o">++&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="cm">/* Inner product: Digits of a */&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">b_i&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">s_bmul_d_add&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">MP_DIGITS&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="n">a_used&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">b_i&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">MP_DIGITS&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">c&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">ib&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">else&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">MP_DIGIT&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">c&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">ib&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">a_used&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">b_i&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>We can improve on two fronts here. First NSS should use PCLMUL to speed up the ghash multiplication if possible. Second if PCLMUL is not available, NSS should use a fast constant-time implementation.&lt;/p>
+&lt;p>&lt;a class="link" href="https://bugzilla.mozilla.org/show_bug.cgi?id=868948" target="_blank" rel="noopener"
+>Bug 868948&lt;/a> has several attempts of speeding up the software implementation without introducing timing side-channels. Unfortunately the fastest code that was proposed uses table lookups and is therefore not constant-time. Thanks to &lt;a class="link" href="https://www.bearssl.org/constanttime.html" target="_blank" rel="noopener"
+>Thomas Pornin&lt;/a> I found a nicer way to implement the binary multiplication in a way that doesn&amp;rsquo;t leak any timing information and is still faster than any other code I&amp;rsquo;ve seen. (Check out Thomas&amp;rsquo; excellent write-up for details.)&lt;/p>
+&lt;p>If PCLMUL is available on the CPU, using it is of course the way to go. All modern compilers support intrinsics, which allows us to write &amp;ldquo;inline assembly&amp;rdquo; in C that runs on all platforms without having to write assembly. A hardware accelerated implementation of the ghash multiplication can be &lt;a class="link" href="https://searchfox.org/nss/rev/40ab32e6acb227e7ede4734573e448ff43d179d5/lib/freebl/gcm.c#314" target="_blank" rel="noopener"
+>easily implemented&lt;/a> with &lt;a class="link" href="https://software.intel.com/sites/landingpage/IntrinsicsGuide/#text=clmul&amp;amp;expand=641" target="_blank" rel="noopener"
+>&lt;code>_mm_clmulepi64_si128&lt;/code>&lt;/a>.&lt;/p>
+&lt;p>On Mac and Linux the new 32-bit and 64-bit software ghash functions (faster and constant-time) are used on the respective platforms if PCLMUL or AVX is not available. Since Windows doesn&amp;rsquo;t support 128-bit integers (outside of registers) NSS falls back to the slower 32-bit ghash code (which is still more than 25% faster).&lt;/p>
+&lt;h1 id="improving-aes-performance">Improving AES performance
+&lt;/h1>&lt;p>To speed up AES NSS requires hardware acceleration on Mac as well as on Linux 32-bit and any machine that doesn&amp;rsquo;t support AVX (or has it disabled). When NSS can&amp;rsquo;t use the specialised AES code it falls back to a table-based implementation that is again not constant-time (in addition to being slow). Implementing AES with &lt;a class="link" href="https://software.intel.com/sites/landingpage/IntrinsicsGuide/#text=aes&amp;amp;expand=641" target="_blank" rel="noopener"
+>intrinsics&lt;/a> is a breeze.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-C++" data-lang="C++">&lt;span class="line">&lt;span class="cl"> &lt;span class="n">m&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">_mm_xor_si128&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">m&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">cx&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="n">keySchedule&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">]);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">for&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">i&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">&amp;lt;&lt;/span> &lt;span class="n">cx&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="n">Nr&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="o">++&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">m&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">_mm_aesenc_si128&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">m&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">cx&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="n">keySchedule&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="p">]);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">m&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">_mm_aesenclast_si128&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">m&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">cx&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="n">keySchedule&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">cx&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="n">Nr&lt;/span>&lt;span class="p">]);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">_mm_storeu_si128&lt;/span>&lt;span class="p">((&lt;/span>&lt;span class="kr">__m128i&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="n">output&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">m&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Key expansion is a little bit more involved (for 192 and 256 bit). But is &lt;a class="link" href="https://searchfox.org/nss/rev/40ab32e6acb227e7ede4734573e448ff43d179d5/lib/freebl/rijndael.c#393" target="_blank" rel="noopener"
+>written&lt;/a> in about 100 lines as well.&lt;/p>
+&lt;p>Mac sees the biggest improvement here. Previously, only Windows and 64-bit Linux used AES-NI, and now all desktop x86 and x64 platforms use it when available.&lt;/p>
+&lt;h1 id="looking-at-the-numbers">Looking at the numbers
+&lt;/h1>&lt;p>To measure the performance gain of the new AES-GCM code I encrypt a 479MB file with a 128-bit key (the most widely used key size for AES-GCM). Note that these numbers are supposed to show a trend and heavily depend on the used machine and system load at the time.&lt;/p>
+&lt;p>Linux measurements are done on an Intel Core i7-4790, Windows measurements on a Surface Pro 2 with an Intel Core i5-4300U, and Mac (Core i7-4980HQ).&lt;/p>
+&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/aes-gcm-speedup/linux64-encrypt.png"
+width="665"
+height="412"
+srcset="https://www.franziskuskiefer.de/p/aes-gcm-speedup/linux64-encrypt_hu10086943397254153485.png 480w, https://www.franziskuskiefer.de/p/aes-gcm-speedup/linux64-encrypt_hu969099613805604214.png 1024w"
+loading="lazy"
+alt="Linux 64-bit encrypt"
+class="gallery-image"
+data-flex-grow="161"
+data-flex-basis="387px"
+>
+&lt;img src="https://www.franziskuskiefer.de/p/aes-gcm-speedup/linux32-encrypt.png"
+width="657"
+height="407"
+srcset="https://www.franziskuskiefer.de/p/aes-gcm-speedup/linux32-encrypt_hu10473480209911482808.png 480w, https://www.franziskuskiefer.de/p/aes-gcm-speedup/linux32-encrypt_hu17184927622994130837.png 1024w"
+loading="lazy"
+alt="Linux 32-bit encrypt"
+class="gallery-image"
+data-flex-grow="161"
+data-flex-basis="387px"
+>&lt;/p>
+&lt;p>On 64-bit Linux performance of any machine without AES, PCLMUL, or AVX instructions AES-GCM 128 is at least twice as fast now. If AES and PCLMUL is available, the new code only needs 33% of the time the old code took.
+The speed-up for 32-bit Linux is obviously more significant as it didn&amp;rsquo;t have any hardware accelerated code before. With full hardware acceleration the new code is more than 5 times faster than before. In the worst case, when PCLMUL is not available, the speed-up is still more than 50%.&lt;/p>
+&lt;p>The story is similar on Windows (though NSS had fast code for 32-bit there before).
+&lt;img src="https://www.franziskuskiefer.de/p/aes-gcm-speedup/win64-encrypt.png"
+width="600"
+height="371"
+srcset="https://www.franziskuskiefer.de/p/aes-gcm-speedup/win64-encrypt_hu15268150531908549230.png 480w, https://www.franziskuskiefer.de/p/aes-gcm-speedup/win64-encrypt_hu3293416628537479388.png 1024w"
+loading="lazy"
+alt="Windows 64-bit encrypt"
+class="gallery-image"
+data-flex-grow="161"
+data-flex-basis="388px"
+>&lt;/p>
+&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/aes-gcm-speedup/win32-encrypt.png"
+width="600"
+height="371"
+srcset="https://www.franziskuskiefer.de/p/aes-gcm-speedup/win32-encrypt_hu14438816655898579123.png 480w, https://www.franziskuskiefer.de/p/aes-gcm-speedup/win32-encrypt_hu5113623536179900788.png 1024w"
+loading="lazy"
+alt="Windows 32-bit encrypt"
+class="gallery-image"
+data-flex-grow="161"
+data-flex-basis="388px"
+>&lt;/p>
+&lt;p>Performance improvements on Mac (64-bit only) range from 60% in the best case to 44% when AES-NI or PCLMUL is not available.
+&lt;img src="https://www.franziskuskiefer.de/p/aes-gcm-speedup/mac-encrypt.png"
+width="600"
+height="371"
+srcset="https://www.franziskuskiefer.de/p/aes-gcm-speedup/mac-encrypt_hu1293817040194398281.png 480w, https://www.franziskuskiefer.de/p/aes-gcm-speedup/mac-encrypt_hu5387432531827102804.png 1024w"
+loading="lazy"
+alt="OS-X encrypt"
+class="gallery-image"
+data-flex-grow="161"
+data-flex-basis="388px"
+>&lt;/p>
+&lt;h1 id="the-numbers-in-firefox">The numbers in Firefox
+&lt;/h1>&lt;p>NSS 3.32 (Firefox 56) will ship with the new AES-GCM code. It will provide significantly reduced CPU usage for most TLS connections or higher download rates. NSS 3.32 is more intelligent in detecting the CPU&amp;rsquo;s capabilities and using hardware acceleration whenever possible. Assuming that all intrinsics and mathematical operations (other than division) are constant-time on the CPU, the new code doesn&amp;rsquo;t have any timing side-channels.&lt;/p>
+&lt;p>On the basic laptop with the AMD C-70 download rates increased from ~3MB/s to ~6MB/s. (Keep in mind that this is the software only 32-bit implementation.)&lt;/p>
+&lt;p>The most immediate effect can be seen on Mac. &lt;code>AES_Decrypt&lt;/code> as part of a TLS connection with &lt;a class="link" href="http://bit.ly/2rGm8S0" target="_blank" rel="noopener"
+>NSS 3.31 used 9% CPU&lt;/a> while in &lt;a class="link" href="http://bit.ly/2rGvGfz" target="_blank" rel="noopener"
+>NSS 3.32 it uses only 4%&lt;/a>.
+To see general performance improvements we can look at the case where AVX is not available (which is the case for about 2/3 of the Firefox population). Assuming that at least AES-NI and PCLMUL is supported by the CPU we see the CPU usage drop from &lt;a class="link" href="https://perfht.ml/2rrqbWS" target="_blank" rel="noopener"
+>15%&lt;/a> to &lt;a class="link" href="https://perfht.ml/2sa3aoA" target="_blank" rel="noopener"
+>3%&lt;/a> (measured on Linux).&lt;/p></description></item><item><title>On Constant Time Division</title><link>https://www.franziskuskiefer.de/p/on-constant-time-division/</link><pubDate>Wed, 28 Dec 2016 00:00:00 +0000</pubDate><guid>https://www.franziskuskiefer.de/p/on-constant-time-division/</guid><description>&lt;img src="https://www.franziskuskiefer.de/p/on-constant-time-division/plot_low-1.png" alt="Featured image of post On Constant Time Division" />&lt;p>Writing constant time code is hard. We all know that. But I&amp;rsquo;m always amazed again on how difficult it is. In preparation for making NSS more constant time I looked into certain CPU instructions that are known to be not constant time.
+So I wrote a little thing to measure the time (CPU cycles) needed for division.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-asm" data-lang="asm">&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">div&lt;/span> &lt;span class="no">rcx&lt;/span> &lt;span class="c1">; eax is now a/b
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The CPU I&amp;rsquo;m using in this post is an Intel i7-4790 (haswell). Running the same measurements on other processors architectures will most likely yield different results. I&amp;rsquo;m describing two experiments I did. First, I look at bits in the divisor and how they influence the timing of the division. And then I look at the dividend and its influence.&lt;/p>
+&lt;h1 id="the-divisor">The Divisor
+&lt;/h1>&lt;p>There are two interesting things we can look at here. The very small divisors as well as the pattern that we get in larger divisors.&lt;/p>
+&lt;h2 id="-129">&amp;lt; 129
+&lt;/h2>&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/on-constant-time-division/plot_low-1.png"
+width="2558"
+height="1347"
+srcset="https://www.franziskuskiefer.de/p/on-constant-time-division/plot_low-1_hu15842502754747643451.png 480w, https://www.franziskuskiefer.de/p/on-constant-time-division/plot_low-1_hu10953608243128651236.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="189"
+data-flex-basis="455px"
+>&lt;/p>
+&lt;p>This graph plots the number of cycles needed for the division of numbers &amp;lt; 130. It&amp;rsquo;s easy to see that the number of cycles needed is in general around 300. However, there are a couple of &amp;ldquo;outliers&amp;rdquo; that need significantly less.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-C" data-lang="C">&lt;span class="line">&lt;span class="cl"> &lt;span class="mi">128&lt;/span> &lt;span class="mi">123&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="mi">64&lt;/span> &lt;span class="mi">135&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="mi">32&lt;/span> &lt;span class="mi">132&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="mi">16&lt;/span> &lt;span class="mi">132&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="mi">8&lt;/span> &lt;span class="mi">123&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="mi">4&lt;/span> &lt;span class="mi">123&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="mi">2&lt;/span> &lt;span class="mi">123&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="mi">1&lt;/span> &lt;span class="mi">126&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You might have spotted the pattern already. The CPU probably doesn&amp;rsquo;t want to do this expensive division and simply shifts the dividend to get the result. This trend continues later on but is more difficult to observe. (And there&amp;rsquo;s a more interesting pattern there.)&lt;/p>
+&lt;h2 id="the-larger-pattern">The larger pattern
+&lt;/h2>&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/on-constant-time-division/plot-1.png"
+width="2558"
+height="1347"
+srcset="https://www.franziskuskiefer.de/p/on-constant-time-division/plot-1_hu15793922373718518580.png 480w, https://www.franziskuskiefer.de/p/on-constant-time-division/plot-1_hu8612448082123602519.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="189"
+data-flex-basis="455px"
+>&lt;/p>
+&lt;p>The graph shows a striking pattern and makes it obvious that division is not constant-time. Let&amp;rsquo;s try to understand what&amp;rsquo;s happening here.&lt;/p>
+&lt;p>The first part of the pattern can be explained by changing bit-lengths in the divisor. At &lt;code>8191&lt;/code> and &lt;code>16383&lt;/code> for example a streak of fast division ends. This is probably because the &lt;code>8192&lt;/code> and &lt;code>16384&lt;/code> require an additional bit each.&lt;/p>
+&lt;p>However, I&amp;rsquo;m clueless on how to explain the rest of the pattern.&lt;/p>
+&lt;p>(I&amp;rsquo;ll update this post when I figured out what&amp;rsquo;s going on.)&lt;/p></description></item><item><title>NSS Static Analysis</title><link>https://www.franziskuskiefer.de/p/nss-static-analysis/</link><pubDate>Wed, 25 May 2016 00:00:00 +0000</pubDate><guid>https://www.franziskuskiefer.de/p/nss-static-analysis/</guid><description>&lt;img src="https://www.franziskuskiefer.de/p/nss-static-analysis/static-analysis.png" alt="Featured image of post NSS Static Analysis" />&lt;p>When I started working on &lt;a class="link" href="https://nss-crypto.org/" target="_blank" rel="noopener"
+>NSS&lt;/a> 7 months ago one of the tasks I was asked to do was to work through the related &lt;a class="link" href="https://www.coverity.com/" target="_blank" rel="noopener"
+>Coverity&lt;/a> issues. This post summarises some learnings from this as we&amp;rsquo;ve since come a long way since over the last months.&lt;/p>
+&lt;p>Static analysis plays a crucial part in locating vulnerabilities and bugs during development. For NSS we currently use multiple &lt;a class="link" href="https://scan.coverity.com/projects/nss/" target="_blank" rel="noopener"
+>static&lt;/a> &lt;a class="link" href="http://clang-analyzer.llvm.org/scan-build.html" target="_blank" rel="noopener"
+>analysis&lt;/a> &lt;a class="link" href="http://fbinfer.com" target="_blank" rel="noopener"
+>tools&lt;/a>. While scan-build as well as infer are great applications to find bugs, they require a lot of manual management. Features such as the &lt;code>incremental&lt;/code> analysis of infer help with that though. Nonetheless, Coverity with its rich interface is the tool driving day to day analysis of NSS.&lt;/p>
+&lt;p>When I started working on static analysis issues in NSS we only had Coverity scans for NSS releases &lt;a class="link" href="https://scan.coverity.com/projects/firefox/" target="_blank" rel="noopener"
+>in Firefox&lt;/a>, which meant that we had to wait for six weeks or more to get feedback from the analyser on possible bugs. Now we have regular scans of the &lt;a class="link" href="https://scan.coverity.com/projects/nss/" target="_blank" rel="noopener"
+>NSS tree&lt;/a> as well as local scans with scan-build and infer.&lt;/p>
+&lt;h1 id="challenges-of-a-crypto-library">Challenges of a crypto library
+&lt;/h1>&lt;p>A big challenge when doing static analysis of a low-level (cryptographic) library is the high number of false positives. Errors like &lt;code>tainted value&lt;/code> can very likely be totally benign code that shifts around some bits as often necessary for efficiently and securely implemented crypto algorithms. Many false positives also mean a lot of work without actually improving the code and an increased probability of missing an actual bug.&lt;/p>
+&lt;h1 id="dealing-with-technical-debt">Dealing with technical debt
+&lt;/h1>&lt;p>A library as old as NSS naturally comes with a lot of technical debt, which creates a huge backlog of static analysis bugs. Mostly in code that hasn&amp;rsquo;t been of big interested to most developers so far.&lt;/p>
+&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/nss-static-analysis/static-analysis.png"
+width="848"
+height="592"
+srcset="https://www.franziskuskiefer.de/p/nss-static-analysis/static-analysis_hu17197089755401763875.png 480w, https://www.franziskuskiefer.de/p/nss-static-analysis/static-analysis_hu1203676365463136346.png 1024w"
+loading="lazy"
+alt="Coverity Analysis Overview"
+class="gallery-image"
+data-flex-grow="143"
+data-flex-basis="343px"
+>&lt;/p>
+&lt;p>In our case tools such as Coverity come in especially handy as they allow for regular incremental scans with automatic updates on new bugs. We still have a long way to go to fix old bugs but the good news is that new bugs are rarely introduced and newly introduced bugs get fixed right away.&lt;/p>
+&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/nss-static-analysis/density.png"
+width="848"
+height="300"
+srcset="https://www.franziskuskiefer.de/p/nss-static-analysis/density_hu9525628018459590055.png 480w, https://www.franziskuskiefer.de/p/nss-static-analysis/density_hu15005834468007398272.png 1024w"
+loading="lazy"
+alt="Coverity density over time"
+class="gallery-image"
+data-flex-grow="282"
+data-flex-basis="678px"
+>&lt;/p>
+&lt;p>The long-term goal is obviously to reduce the backlog of bugs to an acceptable level by either fixing or removing the code. But I think static analysis tools already significantly improved the quality of all new code.&lt;/p></description></item></channel></rss>

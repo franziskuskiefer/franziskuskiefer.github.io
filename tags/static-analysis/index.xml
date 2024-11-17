@@ -1,21 +1,36 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>static-analysis on Dr Franziskus Kiefer</title>
-    <link>https://www.franziskuskiefer.de/tags/static-analysis/</link>
-    <description>Recent content in static-analysis on Dr Franziskus Kiefer</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Wed, 25 May 2016 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/tags/static-analysis/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>NSS Static Analysis</title>
-      <link>https://www.franziskuskiefer.de/p/nss-static-analysis/</link>
-      <pubDate>Wed, 25 May 2016 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.franziskuskiefer.de/p/nss-static-analysis/</guid>
-      <description>When I started working on NSS 7 months ago one of the tasks I was asked to do was to work through the related Coverity issues. This post summarises some learnings from this as we&amp;rsquo;ve since come a long way since over the last months.
-Static analysis plays a crucial part in locating vulnerabilities and bugs during development. For NSS we currently use multiple static analysis tools. While scan-build as well as infer are great applications to find bugs, they require a lot of manual management.</description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Static-Analysis on Dr Franziskus Kiefer</title><link>https://www.franziskuskiefer.de/tags/static-analysis/</link><description>Recent content in Static-Analysis on Dr Franziskus Kiefer</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 25 May 2016 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/tags/static-analysis/index.xml" rel="self" type="application/rss+xml"/><item><title>NSS Static Analysis</title><link>https://www.franziskuskiefer.de/p/nss-static-analysis/</link><pubDate>Wed, 25 May 2016 00:00:00 +0000</pubDate><guid>https://www.franziskuskiefer.de/p/nss-static-analysis/</guid><description>&lt;img src="https://www.franziskuskiefer.de/p/nss-static-analysis/static-analysis.png" alt="Featured image of post NSS Static Analysis" />&lt;p>When I started working on &lt;a class="link" href="https://nss-crypto.org/" target="_blank" rel="noopener"
+>NSS&lt;/a> 7 months ago one of the tasks I was asked to do was to work through the related &lt;a class="link" href="https://www.coverity.com/" target="_blank" rel="noopener"
+>Coverity&lt;/a> issues. This post summarises some learnings from this as we&amp;rsquo;ve since come a long way since over the last months.&lt;/p>
+&lt;p>Static analysis plays a crucial part in locating vulnerabilities and bugs during development. For NSS we currently use multiple &lt;a class="link" href="https://scan.coverity.com/projects/nss/" target="_blank" rel="noopener"
+>static&lt;/a> &lt;a class="link" href="http://clang-analyzer.llvm.org/scan-build.html" target="_blank" rel="noopener"
+>analysis&lt;/a> &lt;a class="link" href="http://fbinfer.com" target="_blank" rel="noopener"
+>tools&lt;/a>. While scan-build as well as infer are great applications to find bugs, they require a lot of manual management. Features such as the &lt;code>incremental&lt;/code> analysis of infer help with that though. Nonetheless, Coverity with its rich interface is the tool driving day to day analysis of NSS.&lt;/p>
+&lt;p>When I started working on static analysis issues in NSS we only had Coverity scans for NSS releases &lt;a class="link" href="https://scan.coverity.com/projects/firefox/" target="_blank" rel="noopener"
+>in Firefox&lt;/a>, which meant that we had to wait for six weeks or more to get feedback from the analyser on possible bugs. Now we have regular scans of the &lt;a class="link" href="https://scan.coverity.com/projects/nss/" target="_blank" rel="noopener"
+>NSS tree&lt;/a> as well as local scans with scan-build and infer.&lt;/p>
+&lt;h1 id="challenges-of-a-crypto-library">Challenges of a crypto library
+&lt;/h1>&lt;p>A big challenge when doing static analysis of a low-level (cryptographic) library is the high number of false positives. Errors like &lt;code>tainted value&lt;/code> can very likely be totally benign code that shifts around some bits as often necessary for efficiently and securely implemented crypto algorithms. Many false positives also mean a lot of work without actually improving the code and an increased probability of missing an actual bug.&lt;/p>
+&lt;h1 id="dealing-with-technical-debt">Dealing with technical debt
+&lt;/h1>&lt;p>A library as old as NSS naturally comes with a lot of technical debt, which creates a huge backlog of static analysis bugs. Mostly in code that hasn&amp;rsquo;t been of big interested to most developers so far.&lt;/p>
+&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/nss-static-analysis/static-analysis.png"
+width="848"
+height="592"
+srcset="https://www.franziskuskiefer.de/p/nss-static-analysis/static-analysis_hu17197089755401763875.png 480w, https://www.franziskuskiefer.de/p/nss-static-analysis/static-analysis_hu1203676365463136346.png 1024w"
+loading="lazy"
+alt="Coverity Analysis Overview"
+class="gallery-image"
+data-flex-grow="143"
+data-flex-basis="343px"
+>&lt;/p>
+&lt;p>In our case tools such as Coverity come in especially handy as they allow for regular incremental scans with automatic updates on new bugs. We still have a long way to go to fix old bugs but the good news is that new bugs are rarely introduced and newly introduced bugs get fixed right away.&lt;/p>
+&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/nss-static-analysis/density.png"
+width="848"
+height="300"
+srcset="https://www.franziskuskiefer.de/p/nss-static-analysis/density_hu9525628018459590055.png 480w, https://www.franziskuskiefer.de/p/nss-static-analysis/density_hu15005834468007398272.png 1024w"
+loading="lazy"
+alt="Coverity density over time"
+class="gallery-image"
+data-flex-grow="282"
+data-flex-basis="678px"
+>&lt;/p>
+&lt;p>The long-term goal is obviously to reduce the backlog of bugs to an acceptable level by either fixing or removing the code. But I think static analysis tools already significantly improved the quality of all new code.&lt;/p></description></item></channel></rss>

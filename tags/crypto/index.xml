@@ -1,103 +1,1031 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>crypto on Dr Franziskus Kiefer</title>
-    <link>https://www.franziskuskiefer.de/tags/crypto/</link>
-    <description>Recent content in crypto on Dr Franziskus Kiefer</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Fri, 12 Nov 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/tags/crypto/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>(HACL*) AEAD Benchmarks</title>
-      <link>https://www.franziskuskiefer.de/p/hacl-aead-benchmarks/</link>
-      <pubDate>Fri, 12 Nov 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.franziskuskiefer.de/p/hacl-aead-benchmarks/</guid>
-      <description>This is in response to the blog post by Sylvain Kerkour benchmarking ring and Rust Crypto AEADs. I was curious how HACL* stacks up to these two with these parameters.
- I&amp;rsquo;m maintaining the Evercrypt crate, a wrapper around the formally verified crypto library HACL*. HACL* is a customizable, fast, formally verified crypto library written in F* and extracted to C.
- RustCrypto’s ChaCha20-Poly1305 RustCrypto’s AES-256-GCM ring’s ChaCha20-Poly1305 ring’s AES-256-GCM  Results I&amp;rsquo;m listing all results here for comparison as I&amp;rsquo;m (obviously) running the benchmarks on a different machine.</description>
-    </item>
-    
-    <item>
-      <title>Shared-Secrets Service</title>
-      <link>https://www.franziskuskiefer.de/p/shared-secrets-service/</link>
-      <pubDate>Mon, 23 Dec 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.franziskuskiefer.de/p/shared-secrets-service/</guid>
-      <description>At the Berlin Crypto this month we had a talk by Kevin about a shared-secret service they developed at Syselevn. After experimenting with PGP and deciding that it doesn&amp;rsquo;t do what they needed, they decided to go with a very simple, custom encrypt-then-mac scheme. You can find details here. When someone says they built their own encryption scheme and message format I get obviously curious. In this post I want to summarize the scheme, design decisions, compare it standard authenticated encryption schemes, and ponder the question of the right security definitions.</description>
-    </item>
-    
-    <item>
-      <title>Wrapping arithmetic in Rust</title>
-      <link>https://www.franziskuskiefer.de/p/wrapping-arithmetic-in-rust/</link>
-      <pubDate>Mon, 21 Oct 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.franziskuskiefer.de/p/wrapping-arithmetic-in-rust/</guid>
-      <description>One of Rusts great feature is that it catches integer overflows at runtime and panics rather than wraps (in debug builds). I recommend you read Huon&amp;rsquo;s blog post about this from a couple years ago.
-While this is a desirable behaviour in general, integer overflows are commonly used when implementing cryptography primitives. Rust offers wrapping alternatives such as wrapping_add etc. to allow wrapping behaviour. However, this makes code very hard to read, e.</description>
-    </item>
-    
-    <item>
-      <title>Update on hacspec</title>
-      <link>https://www.franziskuskiefer.de/p/update-on-hacspec/</link>
-      <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.franziskuskiefer.de/p/update-on-hacspec/</guid>
-      <description>Earlier this year I introduced hacspec, a new specification language for cryptographic primitives. After Karthik presented the idea and very preliminary results at IETF 101 in March we made quite some progress and presented a paper with a little more detail at SSR earlier this week. In this blog post I&amp;rsquo;ll give the gist of the SSR paper and introduce the first version of hacspec.
-All information about hacspec can be found at https://hacs-workshop.</description>
-    </item>
-    
-    <item>
-      <title>The HACL* approach</title>
-      <link>https://www.franziskuskiefer.de/p/the-hacl-approach/</link>
-      <pubDate>Wed, 14 Feb 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.franziskuskiefer.de/p/the-hacl-approach/</guid>
-      <description>HACL* (High-Assurance Cryptographic Library) is a formally verified cryptographic library in F*, developed by the Prosecco team at INRIA Paris in collaboration with Microsoft Research, as part of Project Everest. HACL* was inspired by discussions at the HACS workshop and aims at developing a set of reference implementations in C for common cryptographic primitives.
-This is the first post in a series describing formal verification in NSS as an approach to improve confidence in highly complex, highly security critical code.</description>
-    </item>
-    
-    <item>
-      <title>Introducing HacSpec</title>
-      <link>https://www.franziskuskiefer.de/p/introducing-hacspec/</link>
-      <pubDate>Thu, 08 Feb 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.franziskuskiefer.de/p/introducing-hacspec/</guid>
-      <description>HacSpec is a proposal for a new specification language for cryptographic primitives that is succinct, that is easy to read and implement, and that lends itself to formal verification. It aims to formalise the pseudocode used in cryptographic standards by proposing a formal syntax that can be checked for simple errors. HacSpec specifications are further executable to test against test vectors specified in a common syntax.
-The main focus of HacSpec is to allow specifications to be compiled to formal languages such as cryptol, coq, F*, and easycrypt and thus make it easier to formally verify implementations.</description>
-    </item>
-    
-    <item>
-      <title>CVE-2017-5462 - A PRNG issue</title>
-      <link>https://www.franziskuskiefer.de/p/cve-2017-5462-a-prng-issue/</link>
-      <pubDate>Thu, 31 Aug 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.franziskuskiefer.de/p/cve-2017-5462-a-prng-issue/</guid>
-      <description>On April 19, 2017, Mozilla Foundation published the Security Advisory 2017-10 outlining several recently fixed security vulnerabilities. One of these vulnerabilities, tracked as CVE-2017-5462, affects the Pseudo-Random Number Generator (PRNG) within the Network Security Services (NSS) library prior to version 3.29.5 and Firefox prior to version 53.
-This post describes the bug and how it was discovered.
-Inside the NSS PRNG NSS uses Hash_DRBG as PRNG, which is one of several PRNG schemes defined in the NIST Special Publication 800-90.</description>
-    </item>
-    
-    <item>
-      <title>Aes Gcm Speedup</title>
-      <link>https://www.franziskuskiefer.de/p/aes-gcm-speedup/</link>
-      <pubDate>Tue, 27 Jun 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.franziskuskiefer.de/p/aes-gcm-speedup/</guid>
-      <description>AES-GCM is a NIST standardised authenticated encryption algorithm (FIPS 800-38D). Since its standardisation in 2008 its usage increased to a point where it is the prevalent encryption used with TLS. With 85% it is by far the most widely used cipher.
- Firefox 53 TLS cipher telemetry 
-Unfortunately the AES-GCM implementation used in Firefox (provided by NSS) does not take advantage of full hardware acceleration; it uses a slower software-only implementation on Mac, Linux 32-bit, or any device that doesn&amp;rsquo;t have the AVX, PCLMUL, and AES-NI hardware instructions.</description>
-    </item>
-    
-    <item>
-      <title>On Constant Time Division</title>
-      <link>https://www.franziskuskiefer.de/p/on-constant-time-division/</link>
-      <pubDate>Wed, 28 Dec 2016 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.franziskuskiefer.de/p/on-constant-time-division/</guid>
-      <description>Writing constant time code is hard. We all know that. But I&amp;rsquo;m always amazed again on how difficult it is. In preparation for making NSS more constant time I looked into certain CPU instructions that are known to be not constant time. So I wrote a little thing to measure the time (CPU cycles) needed for division.
-div rcx ; eax is now a/b The CPU I&amp;rsquo;m using in this post is an Intel i7-4790 (haswell).</description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Crypto on Dr Franziskus Kiefer</title><link>https://www.franziskuskiefer.de/tags/crypto/</link><description>Recent content in Crypto on Dr Franziskus Kiefer</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 12 Nov 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/tags/crypto/index.xml" rel="self" type="application/rss+xml"/><item><title>(HACL*) AEAD Benchmarks</title><link>https://www.franziskuskiefer.de/p/hacl-aead-benchmarks/</link><pubDate>Fri, 12 Nov 2021 00:00:00 +0000</pubDate><guid>https://www.franziskuskiefer.de/p/hacl-aead-benchmarks/</guid><description>&lt;img src="https://www.franziskuskiefer.de/p/hacl-aead-benchmarks/AeadBenchHero.png" alt="Featured image of post (HACL*) AEAD Benchmarks" />&lt;blockquote>
+&lt;p>This is in response to the &lt;a class="link" href="https://kerkour.com/rust-symmetric-encryption-aead-benchmark/" target="_blank" rel="noopener"
+>blog post by Sylvain Kerkour&lt;/a> benchmarking ring and
+Rust Crypto AEADs.
+I was curious how HACL* stacks up to these two with these parameters.&lt;/p>
+&lt;/blockquote>
+&lt;p>I&amp;rsquo;m maintaining the &lt;a class="link" href="https://crates.io/crates/evercrypt" target="_blank" rel="noopener"
+>Evercrypt crate&lt;/a>, a wrapper
+around the formally verified crypto library &lt;a class="link" href="https://github.com/project-everest/hacl-star" target="_blank" rel="noopener"
+>HACL*&lt;/a>.
+HACL* is a customizable, fast, formally verified crypto library written in F* and extracted to C.&lt;/p>
+&lt;ul>
+&lt;li>&lt;a class="link" href="https://crates.io/crates/chacha20poly1305" target="_blank" rel="noopener"
+>RustCrypto’s ChaCha20-Poly1305&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://crates.io/crates/aes-gcm" target="_blank" rel="noopener"
+>RustCrypto’s AES-256-GCM&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://crates.io/crates/ring" target="_blank" rel="noopener"
+>ring’s ChaCha20-Poly1305&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://crates.io/crates/ring" target="_blank" rel="noopener"
+>ring’s AES-256-GCM&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="results">Results
+&lt;/h2>&lt;p>I&amp;rsquo;m listing all results here for comparison as I&amp;rsquo;m (obviously) running the benchmarks on a different machine.&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>&lt;/th>
+&lt;th>100B&lt;/th>
+&lt;th>1kB&lt;/th>
+&lt;th>100kB&lt;/th>
+&lt;th>1MB&lt;/th>
+&lt;th>10MB&lt;/th>
+&lt;th>100MB&lt;/th>
+&lt;th>1GB&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;a class="link" href="https://crates.io/crates/chacha20poly1305" target="_blank" rel="noopener"
+>RustCrypto’s ChaCha20-Poly1305&lt;/a> v0.8.2&lt;/td>
+&lt;td>1.6232 us (58.753 MiB/s)&lt;/td>
+&lt;td>2.6941 us (353.98 MiB/s)&lt;/td>
+&lt;td>120.10 us (794.10 MiB/s)&lt;/td>
+&lt;td>1.1921 ms (800.02 MiB/s)&lt;/td>
+&lt;td>12.015 ms (793.75 MiB/s)&lt;/td>
+&lt;td>119.87 ms (795.58 MiB/s)&lt;/td>
+&lt;td>1.1947 s (798.27 MiB/s)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a class="link" href="https://crates.io/crates/aes-gcm" target="_blank" rel="noopener"
+>RustCrypto’s AES-256-GCM&lt;/a> v0.9.4&lt;/td>
+&lt;td>448.97 ns (212.42 MiB/s)&lt;/td>
+&lt;td>1.5090 us (632.01 MiB/s)&lt;/td>
+&lt;td>118.13 us (807.33 MiB/s)&lt;/td>
+&lt;td>1.1947 ms (798.24 MiB/s)&lt;/td>
+&lt;td>11.986 ms (795.68 MiB/s)&lt;/td>
+&lt;td>119.39 ms (798.81 MiB/s)&lt;/td>
+&lt;td>1.1974 s (796.43 MiB/s)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a class="link" href="https://crates.io/crates/ring" target="_blank" rel="noopener"
+>ring’s ChaCha20-Poly1305&lt;/a> v0.16.20&lt;/td>
+&lt;td>193.82 ns (492.04 MiB/s)&lt;/td>
+&lt;td>730.23 ns (1.2754 GiB/s)&lt;/td>
+&lt;td>48.293 us (1.9285 GiB/s)&lt;/td>
+&lt;td>490.64 us (1.8982 GiB/s)&lt;/td>
+&lt;td>5.0475 ms (1.8451 GiB/s)&lt;/td>
+&lt;td>51.438 ms (1.8106 GiB/s)&lt;/td>
+&lt;td>514.99 ms (1.8084 GiB/s)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a class="link" href="https://crates.io/crates/ring" target="_blank" rel="noopener"
+>ring’s AES-256-GCM&lt;/a> v0.16.20&lt;/td>
+&lt;td>235.57 ns (404.83 MiB/s)&lt;/td>
+&lt;td>556.64 ns (1.6731 GiB/s)&lt;/td>
+&lt;td>34.609 us (2.6910 GiB/s)&lt;/td>
+&lt;td>343.41 us (2.7120 GiB/s)&lt;/td>
+&lt;td>3.5471 ms (2.6256 GiB/s)&lt;/td>
+&lt;td>34.873 ms (2.6706 GiB/s)&lt;/td>
+&lt;td>348.51 ms (2.6723 GiB/s)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a class="link" href="https://crates.io/crates/evercrypt" target="_blank" rel="noopener"
+>HACL*’s ChaCha20-Poly1305&lt;/a> v0.0.10&lt;/td>
+&lt;td>862.79 ns (110.53 MiB/s)&lt;/td>
+&lt;td>1.2804 us (744.81 MiB/s)&lt;/td>
+&lt;td>55.550 us (1.6765 GiB/s)&lt;/td>
+&lt;td>549.11 us (1.6961 GiB/s)&lt;/td>
+&lt;td>5.8844 ms (1.5827 GiB/s)&lt;/td>
+&lt;td>88.801 ms (1.0488 GiB/s)&lt;/td>
+&lt;td>847.39 ms (1.0990 GiB/s)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a class="link" href="https://crates.io/crates/evercrypt" target="_blank" rel="noopener"
+>HACL*’s AES-256-GCM&lt;/a> v0.0.10&lt;/td>
+&lt;td>238.12 ns (400.51 MiB/s)&lt;/td>
+&lt;td>598.56 ns (1.5560 GiB/s)&lt;/td>
+&lt;td>38.997 us (2.3882 GiB/s)&lt;/td>
+&lt;td>391.87 us (2.3766 GiB/s)&lt;/td>
+&lt;td>4.0217 ms (2.3157 GiB/s)&lt;/td>
+&lt;td>68.004 ms (1.3695 GiB/s)&lt;/td>
+&lt;td>642.12 ms (1.4504 GiB/s)&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>It is interesting to see that the HACL* AES-256-GCM implementation is only slightly
+slower than ring&amp;rsquo;s (2.3GiB/s vs 2.7GiB/s) for 1MB and 10MB chunks.
+But it significantly drops in performance for larger blobs while ring&amp;rsquo;s performance
+stays the same.
+The picture for Chacha20Poly1305 is similar, which points to general issues of
+handling large data sizes within HACL*.&lt;/p>
+&lt;p>&lt;a class="link" href="./aead-intel-benchmarks.txt" >Raw number&lt;/a>&lt;/p>
+&lt;h2 id="m1">M1
+&lt;/h2>&lt;p>My main machine right now is a MacBook with M1 chip.
+This is a very different machine.
+Here are the numbers.&lt;/p>
+&lt;p>Note that HACL* doesn&amp;rsquo;t support AES on ARM chips yet unfortunately.&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>&lt;/th>
+&lt;th>100B&lt;/th>
+&lt;th>1kB&lt;/th>
+&lt;th>100kB&lt;/th>
+&lt;th>1MB&lt;/th>
+&lt;th>10MB&lt;/th>
+&lt;th>100MB&lt;/th>
+&lt;th>1GB&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>[RustCrypto’s XChaCha20-Poly1305] v0.8.2&lt;/td>
+&lt;td>558.20 ns (170.85 MiB/s)&lt;/td>
+&lt;td>3.0136 us (316.46 MiB/s)&lt;/td>
+&lt;td>274.25 us (347.74 MiB/s)&lt;/td>
+&lt;td>2.7434 ms (347.62 MiB/s)&lt;/td>
+&lt;td>27.535 ms (346.35 MiB/s)&lt;/td>
+&lt;td>279.16 ms (341.62 MiB/s)&lt;/td>
+&lt;td>2.7657 s (344.83 MiB/s)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a class="link" href="https://crates.io/crates/chacha20poly1305" target="_blank" rel="noopener"
+>RustCrypto’s ChaCha20-Poly1305&lt;/a> v0.8.2&lt;/td>
+&lt;td>460.31 ns (207.18 MiB/s)&lt;/td>
+&lt;td>2.9189 us (326.73 MiB/s)&lt;/td>
+&lt;td>273.95 us (348.12 MiB/s)&lt;/td>
+&lt;td>2.7429 ms (347.69 MiB/s)&lt;/td>
+&lt;td>27.623 ms (345.25 MiB/s)&lt;/td>
+&lt;td>281.35 ms (338.96 MiB/s)&lt;/td>
+&lt;td>2.7525 s (346.48 MiB/s)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a class="link" href="https://crates.io/crates/aes-gcm" target="_blank" rel="noopener"
+>RustCrypto’s AES-256-GCM&lt;/a> v0.9.4&lt;/td>
+&lt;td>3.0838 us (30.925 MiB/s)&lt;/td>
+&lt;td>9.3825 us (101.64 MiB/s)&lt;/td>
+&lt;td>707.99 us (134.70 MiB/s)&lt;/td>
+&lt;td>7.0729 ms (134.83 MiB/s)&lt;/td>
+&lt;td>70.655 ms (134.98 MiB/s)&lt;/td>
+&lt;td>706.42 ms (135.00 MiB/s)&lt;/td>
+&lt;td>7.1158 s (134.02 MiB/s)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a class="link" href="https://crates.io/crates/ring" target="_blank" rel="noopener"
+>ring’s ChaCha20-Poly1305&lt;/a> v0.16.20&lt;/td>
+&lt;td>407.12 ns (234.25 MiB/s)&lt;/td>
+&lt;td>1.3175 us (723.85 MiB/s)&lt;/td>
+&lt;td>96.781 us (985.40 MiB/s)&lt;/td>
+&lt;td>963.70 us (989.60 MiB/s)&lt;/td>
+&lt;td>9.6676 ms (986.46 MiB/s)&lt;/td>
+&lt;td>98.252 ms (970.64 MiB/s)&lt;/td>
+&lt;td>975.96 ms (977.17 MiB/s)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a class="link" href="https://crates.io/crates/ring" target="_blank" rel="noopener"
+>ring’s AES-256-GCM&lt;/a> v0.16.20&lt;/td>
+&lt;td>79.751 ns (1.1678 GiB/s)&lt;/td>
+&lt;td>394.01 ns (2.3637 GiB/s)&lt;/td>
+&lt;td>34.355 us (2.7109 GiB/s)&lt;/td>
+&lt;td>344.78 us (2.7012 GiB/s)&lt;/td>
+&lt;td>3.4792 ms (2.6768 GiB/s)&lt;/td>
+&lt;td>34.543 ms (2.6961 GiB/s)&lt;/td>
+&lt;td>345.92 ms (2.6923 GiB/s)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a class="link" href="https://crates.io/crates/evercrypt" target="_blank" rel="noopener"
+>HACL*’s ChaCha20-Poly1305&lt;/a> v0.0.10&lt;/td>
+&lt;td>690.43 ns (138.13 MiB/s)&lt;/td>
+&lt;td>1.7545 us (543.55 MiB/s)&lt;/td>
+&lt;td>132.59 us (719.25 MiB/s)&lt;/td>
+&lt;td>1.3096 ms (728.24 MiB/s)&lt;/td>
+&lt;td>13.261 ms (719.13 MiB/s)&lt;/td>
+&lt;td>137.91 ms (691.53 MiB/s)&lt;/td>
+&lt;td>1.4217 s (670.82 MiB/s)&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>Ring&amp;rsquo;s performance is again great and very stable across different payload sizes.
+Rust Crypto&amp;rsquo;s implementations are significantly slower than ring&amp;rsquo;s again but also slower than on the Intel machine.
+The HACL* performance for Chacha20Poly1305 is again a little worse than ring&amp;rsquo;s but significantly better than Rust Crypto&amp;rsquo;s.&lt;/p>
+&lt;p>&lt;a class="link" href="./aead-m1-benchmarks.txt" >Raw number&lt;/a>&lt;/p>
+&lt;h2 id="cpu-info">CPU Info
+&lt;/h2>&lt;h3 id="intel">Intel
+&lt;/h3>&lt;pre tabindex="0">&lt;code>Architecture: x86_64
+CPU op-mode(s): 32-bit, 64-bit
+Address sizes: 39 bits physical, 48 bits virtual
+Byte Order: Little Endian
+CPU(s): 8
+On-line CPU(s) list: 0-7
+Vendor ID: GenuineIntel
+Model name: Intel(R) Core(TM) i7-4900MQ CPU @ 2.80GHz
+CPU family: 6
+Model: 60
+Thread(s) per core: 2
+Core(s) per socket: 4
+Socket(s): 1
+Stepping: 3
+CPU max MHz: 3800.0000
+CPU min MHz: 800.0000
+BogoMIPS: 5589.60
+Flags: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx f
+xsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_
+good nopl xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx e
+st tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c
+rdrand lahf_lm abm cpuid_fault epb invpcid_single pti tpr_shadow vnmi flexpriority ept vpid e
+pt_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid xsaveopt dtherm ida arat pln pts
+Virtualization features:
+Virtualization: VT-x
+Caches (sum of all):
+L1d: 128 KiB (4 instances)
+L1i: 128 KiB (4 instances)
+L2: 1 MiB (4 instances)
+L3: 8 MiB (1 instance)
+NUMA:
+NUMA node(s): 1
+NUMA node0 CPU(s): 0-7
+Vulnerabilities:
+Itlb multihit: KVM: Mitigation: VMX disabled
+L1tf: Mitigation; PTE Inversion; VMX conditional cache flushes, SMT vulnerable
+Mds: Vulnerable: Clear CPU buffers attempted, no microcode; SMT vulnerable
+Meltdown: Mitigation; PTI
+Spec store bypass: Vulnerable
+Spectre v1: Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+Spectre v2: Mitigation; Full generic retpoline, STIBP disabled, RSB filling
+Srbds: Vulnerable: No microcode
+Tsx async abort: Not affected
+&lt;/code>&lt;/pre>&lt;h3 id="m1-1">M1
+&lt;/h3>&lt;pre tabindex="0">&lt;code>machdep.cpu.brand_string: Apple M1
+machdep.cpu.core_count: 8
+machdep.cpu.cores_per_package: 8
+machdep.cpu.logical_per_package: 8
+machdep.cpu.thread_count: 8
+&lt;/code>&lt;/pre>&lt;hr>
+&lt;p>The code changes needed for these experiments are on &lt;a class="link" href="https://github.com/franziskuskiefer/kerkour.com/tree/hacl" target="_blank" rel="noopener"
+>Github&lt;/a>.&lt;/p></description></item><item><title>Shared-Secrets Service</title><link>https://www.franziskuskiefer.de/p/shared-secrets-service/</link><pubDate>Mon, 23 Dec 2019 00:00:00 +0000</pubDate><guid>https://www.franziskuskiefer.de/p/shared-secrets-service/</guid><description>&lt;img src="https://www.franziskuskiefer.de/p/shared-secrets-service/hero.jpg" alt="Featured image of post Shared-Secrets Service" />&lt;p>At the &lt;a class="link" href="https://berlin-crypto.github.io" target="_blank" rel="noopener"
+>Berlin Crypto&lt;/a> this month we had a talk by &lt;a class="link" href="https://twitter.com/xyahe/" target="_blank" rel="noopener"
+>Kevin&lt;/a> about a &lt;a class="link" href="https://secrets.syseleven.de" target="_blank" rel="noopener"
+>shared-secret service&lt;/a> they developed at &lt;a class="link" href="https://syseleven.de" target="_blank" rel="noopener"
+>Syselevn&lt;/a>.
+After experimenting with PGP and deciding that it doesn&amp;rsquo;t do what they needed, they decided to go with a very simple, custom encrypt-then-mac scheme. You can find details &lt;a class="link" href="https://github.com/syseleven/shared-secrets/blob/master/ENCRYPTION.md" target="_blank" rel="noopener"
+>here&lt;/a>.
+When someone says they built their own encryption scheme and message format I get obviously curious.
+In this post I want to summarize the scheme, design decisions, compare it standard authenticated encryption schemes, and ponder the question of the right security definitions.&lt;/p>
+&lt;p>Note that I refrain from formal definitions in this post.
+I only want to give the intuition.
+Please read the linked documents for formal definitions and details.
+See for example the &lt;a class="link" href="https://cseweb.ucsd.edu/~mihir/papers/oem.pdf" target="_blank" rel="noopener"
+>Authenticated Encryption paper by Bellare and Namprempre&lt;/a> for details on authenticated encryption and the &lt;a class="link" href="https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.76.4921&amp;amp;rep=rep1&amp;amp;type=pdf" target="_blank" rel="noopener"
+>Authenticated Encryption with Associated Data by Rogaway&lt;/a> on AEADs.&lt;/p>
+&lt;h2 id="shared-secrets">Shared-Secrets
+&lt;/h2>&lt;p>The service and scheme are described as follows:&lt;/p>
+&lt;blockquote>
+&lt;p>Shared-Secrets is an application that helps you to simply share one-time secrets over the web.
+Using the Shared-Secrets service allows you to transfer the actual secret in an encrypted form.
+Retrieving the secret is as simple as following a link.
+In contrast to other secret sharing services, Shared-Secrets does not store the secret on the server, but puts the encrypted secret into the link that you share with the desired recipient.&lt;/p>
+&lt;/blockquote>
+&lt;p>I leave aside the fact that any attacker that can intercept the message can trivially retrieve the secret and focus on the encryption scheme used for the service.
+Note that the service allows to encrypt the message with a password before sharing it to prevent the aforementioned attack.&lt;/p>
+&lt;p>The encryption scheme used for this service is a basic encrypt-then-mac scheme that can be written as&lt;/p>
+&lt;pre tabindex="0">&lt;code>(c, t) &amp;lt;- EtM(key, nonce, msg, aad)
+&lt;/code>&lt;/pre>&lt;p>where &lt;code>aad&lt;/code> contains all meta-data (version etc.).
+Keys for the mac and encryption algorithms are derived as follows&lt;/p>
+&lt;pre tabindex="0">&lt;code>key &amp;lt;- random() # 32-byte
+(k_c, k_t) &amp;lt;- (HMAC-SHA256(key, &amp;#34;enc&amp;#34;), HMAC-SHA256(key, &amp;#34;mac&amp;#34;))
+rsakey &amp;lt;- RSA-OAEP(pk, key)
+&lt;/code>&lt;/pre>&lt;p>The RSA key &lt;code>pk&lt;/code> is the server&amp;rsquo;s public key.
+Now we can compute the ciphertext and mac.&lt;/p>
+&lt;pre tabindex="0">&lt;code>c &amp;lt;- AES-256-CTR(k_c, nonce, msg)
+t &amp;lt;- HMAC-SHA256(k_t, aad, c)
+&lt;/code>&lt;/pre>&lt;p>The message format is defined as&lt;/p>
+&lt;pre tabindex="0">&lt;code>[version:01][rsakeycount:02][rsakeyid:32][rsakeylength:02][rsakey:mm][...][rsakeyid:32][rsakeylength:02][rsakey:mm][nonce:16][message:nn][mac:32]
+&lt;/code>&lt;/pre>&lt;p>with &lt;code>rsakeyid := SHA256(pk)&lt;/code> and &lt;code>nonce := $(date +%s)|0..0&lt;/code> (8-byte unix timestamp, padded 8 zero bytes).&lt;/p>
+&lt;h3 id="observations">Observations
+&lt;/h3>&lt;p>Looking at the scheme there are a two things that stand out.
+This is in addition to the unclear threat scenario that I won&amp;rsquo;t discuss in this post.&lt;/p>
+&lt;p>Note that there&amp;rsquo;s currently no standardized way of doing hybrid encryption. There&amp;rsquo;s currently an &lt;a class="link" href="https://tools.ietf.org/html/draft-irtf-cfrg-hpke-02" target="_blank" rel="noopener"
+>RFC in the making&lt;/a> but until that&amp;rsquo;s finished it is necessary to define custom hybrid schemes as done here.&lt;/p>
+&lt;h4 id="the-nonce-is-not-random">The nonce is not random
+&lt;/h4>&lt;p>When using encryption schemes such as AES-CTR it is paramount that the nonce is unique.
+If this is not the case, the key-stream becomes known and allows full message recovery.
+Using a timestamp as nonce is usually a bad move as time is predictable and not random.&lt;/p>
+&lt;h4 id="how-is-this-different-from-an-aead">How is this different from an AEAD
+&lt;/h4>&lt;p>The scheme as described above looks like an AEAD scheme.
+So the question is why didn&amp;rsquo;t they just use an established AEAD scheme such as AES-GCM or ChaCha20Poly1305.&lt;/p>
+&lt;h2 id="encrypt-then-mac--aead">Encrypt-then-Mac == AEAD?
+&lt;/h2>&lt;p>Let&amp;rsquo;s talk about encryption and authentication first.
+Historically encryption offered confidentiality but no integrity.
+Something that&amp;rsquo;s not immediately obvious to non-cryptographers who want to use encryption to protect their data.
+Authenticated Encryption (AE) and its relation to non-authenticated encryption was first described in the previously mentioned paper by &lt;a class="link" href="https://cseweb.ucsd.edu/~mihir/papers/oem.pdf" target="_blank" rel="noopener"
+>Bellare and Namprempre&lt;/a> in 2000.&lt;/p>
+&lt;p>Encryption was considered secure if it satisfied the indistinguishable under chosen plaintext property, i.e. if an attacker couldn&amp;rsquo;t distinguish whether a ciphertext encrypts message &lt;code>a&lt;/code> or message &lt;code>b&lt;/code>.
+But &amp;ldquo;security&amp;rdquo; of an encryption scheme intuitively might mean something else as well.
+In addition to not being able to know which message is encrypted in a ciphertext it shouldn&amp;rsquo;t be possible for an attacker to change the content of the message or the ciphertext without the recipient noticing it.
+This property can be described as ciphertext (or plaintext) integrity and allows the definition of authenticated encryption.
+Adding associated data (AD) that is not encrypted but authenticated we get Authenticated Encryption with Associated Data (AEAD).
+For a comprehensive overview of AEAD and its history I recommend checking out these &lt;a class="link" href="https://summerschool-croatia.cs.ru.nl/2016/slides/PhilRogaway.pdf" target="_blank" rel="noopener"
+>slides by Phillip Rogaway&lt;/a>.&lt;/p>
+&lt;h3 id="encrypt-then-mac--aead-1">Encrypt-then-Mac != AEAD
+&lt;/h3>&lt;p>Generally encrypt-then-mac schemes can be considered AEADs.
+For this to be true however, the Mac has to be strongly unforgeable.
+Luckily this is the case for HMAC such that the scheme described above is fine in this regard.&lt;/p>
+&lt;p>A MAC scheme is weakly unforgeable (WUF-CMA) if an attacker is not able to generate a tag for a new message, i.e. a message that she hasn&amp;rsquo;t seen a tag for before.
+If a scheme is strongly unforgeable (SUF-CMA), it must me impossible for an attacker to generate a new message, tag pair, i.e. not only a new message but also a new tag.
+While SUF-CMA seems like an artificial extension of the intuitive notion of WUF-CMA it is necessary to build an AEAD as WUF-CMA doesn&amp;rsquo;t provide integrity guarantees for the ciphertext or plaintext.&lt;/p>
+&lt;h2 id="aead-properties">AEAD Properties
+&lt;/h2>&lt;p>The motivation to build this custom AEAD scheme instead of using an existing one was a big point of discussion at the meetup.
+The essence is that Kenny didn&amp;rsquo;t trust that an AEAD provided exactly what he needed.
+So what are properties of an AEAD?
+Generally AEADs are supposed to offer IND-CCA security where the attacker is allowed to decrypt arbitrary ciphertexts.
+Instead of thinking of AEAD as IND-CCA secure it is more intuitive to think of it as IND-CPA secure (i.e. the attacker can&amp;rsquo;t do better than guessing which message is encrypted in a ciphertext when given the ciphertext to one of two adversarially chosen messages) and offering INT-CTXT, i.e. integrity of the ciphertext.
+Note that this &lt;strong>does not&lt;/strong> imply authenticity of the plaintext because IND-CCA does not guarantee that it is impossible for an attacker to generate a valid ciphertext for a specially crafted message.&lt;/p>
+&lt;h3 id="uniqueness-of-tags">Uniqueness of Tags
+&lt;/h3>&lt;p>The property that was questioned to be part of the AEAD security definition but was important to the Shared-Secrets service is the uniqueness of the ciphertext and tag.
+This is necessary to make sure secrets can only be retrieved once.
+According to the &lt;a class="link" href="https://secrets.syseleven.de/how" target="_blank" rel="noopener"
+>website&lt;/a> the server uses a fingerprint to achieve this.
+First I notice that fingerprint is not defined in the encryption scheme.
+Looking at &lt;a class="link" href="https://github.com/syseleven/shared-secrets/blob/2fa63d5bf0673d497c7ee5afa766176ccb34b34f/lib/shared-secrets.exec.php#L256" target="_blank" rel="noopener"
+>the code&lt;/a> it appears that the fingerprint is the tag.
+The fingerprint is stored on the server and the service refuses to decrypt anything with the fingerprint if it did so once before.&lt;/p>
+&lt;p>So the question is whether the used encrypt-then-mac scheme makes sure that the tag is unique and whether an AEAD would have offered this property as well.&lt;/p>
+&lt;p>In other words, can an attacker generate a second, different, valid tag &lt;code>t'&lt;/code> for an existing ciphertext, tag pair &lt;code>(c, t)&lt;/code>.
+Note that I do not consider encodings here.
+(Using base64 encoding for example it is possible to generate two different base64 strings that decode to the same binary message.)
+To this end there has to exist a pair &lt;code>(c, t), (c', t')&lt;/code> with &lt;code>Dec(c) == Dec(c') &amp;amp;&amp;amp; Verify(t) == Verify(t')&lt;/code> i.e. two ciphertext, tag pairs that decrypt to the same message and both tags are valid.
+First note that the unforgeability of the Mac ensures that it is impossible to generate a valid tag &lt;code>t'&lt;/code> for a given ciphertext &lt;code>c&lt;/code> without knowledge of the key.
+It follows that the ciphertext &lt;code>c'&lt;/code> has to be different from the original ciphertext &lt;code>c&lt;/code>.
+But without knowledge of the message &lt;code>m&lt;/code> encrypted in &lt;code>c&lt;/code> (or the key) it is impossible to generate a ciphertext &lt;code>c'&lt;/code> that decrypts to &lt;code>m&lt;/code>.
+Hence this is not possible.&lt;/p>
+&lt;p>While everything else in this post were well established properties of AEADs this one doesn&amp;rsquo;t appear to follow trivially.
+However, this applies to the custom scheme used in Shared-Secrets as well as an off-the-shelf AEAD.&lt;/p>
+&lt;h2 id="timestamps-as-nonces">Timestamps as Nonces
+&lt;/h2>&lt;p>Non-random nonces break most AEAD schemes.
+This is one reason &lt;a class="link" href="https://web.cs.ucdavis.edu/~rogaway/papers/keywrap.pdf" target="_blank" rel="noopener"
+>Misuse-Resistant AE (MRAE)&lt;/a> was introduced and specified for schemes such as AES-GCM (&lt;a class="link" href="https://tools.ietf.org/html/rfc8452" target="_blank" rel="noopener"
+>AES-GCM-SIV&lt;/a>).&lt;/p>
+&lt;p>So how does choosing a timestamp as nonce fare in the Shared-Secret scheme?&lt;/p>
+&lt;p>Recall that AES in counter mode, as used here, is an XOR of a plaintext block with the AES encryption of the concatenation of the nonce and the counter (&lt;code>c_i = m_i xor AES(key, nonce||ctr)&lt;/code>).
+Thus, one can recover an unknown plaintext by computing the xor of its ciphertext with the xor of a known ciphertext, plaintext pair (&lt;code>m_i = c_i xor (c'_i xor m'_i)&lt;/code>) when the nonce is known.&lt;/p>
+&lt;p>While the Shared-Secrets scheme is very fragile here and not well-designed here (why not just take a random nonce?) I can&amp;rsquo;t see how this can be exploited.
+Even if an attacker is able to generate two ciphertexts with the same nonce (this can be easily done by sending two requests to the server at the same time), the key will be different in both cases.&lt;/p>
+&lt;h2 id="discussion-how-to-define-security">Discussion: How to define security?
+&lt;/h2>&lt;p>This episode illustrates how important it is for security definitions to model real-world scenarios that people actually have when using a primitive.
+But it also shows that sometimes, even though standard primitives with appropriate security definitions exist, communicating these properties fail.
+The use case of the Shared-Secrets is a peculiar one but highlights these issues.
+Something I did not expect is that people rather define their own crypto schemes than using existing ones because they think they don&amp;rsquo;t understand the properties properly.
+But this is all the more reason to make sure the exact security properties a scheme offers are communicated and well understood by everyone.&lt;/p>
+&lt;p>For me this is another pointer that it is important to have properly working communication channels between people analyzing crypto and everyone using it in order to transport requirements and make sure everyone is on the same page.
+And this is, among others things, what we do at the &lt;a class="link" href="https://berlin-crypto.github.io" target="_blank" rel="noopener"
+>Berlin Crypto&lt;/a> meetup in a very informal and local setting.&lt;/p></description></item><item><title>Wrapping arithmetic in Rust</title><link>https://www.franziskuskiefer.de/p/wrapping-arithmetic-in-rust/</link><pubDate>Mon, 21 Oct 2019 00:00:00 +0000</pubDate><guid>https://www.franziskuskiefer.de/p/wrapping-arithmetic-in-rust/</guid><description>&lt;p>One of Rusts great feature is that it catches integer overflows at runtime and panics rather than wraps (in debug builds).
+I recommend you read &lt;a class="link" href="https://huonw.github.io/blog/2016/04/myths-and-legends-about-integer-overflow-in-rust/" target="_blank" rel="noopener"
+>Huon&amp;rsquo;s blog post&lt;/a> about this from a couple years ago.&lt;/p>
+&lt;p>While this is a desirable behaviour in general, integer overflows are commonly used when implementing cryptography primitives.
+Rust offers wrapping alternatives such as &lt;code>wrapping_add&lt;/code> etc. to allow wrapping behaviour.
+However, this makes code very hard to read, e.g. &lt;code>let c = a + b&lt;/code> is easier to read than &lt;code>let c = a.wrapping_add(b)&lt;/code>.&lt;/p>
+&lt;h2 id="other-wrapping-arithmetic">Other wrapping arithmetic
+&lt;/h2>&lt;p>Rust itself provides a wrapping integer type in &lt;a class="link" href="https://doc.rust-lang.org/std/num/struct.Wrapping.html" target="_blank" rel="noopener"
+>&lt;code>std::num::Wrapping&lt;/code>&lt;/a>.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Rust" data-lang="Rust">&lt;span class="line">&lt;span class="cl">&lt;span class="k">use&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">std&lt;/span>::&lt;span class="n">num&lt;/span>::&lt;span class="n">Wrapping&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">zero&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Wrapping&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="k">u32&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">one&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Wrapping&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="k">u32&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="fm">assert_eq!&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">std&lt;/span>::&lt;span class="kt">u32&lt;/span>::&lt;span class="no">MAX&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">zero&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">one&lt;/span>&lt;span class="p">).&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>This is a good solution when you want to be explicit about what you&amp;rsquo;re doing.
+However, its readability is still not great.&lt;/p>
+&lt;h2 id="wrappit">#[wrappit]
+&lt;/h2>&lt;p>To alleviate this shortcoming I implemented a &lt;a class="link" href="https://doc.rust-lang.org/reference/procedural-macros.html" target="_blank" rel="noopener"
+>procedural macro&lt;/a> that rewrites arithmetic operators &lt;code>+,-,*&lt;/code> into their wrapping equivalents &lt;code>wrapping_add, wrapping_sub, wrapping_mul&lt;/code> as well as their assigning versions &lt;code>+=,-=,*=&lt;/code>.&lt;/p>
+&lt;p>The following function for example&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Rust" data-lang="Rust">&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#[wrappit]&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">fn&lt;/span> &lt;span class="nf">mix&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">a&lt;/span>: &lt;span class="kt">u32&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">b&lt;/span>: &lt;span class="kt">u32&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">c&lt;/span>: &lt;span class="kp">&amp;amp;&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="kt">u32&lt;/span>&lt;span class="p">])&lt;/span>&lt;span class="w"> &lt;/span>-&amp;gt; &lt;span class="kt">u32&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">mut&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">r&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">for&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">u&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">in&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">c&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">r&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">*=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">u&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">r&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>is rewritten to&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Rust" data-lang="Rust">&lt;span class="line">&lt;span class="cl">&lt;span class="k">fn&lt;/span> &lt;span class="nf">mix&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">a&lt;/span>: &lt;span class="kt">u32&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">b&lt;/span>: &lt;span class="kt">u32&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">c&lt;/span>: &lt;span class="kp">&amp;amp;&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="kt">u32&lt;/span>&lt;span class="p">])&lt;/span>&lt;span class="w"> &lt;/span>-&amp;gt; &lt;span class="kt">u32&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">mut&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">r&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">wrapping_add&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">for&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">u&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">in&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">c&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">r&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">r&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">wrapping_mul&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">u&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">r&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You can find wrapping_arithmetic on &lt;a class="link" href="https://github.com/franziskuskiefer/wrapping-arithmetic" target="_blank" rel="noopener"
+>GitHub&lt;/a> and on &lt;a class="link" href="https://crates.io/crates/wrapping_arithmetic" target="_blank" rel="noopener"
+>crates.io&lt;/a>.
+To use &lt;code>#[wrappit]&lt;/code> add &lt;code>wrapping_arithmetic = &amp;quot;0.1&amp;quot;&lt;/code> to your &lt;code>cargo.toml&lt;/code>.&lt;/p></description></item><item><title>Update on hacspec</title><link>https://www.franziskuskiefer.de/p/update-on-hacspec/</link><pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate><guid>https://www.franziskuskiefer.de/p/update-on-hacspec/</guid><description>&lt;img src="https://www.franziskuskiefer.de/p/update-on-hacspec/hacspec2-architecture.png" alt="Featured image of post Update on hacspec" />&lt;p>Earlier this year I introduced &lt;a class="link" href="../hacspec1" >hacspec, a new specification language for cryptographic primitives&lt;/a>.
+After Karthik presented the idea and very preliminary results at &lt;a class="link" href="https://github.com/HACS-workshop/hacspec/blob/master/doc/hacspec-short-talk-CFRG-IETF-101.pdf" target="_blank" rel="noopener"
+>IETF 101&lt;/a> in March we made quite some progress and presented a paper with a little more detail at &lt;a class="link" href="https://ssr2018.net/" target="_blank" rel="noopener"
+>SSR&lt;/a> earlier this week.
+In this blog post I&amp;rsquo;ll give the gist of the &lt;a class="link" href="https://github.com/HACS-workshop/hacspec/blob/master/doc/hacspec-ssr18-paper.pdf" target="_blank" rel="noopener"
+>SSR paper&lt;/a> and introduce the first version of &lt;em>hacspec&lt;/em>.&lt;/p>
+&lt;p>All information about &lt;em>hacspec&lt;/em> can be found at &lt;a class="link" href="https://hacs-workshop.github.io/hacspec/" target="_blank" rel="noopener"
+>https://hacs-workshop.github.io/hacspec/&lt;/a>.&lt;/p>
+&lt;h2 id="the-language">The language
+&lt;/h2>&lt;p>The &lt;em>hacspec&lt;/em> language is a DSL for cryptographic algorithms.
+But it can also be seen as a typed subset of Python.
+The following describes the language.&lt;/p>
+&lt;pre tabindex="0">&lt;code> Values v ::=
+n integer constants
+| True | False boolean constants
+| &amp;#39;...&amp;#39; | &amp;#34;...&amp;#34; string constants
+| (v1,...,vn) tuple constant
+| array([v1,...,vn]) array constant
+Expressions e ::=
+v values
+| x | m.x local and global variables
+| (e1,...,en) tuple construction
+| array([e1,...,en]) array construction
+| array.length(e) array length
+| e[e0] array access
+| e[e0:e1] array slice
+| e(e1,...,en) function call
+| e1 binop e2 builtin binary operators
+| unaryop e builtin unary operators
+Types t ::=
+int, str, bool basic types
+| tuple_t(t1,...,tn) tuples
+| vlarray_t(t) variable-length array
+| x user-defined or builtin type
+| x(t1,...,tn,e1,...,em) builtin type application
+Statements s ::=
+x: Type = t type declaration
+| x: t variable declaration
+| x = e variable assignment
+| x binop= e augmented variable assignment
+| (x1,..,xn) = e tuple matching
+| x[i] = e array update
+| x[i] binop= e augmented array update
+| x[i:j] = e array slice update
+| if e: if-elif-else conditional
+s1...sn
+elif e:
+s1&amp;#39;...sn&amp;#39;
+else
+s1&amp;#39;&amp;#39;...sn&amp;#39;&amp;#39;
+| for i in range(e): for loop
+s1...sn
+| break break from loop
+| def x(x1:t1,...,xn:tn) -&amp;gt; t: function declaration
+s1 ... sn
+| return e return from function
+| from x import x1, x2,..., xn module import
+Specs σ ::= s1...sn sequence of statements
+&lt;/code>&lt;/pre>&lt;h2 id="hacspec-architecture">hacspec architecture
+&lt;/h2>&lt;p>The &lt;em>hacspec&lt;/em> architecture is depicted in the following graph.&lt;/p>
+&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/update-on-hacspec/hacspec2-architecture.png"
+width="2873"
+height="2451"
+srcset="https://www.franziskuskiefer.de/p/update-on-hacspec/hacspec2-architecture_hu3195581800283001141.png 480w, https://www.franziskuskiefer.de/p/update-on-hacspec/hacspec2-architecture_hu2649430833740968362.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="117"
+data-flex-basis="281px"
+>&lt;/p>
+&lt;h2 id="writing-hacspec">Writing hacspec
+&lt;/h2>&lt;p>Every spec should be accompanied by a test and some test vectors leaving the author with at least two files, e.g. &lt;code>poly.py&lt;/code> and &lt;code>poly_test.py&lt;/code> (also see &lt;a class="link" href="#Example" >Example section&lt;/a>).
+Note that only the spec file has to be &lt;em>hacspec&lt;/em> syntax.
+The test file can make use of all of Python.
+&lt;em>hacspec&lt;/em> comes with a standard library called speclib and a spec-checker.
+To use the &lt;em>hacspec&lt;/em> speclib and spec-checker install them via &lt;code>pip install hacspec&lt;/code> or from the source (the &lt;code>setup.py&lt;/code> for the Python package can be found in &lt;code>/build/&lt;/code>).
+Running &lt;em>hacspec&lt;/em> requires a Python interpreter version 3.6.4 or newer.&lt;/p>
+&lt;h3 id="speclib">speclib
+&lt;/h3>&lt;p>Commonly used functionality is provided in &lt;em>speclib&lt;/em> (&lt;code>from hacspec.speclib import *&lt;/code>).
+The full speclib documentation can be found &lt;a class="link" href="https://hacs-workshop.github.io/hacspec/docs/" target="_blank" rel="noopener"
+>here&lt;/a>.
+Some highlights are&lt;/p>
+&lt;ul>
+&lt;li>&lt;em>modular arithmetic&lt;/em>: &lt;code>natmod_t&lt;/code> is an integer data type that provides modular arithmetic, e.g. &lt;code>felem_t = natmod_t((2**130)-5)&lt;/code> defines field elements modulo &lt;code>(2**130)-5&lt;/code>.&lt;/li>
+&lt;li>&lt;em>machine integers&lt;/em>: &lt;code>unitN_t&lt;/code> define commonly used machine integer types for &lt;code>N = 8, 16, 32, 64, 128&lt;/code>.&lt;/li>
+&lt;li>&lt;em>byte arrays, vectors, and matrices&lt;/em>: provided data structures are &lt;code>array_t, bytes_t, vector_t, matrix_t&lt;/code> as well as the variable length versions &lt;code>vlarray_t&lt;/code> and &lt;code>vlbytes_t&lt;/code>. Note that the vector and matrix data types offer point-wise arithmetic.&lt;/li>
+&lt;li>&lt;em>refinements&lt;/em>: &lt;code>refine_t&lt;/code> allows to refine data types.&lt;/li>
+&lt;li>&lt;em>contracts&lt;/em>: &lt;code>@contract&lt;/code> annotation on functions can be used for pre- and post-conditions.&lt;sup>1&lt;/sup>&lt;/li>
+&lt;/ul>
+&lt;h3 id="spec-checker">spec-checker
+&lt;/h3>&lt;p>Since hacspecs are executed with a Python interpreter it is not sufficient to run &lt;em>hacspec&lt;/em> to check their syntax.
+To check that the syntax is valid a spec-checker is provided.&lt;sup>2&lt;/sup>&lt;/p>
+&lt;pre tabindex="0">&lt;code>hacspec-check &amp;lt;your-hacspec&amp;gt;
+&lt;/code>&lt;/pre>&lt;h3 id="executing-hacspec">Executing hacspec
+&lt;/h3>&lt;p>&lt;em>hacspec&lt;/em> tests are executed with the Python interpreter.
+Executing tests on a spec can yield three different results.&lt;/p>
+&lt;ol>
+&lt;li>The execution is successful and all test vectors pass. In this case the spec is most likely correct and doesn&amp;rsquo;t contain any obvious typing issues.&lt;/li>
+&lt;li>The execution fails because of a failing test case. In this case the spec is probably wrong (or the test vectors are incorrect).&lt;/li>
+&lt;li>The execution fails because of a type error. The speclib as well as &lt;a class="link" href="https://github.com/agronholm/typeguard/" target="_blank" rel="noopener"
+>typeguard&lt;/a> are used to perform runtime type checks.&lt;/li>
+&lt;/ol>
+&lt;h2 id="checking-and-compiling-hacspec">Checking and compiling hacspec
+&lt;/h2>&lt;p>To use &lt;em>hacspecs&lt;/em> for formal verification such as verification of cryptographic properties of an algorithm, generating code in other languages from the spec, or verifying correctness of other implementations with it, a second set of tools is provided.
+These tools are written in OCaml and thus require additional setup and are not packaged right now.&lt;sup>3&lt;/sup>
+Check out the &lt;a class="link" href="https://github.com/HACS-workshop/hacspec" target="_blank" rel="noopener"
+>repository&lt;/a> to use them.
+All tools can be easily called via &lt;code>make&lt;/code> (see documentation in the repo &lt;code>/compiler/&lt;/code> for details).&lt;/p>
+&lt;h3 id="type-checker">Type checker
+&lt;/h3>&lt;p>To perform proper type checking Python is impractical.
+A native type checker is implemented in OCaml that performs syntax and type checking for &lt;em>hacspec&lt;/em>.
+To run the type checker on a spec simply run &lt;code>./checker.native &amp;lt;your-spec&amp;gt;&lt;/code>.&lt;/p>
+&lt;h3 id="compiler">Compiler
+&lt;/h3>&lt;p>The type checker also produces a typed AST that can be used to generate the spec in another formal language.
+There are currently compiler for EasyCrypt and F*.
+I&amp;rsquo;ll only describe the F* compiler as it&amp;rsquo;s more complete.&lt;/p>
+&lt;h4 id="f-compiler">F* compiler
+&lt;/h4>&lt;p>The F* compiler requires &lt;a class="link" href="https://github.com/mitls/hacl-star/" target="_blank" rel="noopener"
+>&lt;code>HACL_HOME&lt;/code>&lt;/a> and &lt;a class="link" href="https://github.com/FStarLang/FStar" target="_blank" rel="noopener"
+>&lt;code>FSTAR_HOME&lt;/code>&lt;/a> environment variables to be set.
+The compiler is then invoked like this &lt;code>./to_fstar &amp;lt;your-spec&amp;gt;&lt;/code>.
+The generated F* spec can then be type checked or executed on test vectors to check correctness of the spec.
+Using &lt;a class="link" href="https://github.com/FStarLang/kremlin" target="_blank" rel="noopener"
+>kremlin&lt;/a> the F* code can also be used to generate C code.&lt;/p>
+&lt;h2 id="Example">Example
+&lt;/h2>&lt;p>The &lt;a class="link" href="https://github.com/HACS-workshop/hacspec/tree/master/specs" target="_blank" rel="noopener"
+>&lt;em>hacspec&lt;/em> repo&lt;/a> has many examples.
+I&amp;rsquo;ll only give a short one here.&lt;/p>
+&lt;p>The spec &lt;code>poly.py&lt;/code>:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Python" data-lang="Python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">hacspec.speclib&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="o">*&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">p130m5&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">nat_t&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="mi">2&lt;/span> &lt;span class="o">**&lt;/span> &lt;span class="mi">130&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="mi">5&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">felem_t&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">natmod_t&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">p130m5&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nd">@typechecked&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">felem&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">n&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">nat_t&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">felem_t&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="n">natmod&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">n&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">p130m5&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nd">@typechecked&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">poly&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">m&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">vlarray_t&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">felem_t&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="n">r&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">felem_t&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">felem_t&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">acc&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">felem_t&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">felem&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">for&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="nb">range&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">array&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">length&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">m&lt;/span>&lt;span class="p">)):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">acc&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">acc&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">m&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="p">])&lt;/span> &lt;span class="o">*&lt;/span> &lt;span class="n">r&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="n">acc&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The test &lt;code>poly_test.py&lt;/code>:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Python" data-lang="Python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">poly&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="o">*&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="p">():&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">m&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">array&lt;/span>&lt;span class="p">([&lt;/span>&lt;span class="n">felem&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mh">0x6f4620636968706172676f7470797243&lt;/span>&lt;span class="p">),&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">felem&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mh">0x6f7247206863726165736552206d7572&lt;/span>&lt;span class="p">)])&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">k&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">felem&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mh">0xa806d542fe52447f336d555778bed685&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">expected&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">natmod&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mh">0xa01b776a69ea8c1cd3ba00179dc218ab&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">p130m5&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">p&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">poly&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">m&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">k&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="ow">not&lt;/span> &lt;span class="n">expected&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="n">p&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;Error&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;Expected: &amp;#34;&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="nb">str&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">expected&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;Got: &amp;#34;&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="nb">str&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">p&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">else&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;Test successful&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">if&lt;/span> &lt;span class="vm">__name__&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="s2">&amp;#34;__main__&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">main&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>This can now be run with &lt;code>python poly_test.py&lt;/code> and checked with &lt;code>hacspec-check poly.py&lt;/code> and &lt;code>checker.native poly.py&lt;/code>.
+Compiling this to F* can be done with &lt;code>to_fstar.native poly.py&lt;/code>, generating the following F* code.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-ocaml" data-lang="ocaml">&lt;span class="line">&lt;span class="cl">&lt;span class="k">module&lt;/span> &lt;span class="nc">Poly&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">open&lt;/span> &lt;span class="nc">Speclib&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">let&lt;/span> &lt;span class="n">p130m5&lt;/span> &lt;span class="o">:&lt;/span> &lt;span class="n">nat_t&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">2&lt;/span> &lt;span class="o">**.&lt;/span> &lt;span class="n">130&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">-.&lt;/span> &lt;span class="n">5&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">let&lt;/span> &lt;span class="n">felem_t&lt;/span> &lt;span class="o">:&lt;/span> &lt;span class="nc">Type0&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">natmod_t&lt;/span> &lt;span class="n">p130m5&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">let&lt;/span> &lt;span class="n">felem&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">n&lt;/span> &lt;span class="o">:&lt;/span> &lt;span class="n">nat_t&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">:&lt;/span> &lt;span class="n">felem_t&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">natmod&lt;/span> &lt;span class="n">n&lt;/span> &lt;span class="n">p130m5&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">let&lt;/span> &lt;span class="n">poly&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">m&lt;/span> &lt;span class="o">:&lt;/span> &lt;span class="n">vlarray_t&lt;/span> &lt;span class="n">felem_t&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">r&lt;/span> &lt;span class="o">:&lt;/span> &lt;span class="n">felem_t&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">:&lt;/span> &lt;span class="n">felem_t&lt;/span> &lt;span class="o">=&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">let&lt;/span> &lt;span class="n">acc&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">felem&lt;/span> &lt;span class="n">0&lt;/span> &lt;span class="k">in&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">let&lt;/span> &lt;span class="n">acc&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">repeati&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">array_length&lt;/span> &lt;span class="n">m&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="k">fun&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="n">acc&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">acc&lt;/span> &lt;span class="o">+.&lt;/span> &lt;span class="n">m&lt;/span>&lt;span class="o">.[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="o">])&lt;/span> &lt;span class="o">*.&lt;/span> &lt;span class="n">r&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="n">acc&lt;/span> &lt;span class="k">in&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">acc&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="next-steps">Next steps
+&lt;/h1>&lt;p>We hope that &lt;em>hacspec&lt;/em> is a useful tool for spec authors and many people indeed voiced interest already.
+While the tooling isn&amp;rsquo;t perfect yet, the language is developed enough to start using it.
+The next steps for &lt;em>hacspec&lt;/em> is to get some usage from spec authors and improve tooling.
+We also hope to get more compilers for different formal languages implemented.&lt;/p>
+&lt;br>
+&lt;hr>
+&lt;br>
+&lt;ol>
+&lt;li>Note that contracts are still in development and not fully supported yet.&lt;/li>
+&lt;li>In future &lt;em>hacspec&lt;/em> syntax checks and running test vectors on the spec should be done in one invocation.&lt;/li>
+&lt;li>In future pre-built binaries should be distributed to make this easier.&lt;/li>
+&lt;/ol>
+&lt;p>&lt;em>hacspec is mostly a spare time project for me at the moment. Development is therefore not always as fast as I&amp;rsquo;d like.&lt;/em>&lt;/p></description></item><item><title>The HACL* approach</title><link>https://www.franziskuskiefer.de/p/the-hacl-approach/</link><pubDate>Wed, 14 Feb 2018 00:00:00 +0000</pubDate><guid>https://www.franziskuskiefer.de/p/the-hacl-approach/</guid><description>&lt;img src="https://www.franziskuskiefer.de/p/the-hacl-approach/hacl-chart.png" alt="Featured image of post The HACL* approach" />&lt;p>HACL* (High-Assurance Cryptographic Library) is a formally verified cryptographic library in &lt;a class="link" href="https://www.fstar-lang.org/" target="_blank" rel="noopener"
+>F*&lt;/a>, developed by the &lt;a class="link" href="http://prosecco.inria.fr/" target="_blank" rel="noopener"
+>Prosecco team&lt;/a> at &lt;a class="link" href="https://www.inria.fr/en/centre/paris" target="_blank" rel="noopener"
+>INRIA Paris&lt;/a> in collaboration with Microsoft Research, as part of &lt;a class="link" href="https://github.com/project-everest" target="_blank" rel="noopener"
+>Project Everest&lt;/a>.
+HACL* was inspired by discussions at the &lt;a class="link" href="https://hacs-workshop.github.io/" target="_blank" rel="noopener"
+>HACS workshop&lt;/a> and aims at developing a set of reference implementations in C for common cryptographic primitives.&lt;/p>
+&lt;p>This is the first post in a series describing formal verification in NSS as an approach to improve confidence in highly complex, highly security critical code.
+In this first post I describe the most important ideas and concepts of HACL*, the basis of most formally verified code in NSS.
+If you want to have all the juicy details about HACL*, I recommend reading the &lt;a class="link" href="https://github.com/mitls/hacl-star/blob/master/doc/papers/hacl-star-ccs2017.pdf" target="_blank" rel="noopener"
+>CCS'17 paper&lt;/a>.&lt;/p>
+&lt;h1 id="hacl">HACL*
+&lt;/h1>&lt;p>HACL*, though written in F*, can be compiled to C code with guaranteed memory safety, secret independent computation, and functional correctness with respect to some mathematical specification.
+Let&amp;rsquo;s first have a look at the high-level idea of HACL* on the example of Curve25519.&lt;/p>
+&lt;p>The first step is to take the specification (&lt;a class="link" href="https://tools.ietf.org/html/rfc7748" target="_blank" rel="noopener"
+>RFC 7748&lt;/a> in this case) and translate it into a high level F* specification.
+This specification is easy to read and can be checked for correctness against the RFC easily.
+All correctness guarantees HACL* gives for the generated C code are based on this specification, i.e. the C code is proven to be functionally equivalent to the the high level specification.
+Here the definition of the Montgomery ladder, an excerpt from the &lt;a class="link" href="https://github.com/mitls/hacl-star/blob/dev_specs/specs/Spec.Curve25519.fst" target="_blank" rel="noopener"
+>Curve25519 specification&lt;/a>. (Apologies for the highlighting, no F* support.)&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-ocaml" data-lang="ocaml">&lt;span class="line">&lt;span class="ln"> 1&lt;/span>&lt;span class="cl">&lt;span class="k">let&lt;/span> &lt;span class="k">rec&lt;/span> &lt;span class="n">montgomery_ladder_&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">init&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="n">elem&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="n">xp1&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">k&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="n">scalar&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">ctr&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="n">nat&lt;/span>&lt;span class="o">{&lt;/span>&lt;span class="n">ctr&lt;/span>&lt;span class="o">&amp;lt;=&lt;/span>&lt;span class="n">256&lt;/span>&lt;span class="o">})&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 2&lt;/span>&lt;span class="cl"> &lt;span class="o">:&lt;/span> &lt;span class="nc">Tot&lt;/span> &lt;span class="n">proj_point&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">decreases&lt;/span> &lt;span class="n">ctr&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">=&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 3&lt;/span>&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="n">ctr&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">0&lt;/span> &lt;span class="k">then&lt;/span> &lt;span class="n">x&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 4&lt;/span>&lt;span class="cl"> &lt;span class="k">else&lt;/span> &lt;span class="o">(&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 5&lt;/span>&lt;span class="cl"> &lt;span class="k">let&lt;/span> &lt;span class="n">ctr&amp;#39;&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">ctr&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">1&lt;/span> &lt;span class="k">in&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 6&lt;/span>&lt;span class="cl"> &lt;span class="k">let&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">x&amp;#39;&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">xp1&amp;#39;&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">=&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 7&lt;/span>&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="n">uint_to_nat&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">ith_bit&lt;/span> &lt;span class="n">k&lt;/span> &lt;span class="n">ctr&amp;#39;&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">1&lt;/span> &lt;span class="k">then&lt;/span> &lt;span class="o">(&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 8&lt;/span>&lt;span class="cl"> &lt;span class="k">let&lt;/span> &lt;span class="n">nqp2&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">nqp1&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">add_and_double&lt;/span> &lt;span class="n">init&lt;/span> &lt;span class="n">xp1&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="k">in&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 9&lt;/span>&lt;span class="cl"> &lt;span class="n">nqp1&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">nqp2&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">10&lt;/span>&lt;span class="cl"> &lt;span class="o">)&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="n">add_and_double&lt;/span> &lt;span class="n">init&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="n">xp1&lt;/span> &lt;span class="k">in&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">11&lt;/span>&lt;span class="cl"> &lt;span class="n">montgomery_ladder_&lt;/span> &lt;span class="n">init&lt;/span> &lt;span class="n">x&amp;#39;&lt;/span> &lt;span class="n">xp1&amp;#39;&lt;/span> &lt;span class="n">k&lt;/span> &lt;span class="n">ctr&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">12&lt;/span>&lt;span class="cl">&lt;span class="o">)&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Running the reference implementation is possible but obviously slow (it is executed in OCaml).
+However a subset of F* (called Low*) can be translated to C using &lt;a class="link" href="https://github.com/FStarLang/kremlin" target="_blank" rel="noopener"
+>Kremlin&lt;/a>.
+While the specification might be valid Low* code it is not optimised and thus won&amp;rsquo;t yield fast C code.
+In order to generate fast C code more efficient Low* code has to be written first.
+Looking at state of the art C code for the given algorithm (&lt;a class="link" href="https://github.com/jedisct1/libsodium/blob/e878bc141be12820dc6dbcd7a97bf50070bc1e2a/src/libsodium/crypto_scalarmult/curve25519/donna_c64/curve25519_donna_c64.c" target="_blank" rel="noopener"
+>Curve25519 Donna&lt;/a> for example) Low* code can be written that resembles the fast C code and can be extracted via Kremlin to similarly looking C code.&lt;/p>
+&lt;p>At this point the main benefit of the HACL* approach comes to light.
+The optimised Low* code (as well as the extracted C code) are hard to get right and even harder to review for correctness, memory safety, and secret independent execution.
+Using an SMT solver (&lt;a class="link" href="https://github.com/Z3Prover/z3" target="_blank" rel="noopener"
+>Z3&lt;/a> is used in HACL*) and F*&amp;rsquo;s strong type system, functional equivalence is proven between the high-level F* specification and the optimised Low* code.
+The Low* code usually has to be enhanced with additional information to help prove the equivalence.
+This additional code however is ignored by Kremlin and doesn&amp;rsquo;t get translated to C.&lt;/p>
+&lt;p>The following graphic gives an overview of the HACL* process.&lt;/p>
+&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/the-hacl-approach/hacl-chart.png"
+width="842"
+height="595"
+srcset="https://www.franziskuskiefer.de/p/the-hacl-approach/hacl-chart_hu3913347318361800738.png 480w, https://www.franziskuskiefer.de/p/the-hacl-approach/hacl-chart_hu17342941644776944915.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="141"
+data-flex-basis="339px"
+>&lt;/p>
+&lt;h2 id="an-example---conditional-swap">An Example - Conditional Swap
+&lt;/h2>&lt;p>HACL* is a pretty complex library and it might be hard to understand what&amp;rsquo;s going on.
+Therefore I&amp;rsquo;ll give a small example of the basic concepts behind HACL* focusing on functional correctness.&lt;/p>
+&lt;p>Conditional swaps are used for example in Curve25519 implementations to swap two variables &lt;code>a&lt;/code> and &lt;code>b&lt;/code> if a certain condition is given, &lt;code>c = 0&lt;/code> here.
+In F* this can be written as follows.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-ocaml" data-lang="ocaml">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">&lt;span class="k">val&lt;/span> &lt;span class="n">cswap&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="n">uint32&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">y&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="n">uint32&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">c&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="n">uint32&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">2&lt;/span>&lt;span class="cl"> &lt;span class="nc">Tot&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">uint32&lt;/span> &lt;span class="o">*&lt;/span> &lt;span class="n">uint32&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">3&lt;/span>&lt;span class="cl">&lt;span class="k">let&lt;/span> &lt;span class="n">cswap&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="n">y&lt;/span> &lt;span class="n">c&lt;/span> &lt;span class="o">=&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">4&lt;/span>&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="n">c&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">0ul&lt;/span> &lt;span class="k">then&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">5&lt;/span>&lt;span class="cl"> &lt;span class="o">(&lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">y&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">6&lt;/span>&lt;span class="cl"> &lt;span class="k">else&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">7&lt;/span>&lt;span class="cl"> &lt;span class="o">(&lt;/span>&lt;span class="n">y&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="o">)&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>This code can be easily inspected for correctness and is used as specification.
+However, this is not the code we want to have as it branches on potentially secret data in &lt;code>c&lt;/code>.
+Instead of checking &lt;code>c&lt;/code> for &lt;code>0&lt;/code> we should use masking and logical operations to achieve the variable swapping.
+Note that we require &lt;code>c&lt;/code> to be either all &lt;code>1&lt;/code> or all &lt;code>0&lt;/code> now.
+This can be easily computed from the single bit &lt;code>c&lt;/code> we had in the previous example.
+This looks as follows in pseudo-C-code.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-C" data-lang="C">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">&lt;span class="kt">void&lt;/span> &lt;span class="nf">cswap_constant_time&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">uint32_t&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kt">uint32_t&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kt">uint32_t&lt;/span> &lt;span class="n">c&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">2&lt;/span>&lt;span class="cl"> &lt;span class="kt">uint32_t&lt;/span> &lt;span class="n">mask&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="n">a&lt;/span> &lt;span class="o">^&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">&amp;amp;&lt;/span> &lt;span class="n">c&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">3&lt;/span>&lt;span class="cl"> &lt;span class="o">*&lt;/span>&lt;span class="n">a&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">a&lt;/span> &lt;span class="o">^&lt;/span> &lt;span class="n">mask&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">4&lt;/span>&lt;span class="cl"> &lt;span class="o">*&lt;/span>&lt;span class="n">b&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">b&lt;/span> &lt;span class="o">^&lt;/span> &lt;span class="n">mask&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">5&lt;/span>&lt;span class="cl">&lt;span class="p">}&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The same code in F* (with slightly different input/output behaviour) looks as follows.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-ocaml" data-lang="ocaml">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">&lt;span class="k">val&lt;/span> &lt;span class="n">cswap_constant_time&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="n">uint32&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">y&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="n">uint32&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">c&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="n">uint32&lt;/span>&lt;span class="o">{&lt;/span>&lt;span class="n">c&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">0xFFFFFFFFul&lt;/span> &lt;span class="err">\&lt;/span>&lt;span class="o">/&lt;/span> &lt;span class="n">c&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">0ul&lt;/span>&lt;span class="o">}&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">2&lt;/span>&lt;span class="cl"> &lt;span class="nc">Tot&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">uint32&lt;/span> &lt;span class="o">*&lt;/span> &lt;span class="n">uint32&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">3&lt;/span>&lt;span class="cl">&lt;span class="k">let&lt;/span> &lt;span class="n">cswap_constant_time&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="n">y&lt;/span> &lt;span class="n">c&lt;/span> &lt;span class="o">=&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">4&lt;/span>&lt;span class="cl"> &lt;span class="k">let&lt;/span> &lt;span class="n">mask&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">x&lt;/span> &lt;span class="o">^^&lt;/span> &lt;span class="n">y&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">&amp;amp;^&lt;/span> &lt;span class="n">c&lt;/span> &lt;span class="k">in&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">5&lt;/span>&lt;span class="cl"> &lt;span class="k">let&lt;/span> &lt;span class="n">a&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="o">^^&lt;/span> &lt;span class="n">mask&lt;/span> &lt;span class="k">in&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">6&lt;/span>&lt;span class="cl"> &lt;span class="k">let&lt;/span> &lt;span class="n">b&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">y&lt;/span> &lt;span class="o">^^&lt;/span> &lt;span class="n">mask&lt;/span> &lt;span class="k">in&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">7&lt;/span>&lt;span class="cl"> &lt;span class="o">(&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">b&lt;/span>&lt;span class="o">)&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>This code is not trivially correct anymore and requires considerable thought by both author and reviewer.
+But instead of staring at the code to understand it or writing incomplete tests we can use F* now to prove that &lt;code>cswap_constant_time&lt;/code> is equivalent to our spec, i.e. &lt;code>cswap&lt;/code>.
+To this end we write a lemma to ensures that.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-ocaml" data-lang="ocaml">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">&lt;span class="k">let&lt;/span> &lt;span class="n">a&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">b&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">cswap_constant_time&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="n">y&lt;/span> &lt;span class="n">c&lt;/span> &lt;span class="k">in&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">2&lt;/span>&lt;span class="cl">&lt;span class="k">let&lt;/span> &lt;span class="n">c&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">d&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">cswap&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="n">y&lt;/span> &lt;span class="n">c&lt;/span> &lt;span class="k">in&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">3&lt;/span>&lt;span class="cl">&lt;span class="n">a&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">c&lt;/span> &lt;span class="o">/&lt;/span>&lt;span class="err">\&lt;/span> &lt;span class="n">b&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">d&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>While this can&amp;rsquo;t be proven immediately it is relatively easy to write some helper lemmata that help F* and Z3 to understand the correctness of this statement.
+The C code extracted by Kremlin from the F* code above then looks as follows.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-C" data-lang="C">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">&lt;span class="k">typedef&lt;/span> &lt;span class="k">struct&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">2&lt;/span>&lt;span class="cl"> &lt;span class="kt">uint32_t&lt;/span> &lt;span class="n">fst&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">3&lt;/span>&lt;span class="cl"> &lt;span class="kt">uint32_t&lt;/span> &lt;span class="n">snd&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">4&lt;/span>&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">5&lt;/span>&lt;span class="cl">&lt;span class="n">K___uint32_t_uint32_t&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">6&lt;/span>&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">7&lt;/span>&lt;span class="cl">&lt;span class="n">K___uint32_t_uint32_t&lt;/span> &lt;span class="nf">Impl_CSwap_cswap_constant_time&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">uint32_t&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kt">uint32_t&lt;/span> &lt;span class="n">y&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kt">uint32_t&lt;/span> &lt;span class="n">c&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">8&lt;/span>&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="p">((&lt;/span>&lt;span class="n">K___uint32_t_uint32_t&lt;/span>&lt;span class="p">){&lt;/span> &lt;span class="p">.&lt;/span>&lt;span class="n">fst&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="o">^&lt;/span> &lt;span class="p">((&lt;/span>&lt;span class="n">x&lt;/span> &lt;span class="o">^&lt;/span> &lt;span class="n">y&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">&amp;amp;&lt;/span> &lt;span class="n">c&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="p">.&lt;/span>&lt;span class="n">snd&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">y&lt;/span> &lt;span class="o">^&lt;/span> &lt;span class="p">((&lt;/span>&lt;span class="n">x&lt;/span> &lt;span class="o">^&lt;/span> &lt;span class="n">y&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">&amp;amp;&lt;/span> &lt;span class="n">c&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">});&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">9&lt;/span>&lt;span class="cl">&lt;span class="p">}&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Check out the &lt;a class="link" href="https://github.com/franziskuskiefer/the-hacl-approach" target="_blank" rel="noopener"
+>repository&lt;/a> for the full source code of the example.&lt;/p>
+&lt;p>Memory safety can be proven easily as well by specifying liveliness conditions of buffers.
+In this example we don&amp;rsquo;t have buffers so no need for verifying memory safety.
+We skip proving secret-independent execution here as it requires additional support from HACL*.&lt;/p>
+&lt;h1 id="code-generation-vs-code-verification">Code Generation vs Code Verification
+&lt;/h1>&lt;p>The HACL* approach as described above is a great way of generating fast C code that&amp;rsquo;s proven to be correct, memory safe, and have secret-independent runtime.
+For &lt;a class="link" href="https://developer.mozilla.org/en-US/docs/Mozilla/Projects/NSS" target="_blank" rel="noopener"
+>NSS&lt;/a> we decided to use code generation and integrate code from HACL* into the code base.
+However, instead of generating code it would also be possible to verify existing C code with other tools such as Cryptol/SAW to prove similar properties of the code.&lt;/p>
+&lt;p>The main advantage of code generation is that the mathematical specifications can be easily used to build more complex algorithms and protocols on top and allow for re-use of specification code.
+The trusted code base written in F* is therefore very small.&lt;/p>
+&lt;p>The main drawback of generating code is a relatively large third-party code base that has to be trusted in order to generate the code.
+The weakest link in the case of HACL* is probably Kremlin, which has a &lt;a class="link" href="https://www.microsoft.com/en-us/research/wp-content/uploads/2017/05/icfp17main-main96-p-5064b17-32755-submitted.pdf" target="_blank" rel="noopener"
+>hand written proof&lt;/a> but is a relatively young piece of code that probably contains bugs.&lt;/p>
+&lt;p>There is no optimal solution to this problem that works for everyone but the HACL* approach as described in this post is a great way to get better confidence in correctness and security of complex C code using formal verification.&lt;/p>
+&lt;p>In the next post I&amp;rsquo;ll talk about challenges we faced when integrating code from HACL* into NSS and how we solved them.&lt;/p></description></item><item><title>Introducing HacSpec</title><link>https://www.franziskuskiefer.de/p/introducing-hacspec/</link><pubDate>Thu, 08 Feb 2018 00:00:00 +0000</pubDate><guid>https://www.franziskuskiefer.de/p/introducing-hacspec/</guid><description>&lt;img src="https://www.franziskuskiefer.de/p/introducing-hacspec/hero.png" alt="Featured image of post Introducing HacSpec" />&lt;p>HacSpec is a proposal for a new specification language for cryptographic primitives that is succinct, that is easy to read and implement, and that lends itself to formal verification.
+It aims to formalise the pseudocode used in cryptographic standards by proposing a formal syntax that can be checked for simple errors.
+HacSpec specifications are further executable to test against test vectors specified in a common syntax.&lt;/p>
+&lt;p>The main focus of HacSpec is to allow specifications to be compiled to formal languages such as cryptol, coq, F*, and easycrypt and thus make it easier to formally verify implementations.
+This allows a specification using HacSpec to be the basis not only for implementations but also for formal proofs of functional correctness, cryptographic security, and side-channel resistance.&lt;/p>
+&lt;p>The idea of having a language like HacSpec stems from discussions at the recent HACS workshop in Zurich.
+The &lt;a class="link" href="https://hacs-workshop.github.io/" target="_blank" rel="noopener"
+>High-Assurance-Cryptographic-Software workshop (HACS)&lt;/a> is an invite-only workshop co-located with the &lt;a class="link" href="https://rwc.iacr.org/" target="_blank" rel="noopener"
+>Real World Crypto&lt;/a> symposium.&lt;/p>
+&lt;p>Anyone interested in moving this project forward should subscribe to the &lt;a class="link" href="https://moderncrypto.org/mail-archive/hacspec/" target="_blank" rel="noopener"
+>mailing list&lt;/a> or file issues and pull requests against the &lt;a class="link" href="https://github.com/HACS-workshop/hacspec/" target="_blank" rel="noopener"
+>Github repository&lt;/a>.&lt;/p>
+&lt;h2 id="how-far-are-we">How far are we?
+&lt;/h2>&lt;p>We discussed and hacked at HACS a month ago and improved a little over the last weeks.
+The current state can be found at &lt;a class="link" href="https://github.com/HACS-workshop/hacspec/" target="_blank" rel="noopener"
+>Github repository&lt;/a>.&lt;/p>
+&lt;h3 id="the-language">The language
+&lt;/h3>&lt;p>There are &lt;a class="link" href="https://github.com/HACS-workshop/hacspec/tree/master/specs" target="_blank" rel="noopener"
+>examples&lt;/a> written in what we believe could be the HacSpec.
+The language is valid Python 3.6 using PEP484 and PEP526 for typing.
+It further uses comments (similar to PEP484 types) to define lengths and ranges.&lt;/p>
+&lt;p>There are also &lt;a class="link" href="https://github.com/HACS-workshop/hacspec/tree/master/specs/hacspec-rust" target="_blank" rel="noopener"
+>experiments using Rust&lt;/a> as basis for HacSpec.
+While Rust&amp;rsquo;s type system makes it a compelling candidate, limitations in handling integers of arbitrary size means we probably won&amp;rsquo;t be basing HacSpec on Rust.&lt;/p>
+&lt;p>The &lt;a class="link" href="https://github.com/HACS-workshop/hacspec/blob/master/LANGUAGE.md" target="_blank" rel="noopener"
+>language specification&lt;/a> is currently vague and not fully formalised yet.
+It lives in a markdown document but will move to an RFC layout later.&lt;/p>
+&lt;h3 id="formal-specifications">Formal specifications
+&lt;/h3>&lt;p>To show how cryptographic primitives are modelled in formal languages we added a number of &lt;a class="link" href="https://github.com/HACS-workshop/hacspec/tree/master/formal-models" target="_blank" rel="noopener"
+>specifications&lt;/a> in different languages such as cryptol, coq, F*, and easycrypt to the repository.&lt;/p>
+&lt;h3 id="spec-checker">Spec checker
+&lt;/h3>&lt;p>In order to verify whether a specification is a valid HacSpec Aaron started to implement a &lt;a class="link" href="https://github.com/HACS-workshop/hacspec/tree/master/spec-checker" target="_blank" rel="noopener"
+>spec-checker&lt;/a>.
+Basing HacSpec on another language like Python means that not all valid Python programs are valid HacSpec programs.
+The spec checker is supposed to tell authors whether a given python program is a valid HacSpec.&lt;/p>
+&lt;h3 id="compilers">Compilers
+&lt;/h3>&lt;p>There&amp;rsquo;s currently a very basic &lt;a class="link" href="https://github.com/HACS-workshop/hacspec/tree/master/spec-compilers" target="_blank" rel="noopener"
+>HacSpec to F* compiler&lt;/a> from Karthik.
+Eventually we would like to have compilers from HacSpec to all common formal languages such as cryptol, coq, F*, and easycrypt.&lt;/p>
+&lt;h2 id="call-for-participation">Call for participation
+&lt;/h2>&lt;p>We invite contributions in the following areas.&lt;/p>
+&lt;ul>
+&lt;li>We invite people to submit “standalone&amp;quot; formal specs for inclusion in the formal-models directory.&lt;/li>
+&lt;li>We invite formal methods people to build compilers from HacSpec to their favourite modelling language.&lt;/li>
+&lt;li>We invite spec authors and developers to comment on HacSpec and provide examples of what they consider good crypto specs or beautiful “obviously correct” crypto implementations.&lt;/li>
+&lt;li>We invite developers to build compilers from HacSpec to their favourite programming language.&lt;/li>
+&lt;/ul>
+&lt;h2 id="what-hacspec-is-not-about">What HacSpec is not about
+&lt;/h2>&lt;p>HacSpec does &lt;em>not&lt;/em> aim to be general enough to express protocols at this point. While this might be a target in the future the first iteration of HacSpec is only targeting crypto primitives.&lt;/p>
+&lt;h2 id="links">Links
+&lt;/h2>&lt;ul>
+&lt;li>&lt;a class="link" href="https://github.com/HACS-workshop/hacspec/" target="_blank" rel="noopener"
+>Github repository&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://moderncrypto.org/mail-archive/hacspec/" target="_blank" rel="noopener"
+>Mailing list&lt;/a>&lt;/li>
+&lt;/ul></description></item><item><title>CVE-2017-5462 - A PRNG issue</title><link>https://www.franziskuskiefer.de/p/cve-2017-5462-a-prng-issue/</link><pubDate>Thu, 31 Aug 2017 00:00:00 +0000</pubDate><guid>https://www.franziskuskiefer.de/p/cve-2017-5462-a-prng-issue/</guid><description>&lt;img src="https://www.franziskuskiefer.de/p/cve-2017-5462-a-prng-issue/hero.jpg" alt="Featured image of post CVE-2017-5462 - A PRNG issue" />&lt;p>On April 19, 2017, Mozilla Foundation published the &lt;a class="link" href="https://www.mozilla.org/en-US/security/advisories/mfsa2017-10/%5c#CVE-2017-5462" target="_blank" rel="noopener"
+>Security Advisory 2017-10&lt;/a> outlining several recently fixed security vulnerabilities.
+One of these vulnerabilities, tracked as CVE-2017-5462, affects the Pseudo-Random Number Generator (PRNG) within the Network Security Services (NSS) library prior to version 3.29.5 and Firefox prior to version 53.&lt;/p>
+&lt;p>This post describes the bug and how it was discovered.&lt;/p>
+&lt;h1 id="inside-the-nss-prng">Inside the NSS PRNG
+&lt;/h1>&lt;p>NSS uses &lt;code>Hash_DRBG&lt;/code> as PRNG, which is one of several PRNG schemes defined in the &lt;a class="link" href="http://csrc.nist.gov/publications/nistpubs/" target="_blank" rel="noopener"
+>NIST Special Publication 800-90&lt;/a>.
+Like most widely used PRNGs the &lt;code>Hash_DRBG&lt;/code> is a Deterministic Random Bit Generator (DRBG). (Even though this term is usually only used for NIST PRNGs.)
+While the standard contains all the details, the relevant features can be summarised as follows.&lt;/p>
+&lt;p>The state of &lt;code>Hash_DRBG&lt;/code> is composed of three values:&lt;/p>
+&lt;ul>
+&lt;li>A 55-byte integer state variable &lt;code>V&lt;/code>, which is updated with each
+request of new bits&lt;/li>
+&lt;li>A 55-byte integer constant &lt;code>C&lt;/code> that depends on the seed and is updated when re-seeding the PRNG.&lt;/li>
+&lt;li>A counter &lt;code>c&lt;/code> tracking when the next re-seeding is needed.&lt;/li>
+&lt;/ul>
+&lt;p>To generate random bits, &lt;code>Hash_DRBG&lt;/code> concatenates &lt;code>H(V) || H(V+1) || H(V+2) || ...&lt;/code> until enough bits are generated.
+&lt;code>H&lt;/code> denotes a cryptographic hash function here.
+NSS uses the SHA-256 hash function for &lt;code>H&lt;/code> with a digest length of 32 bytes.
+After generating new bits the state variable &lt;code>V&lt;/code> is updated according to the rule &lt;code>V&lt;/code>&lt;sub>&lt;code>c+1&lt;/code>&lt;/sub> &lt;code> = V + H(0x03 || V&lt;/code>&lt;sub>&lt;code>c&lt;/code>&lt;/sub> &lt;code>) + C + c&lt;/code> and counter &lt;code>c&lt;/code> is incremented by one.
+Addition is performed modulo &lt;code>2&lt;/code>&lt;sup>&lt;code>440&lt;/code>&lt;/sup> &lt;code> = 2&lt;/code>&lt;sup>&lt;code>8*55&lt;/code>&lt;/sup> to fit it in the 55 bytes of &lt;code>V&lt;/code>.&lt;/p>
+&lt;p>The PRNG implementation can be found in the file &lt;a class="link" href="https://searchfox.org/nss/rev/fcdcad1fc1ddb6e70653637b0ea0f3359b8533f2/lib/freebl/drbg.c" target="_blank" rel="noopener"
+>drbg.c&lt;/a> within the NSS codebase.&lt;/p>
+&lt;h1 id="cve-2017-5462">CVE-2017-5462
+&lt;/h1>&lt;p>The issue identified in CVE-2017-5462 is in the code implementing the addition.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-C" data-lang="C">&lt;span class="line">&lt;span class="cl">&lt;span class="cm">/*
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cm"> * build some fast inline functions for adding.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cm"> */&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#define PRNG_ADD_CARRY_ONLY(dest, start, carry) \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"> { \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"> int k1; \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"> for (k1 = start; carry &amp;amp;&amp;amp; k1 &amp;gt;= 0; k1--) { \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"> carry = !(++dest[k1]); \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"> } \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"> }
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cm">/*
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cm"> * NOTE: dest must be an array for the following to work.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cm"> */&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#define PRNG_ADD_BITS(dest, dest_len, add, len, carry) \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"> carry = 0; \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"> PORT_Assert((dest_len) &amp;gt;= (len)); \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"> { \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"> int k1, k2; \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"> for (k1 = dest_len - 1, k2 = len - 1; k2 &amp;gt;= 0; --k1, --k2) { \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"> carry += dest[k1] + add[k2]; \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"> dest[k1] = (PRUint8)carry; \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"> carry &amp;gt;&amp;gt;= 8; \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"> } \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"> }
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#define PRNG_ADD_BITS_AND_CARRY(dest, dest_len, add, len, carry) \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"> PRNG_ADD_BITS(dest, dest_len, add, len, carry) \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"> PRNG_ADD_CARRY_ONLY(dest, dest_len - len, carry)
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>When the PRNG performs addition to update &lt;code>V&lt;/code> it uses the macro &lt;code>PRNG_ADD_BITS_AND_CARRY&lt;/code>, which first delegates to the macro &lt;code>PRNG_ADD_BITS&lt;/code> to add the two summands without considering the final carry and then the macro &lt;code>PRNG_ADD_CARRY_ONLY&lt;/code> to add the carry.&lt;/p>
+&lt;p>In this addition code it is clear that the carry should be added at the position &lt;em>preceding&lt;/em> the original most-significant-byte of the shorter of the two summands.
+This fact was supposed to be represented by the index &lt;code>dest_len-len&lt;/code> supplied as parameter to &lt;code>PRNG_ADD_CARRY_ONLY&lt;/code>.
+Note that numbers are represented as sequences of bytes with byte number zero being the most-significant byte.
+The essence of the bug is that &lt;code>dest_len-len&lt;/code> does not point to the correct position of the carry, which should have been added at position &lt;code>dest_len-len-1&lt;/code> instead.&lt;/p>
+&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/cve-2017-5462-a-prng-issue/CVE-2017-5462-bug.png"
+width="822"
+height="302"
+srcset="https://www.franziskuskiefer.de/p/cve-2017-5462-a-prng-issue/CVE-2017-5462-bug_hu8192818250878528882.png 480w, https://www.franziskuskiefer.de/p/cve-2017-5462-a-prng-issue/CVE-2017-5462-bug_hu13844593303691259105.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="272"
+data-flex-basis="653px"
+>&lt;/p>
+&lt;h2 id="example">Example
+&lt;/h2>&lt;p>We note that &lt;code>3 * 0x40 = 0xc0&lt;/code> under both proper and broken addition (the latter due to absence of carrying in this example).
+However, &lt;code>3 * 0x95 = 0x01bf&lt;/code> under proper unbounded addition resp. &lt;code>0xbf&lt;/code> under proper modulo addition.
+Yet, the result under broken addition is &lt;code>0x01 + 0xbf = 0xc0&lt;/code>.&lt;/p>
+&lt;h1 id="finding-the-bug-with-testing">Finding the Bug with Testing
+&lt;/h1>&lt;p>The easiest way to find most types of bugs in PRNGs following NIST SP 800-90 is by testing the implementation with the official test vectors (seeds and outputs) provided in the standard.
+I found the bug after implementing these test vectors.
+Functional unit testing would probably have caught this particular bug as well.
+For PRNGs not following the NIST standard, defining corresponding test vectors is a good idea to avoid regressions during maintenance.&lt;/p>
+&lt;p>Statistical tests such as NIST SP 800-22 or &lt;a class="link" href="https://github.com/ticki/diehardest" target="_blank" rel="noopener"
+>DIEHARDEST&lt;/a> are not very useful for testing cryptographic PRNGs.
+They can be used for testing the entropy pool that is fed into the PRNG.
+But such tests will not fail as long as the internal state does not stay constant and output passes through a cryptographic primitive (such as SHA-256) before reaching the consumer.&lt;/p>
+&lt;h1 id="formal-analysis">Formal Analysis
+&lt;/h1>&lt;p>Independ of my investigation, &lt;a class="link" href="https://formal.iti.kit.edu/klebanov/" target="_blank" rel="noopener"
+>Vladimir Klebanov&lt;/a> found this bug using &lt;a class="link" href="https://formal.iti.kit.edu/~klebanov/software/entroposcope/" target="_blank" rel="noopener"
+>Entroposcope&lt;/a>, a static analysis tool created for finding implementation bugs in pseudo-random number generators.&lt;/p>
+&lt;p>Entropy loss occurs when the number of possible output streams is less than the number of possible seeds.
+This is equivalent to the case when two different seeds produce the same output stream (also called a collision).
+Entroposcope is built on top of the bounded model checker &lt;a class="link" href="https://link.springer.com/chapter/10.1007/978-3-642-54862-8_26" target="_blank" rel="noopener"
+>CBMC&lt;/a>, which in turn transforms the problem into a challenge for a &lt;a class="link" href="https://en.wikipedia.org/wiki/Boolean_satisfiability_problem" target="_blank" rel="noopener"
+>SAT solver&lt;/a>.&lt;/p>
+&lt;p>Considering the &lt;code>Hash_DRBG&lt;/code>, the question whether &lt;code>V&lt;/code>&lt;sub>&lt;code>c+1&lt;/code>&lt;/sub> &lt;code> = V + H(0x03 || V&lt;/code>&lt;sub>&lt;code>c&lt;/code>&lt;/sub> &lt;code>) + C + c&lt;/code> produces a collision and the DRBG loses entropy or not boils down to whether distinct 55-byte values &lt;code>x&lt;/code>&lt;sub>&lt;code>1&lt;/code>&lt;/sub>, &lt;code>x&lt;/code>&lt;sub>&lt;code>2&lt;/code>&lt;/sub> exist, such that &lt;code>x&lt;/code>&lt;sub>&lt;code>1&lt;/code>&lt;/sub> &lt;code> + H(x&lt;/code>&lt;sub>&lt;code>1&lt;/code>&lt;/sub>&lt;code>) = x&lt;/code>&lt;sub>&lt;code>2&lt;/code>&lt;/sub> &lt;code> + H(x&lt;/code>&lt;sub>&lt;code>2&lt;/code>&lt;/sub>&lt;code>)&lt;/code>.
+Now, it is clear that this question cannot be answered without either knowing the output of &lt;code>H&lt;/code> for each 55-byte input (which is infeasible) or some (unknown to us and certainly also to the tool) nontrivial mathematical argument on the nature of &lt;code>H&lt;/code> in this context.
+In this regard, the &lt;code>Hash_DRBG&lt;/code> differs from many other PRNGs that employ significantly simpler operations on the output of &lt;code>H&lt;/code> before it makes its way to the PRNG caller.&lt;/p>
+&lt;p>As a consequence of this design, Entroposcope can not be used to prove absence of entropy loss in the &lt;code>Hash_DRBG&lt;/code>.
+Nonetheless, Entroposcope can check collision-freedom of the PRNG under an idealised &lt;code>H&lt;/code> and find bugs in the parts of the implementation that are not &lt;code>H&lt;/code>.
+For this purpose we consider an idealised PRNG with &lt;code>H(b||V) = V&lt;/code> and &lt;code>C = V&lt;/code>&lt;sub>&lt;code>0&lt;/code>&lt;/sub>.
+This is the same kind of idealisation that helped Vladimir to uncover previously unknown bugs in OpenSSL and &lt;a class="link" href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-6313" target="_blank" rel="noopener"
+>GnuPG&lt;/a>.
+With the idealisation, on the first iteration (&lt;code>c = 0&lt;/code>) updating the state becomes &lt;code>V&lt;/code>&lt;sub>&lt;code>1&lt;/code>&lt;/sub> &lt;code> = 3 * V&lt;/code>&lt;sub>&lt;code>0&lt;/code>&lt;/sub>.
+Because &lt;code>3&lt;/code> and &lt;code>2&lt;/code>&lt;sup>&lt;code>440&lt;/code>&lt;/sup> are co-prime, &lt;code>V&lt;/code>&lt;sub>&lt;code>1&lt;/code>&lt;/sub> will not produce a collision if implemented properly.&lt;/p>
+&lt;p>Indeed, given the idealised code, Entroposcope produced a counterexample to entropy preservation with two concrete seeds leading to the same output stream.
+Tracing these two executions makes it easy to pinpoint the cause of the collision in the addition code.&lt;/p>
+&lt;p>Thanks to Vladimir for finding this bug and helping to write this post.&lt;/p></description></item><item><title>Aes Gcm Speedup</title><link>https://www.franziskuskiefer.de/p/aes-gcm-speedup/</link><pubDate>Tue, 27 Jun 2017 00:00:00 +0000</pubDate><guid>https://www.franziskuskiefer.de/p/aes-gcm-speedup/</guid><description>&lt;img src="https://www.franziskuskiefer.de/p/aes-gcm-speedup/linux64-encrypt.png" alt="Featured image of post Aes Gcm Speedup" />&lt;p>AES-GCM is a NIST standardised authenticated encryption algorithm (FIPS 800-38D). Since its standardisation in 2008 its usage increased to a point where it is the prevalent encryption used with TLS. With 85% it is by far the &lt;a class="link" href="https://telemetry.mozilla.org/new-pipeline/dist.html#!cumulative=0&amp;amp;end_date=2017-05-24&amp;amp;keys=__none__!__none__!__none__&amp;amp;max_channel_version=release%252F53&amp;amp;measure=SSL_SYMMETRIC_CIPHER_FULL&amp;amp;min_channel_version=null&amp;amp;processType=*&amp;amp;product=Firefox&amp;amp;sanitize=1&amp;amp;sort_keys=submissions&amp;amp;start_date=2017-04-13&amp;amp;table=0&amp;amp;trim=1&amp;amp;use_submission_date=0" target="_blank" rel="noopener"
+>most widely used cipher&lt;/a>.&lt;/p>
+&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/aes-gcm-speedup/Screenshot-from-2017-06-14-10-09-27.png"
+width="2136"
+height="996"
+srcset="https://www.franziskuskiefer.de/p/aes-gcm-speedup/Screenshot-from-2017-06-14-10-09-27_hu8631148032516591515.png 480w, https://www.franziskuskiefer.de/p/aes-gcm-speedup/Screenshot-from-2017-06-14-10-09-27_hu2776092876382993494.png 1024w"
+loading="lazy"
+alt="Firefox 53 TLS cipher telemetry"
+class="gallery-image"
+data-flex-grow="214"
+data-flex-basis="514px"
+>&lt;/p>
+&lt;p>Unfortunately the AES-GCM implementation used in Firefox (provided by NSS) does not take advantage of full hardware acceleration; it uses a slower software-only implementation on Mac, Linux 32-bit, or any device that doesn&amp;rsquo;t have the &lt;a class="link" href="https://en.wikipedia.org/wiki/Advanced_Vector_Extensions" target="_blank" rel="noopener"
+>AVX&lt;/a>, &lt;a class="link" href="https://en.wikipedia.org/wiki/CLMUL_instruction_set" target="_blank" rel="noopener"
+>PCLMUL&lt;/a>, and &lt;a class="link" href="https://en.wikipedia.org/wiki/AES_instruction_set" target="_blank" rel="noopener"
+>AES-NI&lt;/a> hardware instructions. Looking at these numbers about only 30% of Firefox users get full hardware acceleration.&lt;/p>
+&lt;p>Before jumping on the obvious issue of Firefox’s AES-GCM code being comparatively slow – as well as not being resistant to &lt;a class="link" href="https://en.wikipedia.org/wiki/Side-channel_attack" target="_blank" rel="noopener"
+>side channel analysis&lt;/a> – I wanted to see what the actual impact on Firefox users is. Downloading a file on a mid-2015 MacBook Pro Retina with Firefox incurs CPU usage of 50% with 17% of Firefox&amp;rsquo;s CPU usage is in &lt;code>ssl3_AESGCM&lt;/code>. In comparison, Chrome only creates 15% CPU usage with the same download. On a Windows laptop with an AMD C-70 (no AES-NI) Firefox CPU usage is 60% and the download speed is capped at 3.5MB/s. Chrome on the same machine needs 50% of the CPU and downloads with 10MB/s. This doesn&amp;rsquo;t seem to be only an academic issue: Particularly for battery-operated devices, the energy consumption difference would be noticeable.&lt;/p>
+&lt;h1 id="improving-gcm-performance">Improving GCM performance
+&lt;/h1>&lt;p>Speeding up the GCM multiplication function is the first obvious step to improve AES-GCM performance. A &lt;a class="link" href="https://bugzilla.mozilla.org/show_bug.cgi?id=868948" target="_blank" rel="noopener"
+>bug&lt;/a> was opened on integration of the original AES-GCM code to provide an alternative to the textbook implementation of &lt;code>gcm_HashMult&lt;/code>. This code is not only slow but has timing side channels. Here an excerpt from the &lt;a class="link" href="https://searchfox.org/mozilla-central/rev/d67ef71097da4d1aa344c9d9c672e49a7228e765/security/nss/lib/freebl/mpi/mp_gf2m.c#337" target="_blank" rel="noopener"
+>binary multiplication&lt;/a> algorithm.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-C++" data-lang="C++">&lt;span class="line">&lt;span class="cl">&lt;span class="k">for&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">ib&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="n">ib&lt;/span> &lt;span class="o">&amp;lt;&lt;/span> &lt;span class="n">b_used&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="n">ib&lt;/span>&lt;span class="o">++&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">b_i&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">pb&lt;/span>&lt;span class="o">++&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="cm">/* Inner product: Digits of a */&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">b_i&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">s_bmul_d_add&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">MP_DIGITS&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="n">a_used&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">b_i&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">MP_DIGITS&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">c&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">ib&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">else&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">MP_DIGIT&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">c&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">ib&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">a_used&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">b_i&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>We can improve on two fronts here. First NSS should use PCLMUL to speed up the ghash multiplication if possible. Second if PCLMUL is not available, NSS should use a fast constant-time implementation.&lt;/p>
+&lt;p>&lt;a class="link" href="https://bugzilla.mozilla.org/show_bug.cgi?id=868948" target="_blank" rel="noopener"
+>Bug 868948&lt;/a> has several attempts of speeding up the software implementation without introducing timing side-channels. Unfortunately the fastest code that was proposed uses table lookups and is therefore not constant-time. Thanks to &lt;a class="link" href="https://www.bearssl.org/constanttime.html" target="_blank" rel="noopener"
+>Thomas Pornin&lt;/a> I found a nicer way to implement the binary multiplication in a way that doesn&amp;rsquo;t leak any timing information and is still faster than any other code I&amp;rsquo;ve seen. (Check out Thomas&amp;rsquo; excellent write-up for details.)&lt;/p>
+&lt;p>If PCLMUL is available on the CPU, using it is of course the way to go. All modern compilers support intrinsics, which allows us to write &amp;ldquo;inline assembly&amp;rdquo; in C that runs on all platforms without having to write assembly. A hardware accelerated implementation of the ghash multiplication can be &lt;a class="link" href="https://searchfox.org/nss/rev/40ab32e6acb227e7ede4734573e448ff43d179d5/lib/freebl/gcm.c#314" target="_blank" rel="noopener"
+>easily implemented&lt;/a> with &lt;a class="link" href="https://software.intel.com/sites/landingpage/IntrinsicsGuide/#text=clmul&amp;amp;expand=641" target="_blank" rel="noopener"
+>&lt;code>_mm_clmulepi64_si128&lt;/code>&lt;/a>.&lt;/p>
+&lt;p>On Mac and Linux the new 32-bit and 64-bit software ghash functions (faster and constant-time) are used on the respective platforms if PCLMUL or AVX is not available. Since Windows doesn&amp;rsquo;t support 128-bit integers (outside of registers) NSS falls back to the slower 32-bit ghash code (which is still more than 25% faster).&lt;/p>
+&lt;h1 id="improving-aes-performance">Improving AES performance
+&lt;/h1>&lt;p>To speed up AES NSS requires hardware acceleration on Mac as well as on Linux 32-bit and any machine that doesn&amp;rsquo;t support AVX (or has it disabled). When NSS can&amp;rsquo;t use the specialised AES code it falls back to a table-based implementation that is again not constant-time (in addition to being slow). Implementing AES with &lt;a class="link" href="https://software.intel.com/sites/landingpage/IntrinsicsGuide/#text=aes&amp;amp;expand=641" target="_blank" rel="noopener"
+>intrinsics&lt;/a> is a breeze.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-C++" data-lang="C++">&lt;span class="line">&lt;span class="cl"> &lt;span class="n">m&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">_mm_xor_si128&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">m&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">cx&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="n">keySchedule&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">]);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">for&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">i&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">&amp;lt;&lt;/span> &lt;span class="n">cx&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="n">Nr&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="o">++&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">m&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">_mm_aesenc_si128&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">m&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">cx&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="n">keySchedule&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="p">]);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">m&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">_mm_aesenclast_si128&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">m&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">cx&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="n">keySchedule&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">cx&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="n">Nr&lt;/span>&lt;span class="p">]);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">_mm_storeu_si128&lt;/span>&lt;span class="p">((&lt;/span>&lt;span class="kr">__m128i&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="n">output&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">m&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Key expansion is a little bit more involved (for 192 and 256 bit). But is &lt;a class="link" href="https://searchfox.org/nss/rev/40ab32e6acb227e7ede4734573e448ff43d179d5/lib/freebl/rijndael.c#393" target="_blank" rel="noopener"
+>written&lt;/a> in about 100 lines as well.&lt;/p>
+&lt;p>Mac sees the biggest improvement here. Previously, only Windows and 64-bit Linux used AES-NI, and now all desktop x86 and x64 platforms use it when available.&lt;/p>
+&lt;h1 id="looking-at-the-numbers">Looking at the numbers
+&lt;/h1>&lt;p>To measure the performance gain of the new AES-GCM code I encrypt a 479MB file with a 128-bit key (the most widely used key size for AES-GCM). Note that these numbers are supposed to show a trend and heavily depend on the used machine and system load at the time.&lt;/p>
+&lt;p>Linux measurements are done on an Intel Core i7-4790, Windows measurements on a Surface Pro 2 with an Intel Core i5-4300U, and Mac (Core i7-4980HQ).&lt;/p>
+&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/aes-gcm-speedup/linux64-encrypt.png"
+width="665"
+height="412"
+srcset="https://www.franziskuskiefer.de/p/aes-gcm-speedup/linux64-encrypt_hu10086943397254153485.png 480w, https://www.franziskuskiefer.de/p/aes-gcm-speedup/linux64-encrypt_hu969099613805604214.png 1024w"
+loading="lazy"
+alt="Linux 64-bit encrypt"
+class="gallery-image"
+data-flex-grow="161"
+data-flex-basis="387px"
+>
+&lt;img src="https://www.franziskuskiefer.de/p/aes-gcm-speedup/linux32-encrypt.png"
+width="657"
+height="407"
+srcset="https://www.franziskuskiefer.de/p/aes-gcm-speedup/linux32-encrypt_hu10473480209911482808.png 480w, https://www.franziskuskiefer.de/p/aes-gcm-speedup/linux32-encrypt_hu17184927622994130837.png 1024w"
+loading="lazy"
+alt="Linux 32-bit encrypt"
+class="gallery-image"
+data-flex-grow="161"
+data-flex-basis="387px"
+>&lt;/p>
+&lt;p>On 64-bit Linux performance of any machine without AES, PCLMUL, or AVX instructions AES-GCM 128 is at least twice as fast now. If AES and PCLMUL is available, the new code only needs 33% of the time the old code took.
+The speed-up for 32-bit Linux is obviously more significant as it didn&amp;rsquo;t have any hardware accelerated code before. With full hardware acceleration the new code is more than 5 times faster than before. In the worst case, when PCLMUL is not available, the speed-up is still more than 50%.&lt;/p>
+&lt;p>The story is similar on Windows (though NSS had fast code for 32-bit there before).
+&lt;img src="https://www.franziskuskiefer.de/p/aes-gcm-speedup/win64-encrypt.png"
+width="600"
+height="371"
+srcset="https://www.franziskuskiefer.de/p/aes-gcm-speedup/win64-encrypt_hu15268150531908549230.png 480w, https://www.franziskuskiefer.de/p/aes-gcm-speedup/win64-encrypt_hu3293416628537479388.png 1024w"
+loading="lazy"
+alt="Windows 64-bit encrypt"
+class="gallery-image"
+data-flex-grow="161"
+data-flex-basis="388px"
+>&lt;/p>
+&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/aes-gcm-speedup/win32-encrypt.png"
+width="600"
+height="371"
+srcset="https://www.franziskuskiefer.de/p/aes-gcm-speedup/win32-encrypt_hu14438816655898579123.png 480w, https://www.franziskuskiefer.de/p/aes-gcm-speedup/win32-encrypt_hu5113623536179900788.png 1024w"
+loading="lazy"
+alt="Windows 32-bit encrypt"
+class="gallery-image"
+data-flex-grow="161"
+data-flex-basis="388px"
+>&lt;/p>
+&lt;p>Performance improvements on Mac (64-bit only) range from 60% in the best case to 44% when AES-NI or PCLMUL is not available.
+&lt;img src="https://www.franziskuskiefer.de/p/aes-gcm-speedup/mac-encrypt.png"
+width="600"
+height="371"
+srcset="https://www.franziskuskiefer.de/p/aes-gcm-speedup/mac-encrypt_hu1293817040194398281.png 480w, https://www.franziskuskiefer.de/p/aes-gcm-speedup/mac-encrypt_hu5387432531827102804.png 1024w"
+loading="lazy"
+alt="OS-X encrypt"
+class="gallery-image"
+data-flex-grow="161"
+data-flex-basis="388px"
+>&lt;/p>
+&lt;h1 id="the-numbers-in-firefox">The numbers in Firefox
+&lt;/h1>&lt;p>NSS 3.32 (Firefox 56) will ship with the new AES-GCM code. It will provide significantly reduced CPU usage for most TLS connections or higher download rates. NSS 3.32 is more intelligent in detecting the CPU&amp;rsquo;s capabilities and using hardware acceleration whenever possible. Assuming that all intrinsics and mathematical operations (other than division) are constant-time on the CPU, the new code doesn&amp;rsquo;t have any timing side-channels.&lt;/p>
+&lt;p>On the basic laptop with the AMD C-70 download rates increased from ~3MB/s to ~6MB/s. (Keep in mind that this is the software only 32-bit implementation.)&lt;/p>
+&lt;p>The most immediate effect can be seen on Mac. &lt;code>AES_Decrypt&lt;/code> as part of a TLS connection with &lt;a class="link" href="http://bit.ly/2rGm8S0" target="_blank" rel="noopener"
+>NSS 3.31 used 9% CPU&lt;/a> while in &lt;a class="link" href="http://bit.ly/2rGvGfz" target="_blank" rel="noopener"
+>NSS 3.32 it uses only 4%&lt;/a>.
+To see general performance improvements we can look at the case where AVX is not available (which is the case for about 2/3 of the Firefox population). Assuming that at least AES-NI and PCLMUL is supported by the CPU we see the CPU usage drop from &lt;a class="link" href="https://perfht.ml/2rrqbWS" target="_blank" rel="noopener"
+>15%&lt;/a> to &lt;a class="link" href="https://perfht.ml/2sa3aoA" target="_blank" rel="noopener"
+>3%&lt;/a> (measured on Linux).&lt;/p></description></item><item><title>On Constant Time Division</title><link>https://www.franziskuskiefer.de/p/on-constant-time-division/</link><pubDate>Wed, 28 Dec 2016 00:00:00 +0000</pubDate><guid>https://www.franziskuskiefer.de/p/on-constant-time-division/</guid><description>&lt;img src="https://www.franziskuskiefer.de/p/on-constant-time-division/plot_low-1.png" alt="Featured image of post On Constant Time Division" />&lt;p>Writing constant time code is hard. We all know that. But I&amp;rsquo;m always amazed again on how difficult it is. In preparation for making NSS more constant time I looked into certain CPU instructions that are known to be not constant time.
+So I wrote a little thing to measure the time (CPU cycles) needed for division.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-asm" data-lang="asm">&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">div&lt;/span> &lt;span class="no">rcx&lt;/span> &lt;span class="c1">; eax is now a/b
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The CPU I&amp;rsquo;m using in this post is an Intel i7-4790 (haswell). Running the same measurements on other processors architectures will most likely yield different results. I&amp;rsquo;m describing two experiments I did. First, I look at bits in the divisor and how they influence the timing of the division. And then I look at the dividend and its influence.&lt;/p>
+&lt;h1 id="the-divisor">The Divisor
+&lt;/h1>&lt;p>There are two interesting things we can look at here. The very small divisors as well as the pattern that we get in larger divisors.&lt;/p>
+&lt;h2 id="-129">&amp;lt; 129
+&lt;/h2>&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/on-constant-time-division/plot_low-1.png"
+width="2558"
+height="1347"
+srcset="https://www.franziskuskiefer.de/p/on-constant-time-division/plot_low-1_hu15842502754747643451.png 480w, https://www.franziskuskiefer.de/p/on-constant-time-division/plot_low-1_hu10953608243128651236.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="189"
+data-flex-basis="455px"
+>&lt;/p>
+&lt;p>This graph plots the number of cycles needed for the division of numbers &amp;lt; 130. It&amp;rsquo;s easy to see that the number of cycles needed is in general around 300. However, there are a couple of &amp;ldquo;outliers&amp;rdquo; that need significantly less.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-C" data-lang="C">&lt;span class="line">&lt;span class="cl"> &lt;span class="mi">128&lt;/span> &lt;span class="mi">123&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="mi">64&lt;/span> &lt;span class="mi">135&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="mi">32&lt;/span> &lt;span class="mi">132&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="mi">16&lt;/span> &lt;span class="mi">132&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="mi">8&lt;/span> &lt;span class="mi">123&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="mi">4&lt;/span> &lt;span class="mi">123&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="mi">2&lt;/span> &lt;span class="mi">123&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="mi">1&lt;/span> &lt;span class="mi">126&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You might have spotted the pattern already. The CPU probably doesn&amp;rsquo;t want to do this expensive division and simply shifts the dividend to get the result. This trend continues later on but is more difficult to observe. (And there&amp;rsquo;s a more interesting pattern there.)&lt;/p>
+&lt;h2 id="the-larger-pattern">The larger pattern
+&lt;/h2>&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/on-constant-time-division/plot-1.png"
+width="2558"
+height="1347"
+srcset="https://www.franziskuskiefer.de/p/on-constant-time-division/plot-1_hu15793922373718518580.png 480w, https://www.franziskuskiefer.de/p/on-constant-time-division/plot-1_hu8612448082123602519.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="189"
+data-flex-basis="455px"
+>&lt;/p>
+&lt;p>The graph shows a striking pattern and makes it obvious that division is not constant-time. Let&amp;rsquo;s try to understand what&amp;rsquo;s happening here.&lt;/p>
+&lt;p>The first part of the pattern can be explained by changing bit-lengths in the divisor. At &lt;code>8191&lt;/code> and &lt;code>16383&lt;/code> for example a streak of fast division ends. This is probably because the &lt;code>8192&lt;/code> and &lt;code>16384&lt;/code> require an additional bit each.&lt;/p>
+&lt;p>However, I&amp;rsquo;m clueless on how to explain the rest of the pattern.&lt;/p>
+&lt;p>(I&amp;rsquo;ll update this post when I figured out what&amp;rsquo;s going on.)&lt;/p></description></item></channel></rss>

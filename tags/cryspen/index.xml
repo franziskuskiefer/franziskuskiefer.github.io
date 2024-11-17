@@ -1,54 +1,809 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Cryspen on Dr Franziskus Kiefer</title>
-    <link>https://www.franziskuskiefer.de/tags/cryspen/</link>
-    <description>Recent content in Cryspen on Dr Franziskus Kiefer</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Mon, 02 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/tags/cryspen/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>What is High Assurance Cryptography?</title>
-      <link>https://www.franziskuskiefer.de/p/what-is-high-assurance-cryptography/</link>
-      <pubDate>Mon, 02 May 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.franziskuskiefer.de/p/what-is-high-assurance-cryptography/</guid>
-      <description>With my company Cryspen we build high assurance cryptography. But what does this actually mean?
-Before focusing on cryptography it is interesting to look at high assurance software in general. How is high assurance software different from other software?
-High assurance software is usually seen as being more trustworthy than other software. This is especially interesting in high-risk/high-stakes environments such as financial institutions or governments. There are different ways to achieve better guarantees for software.</description>
-    </item>
-    
-    <item>
-      <title>An Executable HPKE Specification</title>
-      <link>https://www.franziskuskiefer.de/p/an-executable-hpke-specification/</link>
-      <pubDate>Thu, 24 Feb 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.franziskuskiefer.de/p/an-executable-hpke-specification/</guid>
-      <description>HPKE, published as RFC 9180, describes a scheme for hybrid public key encryption.
- 📚 Please go and read our TL;DR on HPKE if you nee more background on HPKE.
- In this I describe the first executable HPKE specification using hacspec. It is not only an executable specification of HPKE, it is also an annotated version of the RFC that can be read instead of (or in addition to) the RFC.</description>
-    </item>
-    
-    <item>
-      <title>TL;DR - Hybrid Public Key Encryption</title>
-      <link>https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/</link>
-      <pubDate>Thu, 24 Feb 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/</guid>
-      <description>HPKE is a CFRG in RFC 9180 that describes a scheme for hybrid public key encryption. It is co-authored by my Cryspen co-founder Karthikeyan Bhargavan and one of his PhD students Benjamin Lipp as part of his research at Inria.
-This blog post will give a brief overview of the specification and describes some use cases.
-If you want to learn more about the security proofs behind HPKE and the RFC process, Benjamin wrote an excellent blog post about it.</description>
-    </item>
-    
-    <item>
-      <title>Cryspen ERC PoC Grant</title>
-      <link>https://www.franziskuskiefer.de/p/cryspen-erc-poc-grant/</link>
-      <pubDate>Thu, 10 Feb 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.franziskuskiefer.de/p/cryspen-erc-poc-grant/</guid>
-      <description>My co-founder Karthik got awarded an ERC Proof of Concept grant for commercialising the know-how and landmark research results from his Inria research group PROSECCO through Cryspen.
-Announcement Cryptographic mechanisms are crucial to the security of our digital lives but their design and implementation remains notoriously difficult and error-prone. With the help of two ERC Grants, Karthikeyan Bhargavan and the Prosecco team at Inria have developed state-of-the-art formal verification techniques that can be applied to real-world cryptographic software.</description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cryspen on Dr Franziskus Kiefer</title><link>https://www.franziskuskiefer.de/tags/cryspen/</link><description>Recent content in Cryspen on Dr Franziskus Kiefer</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 02 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/tags/cryspen/index.xml" rel="self" type="application/rss+xml"/><item><title>What is High Assurance Cryptography?</title><link>https://www.franziskuskiefer.de/p/what-is-high-assurance-cryptography/</link><pubDate>Mon, 02 May 2022 00:00:00 +0000</pubDate><guid>https://www.franziskuskiefer.de/p/what-is-high-assurance-cryptography/</guid><description>&lt;img src="https://www.franziskuskiefer.de/p/what-is-high-assurance-cryptography/header.jpg" alt="Featured image of post What is High Assurance Cryptography?" />&lt;p>With my company &lt;a class="link" href="https://www.cryspen.com" target="_blank" rel="noopener"
+>Cryspen&lt;/a> we build high assurance cryptography.
+But what does this actually mean?&lt;/p>
+&lt;p>Before focusing on cryptography it is interesting to look at high assurance
+software in general.
+How is high assurance software different from other software?&lt;/p>
+&lt;p>High assurance software is usually seen as being more trustworthy than other
+software.
+This is especially interesting in high-risk/high-stakes environments such as
+financial institutions or governments.
+There are different ways to achieve better guarantees for software.
+Today the most commonly used technique to increase trust into software is using
+certifications like &lt;a class="link" href="https://en.wikipedia.org/wiki/Common_Criteria" target="_blank" rel="noopener"
+>common criteria&lt;/a>
+or &lt;a class="link" href="https://en.wikipedia.org/wiki/FIPS_140-2" target="_blank" rel="noopener"
+>FIPS&lt;/a>.
+While these certifications offer a certain level of additional guarantees, only
+the highest levels require some form of formal verification of the production
+source code.
+As such certification usually reaches only up to a certain level of high assurance.&lt;/p>
+&lt;p>Instead, using formal methods to increase trust in software offers real tangible
+guarantees on a software artifact.
+But in order to get actual guarantees we have to define the properties that are
+guaranteed and put it into perspective by defining different assurance levels.
+Before doing this we look at the different techniques used in high assurance
+software engineering.&lt;/p>
+&lt;h2 id="techniques">Techniques
+&lt;/h2>&lt;p>There are a number of different techniques used in (high assurance) software engineering.
+Some are simply good engineering practice while others go beyond what is done for most software.
+The following picture gives a high-level overview of the different techniques.
+(The list is of course not exhaustive and some grouping might be arbitrary.)&lt;/p>
+&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/what-is-high-assurance-cryptography/overview1.png"
+width="1440"
+height="720"
+srcset="https://www.franziskuskiefer.de/p/what-is-high-assurance-cryptography/overview1_hu1970889969198621401.png 480w, https://www.franziskuskiefer.de/p/what-is-high-assurance-cryptography/overview1_hu6355104638587915922.png 1024w"
+loading="lazy"
+alt="High assurance tools - an overview"
+class="gallery-image"
+data-flex-grow="200"
+data-flex-basis="480px"
+>&lt;/p>
+&lt;p>On the left side we have safe programming languages and engineering processes
+that are the bedrock of high assurance software engineering.
+Processes ensure that the development and maintenance process is safe while
+using a safe programming language such as Rust that gives memory safety
+guarantees provides a safety baseline for the software.&lt;/p>
+&lt;p>The engineering infrastructure in the center is used to enforce policies and link
+everything together.
+It is the glue that implements engineering processes and ensures safe operations
+of the code at all times.
+On the right hand side we have engineering practices divided into dynamic and
+static tools, or testing and formal methods.
+There are a lot of different testing techniques from fuzzing to known answer
+tests that ensure that the code is operating correctly and safely for a certain
+set of inputs.
+With static analysis and formal methods we can go a step further and ensure that
+the code is correct and safe for all inputs.&lt;/p>
+&lt;h2 id="assurance-levels">Assurance Levels
+&lt;/h2>&lt;p>Speaking about “high assurance” is so vague that it can be considered meaningless.
+When speaking about high assurance software it is paramount to define a set of
+properties the software guarantees.
+To this end we define a set of assurance levels a software artifact can achieve
+and a set of techniques used to get there.
+The following picture sorts the previously defined techniques according to the
+level of assurance they provide and the complexity required to use them.&lt;/p>
+&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/what-is-high-assurance-cryptography/overview2.png"
+width="2018"
+height="1047"
+srcset="https://www.franziskuskiefer.de/p/what-is-high-assurance-cryptography/overview2_hu3604698546197174614.png 480w, https://www.franziskuskiefer.de/p/what-is-high-assurance-cryptography/overview2_hu15061777128408909.png 1024w"
+loading="lazy"
+alt="High assurance - an overview"
+class="gallery-image"
+data-flex-grow="192"
+data-flex-basis="462px"
+>&lt;/p>
+&lt;h3 id="ca-1">CA-1
+&lt;/h3>&lt;p>The first level of high assurance software is what I’d flippantly call “well
+written software”.
+At this level no complex tools are required. Instead good engineering principles
+are applied.&lt;/p>
+&lt;p>Note that this level must not be used for cryptographic software.
+&lt;strong>Cryptography requires at least CA-2.&lt;/strong>&lt;/p>
+&lt;p>The programming language and how it is used is the first important point.
+A programming language like Rust that is memory safe and has a lot of additional
+features that allow to ensure that the code is “safe” is paramount.
+It is well known that memory safety is the root cause for most security issues
+with about 70% (see what &lt;a class="link" href="https://www.chromium.org/Home/chromium-security/memory-safety/" target="_blank" rel="noopener"
+>Google&lt;/a>, &lt;a class="link" href="https://msrnd-cdn-stor.azureedge.net/bluehat/bluehatil/2019/assets/doc/Trends%2C%20Challenges%2C%20and%20Strategic%20Shifts%20in%20the%20Software%20Vulnerability%20Mitigation%20Landscape.pdf" target="_blank" rel="noopener"
+>Microsoft&lt;/a>, or the &lt;a class="link" href="https://www.memorysafety.org/docs/memory-safety/" target="_blank" rel="noopener"
+>ISRG&lt;/a> say about this).
+They are only possible because languages like C and C++ are not memory safe.&lt;/p>
+&lt;p>The code requires a sufficient amount of tests. It is difficult and arbitrary to
+define an exact number for test coverage.
+But I think it is safe to say that a test coverage of less than 70% is not
+acceptable.
+Defining test coverage, quantitatively and qualitatively, is part of the
+engineering process.&lt;/p>
+&lt;p>Because testing against itself is not sufficient, test vectors with known answer
+tests must be used.
+If the implementation does not have a generally accepted specification or
+(de-facto) reference implementation that can be used to get test vectors, a
+reference implementation (specification) must be written to produce test vectors.&lt;/p>
+&lt;p>Engineering processes must be implemented that ensure that the code can be safely
+maintained in the long-run.
+An engineering infrastructure must be in place to enforce processes and help the engineering process.&lt;/p>
+&lt;p>&lt;strong>Properties:&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>Memory safety&lt;/li>
+&lt;li>Adequate test coverage&lt;/li>
+&lt;li>Known answer tests&lt;/li>
+&lt;li>Engineering best practices
+&lt;ul>
+&lt;li>Review guidelines&lt;/li>
+&lt;li>Continuous integration&lt;/li>
+&lt;li>Documentation&lt;/li>
+&lt;li>(Security) bug reporting&lt;/li>
+&lt;li>Release management&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="ca-2">CA-2
+&lt;/h3>&lt;p>The second level includes everything from the first level but adds properties
+specific to cryptographic code and more advanced testing methods.&lt;/p>
+&lt;p>In cryptographic code it is important that no decisions are made based on secret
+information.
+It is therefore necessary to avoid any branching on secret data or memory access
+based on secret data.
+There is research tooling out there that tries to ensure this and a lot of good
+practices to avoid it. But there’s no comprehensive way of doing this right now.
+With Cryspen we develop a set of tools to ensure secret independent computation that we use and maintain.&lt;/p>
+&lt;p>On this level more advanced testing such as fuzzing and property based testing
+is required as well to make sure that the code is not only safe in well defined
+states but can handle any input.&lt;/p>
+&lt;p>&lt;strong>Properties:&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>Secret independent computation
+&lt;ul>
+&lt;li>No secret-dependent branching&lt;/li>
+&lt;li>No secret-dependent memory access&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Advanced testing
+&lt;ul>
+&lt;li>Fuzzing&lt;/li>
+&lt;li>Sanitizer builds&lt;/li>
+&lt;li>Property based testing&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h4 id="ca-2-1">CA-2+
+&lt;/h4>&lt;p>The secret independent computation properties in CA-2 can be shown on different
+levels.
+Often this is done only on the programming language level rather than the machine
+code.
+If the secret independent computation is ensured on the machine code level, we
+call this CA-2+.
+Higher levels are augmented with the + in the same way if the secret independence
+is given after compilation.&lt;/p>
+&lt;p>&lt;strong>Properties:&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>Secret independent computation ensured on the machine code level&lt;/li>
+&lt;/ul>
+&lt;h3 id="ca-3a">CA-3a
+&lt;/h3>&lt;p>The third assurance level includes the first two but requires formal methods.
+This is what we will always aim for. But because of the complexity and real world
+constraints it is not always feasible to achieve this level for all code.&lt;/p>
+&lt;p>Cryptographic primitives are one building block used to build cryptographic
+protocols.
+Because they require highly efficient implementations but usually have a rather
+succinct mathematical definition, functional and semantic correctness are the
+properties we are interested in.
+In particular, the efficient implementation of a cryptographic primitive must be
+shown equivalent to a self-evidently correct specification.
+Additionally semantic properties such as “decryption is the inverse of encryption”
+can be shown.
+The exact properties proven must be clearly stated for every artifact.&lt;/p>
+&lt;p>Data structures and other building blocks are needed to build cryptographic
+protocols in addition to the primitives.
+They must be similarly shown to be correct and safe to use by using functional
+and semantic correctness proofs.&lt;/p>
+&lt;p>On this level the cryptographic protocols themselves are written in a succinct
+way such that they can be inspected by hand and compared to a general
+specification if available.&lt;/p>
+&lt;p>&lt;strong>Properties:&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>Functional and semantic security proofs&lt;/li>
+&lt;/ul>
+&lt;h3 id="ca-3b">CA-3b
+&lt;/h3>&lt;p>The third level can be extended to require formal proofs on the protocol layer.
+While cryptographic protocols can often be written in a way that they are
+self-evidently correct and efficient, this is not enough if the protocol is not
+standardized or is too complex to inspect manually.&lt;/p>
+&lt;p>Security models and properties are defined for a protocol and they are proven on
+the implementation of the cryptographic protocols using formal methods.
+These properties are very specific to each protocol and can range from the
+correctness of a state machine to the security against a certain type of attacker.&lt;/p>
+&lt;p>&lt;strong>Properties:&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>Security proofs&lt;/li>
+&lt;/ul>
+&lt;h2 id="high-assurance">High-Assurance?
+&lt;/h2>&lt;p>&lt;a class="link" href="https://highassurance.rs" target="_blank" rel="noopener"
+>https://highassurance.rs&lt;/a> has some great documentation on writing good Rust code.
+However, it also has a good example of what I &lt;em>don’t&lt;/em> consider high assurance software
+and exemplifies why it is so important to specify all claims precisely instead of
+simply claiming high assurance.
+&lt;em>(Note that this is just an example to show why it is so important to exactly specify what assurances are given. This is not supposed to bash the &lt;a class="link" href="https://highassurance.rs" target="_blank" rel="noopener"
+>https://highassurance.rs&lt;/a> folks. I think it&amp;rsquo;s a great effort.)&lt;/em>&lt;/p>
+&lt;p>Let’s take a look at chapters &lt;a class="link" href="https://highassurance.rs/chp2/dynamic_assurance_1.html" target="_blank" rel="noopener"
+>2.4-2.6&lt;/a> that describe a high assurance
+implementation of the RC4 stream cipher. At the end of the section the authors
+state the following:&lt;/p>
+&lt;blockquote>
+&lt;p>You&amp;rsquo;ve now built your first piece of high assurance software (sans the RC4 algorithm itself). Your RC4 library is:&lt;/p>
+&lt;ul>
+&lt;li>Fully memory-safe, hence &lt;code>#![forbid(unsafe_code)]&lt;/code>&lt;/li>
+&lt;li>Stand-alone and capable for running almost anywhere, hence &lt;code>#![no_std]&lt;/code>&lt;/li>
+&lt;li>Functionally validated, using official IETF test vectors&lt;/li>
+&lt;/ul>
+&lt;/blockquote>
+&lt;p>While these points are all on the list above they are what I would consider good
+engineering principles (known answer tests with test vectors, and memory safety).
+In particular, they lay the foundation for high assurance software but don’t
+constitute high assurance in itself. As is, the code itself would be CA-1 but
+additional mechanisms in the form of engineering processes and infrastructure
+are needed for full CA-1 compliance.
+(Similar additional mechanisms are mentioned in &lt;a class="link" href="https://highassurance.rs/chp2/_index.html" target="_blank" rel="noopener"
+>Chapter 2&lt;/a>.)&lt;/p>
+&lt;p>However, CA-1 is not sufficient for cryptographic primitives as stated above.
+To reach CA-2 the code needs to be rewritten though because &lt;strong>it has secret
+dependent memory access&lt;/strong>.
+After doing this property based testing, fuzzing, and techniques ensuring secret
+independent computation have to be added.&lt;/p>
+&lt;p>Because the code can be seen as a spec one can argue that it reaches CA-3a now
+as well.
+CA-3b is not applicable.
+However it is not very efficient but rather a specification.
+In order to use the algorithm in a real application one might want to implement
+an efficient version that would then require an equivalence proof with the
+specification.&lt;/p>
+&lt;p>&lt;em>RC4 itself is of course not secure and must not be used! This is just taking the example from &lt;a class="link" href="https://highassurance.rs" target="_blank" rel="noopener"
+>https://highassurance.rs&lt;/a>.&lt;/em>&lt;/p>
+&lt;h2 id="cryspen-high-assurance-cryptography">Cryspen High Assurance Cryptography
+&lt;/h2>&lt;p>At Cryspen we consider CA-1 regular software.
+Cryptographic code at Cryspen must always be CA-2 or higher.&lt;/p>
+&lt;p>We are working on different high assurance cryptographic primitives and
+protocols right now.&lt;/p>
+&lt;h3 id="hacl">HACL
+&lt;/h3>&lt;p>The &lt;a class="link" href="https://github.com/cryspen/hacl-packages" target="_blank" rel="noopener"
+>HACL packages&lt;/a> wrap the HACL* research artifacts and constitute a high
+assurance cryptographic library.
+The library is CA-3a because it is proven to be memory safe, has correctness
+proofs with respect to a specification and ensures secret independent computation
+on a programming language level.&lt;/p>
+&lt;h3 id="hpke">HPKE
+&lt;/h3>&lt;p>The &lt;a class="link" href="https://github.com/cryspen/hpke-spec/" target="_blank" rel="noopener"
+>HPKE implementation&lt;/a> is a specification of the &lt;a class="link" href="https://datatracker.ietf.org/doc/rfc9180/" target="_blank" rel="noopener"
+>HPKE RFC&lt;/a> and as such is CA-3a
+because it is self-evidently correct as a specification and uses formally
+verified cryptography with CA-3a.
+In a next step the &lt;a class="link" href="https://github.com/cryspen/hpke-spec/" target="_blank" rel="noopener"
+>HPKE implementation&lt;/a> will be connected to the &lt;a class="link" href="https://www.benjaminlipp.de/p/hpke-cryptographic-standard/#pre" target="_blank" rel="noopener"
+>Cryptoverif&lt;/a>
+models to prove security properties and thus reach the highest assurance
+level CA-3b.&lt;/p>
+&lt;h3 id="tls-13">TLS 1.3
+&lt;/h3>&lt;p>In an &lt;a class="link" href="https://www.assure.ngi.eu/" target="_blank" rel="noopener"
+>NGI Assure&lt;/a> project we develop the first formally verified, production
+ready TLS 1.3 implementation.&lt;/p>
+&lt;hr>
+&lt;p>&lt;a class="link" href="https://www.cryspen.com" target="_blank" rel="noopener"
+>Cryspen&lt;/a> offers high assurance cryptographic implementations.
+&lt;a class="link" href="mailto:franziskus@cryspen.com" >Get in touch for more information.&lt;/a>&lt;/p></description></item><item><title>An Executable HPKE Specification</title><link>https://www.franziskuskiefer.de/p/an-executable-hpke-specification/</link><pubDate>Thu, 24 Feb 2022 00:00:00 +0000</pubDate><guid>https://www.franziskuskiefer.de/p/an-executable-hpke-specification/</guid><description>&lt;img src="https://www.franziskuskiefer.de/p/an-executable-hpke-specification/header.png" alt="Featured image of post An Executable HPKE Specification" />&lt;p>&lt;a class="link" href="https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/" target="_blank" rel="noopener"
+>HPKE&lt;/a>, published as &lt;a class="link" href="https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/" target="_blank" rel="noopener"
+>RFC 9180&lt;/a>, describes a scheme for hybrid public key encryption.&lt;/p>
+&lt;blockquote>
+&lt;p>📚 Please go and read our &lt;a class="link" href="https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/" >TL;DR on HPKE&lt;/a> if you nee more background on HPKE.&lt;/p>
+&lt;/blockquote>
+&lt;p>In this I describe the first executable HPKE specification using &lt;a class="link" href="https://hacspec.org" target="_blank" rel="noopener"
+>hacspec&lt;/a>.
+It is not only an executable specification of &lt;a class="link" href="https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/" target="_blank" rel="noopener"
+>HPKE&lt;/a>, it is also an annotated version
+of the RFC that can be read instead of (or in addition to) the RFC.
+While the &lt;a class="link" href="https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/" >TL;DR on HPKE&lt;/a> was intended for consumers or potential users of HPKE,
+this blog post is aimed at implementators that want to implement HPKE or understand
+it better.&lt;/p>
+&lt;p>It is a showcase for Cryspen&amp;rsquo;s technology stack.
+In a follow up blog post we will describe how to connect the &lt;a class="link" href="https://hacspec.org" target="_blank" rel="noopener"
+>hacspec&lt;/a> specification
+to efficient cryptographic primitives and formal proofs.&lt;/p>
+&lt;p>&lt;em>This blog post focuses on the Base and Auth mode with DHKEM to demonstrate the capabilities
+of hacspec.
+For the full specification please read the full &lt;a class="link" href="https://tech.cryspen.com/hpke-spec" target="_blank" rel="noopener"
+>documentation&lt;/a>, or look at the
+&lt;a class="link" href="https://github.com/cryspen/hpke-spec" target="_blank" rel="noopener"
+>Github repository&lt;/a> for the HPKE hacspec source code.&lt;/em>&lt;/p>
+&lt;p>Recall that HPKE provides a variant of public-key encryption of arbitrary-sized plaintexts for a recipient public key.
+It works for any combination of an asymmetric key encapsulation mechanism (KEM), key derivation function (KDF), and authenticated encryption with additional data (AEAD) encryption function.&lt;/p>
+&lt;p>In the following I&amp;rsquo;ll first show the high-level API of HPKE works before giving
+details on the core functions within HPKE.
+All code examples are in hacspec.&lt;/p>
+&lt;blockquote>
+&lt;p>💡 Go ahead and &lt;a class="link" href="https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/#try-it-out-now" >run the hacspec HPKE in the browser&lt;/a>.&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="encrypting-to-a-public-key">Encrypting to a Public Key
+&lt;/h2>&lt;p>This is the most basic functionality HPKE offers; encrypting a payload to a public key.
+So how does this look on the outside?&lt;/p>
+&lt;p>The process consists of two steps.
+&lt;em>First&lt;/em> a random &lt;code>shared_secret&lt;/code> is generated that can be used for
+symmetric encryption with an AEAD, and an encapsulation that can be used by the
+receiver in combination with their private key to compute the same &lt;code>shared_secret&lt;/code>.
+This function is denoted &lt;code>SetupBaseS&lt;/code> below (because this is setting up the sender
+in the HPKE base mode).
+Note that the setup function expands the &lt;code>shared_secret&lt;/code> to a key schedule that
+is used by the AEAD.
+More details in the &lt;a class="link" href="#setup" >Setup&lt;/a> section.
+&lt;em>Then&lt;/em> the &lt;code>shared_secret&lt;/code> is used to encrypt the payload with an AEAD.
+This function is denoted &lt;code>AeadSeal&lt;/code> below.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-rust" data-lang="rust">&lt;span class="line">&lt;span class="cl">&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">enc&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">key&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">nonce&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">_&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">_&lt;/span>&lt;span class="p">))&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">SetupBaseS&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">config&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">pkR&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">info&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">randomness&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">?&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">cipher_text&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">AeadSeal&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">aead_id&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">key&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">nonce&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">aad&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">payload&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">?&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The receiver gets &lt;code>cipher_text&lt;/code> and &lt;code>enc&lt;/code> that it can use to retrieve the &lt;code>payload&lt;/code>.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-rust" data-lang="rust">&lt;span class="line">&lt;span class="cl">&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">key&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">nonce&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">_&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">_&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">SetupBaseR&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">config&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">enc&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">skR&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">info&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">?&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">payload&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">AeadOpen&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">aead&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">key&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">nonce&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">aad&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">ct&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">?&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>In the remainder of this blog post we&amp;rsquo;ll show how &lt;code>SetupBaseS&lt;/code> is defined.
+For a description of the receiver please check out the &lt;a class="link" href="https://tech.cryspen.com/hpke-spec" target="_blank" rel="noopener"
+>documentation&lt;/a>.
+We will not define &lt;code>AeadSeal&lt;/code> and &lt;code>AeadOpen&lt;/code> here as they follow the definition
+of &lt;a class="link" href="https://www.rfc-editor.org/info/rfc5116" target="_blank" rel="noopener"
+>RFC 5116&lt;/a>.&lt;/p>
+&lt;details>
+&lt;summary>💡 Background on hacspec Syntax&lt;/summary>
+In case you are not familiar with hacspec (Rust) syntax, here are some short explainers
+to understand the hacspec code.
+&lt;p>&lt;strong>The Question mark &lt;code>?&lt;/code>&lt;/strong>&lt;/p>
+&lt;p>The question mark &lt;code>?&lt;/code> at the end of most lines in the hacspec code is the
+way Rust performs error propagation.
+If the function that is called before the &lt;code>?&lt;/code> does not return an error result,
+the program continues as expected.
+But if the function returns an error, the function stops and returns with the error
+instead.&lt;/p>
+&lt;p>&lt;strong>The Result Type&lt;/strong>&lt;/p>
+&lt;p>hacspec (and Rust) uses a &lt;code>Result&lt;/code> type such as &lt;code>Result&amp;lt;OkType, ErrorType&amp;gt;&lt;/code> to return errors.
+In hacspec result types are often wrapped into type aliases.
+For example the &lt;code>SenderContextResult&lt;/code> type in the code snippet for &lt;code>SetupBaseS&lt;/code>
+below is a type alias for &lt;code>Result&amp;lt;(Encapsulation, KeySchedule), Error&amp;gt;&lt;/code>.
+If the function is successful and we reach line 10, the function returns success,
+which is written as &lt;code>SenderContextResult::Ok(...)&lt;/code>.&lt;/p>
+&lt;/details>
+&lt;h3 id="the-auth-mode">The Auth Mode
+&lt;/h3>&lt;p>In the Auth mode HPKE requires additional input to the &lt;code>Setup&lt;/code> functions.
+The sender needs to provide their private key &lt;code>skS&lt;/code> to authenticate themselves.
+The receiver uses the sender&amp;rsquo;s public key &lt;code>pkS&lt;/code> in addition to authenticate the sender.
+The two functions are defined as follows.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-rust" data-lang="rust">&lt;span class="line">&lt;span class="cl">&lt;span class="n">SetupAuthS&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">config&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">pkR&lt;/span>:&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">info&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">skS&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">randomness&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="n">SetupAuthR&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">config&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">enc&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">skR&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">info&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">pkS&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="setup">Setup
+&lt;/h3>&lt;p>In order to set up the KEM and key schedule the sender uses the following &lt;code>SetupBaseS&lt;/code>
+function.
+Recall that the &lt;code>BaseS&lt;/code> refers to the HPKE base mode and sender.&lt;/p>
+&lt;p>The function takes the receiver&amp;rsquo;s public key &lt;code>pkR&lt;/code> and context information &lt;code>info&lt;/code>
+(a sequence of bytes to bind the setup to a specific context).
+In addition we need to pass in the &lt;code>configuration&lt;/code> that contains the mode as well
+as the algorithm identifiers for the KEM.
+Because hacspec can&amp;rsquo;t draw its own &lt;code>randomness&lt;/code>, as explained &lt;a class="link" href="#randomness" >below&lt;/a>,
+it is passed in as well.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-rust" data-lang="rust">&lt;span class="line">&lt;span class="cl">&lt;span class="k">pub&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">fn&lt;/span> &lt;span class="nf">SetupBaseS&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">configuration&lt;/span>: &lt;span class="nc">HPKEConfig&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">pkR&lt;/span>: &lt;span class="kp">&amp;amp;&lt;/span>&lt;span class="nc">HpkePublicKey&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">info&lt;/span>: &lt;span class="kp">&amp;amp;&lt;/span>&lt;span class="nc">Info&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">randomness&lt;/span>: &lt;span class="nc">Randomness&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>-&amp;gt; &lt;span class="nc">SenderContextResult&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">shared_secret&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">enc&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Encap&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">kem&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">configuration&lt;/span>&lt;span class="p">),&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">pkR&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">randomness&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">?&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">key_schedule&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">KeySchedule&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">config&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">shared_secret&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">info&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">default_psk&lt;/span>&lt;span class="p">(),&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">default_psk_id&lt;/span>&lt;span class="p">(),&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">?&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">SenderContextResult&lt;/span>::&lt;span class="nb">Ok&lt;/span>&lt;span class="p">((&lt;/span>&lt;span class="n">enc&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">key_schedule&lt;/span>&lt;span class="p">))&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>For comparison you can find the RFC pseudocode definition of &lt;code>SetupBaseS&lt;/code> below
+(which is not well defined as is because it is missing the algorithm identifiers).
+The main difference between the two functions is the explicit configuration and
+randomness required in hacspec.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-text" data-lang="text">&lt;span class="line">&lt;span class="cl">def SetupBaseS(pkR, info):
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> shared_secret, enc = Encap(pkR)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> return enc, KeyScheduleS(mode_base, shared_secret, info,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> default_psk, default_psk_id)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The setup function calls the two functions &lt;a class="link" href="#encap" >&lt;code>Encap&lt;/code>&lt;/a> and &lt;a class="link" href="#keyschedule" >&lt;code>KeySchedule&lt;/code>&lt;/a>.&lt;/p>
+&lt;h3 id="encap">Encap
+&lt;/h3>&lt;p>&lt;em>(Reminder: For demonstration purposes we use the DHKEM defined in the RFC.)&lt;/em>&lt;/p>
+&lt;p>The &lt;code>Encap&lt;/code> function takes the receiver&amp;rsquo;s public key &lt;code>pkR&lt;/code> and generates a &lt;code>shared_secret&lt;/code> as well
+as an &lt;code>encapsulation&lt;/code>.&lt;/p>
+&lt;p>It is necessary to pass in the algorithm identifier to know
+which KEM to use and the randomness to generate a new ephemeral key pair for the
+KEM.
+See the &lt;a class="link" href="#implementation-considerations" >discussion section below&lt;/a> on the necessity of the API changes.
+Because the function can fail it returns a result instead of simply the computed
+values as described in the RFC pseudocode.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-text" data-lang="text">&lt;span class="line">&lt;span class="cl">def Encap(pkR):
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> skE, pkE = GenerateKeyPair()
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> dh = DH(skE, pkR)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> enc = SerializePublicKey(pkE)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> pkRm = SerializePublicKey(pkR)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> kem_context = concat(enc, pkRm)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> shared_secret = ExtractAndExpand(dh, kem_context)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> return shared_secret, enc
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>All these changes make it much clearer what can happen within the function and
+in particular which error states might occur.&lt;/p>
+&lt;p>The &lt;code>Encap&lt;/code> function generates a fresh DH key pair and computes the DH between the
+receivers public key and the ephemeral private key $\text{dh}=\text{skE}*\text{pkR}$.
+The &lt;code>shared_secret&lt;/code> is then computed as the output of a key derivation function (HKDF)
+on input of the &lt;code>dh&lt;/code> value and the context that binds the key derivation to the
+parameters and public values.
+The encapsulation &lt;code>enc&lt;/code> is the serialized public key &lt;code>pkE&lt;/code> generated in the first
+step.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-rust" data-lang="rust">&lt;span class="line">&lt;span class="cl">&lt;span class="k">pub&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">fn&lt;/span> &lt;span class="nf">Encap&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">pkR&lt;/span>: &lt;span class="kp">&amp;amp;&lt;/span>&lt;span class="nc">PublicKey&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">alg&lt;/span>: &lt;span class="nc">KEM&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">rand&lt;/span>: &lt;span class="nc">Randomness&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>-&amp;gt; &lt;span class="nc">EncapResult&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">skE&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">pkE&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">GenerateKeyPair&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">alg&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">rand&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">?&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">dh&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="no">DH&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">alg&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">skE&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">pkR&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">?&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">encapsulation&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">SerializePublicKey&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">alg&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">pkE&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">?&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">pkRm&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">SerializePublicKey&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">alg&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">pkR&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">?&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">kem_context&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">enc&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">concat&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">pkRm&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">shared_secret&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">ExtractAndExpand&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">alg&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">suite_id&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">alg&lt;/span>&lt;span class="p">),&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">dh&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">kem_context&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">?&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">EncapResult&lt;/span>::&lt;span class="nb">Ok&lt;/span>&lt;span class="p">((&lt;/span>&lt;span class="n">shared_secret&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">encapsulation&lt;/span>&lt;span class="p">))&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="keyschedule">KeySchedule
+&lt;/h3>&lt;p>In order to use the &lt;code>shared_secret&lt;/code> with an AEAD and allow exporting additional
+key material, the following &lt;code>KeySchedule&lt;/code> derives the &lt;code>key&lt;/code> and &lt;code>base_nonce&lt;/code> for the
+AEAD and an &lt;code>exporter_secret&lt;/code> to export other keys.
+The key schedule is essentially a series of HKDF calls to extract different keys
+from the shared secret.&lt;/p>
+&lt;p>The main difference to the RFC here is again that it is necessary to pass in algorithm
+identifiers and the &lt;code>suite_id&lt;/code> to &lt;code>LabeledExtract&lt;/code> and &lt;code>LabeledExpand&lt;/code>.
+The &lt;code>suite_id&lt;/code> binds the KDF extract and expand functions to the specific context
+and is implicit in the RFC.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-rust" data-lang="rust">&lt;span class="line">&lt;span class="cl">&lt;span class="k">pub&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">fn&lt;/span> &lt;span class="nf">KeySchedule&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">config&lt;/span>: &lt;span class="nc">HPKEConfig&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">shared_secret&lt;/span>: &lt;span class="kp">&amp;amp;&lt;/span>&lt;span class="nc">SharedSecret&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">info&lt;/span>: &lt;span class="kp">&amp;amp;&lt;/span>&lt;span class="nc">Info&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">psk&lt;/span>: &lt;span class="kp">&amp;amp;&lt;/span>&lt;span class="nc">Psk&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">psk_id&lt;/span>: &lt;span class="kp">&amp;amp;&lt;/span>&lt;span class="nc">PskId&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>-&amp;gt; &lt;span class="nc">ContextResult&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">VerifyPSKInputs&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">config&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">psk&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">psk_id&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">?&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">HPKEConfig&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">mode&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">_kem&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">kdf&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">aead&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">config&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">psk_id_hash&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">LabeledExtract&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">kdf&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">suite_id&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">config&lt;/span>&lt;span class="p">),&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">empty_bytes&lt;/span>&lt;span class="p">(),&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">psk_id_hash_label&lt;/span>&lt;span class="p">(),&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">psk_id&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">?&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">info_hash&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">LabeledExtract&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">kdf&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">suite_id&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">config&lt;/span>&lt;span class="p">),&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">empty_bytes&lt;/span>&lt;span class="p">(),&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">info_hash_label&lt;/span>&lt;span class="p">(),&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">info&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">?&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">key_schedule_context&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">hpke_mode_label&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">mode&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">concat_owned&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">psk_id_hash&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">concat_owned&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">info_hash&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">secret&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">LabeledExtract&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">kdf&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">suite_id&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">config&lt;/span>&lt;span class="p">),&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">shared_secret&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">secret_label&lt;/span>&lt;span class="p">(),&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">psk&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">?&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">key&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">LabeledExpand&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">kdf&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">suite_id&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">config&lt;/span>&lt;span class="p">),&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">secret&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">key_label&lt;/span>&lt;span class="p">(),&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">key_schedule_context&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">Nk&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">aead&lt;/span>&lt;span class="p">),&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">?&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">base_nonce&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">LabeledExpand&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">kdf&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">suite_id&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">config&lt;/span>&lt;span class="p">),&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">secret&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">base_nonce_label&lt;/span>&lt;span class="p">(),&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">key_schedule_context&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">Nn&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">aead&lt;/span>&lt;span class="p">),&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">?&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">exporter_secret&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">LabeledExpand&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">kdf&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">suite_id&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">config&lt;/span>&lt;span class="p">),&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">secret&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">exp_label&lt;/span>&lt;span class="p">(),&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">key_schedule_context&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">Nh&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">kdf&lt;/span>&lt;span class="p">),&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">?&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>For comparison you can find the RFC pseudocode definition of &lt;code>KeySchedule&lt;/code> below.
+Note that the significantly longer hacspec definition above is not in fact longer
+but has longer lines that are wrapped.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-text" data-lang="text">&lt;span class="line">&lt;span class="cl">def KeySchedule&amp;lt;ROLE&amp;gt;(mode, shared_secret, info, psk, psk_id):
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> VerifyPSKInputs(mode, psk, psk_id)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> psk_id_hash = LabeledExtract(&amp;#34;&amp;#34;, &amp;#34;psk_id_hash&amp;#34;, psk_id)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> info_hash = LabeledExtract(&amp;#34;&amp;#34;, &amp;#34;info_hash&amp;#34;, info)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> key_schedule_context = concat(mode, psk_id_hash, info_hash)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> secret = LabeledExtract(shared_secret, &amp;#34;secret&amp;#34;, psk)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> key = LabeledExpand(secret, &amp;#34;key&amp;#34;, key_schedule_context, Nk)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> base_nonce = LabeledExpand(secret, &amp;#34;base_nonce&amp;#34;, key_schedule_context, Nn)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> exporter_secret = LabeledExpand(secret, &amp;#34;exp&amp;#34;, key_schedule_context, Nh)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> return Context&amp;lt;ROLE&amp;gt;(key, base_nonce, 0, exporter_secret)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>This is all that is needed to implement &lt;a class="link" href="https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/" target="_blank" rel="noopener"
+>HPKE&lt;/a>.
+All code examples here are taken directly from the Cryspen HPKE reference implementation.
+You can find the full code in the &lt;a class="link" href="https://github.com/cryspen/hpke-spec" target="_blank" rel="noopener"
+>Github repository&lt;/a> as well as the &lt;a class="link" href="https://tech.cryspen.com/hpke-spec" target="_blank" rel="noopener"
+>documentation&lt;/a>.&lt;/p>
+&lt;h2 id="implementation-considerations">Implementation Considerations
+&lt;/h2>&lt;p>When defining HPKE in hacspec, or most other programming languages, there are a
+number of considerations that impact the way the code looks.&lt;/p>
+&lt;p>The hacspec code is as close to the RFC pseudocode as possible.
+But some changes are needed.&lt;/p>
+&lt;h3 id="randomness">Randomness
+&lt;/h3>&lt;p>hacspec does not allow to draw randomness.
+It is therefore necessary to pass in randomness every time it is needed.&lt;/p>
+&lt;p>This approach is pretty close to the way this would be implemented in native Rust
+where a random-number generator is passed in and used to generate randomness.
+For simplicity hacspec expects the randomness to be drawn on the outside instead
+of doing it within the specification.&lt;/p>
+&lt;p>Note that it is possible to pre-determine the amount of randomness needed by HPKE
+calls because randomness is only needed when setting up the sender.
+At this point the KEM mechanisms and hence the required randomness is known.&lt;/p>
+&lt;h3 id="configuration-parameters">Configuration Parameters
+&lt;/h3>&lt;p>The &lt;a class="link" href="https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/" target="_blank" rel="noopener"
+>HPKE&lt;/a> RFC makes most of the configuration implicit to the functions rather than
+passing the algorithm identifiers around.
+Because the hacspec implementation has to know which algorithm to pick, this is
+of course not possible here.&lt;/p>
+&lt;p>HPKE hacspec functions take either an &lt;a class="link" href="https://tech.cryspen.com/hpke-spec/hpke/struct.HPKEConfig.html" target="_blank" rel="noopener"
+>&lt;code>HPKEConfig&lt;/code>&lt;/a> object with all algorithms
+in it or the specific algorithm identifier needed for the operation.&lt;/p>
+&lt;h3 id="naming">Naming
+&lt;/h3>&lt;p>The &lt;a class="link" href="https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/" target="_blank" rel="noopener"
+>HPKE&lt;/a> RFC uses, in some cases, names that are impossible to use in hacspec
+because they are keywords or contain illegal characters.
+Further does hacspec not support member functions as defined for the &lt;code>Context&lt;/code>.&lt;/p>
+&lt;p>We therefore replace &lt;code>.&lt;/code> in member function calls such as &lt;code>Context.Export&lt;/code> with an underscore,
+i.e. write &lt;code>Context_Export&lt;/code>.
+Keywords such as &lt;code>open&lt;/code> are replaced with a semantically equivalent version, i.e.
+&lt;code>HpkeOpen&lt;/code> in this example.&lt;/p>
+&lt;h3 id="secret-bytes">Secret bytes
+&lt;/h3>&lt;p>hacspec has the notion of secret integers that can&amp;rsquo;t be used for certain operations
+and should enforce secret-independent computation time.&lt;/p>
+&lt;p>For simplicity the hacspec HPKE implementation uses secret bytes everywhere even
+if not necessary, e.g. for cipher texts.&lt;/p>
+&lt;h3 id="errors">Errors
+&lt;/h3>&lt;p>While the RFC defines a set of errors it does not always define which errors
+are raised.
+For example, it leaves open whether implementations convert errors from the
+Diffie-Hellman operations into KEM errors (&lt;code>EncapError&lt;/code>/&lt;code>DecapError&lt;/code>) or not.&lt;/p>
+&lt;p>With the specific implementation in hacspec here the errors are clearly defined.&lt;/p>
+&lt;h2 id="about-hacspec">About hacspec
+&lt;/h2>&lt;p>&lt;a class="link" href="https://hacspec.org" target="_blank" rel="noopener"
+>hacspec&lt;/a> is a specification language for cryptographic mechanisms, and more, embedded in &lt;a class="link" href="https://www.rust-lang.org/" target="_blank" rel="noopener"
+>Rust&lt;/a>.
+It is a language for writing succinct, executable, formal specifications for cryptographic components.
+Syntactically, hacspec is a purely functional subset of Rust that aims to be readable by developers, cryptographers, and verification experts.
+An application developer can use hacspec to specify and prototype cryptographic components in Rust, and then either replace this specification with a verified implementation before deployment
+or use the hacspec code directly.&lt;/p>
+&lt;p>We used &lt;a class="link" href="https://hacspec.org" target="_blank" rel="noopener"
+>hacspec&lt;/a> here to write an executable, succinct, specification of &lt;a class="link" href="https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/" target="_blank" rel="noopener"
+>HPKE&lt;/a>
+that&amp;rsquo;s embedding the full RFC into its &lt;a class="link" href="https://tech.cryspen.com/hpke-spec" target="_blank" rel="noopener"
+>documentation&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://hacspec.org" target="_blank" rel="noopener"
+>hacspec&lt;/a> is at the heart of a novel, modular verification framework for Rust
+applications developed by &lt;a class="link" href="https://www.cryspen.com" target="_blank" rel="noopener"
+>Cryspen&lt;/a> in cooperation with the &lt;a class="link" href="https://team.inria.fr/prosecco/" target="_blank" rel="noopener"
+>Prosecco&lt;/a> team.&lt;/p>
+&lt;h2 id="summary">Summary
+&lt;/h2>&lt;p>Even though &lt;a class="link" href="https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/" target="_blank" rel="noopener"
+>HPKE&lt;/a> is a relatively simple scheme it requires care when implementing.
+This blog post gives an overview of how &lt;a class="link" href="https://hacspec.org" target="_blank" rel="noopener"
+>hacspec&lt;/a> can be used to achieve an executable
+version of the &lt;a class="link" href="https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/" target="_blank" rel="noopener"
+>HPKE&lt;/a> RFC that can be used as implementation on its own or as
+specification and reference implementation when implementing HPKE.&lt;/p>
+&lt;p>My company &lt;a class="link" href="https://www.cryspen.com" target="_blank" rel="noopener"
+>Cryspen&lt;/a> offers support for using &lt;a class="link" href="https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/" target="_blank" rel="noopener"
+>HPKE&lt;/a> as well as high assurance implementations
+of HPKE and other protocols.
+&lt;a class="link" href="mailto:franziskus@cryspen.com" >Get in touch for more information.&lt;/a>&lt;/p>
+&lt;hr>
+&lt;ul>
+&lt;li>&lt;i class="fab fa-github">&lt;/i> &lt;a class="link" href="https://github.com/cryspen/hpke-spec" target="_blank" rel="noopener"
+>Github repository&lt;/a>&lt;/li>
+&lt;li>&lt;i class="fa fa-book" aria-hidden="true">&lt;/i> &lt;a class="link" href="https://tech.cryspen.com/hpke-spec" target="_blank" rel="noopener"
+>Documentation&lt;/a>&lt;/li>
+&lt;li>&lt;i class="fa fa-file" aria-hidden="true">&lt;/i> &lt;a class="link" href="https://www.rfc-editor.org/rfc/rfc9180.html" target="_blank" rel="noopener"
+>RFC&lt;/a>&lt;/li>
+&lt;/ul></description></item><item><title>TL;DR - Hybrid Public Key Encryption</title><link>https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/</link><pubDate>Thu, 24 Feb 2022 00:00:00 +0000</pubDate><guid>https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/</guid><description>&lt;img src="https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/hybrid.jpg" alt="Featured image of post TL;DR - Hybrid Public Key Encryption" />&lt;p>&lt;a class="link" href="https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/" target="_blank" rel="noopener"
+>HPKE&lt;/a> is a &lt;a class="link" href="https://datatracker.ietf.org/rg/cfrg/about/" target="_blank" rel="noopener"
+>CFRG&lt;/a> in &lt;a class="link" href="https://www.rfc-editor.org/rfc/rfc9180.html" target="_blank" rel="noopener"
+>RFC 9180&lt;/a> that describes a scheme for hybrid public key encryption.
+It is co-authored by my &lt;a class="link" href="https://www.cryspen.com" target="_blank" rel="noopener"
+>Cryspen&lt;/a> co-founder &lt;a class="link" href="https://bhargavan.info/index.html" target="_blank" rel="noopener"
+>Karthikeyan Bhargavan&lt;/a> and one of
+his PhD students &lt;a class="link" href="https://www.benjaminlipp.de" target="_blank" rel="noopener"
+>Benjamin Lipp&lt;/a> as part of his research at &lt;a class="link" href="https://team.inria.fr/prosecco" target="_blank" rel="noopener"
+>Inria&lt;/a>.&lt;/p>
+&lt;p>This blog post will give a brief overview of the specification and describes some use cases.&lt;/p>
+&lt;p>If you want to learn more about the security proofs behind HPKE and the RFC process,
+Benjamin wrote an &lt;a class="link" href="https://www.benjaminlipp.de/p/hpke-cryptographic-standard/" target="_blank" rel="noopener"
+>excellent blog post&lt;/a> about it.&lt;/p>
+&lt;p>Hybrid Public Key Encryption, or short HPKE, is a cyrptographic mechanism that
+allows encrypting payload to a public key.
+It is called &amp;ldquo;hybrid&amp;rdquo; because the payload is encrypted with a symmetric scheme.
+The symmetric key is then encrypted to the receivers public key.
+The &lt;a class="link" href="https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/" target="_blank" rel="noopener"
+>HPKE&lt;/a> standard defines a number of natural extensions to the basic setting
+that allow the sender to authenticate themselves.&lt;/p>
+&lt;h2 id="hybrid-crypto-systems">Hybrid Crypto Systems
+&lt;/h2>&lt;p>Hybrid public key encryption has been used in different ways since the early 1990s in protocols such as &lt;a class="link" href="https://en.wikipedia.org/wiki/Pretty_Good_Privacy" target="_blank" rel="noopener"
+>PGP&lt;/a> or &lt;a class="link" href="https://en.wikipedia.org/wiki/Cryptographic_Message_Syntax" target="_blank" rel="noopener"
+>SMIME&lt;/a>.
+While these two protocols are for a very specific use case a more general version of hybrid encryption is described in &lt;a class="link" href="https://en.wikipedia.org/wiki/Integrated_Encryption_Scheme" target="_blank" rel="noopener"
+>ECIES&lt;/a>.
+&lt;a class="link" href="https://en.wikipedia.org/wiki/Integrated_Encryption_Scheme" target="_blank" rel="noopener"
+>ECIES&lt;/a> is part of many systems nowadays.
+&lt;a class="link" href="https://developer.apple.com/documentation/security/certificate_key_and_trust_services/keys/storing_keys_in_the_secure_enclave" target="_blank" rel="noopener"
+>Storing keys in the secure enclave on an iOS&lt;/a> device for example uses &lt;a class="link" href="https://en.wikipedia.org/wiki/Integrated_Encryption_Scheme" target="_blank" rel="noopener"
+>ECIES&lt;/a>.
+For a deeper explanation and history of hybrid crypto systems I recommend reading
+&lt;a class="link" href="https://blog.cloudflare.com/hybrid-public-key-encryption/" target="_blank" rel="noopener"
+>Christopher Wood&amp;rsquo;s blog post&lt;/a>.&lt;/p>
+&lt;p>However, there&amp;rsquo;s no general description of hybrid public key encryption with modern primitives.
+The &lt;a class="link" href="https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/" target="_blank" rel="noopener"
+>HPKE&lt;/a> standard solves this issue.
+Even before the RFC is finalised it is used in specifications for &lt;a class="link" href="https://datatracker.ietf.org/doc/draft-ietf-tls-esni/" target="_blank" rel="noopener"
+>ECH&lt;/a>, &lt;a class="link" href="https://datatracker.ietf.org/doc/draft-ietf-mls-protocol/" target="_blank" rel="noopener"
+>MLS&lt;/a>, &lt;a class="link" href="https://datatracker.ietf.org/doc/draft-pauly-dprive-oblivious-doh/" target="_blank" rel="noopener"
+>ODOH&lt;/a>, and &lt;a class="link" href="https://datatracker.ietf.org/doc/draft-gpew-priv-ppm/" target="_blank" rel="noopener"
+>PPM&lt;/a>.
+This shows the high demand for &lt;a class="link" href="https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/" target="_blank" rel="noopener"
+>HPKE&lt;/a>.&lt;/p>
+&lt;p>HPKE has four distinct modes of operation: Base, Auth, PSK, AuthPSK.
+In this blog post we only describe the two most commonly used modes Base and Auth.&lt;/p>
+&lt;p>&lt;strong>HPKE Modes&lt;/strong>&lt;/p>
+&lt;p>The &lt;em>Base&lt;/em> mode is the most common use case for HPKE where payload is encrypted
+to a public key.
+All other modes are authenticated in different ways.&lt;/p>
+&lt;ul>
+&lt;li>&lt;em>Auth&lt;/em> uses the sender&amp;rsquo;s private key for authentication&lt;/li>
+&lt;li>&lt;em>PSK&lt;/em> uses a pre-shared, high-entropy, key for authentication&lt;/li>
+&lt;li>&lt;em>AuthPSK&lt;/em> uses the sender&amp;rsquo;s private key as well as a pre-shared, high-entropy, key for authentication&lt;/li>
+&lt;/ul>
+&lt;h3 id="encrypting-to-a-public-key">Encrypting to a public key
+&lt;/h3>&lt;p>The following figure depicts the general flow of encrypting to a public key.
+This is the Base mode in HPKE.
+This is the most basic application of hybrid crypto systems.
+Alex knows the public key from Sasha and wants to send some &lt;code>Data&lt;/code> to them.
+Shasha&amp;rsquo;s public key is used to encrypt a shared secret, which is used to encrypt
+the &lt;code>Data&lt;/code>.
+The encrypted shared secret as well as the encrypted data is sent to Sasha, who
+can retrieve the shared secret with their corresponding private key.&lt;/p>
+&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/hybrid-encryption.png"
+width="1229"
+height="1237"
+srcset="https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/hybrid-encryption_hu14889700381132618719.png 480w, https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/hybrid-encryption_hu10603913873542110441.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="99"
+data-flex-basis="238px"
+>&lt;/p>
+&lt;h3 id="encrypting-to-a-public-key--authenticating-with-an-asymmetric-key">Encrypting to a public key &amp;amp; Authenticating with an asymmetric key
+&lt;/h3>&lt;p>Sometimes it is useful or necessary to authenticate the sender of the data.
+This is depicted in the figure below and represents the HPKE Auth mode.
+The authentication is achieved by mixing in the sender&amp;rsquo;s private key such that
+the receiver will only retrieve the correct shared secret if the public key
+they use for the sender corresponds to the used private key.&lt;/p>
+&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/authenticated-hybrid-encryption.png"
+width="1470"
+height="1237"
+srcset="https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/authenticated-hybrid-encryption_hu9594378189453069159.png 480w, https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/authenticated-hybrid-encryption_hu14116682228995873758.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="118"
+data-flex-basis="285px"
+>&lt;/p>
+&lt;h2 id="hpke">HPKE
+&lt;/h2>&lt;p>&lt;a class="link" href="https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/" target="_blank" rel="noopener"
+>HPKE&lt;/a> is essentially standardising how to use &lt;a class="link" href="https://en.wikipedia.org/wiki/Key_encapsulation" target="_blank" rel="noopener"
+>Key Encapsulation Mechanisms (KEM)&lt;/a>
+for hybrid encryption.
+The sender in &lt;a class="link" href="https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/" target="_blank" rel="noopener"
+>HPKE&lt;/a> uses a KEM to generate the shared secret as well as the
+encapsulation.
+The shared secret is then used in an &lt;a class="link" href="https://en.wikipedia.org/wiki/Authenticated_encryption#Authenticated_encryption_with_associated_data_%28AEAD%29" target="_blank" rel="noopener"
+>AEAD&lt;/a> (after running it through a key schedule)
+in order to encrypt a payload.&lt;/p>
+&lt;p>All HPKE use cases so far only take advantage of the single-shot APIs from HPKE.
+In order to encrypt a payload to a public key the sender needs to provide the
+receiver&amp;rsquo;s public key &lt;code>pkR&lt;/code>, some information &lt;code>info&lt;/code> and additional data &lt;code>aad&lt;/code> to bind the encryption
+to a certain context, as well as the payload &lt;code>pt&lt;/code>.
+HPKE returns the cipher text &lt;code>ct&lt;/code> as well as the encapsulation &lt;code>enc&lt;/code> that are both sent to
+the receiver.&lt;/p>
+&lt;pre tabindex="0">&lt;code>enc, ct &amp;lt;- Seal(pkR, info, aad, pt)
+&lt;/code>&lt;/pre>&lt;p>When using the Auth mode the sender&amp;rsquo;s private key &lt;code>sk&lt;/code> is needed in addition.&lt;/p>
+&lt;p>The receiver takes the encapsulation &lt;code>enc&lt;/code> and cipher text &lt;code>ct&lt;/code> together with their
+private key to retrieve the payload.&lt;/p>
+&lt;pre tabindex="0">&lt;code>pt &amp;lt;- Open(enc, skR, info, aad, ct)
+&lt;/code>&lt;/pre>&lt;p>When using the Auth mode the sender&amp;rsquo;s public key &lt;code>pkS&lt;/code> is needed in addition.&lt;/p>
+&lt;h3 id="multiple-encryptions">Multiple Encryptions
+&lt;/h3>&lt;p>HPKE allows multiple encryptions with the same shared secret.
+This is favourable if multiple messages are sent from the sender to the receiver.
+To this end HPKE generates a context that allows encrypting (and decrypting) multiple
+messages.&lt;/p>
+&lt;pre tabindex="0">&lt;code>enc, ContextS &amp;lt;- SetupS(pkR, info)
+ContextR &amp;lt;- SetupR(enc, skR, info)
+&lt;/code>&lt;/pre>&lt;p>Note that HPKE goes a step further than the &lt;a class="link" href="https://datatracker.ietf.org/doc/html/rfc5116" target="_blank" rel="noopener"
+>AEAD RFC&lt;/a> and simplifies the API.
+The consumer only needs to provide the payload and (potentially empty) additional
+data.
+HPKE takes care of providing unique nonces to the AEAD and fails if the maximum
+number of encryptions with the context have been performed &amp;mdash; in particular if
+the nonce would overflow.&lt;/p>
+&lt;pre tabindex="0">&lt;code>ct &amp;lt;- ContextS.Seal(aad, pt)
+pt &amp;lt;- ContextR.Open(aad, ct)
+&lt;/code>&lt;/pre>&lt;h3 id="exporting-secrets">Exporting Secrets
+&lt;/h3>&lt;p>In some scenarios applications need to establish additional shared secrets.
+This can be achieved with the HPKE exporter interface.
+The API is similar to the &lt;code>Seal&lt;/code> and &lt;code>Open&lt;/code> functions above but don&amp;rsquo;t require
+a payload or additional data.
+Instead an &lt;code>exporter_context&lt;/code> and the length of the exported secret &lt;code>L&lt;/code> have to
+be provided.&lt;/p>
+&lt;pre tabindex="0">&lt;code>enc, exported_secret &amp;lt;- SendExport(pkR, info, exporter_context, L)
+exported_secret &amp;lt;- ReceiveExport(enc, skR, info, exporter_context, L)
+&lt;/code>&lt;/pre>&lt;h3 id="use-cases">Use Cases
+&lt;/h3>&lt;p>Instead of inventing new use cases for HPKE we describe how HPKE is used in &lt;a class="link" href="https://datatracker.ietf.org/doc/draft-ietf-mls-protocol/" target="_blank" rel="noopener"
+>MLS&lt;/a>
+and &lt;a class="link" href="https://datatracker.ietf.org/doc/draft-ietf-tls-esni/" target="_blank" rel="noopener"
+>ECH&lt;/a> as they reflect common uses of hybrid public key encryption.&lt;/p>
+&lt;h4 id="hpke-in-mls">HPKE in MLS
+&lt;/h4>&lt;p>&lt;a class="link" href="https://datatracker.ietf.org/doc/draft-ietf-mls-protocol/" target="_blank" rel="noopener"
+>MLS&lt;/a> (Message Layer Security) is an IETF draft that standardises a new way of efficiently encrypting messages
+between participants in groups.
+It aims to solve the problem of end-to-end encryption in instant messaging.
+&lt;a class="link" href="https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/" target="_blank" rel="noopener"
+>HPKE&lt;/a> is a core building block.
+In order to encrypt a message to a specific entity in the protocol, &lt;a class="link" href="https://datatracker.ietf.org/doc/draft-ietf-mls-protocol/" target="_blank" rel="noopener"
+>MLS&lt;/a> uses &lt;a class="link" href="https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/" target="_blank" rel="noopener"
+>HPKE&lt;/a>
+to encrypt the message to the specific public key.&lt;/p>
+&lt;h4 id="hpke-in-ech">HPKE in ECH
+&lt;/h4>&lt;p>&lt;a class="link" href="https://datatracker.ietf.org/doc/draft-ietf-tls-esni/" target="_blank" rel="noopener"
+>ECH&lt;/a> (Encrypted Client Hello) is a mechanism in &lt;a class="link" href="https://tools.ietf.org/html/rfc8446" target="_blank" rel="noopener"
+>TLS&lt;/a> (Transport Layer Security)
+for encrypting a ClientHello message under a server public key.
+This description from the &lt;a class="link" href="https://datatracker.ietf.org/doc/draft-ietf-tls-esni/" target="_blank" rel="noopener"
+>ECH&lt;/a> draft corresponds directly to the Base mode of &lt;a class="link" href="https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/" target="_blank" rel="noopener"
+>HPKE&lt;/a>
+as described above.
+This allows &lt;a class="link" href="https://tools.ietf.org/html/rfc8446" target="_blank" rel="noopener"
+>TLS&lt;/a> connections to become more private because they don&amp;rsquo;t leak
+information about the connection, in particular the exact server the client wants
+to connect to.&lt;/p>
+&lt;h2 id="demo">Demo
+&lt;/h2>&lt;p>In order to better understand the message flow and working of HPKE we put together
+an interactive demo below to demonstrate how HPKE works.&lt;/p>
+&lt;ol>
+&lt;li>First generate a key pair for the receiver.&lt;/li>
+&lt;li>Then populate the info, additional data, and payload fields on the sender side.&lt;/li>
+&lt;li>When clicking the &amp;ldquo;HPKE Seal&amp;rdquo; button on the sender the following happens&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>The sender retrieves the public key from the receiver that has been generated in the first step.&lt;/li>
+&lt;li>The sender uses HPKE to encrypt the payload together with the info and additional data to the receiver&amp;rsquo;s public key.&lt;/li>
+&lt;li>The result is written into the Encoded Shared Secret and Ciphertext fields.&lt;/li>
+&lt;/ul>
+&lt;ol start="4">
+&lt;li>When clicking &amp;ldquo;HPKE Open&amp;rdquo; the receiver uses the private key to retrieve the shared secret and decrypt the ciphertext.
+The &amp;ldquo;Info&amp;rdquo; and &amp;ldquo;Additional Data&amp;rdquo; are the same as entered on the sender&amp;rsquo;s side.&lt;/li>
+&lt;/ol>
+&lt;h3 id="try-it-out-now">Try it out now!
+&lt;/h3>&lt;iframe width="100%" height="800px" src="./hpke_demo/index.html">&lt;/iframe>
+&lt;p>The demo is written in &lt;a class="link" href="https://hacspec.org" target="_blank" rel="noopener"
+>hacspec&lt;/a> (a subset of Rust) with a &lt;a class="link" href="https://webassembly.org/" target="_blank" rel="noopener"
+>WASM&lt;/a> frontend.
+Please stay tuned for a follow-up blog post diving into the details of this implementation.&lt;/p>
+&lt;h2 id="summary">Summary
+&lt;/h2>&lt;p>&lt;a class="link" href="https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/" target="_blank" rel="noopener"
+>HPKE&lt;/a> is a simple, but very powerful new tool that allows to efficiently solve
+key distribution problems (see the MLS use case) as well as increase privacy
+in existing protocols (see the ECH use case).&lt;/p>
+&lt;p>My company &lt;a class="link" href="https://www.cryspen.com" target="_blank" rel="noopener"
+>Cryspen&lt;/a> offers support for using &lt;a class="link" href="https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/" target="_blank" rel="noopener"
+>HPKE&lt;/a> as well as high assurance implementations
+of HPKE and other protocols.
+&lt;a class="link" href="mailto:franziskus@cryspen.com" >Get in touch for more information.&lt;/a>&lt;/p></description></item><item><title>Cryspen ERC PoC Grant</title><link>https://www.franziskuskiefer.de/p/cryspen-erc-poc-grant/</link><pubDate>Thu, 10 Feb 2022 00:00:00 +0000</pubDate><guid>https://www.franziskuskiefer.de/p/cryspen-erc-poc-grant/</guid><description>&lt;img src="https://www.franziskuskiefer.de/p/cryspen-erc-poc-grant/erc.jpg" alt="Featured image of post Cryspen ERC PoC Grant" />&lt;p>My co-founder &lt;a class="link" href="https://bhargavan.info/" target="_blank" rel="noopener"
+>Karthik&lt;/a> got awarded an &lt;a class="link" href="https://erc.europa.eu/funding/proof-concept" target="_blank" rel="noopener"
+>ERC Proof of Concept grant&lt;/a> for
+commercialising the know-how and landmark research results from his Inria
+research group &lt;a class="link" href="https://team.inria.fr/prosecco/" target="_blank" rel="noopener"
+>PROSECCO&lt;/a> through Cryspen.&lt;/p>
+&lt;h2 id="announcement">Announcement
+&lt;/h2>&lt;p>Cryptographic mechanisms are crucial to the security of our digital lives but their design and implementation remains notoriously difficult and error-prone. With the help of two ERC Grants, Karthikeyan Bhargavan and the Prosecco team at Inria have developed state-of-the-art formal verification techniques that can be applied to real-world cryptographic software. In particular, they used these techniques to help design and analyze the TLS 1.3 protocol standard, as well to build the HACL* verified cryptographic library, code from which has been incorporated in mainstream software projects including Mozilla Firefox, the Linux Kernel, the Tezos Blockchain, the WireGuard VPN, and the ElectionGuard voting system.&lt;/p>
+&lt;p>The goal of this new ERC Proof of Concept grant is to build upon these these landmark research results and to commercialise the associated know-how through a new company called Cryspen. Cryspen will build a verified cryptographic software stack and an associated verification toolchain that is well-documented and easy to use for security developers. Cryspen will offer consulting and support contracts for this stack as well as software contracts for developing new cryptographic applications, ranging from secure messaging system to privacy-preserving machine learning.&lt;/p>
+&lt;p>Cryspen is co-founded by Franziskus Kiefer (CEO), Karthikeyan Bhargavan, and Jonathan Protzenko. For more information, email &lt;a class="link" href="mailto:info@cryspen.com" >info@cryspen.com&lt;/a>&lt;/p></description></item></channel></rss>

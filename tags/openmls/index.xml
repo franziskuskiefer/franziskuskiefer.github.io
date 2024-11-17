@@ -1,20 +1,219 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>openmls on Dr Franziskus Kiefer</title>
-    <link>https://www.franziskuskiefer.de/tags/openmls/</link>
-    <description>Recent content in openmls on Dr Franziskus Kiefer</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Tue, 18 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/tags/openmls/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>OpenMLS Performance</title>
-      <link>https://www.franziskuskiefer.de/p/openmls-performance/</link>
-      <pubDate>Tue, 18 May 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.franziskuskiefer.de/p/openmls-performance/</guid>
-      <description>The Messaging Layer Security (MLS) protocol is an IETF proposal for group key establishment and message protection. OpenMLS is a Rust implementation of the MLS protocol in its current state (draft 11 as of the point of writing this) that is being implemented by Raphael, Konrad and myself. For more general information on MLS I refer to the spec and other blog posts. This blog post is only about MLS, and in particular OpenMLS, performance.</description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Openmls on Dr Franziskus Kiefer</title><link>https://www.franziskuskiefer.de/tags/openmls/</link><description>Recent content in Openmls on Dr Franziskus Kiefer</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 18 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/tags/openmls/index.xml" rel="self" type="application/rss+xml"/><item><title>OpenMLS Performance</title><link>https://www.franziskuskiefer.de/p/openmls-performance/</link><pubDate>Tue, 18 May 2021 00:00:00 +0000</pubDate><guid>https://www.franziskuskiefer.de/p/openmls-performance/</guid><description>&lt;img src="https://www.franziskuskiefer.de/p/openmls-performance/openmls-logo.svg" alt="Featured image of post OpenMLS Performance" />&lt;p>The Messaging Layer Security (&lt;a class="link" href="https://datatracker.ietf.org/wg/mls/about/" target="_blank" rel="noopener"
+>MLS&lt;/a>) protocol is an &lt;a class="link" href="https://datatracker.ietf.org/doc/draft-ietf-mls-protocol/" target="_blank" rel="noopener"
+>IETF proposal&lt;/a> for group key establishment
+and message protection.
+&lt;a class="link" href="https://github.com/openmls/openmls/" target="_blank" rel="noopener"
+>OpenMLS&lt;/a> is a Rust implementation of the MLS protocol in its current state (&lt;a class="link" href="https://datatracker.ietf.org/doc/html/draft-ietf-mls-protocol-11" target="_blank" rel="noopener"
+>draft 11&lt;/a> as of the point of writing this) that is being implemented by &lt;a class="link" href="https://twitter.com/raphaelrobert" target="_blank" rel="noopener"
+>Raphael&lt;/a>, &lt;a class="link" href="https://kkohbrok.github.io/" target="_blank" rel="noopener"
+>Konrad&lt;/a> and myself.
+For more general information on MLS I refer to the &lt;a class="link" href="https://messaginglayersecurity.rocks/mls-protocol/draft-ietf-mls-protocol.html" target="_blank" rel="noopener"
+>spec&lt;/a> and &lt;a class="link" href="https://wire.com/en/blog/mls-future-of-messaging/" target="_blank" rel="noopener"
+>other&lt;/a> blog &lt;a class="link" href="https://wickr.com/the-messaging-layer-security-protocol/" target="_blank" rel="noopener"
+>posts&lt;/a>.
+This blog post is only about MLS, and in particular OpenMLS, performance.&lt;/p>
+&lt;p>One goal of MLS is that it &lt;a class="link" href="https://datatracker.ietf.org/doc/charter-ietf-mls/" target="_blank" rel="noopener"
+>is supposed to be scalable&lt;/a>.
+The charter in particular claims the following:&lt;/p>
+&lt;blockquote>
+&lt;p>Resource requirements have good scaling in the size of the group (preferably sub-linear)&lt;/p>
+&lt;/blockquote>
+&lt;p>While performance can be theoretically analysed for MLS it is also interesting to see whether the performance goals hold up in a real implementation.
+This of course only looks at a single implementation.
+Nonetheless, I think that it gives a good impression on the actual performance of MLS implementations.
+Particularly because OpenMLS at this point is not optimised but rather implements the MLS spec as is.&lt;/p>
+&lt;h2 id="methodology">Methodology
+&lt;/h2>&lt;p>MLS is a pretty complex protocol with many moving parts.
+It is therefore important to clearly define what is being measured and how.&lt;/p>
+&lt;p>First, all tests are done with the only mandatory cipher suite in MLS 1.0 MLS10_128_DHKEMX25519_AES128GCM_SHA256_Ed25519.
+While other cipher suites obviously have different performance, the goal here is to investigate the general performance of MLS depending on the group size.
+The exact cipher suite used is therefore irrelevant.&lt;/p>
+&lt;h3 id="measurements">Measurements
+&lt;/h3>&lt;p>The measurements here do not cover all possible messages in MLS.
+Not all of them are fully supported by OpenMLS yet.
+Pre-shared key, re-init, external-init, app-ack, and external proposals will be checked once they are implemented.
+The measured messages nonetheless represent the core of the MLS protocol and should give a good idea of the general performance of the protocol.
+We test performance of group creation, group join as well as the three basic messages update, add, and remove, and application messages.&lt;/p>
+&lt;p>All measurements except for the first two use one of the following set-ups:&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>&lt;strong>Base&lt;/strong>: The group is created by a user.
+All other participants are invited and each participant creates the group locally.
+Then every participant sends an update message to the group and everyone else processes it.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Bare:&lt;/strong> The group is created by a user.
+All other participants are invited and each participant creates the group locally.
+This creates an extremely sparse version of the underlying tree in MLS and is therefore interesting to look at.&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;p>Measurements are run on different group sizes.
+When running benchmarks with large groups such as 1000 participants a lot of memory is used in order to simulate all devices (up to 10 GB) such that larger groups are hard to simulate.
+The chosen group sizes allow us to get a good idea how MLS performs depending on the group size.
+We in particular test groups of the size 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 30, 40, 50, 100, 200, 300, 400, 500, 1000.&lt;/p>
+&lt;h4 id="operations">Operations
+&lt;/h4>&lt;ul>
+&lt;li>&lt;strong>Group creation:&lt;/strong>
+Creating a group involves creating the group, proposals and welcome messages for the other participants, and applying the commit.&lt;/li>
+&lt;li>&lt;strong>Join group:&lt;/strong>
+Joining a group is equivalent to processing a welcome message to locally create the new group.&lt;/li>
+&lt;li>&lt;strong>Update messages:&lt;/strong>
+Sending an update to a group involves creating a proposal, the corresponding commit and applying the commit.
+When receiving an update message the commit is being processed.&lt;/li>
+&lt;li>&lt;strong>Adding a user:&lt;/strong>
+When a new user is added to the group the add proposal and welcome message are created and the commit is locally applied by the adder.
+When receiving a commit with an add proposal it is processed by the user.&lt;/li>
+&lt;li>&lt;strong>Removing a user:&lt;/strong>
+When a user is removed from the group the remove proposal and commit are created and locally applied by the remover.
+When receiving a commit with a remove proposal it is processed by the user.&lt;/li>
+&lt;li>&lt;strong>Application messages:&lt;/strong>
+Sending an application message consists of creating the plaintext message and encrypting it for the group.
+In order to receive an application message the user has to decrypt and parse the message.
+We measure performance of a single message that is being sent and processed.
+Note that the processing time of subsequent messages is not significantly different from the first one.&lt;/li>
+&lt;/ul>
+&lt;h2 id="results">Results
+&lt;/h2>&lt;p>You can find the raw data and some more graphs in the &lt;a class="link" href="https://docs.google.com/spreadsheets/d/1nZv8lpT28JctDVo4ARBLZCKcIdvo-h8cIyN3_dIedFU" target="_blank" rel="noopener"
+>OpenMLS performance spreadsheet&lt;/a>.&lt;/p>
+&lt;p>All measurements were performed on a laptop with Arch Linux, an Intel Core i7-4900MQ @ 2.80GHz and 16 GB memory.&lt;/p>
+&lt;h3 id="group-setup">Group setup
+&lt;/h3>&lt;p>As the following graph shows the time needed to create a group is linear in the number of participants added when creating the group.
+The blue line shows the actual measurements while the magenta one is a trend line showing the linear relation.
+This is what is to be expected because the performance is dominated by the creation of welcome messages, which have to be created for each member.&lt;/p>
+&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/openmls-performance/group-creation.png"
+width="600"
+height="371"
+srcset="https://www.franziskuskiefer.de/p/openmls-performance/group-creation_hu390722887585268607.png 480w, https://www.franziskuskiefer.de/p/openmls-performance/group-creation_hu13105536394070267109.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="161"
+data-flex-basis="388px"
+>&lt;/p>
+&lt;h3 id="join-group">Join group
+&lt;/h3>&lt;p>The performance of joining a group is linear in the group size because the information in the welcome message as well as the tree that is being processed when joining the group are linear in the number of group members.
+Note that it is not logarithmic because the tree needs to be constructed.
+This requires processing of each node in some way, which is linear in the group size.
+The blue line again shows the actual measurements while the magenta one is a trend line for the linear relation.&lt;/p>
+&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/openmls-performance/join.png"
+width="600"
+height="371"
+srcset="https://www.franziskuskiefer.de/p/openmls-performance/join_hu8434490448179972974.png 480w, https://www.franziskuskiefer.de/p/openmls-performance/join_hu586860903247748959.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="161"
+data-flex-basis="388px"
+>&lt;/p>
+&lt;h3 id="update">Update
+&lt;/h3>&lt;p>Sending and processing updates are both sub-linear in the number of group members because the number of computations depend on the height of the tree in the &lt;em>base&lt;/em> case.&lt;/p>
+&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/openmls-performance/update.png"
+width="600"
+height="371"
+srcset="https://www.franziskuskiefer.de/p/openmls-performance/update_hu9873159883853717952.png 480w, https://www.franziskuskiefer.de/p/openmls-performance/update_hu3643139880533845239.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="161"
+data-flex-basis="388px"
+>&lt;/p>
+&lt;p>In the case of a very sparse tree, which we have in the &lt;em>bare&lt;/em> case because every leaf only processed the welcome message, the performance of sending an update however is linear in the group size.
+When creating a commit for an update proposal the sender has to include a path and refresh the private tree.
+The following two flamegraphs show the difference between the base and the bare case.
+While it doesn&amp;rsquo;t show directly what&amp;rsquo;s going on, it can be seen that in the base case (first flamegraph) the &lt;code>new_with_keys&lt;/code> function requires a lot more time relative to the rest of the &lt;code>replace_private_tree&lt;/code> function.
+This is a strong indicator for where to look for the differences.&lt;/p>
+&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/openmls-performance/send-update-base.png"
+width="3606"
+height="762"
+srcset="https://www.franziskuskiefer.de/p/openmls-performance/send-update-base_hu4874649569774633425.png 480w, https://www.franziskuskiefer.de/p/openmls-performance/send-update-base_hu5991119730222648403.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="473"
+data-flex-basis="1135px"
+>&lt;/p>
+&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/openmls-performance/send-update-bare.png"
+width="3606"
+height="900"
+srcset="https://www.franziskuskiefer.de/p/openmls-performance/send-update-bare_hu17457979822156307379.png 480w, https://www.franziskuskiefer.de/p/openmls-performance/send-update-bare_hu12985293488775238139.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="400"
+data-flex-basis="961px"
+>&lt;/p>
+&lt;p>Looking at a tree with 300 leaves for example we have to encrypt 299 times (for every other leaf) in the case of a bare tree.
+In a fully updated tree however only 9 encryptions are necessary, one for each level of the tree.
+It is therefore expected that the performance of sending an update (with commit) in the bare case is linear in the group size.&lt;/p>
+&lt;h3 id="adding-a-user">Adding a user
+&lt;/h3>&lt;p>Looking at the performance of adding a user and processing an add commit in the following graph we can again see the linear growth in relation to the number of group members.
+This is almost independent of the state of the tree.
+The operations appear to be slightly more expensive in a fully updated tree though.&lt;/p>
+&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/openmls-performance/add.png"
+width="600"
+height="371"
+srcset="https://www.franziskuskiefer.de/p/openmls-performance/add_hu480920004077346561.png 480w, https://www.franziskuskiefer.de/p/openmls-performance/add_hu1289853682501411927.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="161"
+data-flex-basis="388px"
+>&lt;/p>
+&lt;h3 id="removing-a-user">Removing a user
+&lt;/h3>&lt;p>Like updating, removing a user and processing a remove commit are linear in complexity in the base case as the following graph shows.
+Removing in a very sparse tree is significantly more expensive than in a fully updated tree.
+The reason is the same as for updating the tree.
+The remove information has to be encrypted to all other remaining participants in the tree.&lt;/p>
+&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/openmls-performance/remove.png"
+width="600"
+height="371"
+srcset="https://www.franziskuskiefer.de/p/openmls-performance/remove_hu5303864267182273244.png 480w, https://www.franziskuskiefer.de/p/openmls-performance/remove_hu2574459668790701661.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="161"
+data-flex-basis="388px"
+>&lt;/p>
+&lt;h3 id="application-messages">Application messages
+&lt;/h3>&lt;p>Sending and receiving application messages is essentially independent of the group size, as expected.
+Receiving the first message within an epoch has a small overhead compared to subsequent message as seen in the second graph.
+This should be negligible in practice though.&lt;/p>
+&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/openmls-performance/application-message-send.png"
+width="600"
+height="371"
+srcset="https://www.franziskuskiefer.de/p/openmls-performance/application-message-send_hu2157335197267976492.png 480w, https://www.franziskuskiefer.de/p/openmls-performance/application-message-send_hu6324650358861094575.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="161"
+data-flex-basis="388px"
+>&lt;/p>
+&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/openmls-performance/application-message-receive.png"
+width="600"
+height="371"
+srcset="https://www.franziskuskiefer.de/p/openmls-performance/application-message-receive_hu5643673153265419165.png 480w, https://www.franziskuskiefer.de/p/openmls-performance/application-message-receive_hu3098709710336373218.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="161"
+data-flex-basis="388px"
+>&lt;/p>
+&lt;h2 id="analysis">Analysis
+&lt;/h2>&lt;p>First, the plain performance numbers tell us that the goal of the MLS charter of a protocol that scales well for large groups has been mostly.
+Depending on the state of the tree some operations might take longer than expected.
+However, this can be mitigated by the application ensuring that the tree is updated and shrunk regularly.
+Notably, the real world performance appears to be consistent with the theoretical expectations.&lt;/p>
+&lt;h2 id="technical-background">Technical background
+&lt;/h2>&lt;p>The measurements are &lt;em>not&lt;/em> done with any Rust benchmarking framework such as &lt;a class="link" href="https://crates.io/crates/criterion" target="_blank" rel="noopener"
+>criterion&lt;/a>.
+Due to the way criterion works there&amp;rsquo;s significant &lt;a class="link" href="https://github.com/bheisler/criterion.rs/issues/475" target="_blank" rel="noopener"
+>overhead in criterion&lt;/a>.
+While the numbers in this post can be reliably reproduced a more thorough measurement framework&lt;/p>
+&lt;p>The flamegraphs are produced with &lt;a class="link" href="https://crates.io/crates/pprof" target="_blank" rel="noopener"
+>pprof&lt;/a>, a simple to use CPU profiler for Rust.&lt;/p>
+&lt;p>All measurements were performed on &lt;a class="link" href="https://github.com/openmls/openmls/tree/65030529e43716d482a6e57a432da5a388fd0a3c" target="_blank" rel="noopener"
+>this revision&lt;/a>.
+To reproduce them check out the revision and run&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="k">for&lt;/span> i in &lt;span class="m">2&lt;/span> &lt;span class="m">3&lt;/span> &lt;span class="m">4&lt;/span> &lt;span class="m">5&lt;/span> &lt;span class="m">6&lt;/span> &lt;span class="m">7&lt;/span> &lt;span class="m">8&lt;/span> &lt;span class="m">9&lt;/span> &lt;span class="m">10&lt;/span> &lt;span class="m">20&lt;/span> &lt;span class="m">30&lt;/span> &lt;span class="m">40&lt;/span> &lt;span class="m">50&lt;/span> &lt;span class="m">100&lt;/span> &lt;span class="m">200&lt;/span> &lt;span class="m">300&lt;/span> &lt;span class="m">400&lt;/span> &lt;span class="m">500&lt;/span> 1000&lt;span class="p">;&lt;/span> &lt;span class="k">do&lt;/span> &lt;span class="se">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="se">&lt;/span> cargo bench --bench group -- &lt;span class="nv">$i&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="se">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="se">&lt;/span>&lt;span class="k">done&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="conclusion--future-work">Conclusion &amp;amp; Future work
+&lt;/h2>&lt;p>Measuring performance of a protocol as complex as MLS is pretty difficult.
+Without an application and elaborate test framework that can simulate many different scenarios it is only possible to get the basic numbers as shown here.
+While they give a good indicator towards the performance of the MLS protocol they are insufficient to claim any performance of real applications that use MLS.&lt;/p>
+&lt;p>Nonetheless, the numbers show that the MLS protocol appears to allow for efficient, end-to-end-encrypted messaging in large groups.
+Sending and receiving application messages is independent of the group size while group operations are sub-linear in the group size in most cases.&lt;/p>
+&lt;p>When OpenMLS is further developed and we have a messaging client using it another set of measurements should be performed with real world usage scenarios in mind in order to investigate whether the performance we have seen here translates to efficient group messaging in an application.
+The MLS specification further leaves anything around authentication and authorization policies open to the application.
+These might be complex procedures and impact the MLS performance as well.&lt;/p></description></item></channel></rss>

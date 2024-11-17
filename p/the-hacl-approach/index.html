@@ -1,509 +1,89 @@
-<!DOCTYPE html>
-<html lang="en-us">
-    <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='HACL* (High-Assurance Cryptographic Library) is a formally verified cryptographic library in F*, developed by the Prosecco team at INRIA Paris in collaboration with Microsoft Research, as part of Project Everest. HACL* was inspired by discussions at the HACS workshop and aims at developing a set of reference implementations in C for common cryptographic primitives.
-This is the first post in a series describing formal verification in NSS as an approach to improve confidence in highly complex, highly security critical code.'><title>The HACL* approach</title>
-
-<link rel='canonical' href='https://www.franziskuskiefer.de/p/the-hacl-approach/'>
-
-<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='The HACL* approach'>
-<meta property='og:description' content='HACL* (High-Assurance Cryptographic Library) is a formally verified cryptographic library in F*, developed by the Prosecco team at INRIA Paris in collaboration with Microsoft Research, as part of Project Everest. HACL* was inspired by discussions at the HACS workshop and aims at developing a set of reference implementations in C for common cryptographic primitives.
-This is the first post in a series describing formal verification in NSS as an approach to improve confidence in highly complex, highly security critical code.'>
-<meta property='og:url' content='https://www.franziskuskiefer.de/p/the-hacl-approach/'>
-<meta property='og:site_name' content='Dr Franziskus Kiefer'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='HACL*' /><meta property='article:tag' content='formal verification' /><meta property='article:tag' content='crypto' /><meta property='article:published_time' content='2018-02-14T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2018-02-14T00:00:00&#43;00:00'/><meta property='og:image' content='https://www.franziskuskiefer.de/p/the-hacl-approach/hacl-chart.png' />
-<meta name="twitter:site" content="@_franziskus_">
-    <meta name="twitter:creator" content="@_franziskus_"><meta name="twitter:title" content="The HACL* approach">
-<meta name="twitter:description" content="HACL* (High-Assurance Cryptographic Library) is a formally verified cryptographic library in F*, developed by the Prosecco team at INRIA Paris in collaboration with Microsoft Research, as part of Project Everest. HACL* was inspired by discussions at the HACS workshop and aims at developing a set of reference implementations in C for common cryptographic primitives.
-This is the first post in a series describing formal verification in NSS as an approach to improve confidence in highly complex, highly security critical code."><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://www.franziskuskiefer.de/p/the-hacl-approach/hacl-chart.png' />
-    </head>
-    <body class="
-    article-page has-toc
-">
-    <script>
-        (function() {
-            const colorSchemeKey = 'StackColorScheme';
-            if(!localStorage.getItem(colorSchemeKey)){
-                localStorage.setItem(colorSchemeKey, "auto");
-            }
-        })();
-    </script><script>
-    (function() {
-        const colorSchemeKey = 'StackColorScheme';
-        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
-        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
-
-        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
-            
-
-            document.documentElement.dataset.scheme = 'dark';
-        } else {
-            document.documentElement.dataset.scheme = 'light';
-        }
-    })();
-</script>
-<div class="container main-container flex 
-    
-        extended
-    
-">
-    
-        <div id="article-toolbar">
-            <a href="https://www.franziskuskiefer.de/" class="back-home">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <polyline points="15 6 9 12 15 18" />
-</svg>
-
-
-
-                <span>Back</span>
-            </a>
-        </div>
-    
-<main class="main full-width">
-    <article class="has-image main-article">
-    <header class="article-header">
-        <div class="article-image">
-            <a href="/p/the-hacl-approach/">
-                <img src="/p/the-hacl-approach/hacl-chart_hubf5385a0c6763cff9ba6bbfffd88a9a5_61924_800x0_resize_box_3.png"
-                        srcset="/p/the-hacl-approach/hacl-chart_hubf5385a0c6763cff9ba6bbfffd88a9a5_61924_800x0_resize_box_3.png 800w, /p/the-hacl-approach/hacl-chart_hubf5385a0c6763cff9ba6bbfffd88a9a5_61924_1600x0_resize_box_3.png 1600w"
-                        width="800" 
-                        height="565" 
-                        loading="lazy"
-                        alt="Featured image of post The HACL* approach" />
-                
-            </a>
-        </div>
-    
-
-    <div class="article-details">
-    
-
-    <h2 class="article-title">
-        <a href="/p/the-hacl-approach/">The HACL* approach</a>
-    </h2>
-
-    
-
-    
-    <footer class="article-time">
-        
-            <div>
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
-  <circle cx="18" cy="18" r="4" />
-  <path d="M15 3v4" />
-  <path d="M7 3v4" />
-  <path d="M3 11h16" />
-  <path d="M18 16.496v1.504l1 1" />
-</svg>
-                <time class="article-time--published">Feb 14, 2018</time>
-            </div>
-        
-
-        
-            <div>
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="12" cy="12" r="9" />
-  <polyline points="12 7 12 12 15 15" />
-</svg>
-
-
-
-                <time class="article-time--reading">
-                    6 min read
-                </time>
-            </div>
-        
-    </footer>
-    
-</div>
-</header>
-
-    <section class="article-content">
-    <p>HACL* (High-Assurance Cryptographic Library) is a formally verified cryptographic library in <a class="link" href="https://www.fstar-lang.org/"  target="_blank" rel="noopener"
-    >F*</a>, developed by the <a class="link" href="http://prosecco.inria.fr/"  target="_blank" rel="noopener"
-    >Prosecco team</a> at <a class="link" href="https://www.inria.fr/en/centre/paris"  target="_blank" rel="noopener"
-    >INRIA Paris</a> in collaboration with Microsoft Research, as part of <a class="link" href="https://github.com/project-everest"  target="_blank" rel="noopener"
-    >Project Everest</a>.
-HACL* was inspired by discussions at the <a class="link" href="https://hacs-workshop.github.io/"  target="_blank" rel="noopener"
-    >HACS workshop</a> and aims at developing a set of reference implementations in C for common cryptographic primitives.</p>
-<p>This is the first post in a series describing formal verification in NSS as an approach to improve confidence in highly complex, highly security critical code.
+<!doctype html><html lang=en-us dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="HACL* (High-Assurance Cryptographic Library) is a formally verified cryptographic library in F*, developed by the Prosecco team at INRIA Paris in collaboration with Microsoft Research, as part of Project Everest. HACL* was inspired by discussions at the HACS workshop and aims at developing a set of reference implementations in C for common cryptographic primitives.\nThis is the first post in a series describing formal verification in NSS as an approach to improve confidence in highly complex, highly security critical code. In this first post I describe the most important ideas and concepts of HACL*, the basis of most formally verified code in NSS. If you want to have all the juicy details about HACL*, I recommend reading the CCS'17 paper.\n"><title>The HACL* approach</title>
+<link rel=canonical href=https://www.franziskuskiefer.de/p/the-hacl-approach/><link rel=stylesheet href=/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css><meta property='og:title' content="The HACL* approach"><meta property='og:description' content="HACL* (High-Assurance Cryptographic Library) is a formally verified cryptographic library in F*, developed by the Prosecco team at INRIA Paris in collaboration with Microsoft Research, as part of Project Everest. HACL* was inspired by discussions at the HACS workshop and aims at developing a set of reference implementations in C for common cryptographic primitives.\nThis is the first post in a series describing formal verification in NSS as an approach to improve confidence in highly complex, highly security critical code. In this first post I describe the most important ideas and concepts of HACL*, the basis of most formally verified code in NSS. If you want to have all the juicy details about HACL*, I recommend reading the CCS'17 paper.\n"><meta property='og:url' content='https://www.franziskuskiefer.de/p/the-hacl-approach/'><meta property='og:site_name' content='Dr Franziskus Kiefer'><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:tag' content='HACL*'><meta property='article:tag' content='formal verification'><meta property='article:tag' content='crypto'><meta property='article:published_time' content='2018-02-14T00:00:00+00:00'><meta property='article:modified_time' content='2018-02-14T00:00:00+00:00'><meta property='og:image' content='https://www.franziskuskiefer.de/p/the-hacl-approach/hacl-chart.png'><meta name=twitter:title content="The HACL* approach"><meta name=twitter:description content="HACL* (High-Assurance Cryptographic Library) is a formally verified cryptographic library in F*, developed by the Prosecco team at INRIA Paris in collaboration with Microsoft Research, as part of Project Everest. HACL* was inspired by discussions at the HACS workshop and aims at developing a set of reference implementations in C for common cryptographic primitives.\nThis is the first post in a series describing formal verification in NSS as an approach to improve confidence in highly complex, highly security critical code. In this first post I describe the most important ideas and concepts of HACL*, the basis of most formally verified code in NSS. If you want to have all the juicy details about HACL*, I recommend reading the CCS'17 paper.\n"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content='https://www.franziskuskiefer.de/p/the-hacl-approach/hacl-chart.png'></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label="Toggle Menu">
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/images/profilepic_hu11425891720239459000.jpg width=300 height=300 class=site-logo loading=lazy alt=Avatar></a></figure><div class=site-meta><h1 class=site-name><a href=/>Dr Franziskus Kiefer</a></h1><h2 class=site-description>Cryptography & Security Engineer and Researcher based in Berlin</h2></div></header><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>Home</span></a></li><li><a href=/about/><svg class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
+<span>About</span></a></li><li><a href=/publications/><svg class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11 3l9 9a1.5 1.5.0 010 2l-6 6a1.5 1.5.0 01-2 0L3 11V7a4 4 0 014-4h4"/><circle cx="9" cy="9" r="2"/></svg>
+<span>Publications</span></a></li><li><a href=/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>Search</span></a></li><li><a href=https://github.com/franziskuskiefer/ target=_blank><svg class="icon icon-tabler icon-tabler-brand-github" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>
+<span>Github</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>Dark Mode</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">Table of contents</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#an-example---conditional-swap>An Example - Conditional Swap</a></li></ol></nav></div></section></aside><main class="main full-width"><article class="has-image main-article"><header class=article-header><div class=article-image><a href=/p/the-hacl-approach/><img src=/p/the-hacl-approach/hacl-chart_hu7026172448860542263.png srcset="/p/the-hacl-approach/hacl-chart_hu7026172448860542263.png 800w, /p/the-hacl-approach/hacl-chart_hu15860517476532431757.png 1600w" width=800 height=565 loading=lazy alt="Featured image of post The HACL* approach"></a></div><div class=article-details><div class=article-title-wrapper><h2 class=article-title><a href=/p/the-hacl-approach/>The HACL* approach</a></h2></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published>Feb 14, 2018</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>7 minute read</time></div></footer></div></header><section class=article-content><p>HACL* (High-Assurance Cryptographic Library) is a formally verified cryptographic library in <a class=link href=https://www.fstar-lang.org/ target=_blank rel=noopener>F*</a>, developed by the <a class=link href=http://prosecco.inria.fr/ target=_blank rel=noopener>Prosecco team</a> at <a class=link href=https://www.inria.fr/en/centre/paris target=_blank rel=noopener>INRIA Paris</a> in collaboration with Microsoft Research, as part of <a class=link href=https://github.com/project-everest target=_blank rel=noopener>Project Everest</a>.
+HACL* was inspired by discussions at the <a class=link href=https://hacs-workshop.github.io/ target=_blank rel=noopener>HACS workshop</a> and aims at developing a set of reference implementations in C for common cryptographic primitives.</p><p>This is the first post in a series describing formal verification in NSS as an approach to improve confidence in highly complex, highly security critical code.
 In this first post I describe the most important ideas and concepts of HACL*, the basis of most formally verified code in NSS.
-If you want to have all the juicy details about HACL*, I recommend reading the <a class="link" href="https://github.com/mitls/hacl-star/blob/master/doc/papers/hacl-star-ccs2017.pdf"  target="_blank" rel="noopener"
-    >CCS'17 paper</a>.</p>
-<h1 id="hacl">HACL*</h1>
-<p>HACL*, though written in F*, can be compiled to C code with guaranteed memory safety, secret independent computation, and functional correctness with respect to some mathematical specification.
-Let&rsquo;s first have a look at the high-level idea of HACL* on the example of Curve25519.</p>
-<p>The first step is to take the specification (<a class="link" href="https://tools.ietf.org/html/rfc7748"  target="_blank" rel="noopener"
-    >RFC 7748</a> in this case) and translate it into a high level F* specification.
+If you want to have all the juicy details about HACL*, I recommend reading the <a class=link href=https://github.com/mitls/hacl-star/blob/master/doc/papers/hacl-star-ccs2017.pdf target=_blank rel=noopener>CCS'17 paper</a>.</p><h1 id=hacl>HACL*</h1><p>HACL*, though written in F*, can be compiled to C code with guaranteed memory safety, secret independent computation, and functional correctness with respect to some mathematical specification.
+Let&rsquo;s first have a look at the high-level idea of HACL* on the example of Curve25519.</p><p>The first step is to take the specification (<a class=link href=https://tools.ietf.org/html/rfc7748 target=_blank rel=noopener>RFC 7748</a> in this case) and translate it into a high level F* specification.
 This specification is easy to read and can be checked for correctness against the RFC easily.
 All correctness guarantees HACL* gives for the generated C code are based on this specification, i.e. the C code is proven to be functionally equivalent to the the high level specification.
-Here the definition of the Montgomery ladder, an excerpt from the <a class="link" href="https://github.com/mitls/hacl-star/blob/dev_specs/specs/Spec.Curve25519.fst"  target="_blank" rel="noopener"
-    >Curve25519 specification</a>. (Apologies for the highlighting, no F* support.)</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ocaml" data-lang="ocaml"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="k">let</span> <span class="k">rec</span> <span class="n">montgomery_ladder_</span> <span class="o">(</span><span class="n">init</span><span class="o">:</span><span class="n">elem</span><span class="o">)</span> <span class="n">x</span> <span class="n">xp1</span> <span class="o">(</span><span class="n">k</span><span class="o">:</span><span class="n">scalar</span><span class="o">)</span> <span class="o">(</span><span class="n">ctr</span><span class="o">:</span><span class="n">nat</span><span class="o">{</span><span class="n">ctr</span><span class="o">&lt;=</span><span class="n">256</span><span class="o">})</span>
-</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="o">:</span> <span class="nc">Tot</span> <span class="n">proj_point</span> <span class="o">(</span><span class="n">decreases</span> <span class="n">ctr</span><span class="o">)</span> <span class="o">=</span>
-</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  <span class="k">if</span> <span class="n">ctr</span> <span class="o">=</span> <span class="n">0</span> <span class="k">then</span> <span class="n">x</span>
-</span></span><span class="line"><span class="ln"> 4</span><span class="cl">  <span class="k">else</span> <span class="o">(</span>
-</span></span><span class="line"><span class="ln"> 5</span><span class="cl">    <span class="k">let</span> <span class="n">ctr&#39;</span> <span class="o">=</span> <span class="n">ctr</span> <span class="o">-</span> <span class="n">1</span> <span class="k">in</span>
-</span></span><span class="line"><span class="ln"> 6</span><span class="cl">    <span class="k">let</span> <span class="o">(</span><span class="n">x&#39;</span><span class="o">,</span> <span class="n">xp1&#39;</span><span class="o">)</span> <span class="o">=</span>
-</span></span><span class="line"><span class="ln"> 7</span><span class="cl">      <span class="k">if</span> <span class="n">uint_to_nat</span> <span class="o">(</span><span class="n">ith_bit</span> <span class="n">k</span> <span class="n">ctr&#39;</span><span class="o">)</span> <span class="o">=</span> <span class="n">1</span> <span class="k">then</span> <span class="o">(</span>
-</span></span><span class="line"><span class="ln"> 8</span><span class="cl">        <span class="k">let</span> <span class="n">nqp2</span><span class="o">,</span> <span class="n">nqp1</span> <span class="o">=</span> <span class="n">add_and_double</span> <span class="n">init</span> <span class="n">xp1</span> <span class="n">x</span> <span class="k">in</span>
-</span></span><span class="line"><span class="ln"> 9</span><span class="cl">        <span class="n">nqp1</span><span class="o">,</span> <span class="n">nqp2</span>
-</span></span><span class="line"><span class="ln">10</span><span class="cl">      <span class="o">)</span> <span class="k">else</span> <span class="n">add_and_double</span> <span class="n">init</span> <span class="n">x</span> <span class="n">xp1</span> <span class="k">in</span>
-</span></span><span class="line"><span class="ln">11</span><span class="cl">    <span class="n">montgomery_ladder_</span> <span class="n">init</span> <span class="n">x&#39;</span> <span class="n">xp1&#39;</span> <span class="n">k</span> <span class="n">ctr&#39;</span>
-</span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="o">)</span></span></span></code></pre></div>
-<p>Running the reference implementation is possible but obviously slow (it is executed in OCaml).
-However a subset of F* (called Low*) can be translated to C using <a class="link" href="https://github.com/FStarLang/kremlin"  target="_blank" rel="noopener"
-    >Kremlin</a>.
+Here the definition of the Montgomery ladder, an excerpt from the <a class=link href=https://github.com/mitls/hacl-star/blob/dev_specs/specs/Spec.Curve25519.fst target=_blank rel=noopener>Curve25519 specification</a>. (Apologies for the highlighting, no F* support.)</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-ocaml data-lang=ocaml><span class=line><span class=ln> 1</span><span class=cl><span class=k>let</span> <span class=k>rec</span> <span class=n>montgomery_ladder_</span> <span class=o>(</span><span class=n>init</span><span class=o>:</span><span class=n>elem</span><span class=o>)</span> <span class=n>x</span> <span class=n>xp1</span> <span class=o>(</span><span class=n>k</span><span class=o>:</span><span class=n>scalar</span><span class=o>)</span> <span class=o>(</span><span class=n>ctr</span><span class=o>:</span><span class=n>nat</span><span class=o>{</span><span class=n>ctr</span><span class=o>&lt;=</span><span class=n>256</span><span class=o>})</span>
+</span></span><span class=line><span class=ln> 2</span><span class=cl>  <span class=o>:</span> <span class=nc>Tot</span> <span class=n>proj_point</span> <span class=o>(</span><span class=n>decreases</span> <span class=n>ctr</span><span class=o>)</span> <span class=o>=</span>
+</span></span><span class=line><span class=ln> 3</span><span class=cl>  <span class=k>if</span> <span class=n>ctr</span> <span class=o>=</span> <span class=n>0</span> <span class=k>then</span> <span class=n>x</span>
+</span></span><span class=line><span class=ln> 4</span><span class=cl>  <span class=k>else</span> <span class=o>(</span>
+</span></span><span class=line><span class=ln> 5</span><span class=cl>    <span class=k>let</span> <span class=n>ctr&#39;</span> <span class=o>=</span> <span class=n>ctr</span> <span class=o>-</span> <span class=n>1</span> <span class=k>in</span>
+</span></span><span class=line><span class=ln> 6</span><span class=cl>    <span class=k>let</span> <span class=o>(</span><span class=n>x&#39;</span><span class=o>,</span> <span class=n>xp1&#39;</span><span class=o>)</span> <span class=o>=</span>
+</span></span><span class=line><span class=ln> 7</span><span class=cl>      <span class=k>if</span> <span class=n>uint_to_nat</span> <span class=o>(</span><span class=n>ith_bit</span> <span class=n>k</span> <span class=n>ctr&#39;</span><span class=o>)</span> <span class=o>=</span> <span class=n>1</span> <span class=k>then</span> <span class=o>(</span>
+</span></span><span class=line><span class=ln> 8</span><span class=cl>        <span class=k>let</span> <span class=n>nqp2</span><span class=o>,</span> <span class=n>nqp1</span> <span class=o>=</span> <span class=n>add_and_double</span> <span class=n>init</span> <span class=n>xp1</span> <span class=n>x</span> <span class=k>in</span>
+</span></span><span class=line><span class=ln> 9</span><span class=cl>        <span class=n>nqp1</span><span class=o>,</span> <span class=n>nqp2</span>
+</span></span><span class=line><span class=ln>10</span><span class=cl>      <span class=o>)</span> <span class=k>else</span> <span class=n>add_and_double</span> <span class=n>init</span> <span class=n>x</span> <span class=n>xp1</span> <span class=k>in</span>
+</span></span><span class=line><span class=ln>11</span><span class=cl>    <span class=n>montgomery_ladder_</span> <span class=n>init</span> <span class=n>x&#39;</span> <span class=n>xp1&#39;</span> <span class=n>k</span> <span class=n>ctr&#39;</span>
+</span></span><span class=line><span class=ln>12</span><span class=cl><span class=o>)</span></span></span></code></pre></div><p>Running the reference implementation is possible but obviously slow (it is executed in OCaml).
+However a subset of F* (called Low*) can be translated to C using <a class=link href=https://github.com/FStarLang/kremlin target=_blank rel=noopener>Kremlin</a>.
 While the specification might be valid Low* code it is not optimised and thus won&rsquo;t yield fast C code.
 In order to generate fast C code more efficient Low* code has to be written first.
-Looking at state of the art C code for the given algorithm (<a class="link" href="https://github.com/jedisct1/libsodium/blob/e878bc141be12820dc6dbcd7a97bf50070bc1e2a/src/libsodium/crypto_scalarmult/curve25519/donna_c64/curve25519_donna_c64.c"  target="_blank" rel="noopener"
-    >Curve25519 Donna</a> for example) Low* code can be written that resembles the fast C code and can be extracted via Kremlin to similarly looking C code.</p>
-<p>At this point the main benefit of the HACL* approach comes to light.
+Looking at state of the art C code for the given algorithm (<a class=link href=https://github.com/jedisct1/libsodium/blob/e878bc141be12820dc6dbcd7a97bf50070bc1e2a/src/libsodium/crypto_scalarmult/curve25519/donna_c64/curve25519_donna_c64.c target=_blank rel=noopener>Curve25519 Donna</a> for example) Low* code can be written that resembles the fast C code and can be extracted via Kremlin to similarly looking C code.</p><p>At this point the main benefit of the HACL* approach comes to light.
 The optimised Low* code (as well as the extracted C code) are hard to get right and even harder to review for correctness, memory safety, and secret independent execution.
-Using an SMT solver (<a class="link" href="https://github.com/Z3Prover/z3"  target="_blank" rel="noopener"
-    >Z3</a> is used in HACL*) and F*&rsquo;s strong type system, functional equivalence is proven between the high-level F* specification and the optimised Low* code.
+Using an SMT solver (<a class=link href=https://github.com/Z3Prover/z3 target=_blank rel=noopener>Z3</a> is used in HACL*) and F*&rsquo;s strong type system, functional equivalence is proven between the high-level F* specification and the optimised Low* code.
 The Low* code usually has to be enhanced with additional information to help prove the equivalence.
-This additional code however is ignored by Kremlin and doesn&rsquo;t get translated to C.</p>
-<p>The following graphic gives an overview of the HACL* process.</p>
-<p><figure style="flex-grow: 141; flex-basis: 339px">
-		<a href="/p/the-hacl-approach/hacl-chart.png" data-size="842x595"><img src="/p/the-hacl-approach/hacl-chart.png"
-				srcset="/p/the-hacl-approach/hacl-chart_hubf5385a0c6763cff9ba6bbfffd88a9a5_61924_480x0_resize_box_3.png 480w, /p/the-hacl-approach/hacl-chart_hubf5385a0c6763cff9ba6bbfffd88a9a5_61924_1024x0_resize_box_3.png 1024w"
-				width="842"
-				height="595"
-				loading="lazy"
-				>
-		</a>
-		
-	</figure></p>
-<h2 id="an-example---conditional-swap">An Example - Conditional Swap</h2>
-<p>HACL* is a pretty complex library and it might be hard to understand what&rsquo;s going on.
-Therefore I&rsquo;ll give a small example of the basic concepts behind HACL* focusing on functional correctness.</p>
-<p>Conditional swaps are used for example in Curve25519 implementations to swap two variables <code>a</code> and <code>b</code> if a certain condition is given, <code>c = 0</code> here.
-In F* this can be written as follows.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ocaml" data-lang="ocaml"><span class="line"><span class="ln">1</span><span class="cl"><span class="k">val</span> <span class="n">cswap</span><span class="o">:</span> <span class="n">x</span><span class="o">:</span><span class="n">uint32</span> <span class="o">-&gt;</span> <span class="n">y</span><span class="o">:</span><span class="n">uint32</span> <span class="o">-&gt;</span> <span class="n">c</span><span class="o">:</span><span class="n">uint32</span> <span class="o">-&gt;</span>
-</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="nc">Tot</span> <span class="o">(</span><span class="n">uint32</span> <span class="o">*</span> <span class="n">uint32</span><span class="o">)</span>
-</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="k">let</span> <span class="n">cswap</span> <span class="n">x</span> <span class="n">y</span> <span class="n">c</span> <span class="o">=</span>
-</span></span><span class="line"><span class="ln">4</span><span class="cl">  <span class="k">if</span> <span class="n">c</span> <span class="o">=</span> <span class="n">0ul</span> <span class="k">then</span>
-</span></span><span class="line"><span class="ln">5</span><span class="cl">    <span class="o">(</span><span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">)</span>
-</span></span><span class="line"><span class="ln">6</span><span class="cl">  <span class="k">else</span>
-</span></span><span class="line"><span class="ln">7</span><span class="cl">    <span class="o">(</span><span class="n">y</span><span class="o">,</span> <span class="n">x</span><span class="o">)</span></span></span></code></pre></div>
-<p>This code can be easily inspected for correctness and is used as specification.
+This additional code however is ignored by Kremlin and doesn&rsquo;t get translated to C.</p><p>The following graphic gives an overview of the HACL* process.</p><p><img src=/p/the-hacl-approach/hacl-chart.png width=842 height=595 srcset="/p/the-hacl-approach/hacl-chart_hu3913347318361800738.png 480w, /p/the-hacl-approach/hacl-chart_hu17342941644776944915.png 1024w" loading=lazy class=gallery-image data-flex-grow=141 data-flex-basis=339px></p><h2 id=an-example---conditional-swap>An Example - Conditional Swap</h2><p>HACL* is a pretty complex library and it might be hard to understand what&rsquo;s going on.
+Therefore I&rsquo;ll give a small example of the basic concepts behind HACL* focusing on functional correctness.</p><p>Conditional swaps are used for example in Curve25519 implementations to swap two variables <code>a</code> and <code>b</code> if a certain condition is given, <code>c = 0</code> here.
+In F* this can be written as follows.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-ocaml data-lang=ocaml><span class=line><span class=ln>1</span><span class=cl><span class=k>val</span> <span class=n>cswap</span><span class=o>:</span> <span class=n>x</span><span class=o>:</span><span class=n>uint32</span> <span class=o>-&gt;</span> <span class=n>y</span><span class=o>:</span><span class=n>uint32</span> <span class=o>-&gt;</span> <span class=n>c</span><span class=o>:</span><span class=n>uint32</span> <span class=o>-&gt;</span>
+</span></span><span class=line><span class=ln>2</span><span class=cl>  <span class=nc>Tot</span> <span class=o>(</span><span class=n>uint32</span> <span class=o>*</span> <span class=n>uint32</span><span class=o>)</span>
+</span></span><span class=line><span class=ln>3</span><span class=cl><span class=k>let</span> <span class=n>cswap</span> <span class=n>x</span> <span class=n>y</span> <span class=n>c</span> <span class=o>=</span>
+</span></span><span class=line><span class=ln>4</span><span class=cl>  <span class=k>if</span> <span class=n>c</span> <span class=o>=</span> <span class=n>0ul</span> <span class=k>then</span>
+</span></span><span class=line><span class=ln>5</span><span class=cl>    <span class=o>(</span><span class=n>x</span><span class=o>,</span> <span class=n>y</span><span class=o>)</span>
+</span></span><span class=line><span class=ln>6</span><span class=cl>  <span class=k>else</span>
+</span></span><span class=line><span class=ln>7</span><span class=cl>    <span class=o>(</span><span class=n>y</span><span class=o>,</span> <span class=n>x</span><span class=o>)</span></span></span></code></pre></div><p>This code can be easily inspected for correctness and is used as specification.
 However, this is not the code we want to have as it branches on potentially secret data in <code>c</code>.
 Instead of checking <code>c</code> for <code>0</code> we should use masking and logical operations to achieve the variable swapping.
 Note that we require <code>c</code> to be either all <code>1</code> or all <code>0</code> now.
 This can be easily computed from the single bit <code>c</code> we had in the previous example.
-This looks as follows in pseudo-C-code.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="ln">1</span><span class="cl"><span class="kt">void</span> <span class="nf">cswap_constant_time</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="o">*</span><span class="n">b</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln">2</span><span class="cl">    <span class="kt">uint32_t</span> <span class="n">mask</span> <span class="o">=</span> <span class="p">(</span><span class="o">*</span><span class="n">a</span> <span class="o">^</span> <span class="o">*</span><span class="n">b</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">c</span><span class="p">;</span>
-</span></span><span class="line"><span class="ln">3</span><span class="cl">    <span class="o">*</span><span class="n">a</span> <span class="o">=</span> <span class="o">*</span><span class="n">a</span> <span class="o">^</span> <span class="n">mask</span><span class="p">;</span>
-</span></span><span class="line"><span class="ln">4</span><span class="cl">    <span class="o">*</span><span class="n">b</span> <span class="o">=</span> <span class="o">*</span><span class="n">b</span> <span class="o">^</span> <span class="n">mask</span><span class="p">;</span>
-</span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="p">}</span></span></span></code></pre></div>
-<p>The same code in F* (with slightly different input/output behaviour) looks as follows.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ocaml" data-lang="ocaml"><span class="line"><span class="ln">1</span><span class="cl"><span class="k">val</span> <span class="n">cswap_constant_time</span><span class="o">:</span> <span class="n">x</span><span class="o">:</span><span class="n">uint32</span> <span class="o">-&gt;</span> <span class="n">y</span><span class="o">:</span><span class="n">uint32</span> <span class="o">-&gt;</span> <span class="n">c</span><span class="o">:</span><span class="n">uint32</span><span class="o">{</span><span class="n">c</span> <span class="o">=</span> <span class="n">0xFFFFFFFFul</span> <span class="err">\</span><span class="o">/</span> <span class="n">c</span> <span class="o">=</span> <span class="n">0ul</span><span class="o">}</span> <span class="o">-&gt;</span>
-</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="nc">Tot</span> <span class="o">(</span><span class="n">uint32</span> <span class="o">*</span> <span class="n">uint32</span><span class="o">)</span>
-</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="k">let</span> <span class="n">cswap_constant_time</span> <span class="n">x</span> <span class="n">y</span> <span class="n">c</span> <span class="o">=</span>
-</span></span><span class="line"><span class="ln">4</span><span class="cl">  <span class="k">let</span> <span class="n">mask</span> <span class="o">=</span> <span class="o">(</span><span class="n">x</span> <span class="o">^^</span> <span class="n">y</span><span class="o">)</span> <span class="o">&amp;^</span> <span class="n">c</span> <span class="k">in</span>
-</span></span><span class="line"><span class="ln">5</span><span class="cl">  <span class="k">let</span> <span class="n">a</span> <span class="o">=</span> <span class="n">x</span> <span class="o">^^</span> <span class="n">mask</span> <span class="k">in</span>
-</span></span><span class="line"><span class="ln">6</span><span class="cl">  <span class="k">let</span> <span class="n">b</span> <span class="o">=</span> <span class="n">y</span> <span class="o">^^</span> <span class="n">mask</span> <span class="k">in</span>
-</span></span><span class="line"><span class="ln">7</span><span class="cl">  <span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)</span></span></span></code></pre></div>
-<p>This code is not trivially correct anymore and requires considerable thought by both author and reviewer.
+This looks as follows in pseudo-C-code.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-C data-lang=C><span class=line><span class=ln>1</span><span class=cl><span class=kt>void</span> <span class=nf>cswap_constant_time</span><span class=p>(</span><span class=kt>uint32_t</span> <span class=o>*</span><span class=n>a</span><span class=p>,</span> <span class=kt>uint32_t</span> <span class=o>*</span><span class=n>b</span><span class=p>,</span> <span class=kt>uint32_t</span> <span class=n>c</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=ln>2</span><span class=cl>    <span class=kt>uint32_t</span> <span class=n>mask</span> <span class=o>=</span> <span class=p>(</span><span class=o>*</span><span class=n>a</span> <span class=o>^</span> <span class=o>*</span><span class=n>b</span><span class=p>)</span> <span class=o>&amp;</span> <span class=n>c</span><span class=p>;</span>
+</span></span><span class=line><span class=ln>3</span><span class=cl>    <span class=o>*</span><span class=n>a</span> <span class=o>=</span> <span class=o>*</span><span class=n>a</span> <span class=o>^</span> <span class=n>mask</span><span class=p>;</span>
+</span></span><span class=line><span class=ln>4</span><span class=cl>    <span class=o>*</span><span class=n>b</span> <span class=o>=</span> <span class=o>*</span><span class=n>b</span> <span class=o>^</span> <span class=n>mask</span><span class=p>;</span>
+</span></span><span class=line><span class=ln>5</span><span class=cl><span class=p>}</span></span></span></code></pre></div><p>The same code in F* (with slightly different input/output behaviour) looks as follows.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-ocaml data-lang=ocaml><span class=line><span class=ln>1</span><span class=cl><span class=k>val</span> <span class=n>cswap_constant_time</span><span class=o>:</span> <span class=n>x</span><span class=o>:</span><span class=n>uint32</span> <span class=o>-&gt;</span> <span class=n>y</span><span class=o>:</span><span class=n>uint32</span> <span class=o>-&gt;</span> <span class=n>c</span><span class=o>:</span><span class=n>uint32</span><span class=o>{</span><span class=n>c</span> <span class=o>=</span> <span class=n>0xFFFFFFFFul</span> <span class=err>\</span><span class=o>/</span> <span class=n>c</span> <span class=o>=</span> <span class=n>0ul</span><span class=o>}</span> <span class=o>-&gt;</span>
+</span></span><span class=line><span class=ln>2</span><span class=cl>  <span class=nc>Tot</span> <span class=o>(</span><span class=n>uint32</span> <span class=o>*</span> <span class=n>uint32</span><span class=o>)</span>
+</span></span><span class=line><span class=ln>3</span><span class=cl><span class=k>let</span> <span class=n>cswap_constant_time</span> <span class=n>x</span> <span class=n>y</span> <span class=n>c</span> <span class=o>=</span>
+</span></span><span class=line><span class=ln>4</span><span class=cl>  <span class=k>let</span> <span class=n>mask</span> <span class=o>=</span> <span class=o>(</span><span class=n>x</span> <span class=o>^^</span> <span class=n>y</span><span class=o>)</span> <span class=o>&amp;^</span> <span class=n>c</span> <span class=k>in</span>
+</span></span><span class=line><span class=ln>5</span><span class=cl>  <span class=k>let</span> <span class=n>a</span> <span class=o>=</span> <span class=n>x</span> <span class=o>^^</span> <span class=n>mask</span> <span class=k>in</span>
+</span></span><span class=line><span class=ln>6</span><span class=cl>  <span class=k>let</span> <span class=n>b</span> <span class=o>=</span> <span class=n>y</span> <span class=o>^^</span> <span class=n>mask</span> <span class=k>in</span>
+</span></span><span class=line><span class=ln>7</span><span class=cl>  <span class=o>(</span><span class=n>a</span><span class=o>,</span> <span class=n>b</span><span class=o>)</span></span></span></code></pre></div><p>This code is not trivially correct anymore and requires considerable thought by both author and reviewer.
 But instead of staring at the code to understand it or writing incomplete tests we can use F* now to prove that <code>cswap_constant_time</code> is equivalent to our spec, i.e. <code>cswap</code>.
-To this end we write a lemma to ensures that.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ocaml" data-lang="ocaml"><span class="line"><span class="ln">1</span><span class="cl"><span class="k">let</span> <span class="n">a</span><span class="o">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">cswap_constant_time</span> <span class="n">x</span> <span class="n">y</span> <span class="n">c</span> <span class="k">in</span>
-</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="k">let</span> <span class="n">c</span><span class="o">,</span> <span class="n">d</span> <span class="o">=</span> <span class="n">cswap</span> <span class="n">x</span> <span class="n">y</span> <span class="n">c</span> <span class="k">in</span>
-</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="n">a</span> <span class="o">=</span> <span class="n">c</span> <span class="o">/</span><span class="err">\</span> <span class="n">b</span> <span class="o">=</span> <span class="n">d</span></span></span></code></pre></div>
-<p>While this can&rsquo;t be proven immediately it is relatively easy to write some helper lemmata that help F* and Z3 to understand the correctness of this statement.
-The C code extracted by Kremlin from the F* code above then looks as follows.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="ln">1</span><span class="cl"><span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="kt">uint32_t</span> <span class="n">fst</span><span class="p">;</span>
-</span></span><span class="line"><span class="ln">3</span><span class="cl">  <span class="kt">uint32_t</span> <span class="n">snd</span><span class="p">;</span>
-</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="n">K___uint32_t_uint32_t</span><span class="p">;</span>
-</span></span><span class="line"><span class="ln">6</span><span class="cl">
-</span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="n">K___uint32_t_uint32_t</span> <span class="nf">Impl_CSwap_cswap_constant_time</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="n">x</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">y</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln">8</span><span class="cl">  <span class="k">return</span> <span class="p">((</span><span class="n">K___uint32_t_uint32_t</span><span class="p">){</span> <span class="p">.</span><span class="n">fst</span> <span class="o">=</span> <span class="n">x</span> <span class="o">^</span> <span class="p">((</span><span class="n">x</span> <span class="o">^</span> <span class="n">y</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">c</span><span class="p">),</span> <span class="p">.</span><span class="n">snd</span> <span class="o">=</span> <span class="n">y</span> <span class="o">^</span> <span class="p">((</span><span class="n">x</span> <span class="o">^</span> <span class="n">y</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">c</span><span class="p">)</span> <span class="p">});</span>
-</span></span><span class="line"><span class="ln">9</span><span class="cl"><span class="p">}</span></span></span></code></pre></div>
-<p>Check out the <a class="link" href="https://github.com/franziskuskiefer/the-hacl-approach"  target="_blank" rel="noopener"
-    >repository</a> for the full source code of the example.</p>
-<p>Memory safety can be proven easily as well by specifying liveliness conditions of buffers.
+To this end we write a lemma to ensures that.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-ocaml data-lang=ocaml><span class=line><span class=ln>1</span><span class=cl><span class=k>let</span> <span class=n>a</span><span class=o>,</span> <span class=n>b</span> <span class=o>=</span> <span class=n>cswap_constant_time</span> <span class=n>x</span> <span class=n>y</span> <span class=n>c</span> <span class=k>in</span>
+</span></span><span class=line><span class=ln>2</span><span class=cl><span class=k>let</span> <span class=n>c</span><span class=o>,</span> <span class=n>d</span> <span class=o>=</span> <span class=n>cswap</span> <span class=n>x</span> <span class=n>y</span> <span class=n>c</span> <span class=k>in</span>
+</span></span><span class=line><span class=ln>3</span><span class=cl><span class=n>a</span> <span class=o>=</span> <span class=n>c</span> <span class=o>/</span><span class=err>\</span> <span class=n>b</span> <span class=o>=</span> <span class=n>d</span></span></span></code></pre></div><p>While this can&rsquo;t be proven immediately it is relatively easy to write some helper lemmata that help F* and Z3 to understand the correctness of this statement.
+The C code extracted by Kremlin from the F* code above then looks as follows.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-C data-lang=C><span class=line><span class=ln>1</span><span class=cl><span class=k>typedef</span> <span class=k>struct</span> <span class=p>{</span>
+</span></span><span class=line><span class=ln>2</span><span class=cl>  <span class=kt>uint32_t</span> <span class=n>fst</span><span class=p>;</span>
+</span></span><span class=line><span class=ln>3</span><span class=cl>  <span class=kt>uint32_t</span> <span class=n>snd</span><span class=p>;</span>
+</span></span><span class=line><span class=ln>4</span><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=ln>5</span><span class=cl><span class=n>K___uint32_t_uint32_t</span><span class=p>;</span>
+</span></span><span class=line><span class=ln>6</span><span class=cl>
+</span></span><span class=line><span class=ln>7</span><span class=cl><span class=n>K___uint32_t_uint32_t</span> <span class=nf>Impl_CSwap_cswap_constant_time</span><span class=p>(</span><span class=kt>uint32_t</span> <span class=n>x</span><span class=p>,</span> <span class=kt>uint32_t</span> <span class=n>y</span><span class=p>,</span> <span class=kt>uint32_t</span> <span class=n>c</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=ln>8</span><span class=cl>  <span class=k>return</span> <span class=p>((</span><span class=n>K___uint32_t_uint32_t</span><span class=p>){</span> <span class=p>.</span><span class=n>fst</span> <span class=o>=</span> <span class=n>x</span> <span class=o>^</span> <span class=p>((</span><span class=n>x</span> <span class=o>^</span> <span class=n>y</span><span class=p>)</span> <span class=o>&amp;</span> <span class=n>c</span><span class=p>),</span> <span class=p>.</span><span class=n>snd</span> <span class=o>=</span> <span class=n>y</span> <span class=o>^</span> <span class=p>((</span><span class=n>x</span> <span class=o>^</span> <span class=n>y</span><span class=p>)</span> <span class=o>&amp;</span> <span class=n>c</span><span class=p>)</span> <span class=p>});</span>
+</span></span><span class=line><span class=ln>9</span><span class=cl><span class=p>}</span></span></span></code></pre></div><p>Check out the <a class=link href=https://github.com/franziskuskiefer/the-hacl-approach target=_blank rel=noopener>repository</a> for the full source code of the example.</p><p>Memory safety can be proven easily as well by specifying liveliness conditions of buffers.
 In this example we don&rsquo;t have buffers so no need for verifying memory safety.
-We skip proving secret-independent execution here as it requires additional support from HACL*.</p>
-<h1 id="code-generation-vs-code-verification">Code Generation vs Code Verification</h1>
-<p>The HACL* approach as described above is a great way of generating fast C code that&rsquo;s proven to be correct, memory safe, and have secret-independent runtime.
-For <a class="link" href="https://developer.mozilla.org/en-US/docs/Mozilla/Projects/NSS"  target="_blank" rel="noopener"
-    >NSS</a> we decided to use code generation and integrate code from HACL* into the code base.
-However, instead of generating code it would also be possible to verify existing C code with other tools such as Cryptol/SAW to prove similar properties of the code.</p>
-<p>The main advantage of code generation is that the mathematical specifications can be easily used to build more complex algorithms and protocols on top and allow for re-use of specification code.
-The trusted code base written in F* is therefore very small.</p>
-<p>The main drawback of generating code is a relatively large third-party code base that has to be trusted in order to generate the code.
-The weakest link in the case of HACL* is probably Kremlin, which has a <a class="link" href="https://www.microsoft.com/en-us/research/wp-content/uploads/2017/05/icfp17main-main96-p-5064b17-32755-submitted.pdf"  target="_blank" rel="noopener"
-    >hand written proof</a> but is a relatively young piece of code that probably contains bugs.</p>
-<p>There is no optimal solution to this problem that works for everyone but the HACL* approach as described in this post is a great way to get better confidence in correctness and security of complex C code using formal verification.</p>
-<p>In the next post I&rsquo;ll talk about challenges we faced when integrating code from HACL* into NSS and how we solved them.</p>
-
-</section>
-
-
-    <footer class="article-footer">
-    
-    <section class="article-tags">
-        
-            <a href="/tags/hacl/">hacl*</a>
-        
-            <a href="/tags/formal-verification/">formal verification</a>
-        
-            <a href="/tags/crypto/">crypto</a>
-        
-    </section>
-
-
-    </footer>
-
-
-    
-</article>
-
-    <aside class="related-contents--wrapper">
-    
-    
-        <h2 class="section-title">Related contents</h2>
-        <div class="related-contents">
-            <div class="flex article-list--tile">
-                
-                    
-<article class="">
-    <a href="/p/wrapping-arithmetic-in-rust/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">Wrapping arithmetic in Rust</h2>
-        </div>
-    </a>
-</article>
-                
-                    
-<article class="has-image">
-    <a href="/p/update-on-hacspec/">
-        
-        
-            <div class="article-image">
-                <img src="/p/update-on-hacspec/hacspec2-architecture.c988e7b2cbcac8bec1934145b2bd31d6_hu59cb5aa3cd237429216159464502cf06_303676_250x150_fill_box_smart1_3.png" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy" 
-                        data-key="" 
-                        data-hash="md5-yYjnssvKyL7Bk0FFsr0x1g==">
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">Update on hacspec</h2>
-        </div>
-    </a>
-</article>
-                
-                    
-<article class="has-image">
-    <a href="/p/shipping-some-hacl/">
-        
-        
-            <div class="article-image">
-                <img src="/p/shipping-some-hacl/hero.fb2484402d0981d465f0e71c0aa7beb9_hu3d03a01dcc18bc5be0e67db3d8d209a6_420155_250x150_fill_q75_box_smart1.jpg" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy" 
-                        data-key="" 
-                        data-hash="md5-&#43;ySEQC0JgdRl8OccCqe&#43;uQ==">
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">Shipping (some) HACL*</h2>
-        </div>
-    </a>
-</article>
-                
-                    
-<article class="has-image">
-    <a href="/p/introducing-hacspec/">
-        
-        
-            <div class="article-image">
-                <img src="/p/introducing-hacspec/hero.052d34e6dec3c77e38f02590af8406c3_hu0ce6fe0d9adc29c9a4ba1507bcf5cc23_31987_250x150_fill_box_smart1_3.png" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy" 
-                        data-key="" 
-                        data-hash="md5-BS005t7Dx3448CWQr4QGww==">
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">Introducing HacSpec</h2>
-        </div>
-    </a>
-</article>
-                
-            </div>
-        </div>
-    
-</aside>
-
-     
-     
-        
-    
-
-    <footer class="site-footer">
-    <section class="copyright">
-        &copy; 
-        
-            2013 - 
-        
-        2022 Dr Franziskus Kiefer
-    </section>
-    
-    <section class="powerby">
-        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.1.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
-    </section>
-</footer>
-
-
-    
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-
-    
-    <div class="pswp__bg"></div>
-
-    
-    <div class="pswp__scroll-wrap">
-
-        
-        <div class="pswp__container">
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-        </div>
-
-        
-        <div class="pswp__ui pswp__ui--hidden">
-
-            <div class="pswp__top-bar">
-
-                
-
-                <div class="pswp__counter"></div>
-
-                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-
-                <button class="pswp__button pswp__button--share" title="Share"></button>
-
-                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-
-                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-
-                
-                
-                <div class="pswp__preloader">
-                    <div class="pswp__preloader__icn">
-                        <div class="pswp__preloader__cut">
-                            <div class="pswp__preloader__donut"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                <div class="pswp__share-tooltip"></div>
-            </div>
-
-            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-            </button>
-
-            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-            </button>
-
-            <div class="pswp__caption">
-                <div class="pswp__caption__center"></div>
-            </div>
-
-        </div>
-
-    </div>
-
-</div><script 
-                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
-                defer="true"
-                >
-            </script><script 
-                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
-                defer="true"
-                >
-            </script><link 
-                rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
-            ><link 
-                rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
-            >
-
-            </main>
-    
-        <aside class="sidebar right-sidebar sticky">
-            <section class="widget archives">
-                <div class="widget-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <line x1="5" y1="9" x2="19" y2="9" />
-  <line x1="5" y1="15" x2="19" y2="15" />
-  <line x1="11" y1="4" x2="7" y2="20" />
-  <line x1="17" y1="4" x2="13" y2="20" />
-</svg>
-
-
-
-                </div>
-                <h2 class="widget-title section-title">Table of contents</h2>
-                
-                <div class="widget--toc">
-                    <nav id="TableOfContents">
-  <ol>
-    <li><a href="#an-example---conditional-swap">An Example - Conditional Swap</a></li>
-  </ol>
-</nav>
-                </div>
-            </section>
-        </aside>
-    
-
-        </div>
-        <script 
-                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
-                defer="false"
-                >
-            </script><script type="text/javascript" src="/ts/main.js" defer></script>
-<script>
-    (function () {
-        const customFont = document.createElement('link');
-        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
-
-        customFont.type = "text/css";
-        customFont.rel = "stylesheet";
-
-        document.head.appendChild(customFont);
-    }());
-</script>
-
-    </body>
-</html>
+We skip proving secret-independent execution here as it requires additional support from HACL*.</p><h1 id=code-generation-vs-code-verification>Code Generation vs Code Verification</h1><p>The HACL* approach as described above is a great way of generating fast C code that&rsquo;s proven to be correct, memory safe, and have secret-independent runtime.
+For <a class=link href=https://developer.mozilla.org/en-US/docs/Mozilla/Projects/NSS target=_blank rel=noopener>NSS</a> we decided to use code generation and integrate code from HACL* into the code base.
+However, instead of generating code it would also be possible to verify existing C code with other tools such as Cryptol/SAW to prove similar properties of the code.</p><p>The main advantage of code generation is that the mathematical specifications can be easily used to build more complex algorithms and protocols on top and allow for re-use of specification code.
+The trusted code base written in F* is therefore very small.</p><p>The main drawback of generating code is a relatively large third-party code base that has to be trusted in order to generate the code.
+The weakest link in the case of HACL* is probably Kremlin, which has a <a class=link href=https://www.microsoft.com/en-us/research/wp-content/uploads/2017/05/icfp17main-main96-p-5064b17-32755-submitted.pdf target=_blank rel=noopener>hand written proof</a> but is a relatively young piece of code that probably contains bugs.</p><p>There is no optimal solution to this problem that works for everyone but the HACL* approach as described in this post is a great way to get better confidence in correctness and security of complex C code using formal verification.</p><p>In the next post I&rsquo;ll talk about challenges we faced when integrating code from HACL* into NSS and how we solved them.</p></section><footer class=article-footer><section class=article-tags><a href=/tags/hacl/>HACL*</a>
+<a href=/tags/formal-verification/>Formal Verification</a>
+<a href=/tags/crypto/>Crypto</a></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>Related content</h2><div class=related-content><div class="flex article-list--tile"><article><a href=/p/wrapping-arithmetic-in-rust/><div class=article-details><h2 class=article-title>Wrapping arithmetic in Rust</h2></div></a></article><article class=has-image><a href=/p/update-on-hacspec/><div class=article-image><img src=/p/update-on-hacspec/hacspec2-architecture.c988e7b2cbcac8bec1934145b2bd31d6_hu4123112014103333084.png width=250 height=150 loading=lazy alt="Featured image of post Update on hacspec" data-hash="md5-yYjnssvKyL7Bk0FFsr0x1g=="></div><div class=article-details><h2 class=article-title>Update on hacspec</h2></div></a></article><article class=has-image><a href=/p/shipping-some-hacl/><div class=article-image><img src=/p/shipping-some-hacl/hero.fb2484402d0981d465f0e71c0aa7beb9_hu1532048130694916280.jpg width=250 height=150 loading=lazy alt="Featured image of post Shipping (some) HACL*" data-hash="md5-+ySEQC0JgdRl8OccCqe+uQ=="></div><div class=article-details><h2 class=article-title>Shipping (some) HACL*</h2></div></a></article><article class=has-image><a href=/p/introducing-hacspec/><div class=article-image><img src=/p/introducing-hacspec/hero.052d34e6dec3c77e38f02590af8406c3_hu5361053395357825643.png width=250 height=150 loading=lazy alt="Featured image of post Introducing HacSpec" data-hash="md5-BS005t7Dx3448CWQr4QGww=="></div><div class=article-details><h2 class=article-title>Introducing HacSpec</h2></div></a></article></div></div></aside><footer class=site-footer><section class=copyright>&copy;
+2013 -
+2024 Dr Franziskus Kiefer</section><section class=powerby>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.29.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js defer></script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>

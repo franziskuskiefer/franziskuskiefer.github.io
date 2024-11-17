@@ -1,31 +1,474 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>benchmarks on Dr Franziskus Kiefer</title>
-    <link>https://www.franziskuskiefer.de/tags/benchmarks/</link>
-    <description>Recent content in benchmarks on Dr Franziskus Kiefer</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Fri, 12 Nov 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/tags/benchmarks/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>(HACL*) AEAD Benchmarks</title>
-      <link>https://www.franziskuskiefer.de/p/hacl-aead-benchmarks/</link>
-      <pubDate>Fri, 12 Nov 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.franziskuskiefer.de/p/hacl-aead-benchmarks/</guid>
-      <description>This is in response to the blog post by Sylvain Kerkour benchmarking ring and Rust Crypto AEADs. I was curious how HACL* stacks up to these two with these parameters.
- I&amp;rsquo;m maintaining the Evercrypt crate, a wrapper around the formally verified crypto library HACL*. HACL* is a customizable, fast, formally verified crypto library written in F* and extracted to C.
- RustCrypto’s ChaCha20-Poly1305 RustCrypto’s AES-256-GCM ring’s ChaCha20-Poly1305 ring’s AES-256-GCM  Results I&amp;rsquo;m listing all results here for comparison as I&amp;rsquo;m (obviously) running the benchmarks on a different machine.</description>
-    </item>
-    
-    <item>
-      <title>OpenMLS Performance</title>
-      <link>https://www.franziskuskiefer.de/p/openmls-performance/</link>
-      <pubDate>Tue, 18 May 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.franziskuskiefer.de/p/openmls-performance/</guid>
-      <description>The Messaging Layer Security (MLS) protocol is an IETF proposal for group key establishment and message protection. OpenMLS is a Rust implementation of the MLS protocol in its current state (draft 11 as of the point of writing this) that is being implemented by Raphael, Konrad and myself. For more general information on MLS I refer to the spec and other blog posts. This blog post is only about MLS, and in particular OpenMLS, performance.</description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Benchmarks on Dr Franziskus Kiefer</title><link>https://www.franziskuskiefer.de/tags/benchmarks/</link><description>Recent content in Benchmarks on Dr Franziskus Kiefer</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 12 Nov 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/tags/benchmarks/index.xml" rel="self" type="application/rss+xml"/><item><title>(HACL*) AEAD Benchmarks</title><link>https://www.franziskuskiefer.de/p/hacl-aead-benchmarks/</link><pubDate>Fri, 12 Nov 2021 00:00:00 +0000</pubDate><guid>https://www.franziskuskiefer.de/p/hacl-aead-benchmarks/</guid><description>&lt;img src="https://www.franziskuskiefer.de/p/hacl-aead-benchmarks/AeadBenchHero.png" alt="Featured image of post (HACL*) AEAD Benchmarks" />&lt;blockquote>
+&lt;p>This is in response to the &lt;a class="link" href="https://kerkour.com/rust-symmetric-encryption-aead-benchmark/" target="_blank" rel="noopener"
+>blog post by Sylvain Kerkour&lt;/a> benchmarking ring and
+Rust Crypto AEADs.
+I was curious how HACL* stacks up to these two with these parameters.&lt;/p>
+&lt;/blockquote>
+&lt;p>I&amp;rsquo;m maintaining the &lt;a class="link" href="https://crates.io/crates/evercrypt" target="_blank" rel="noopener"
+>Evercrypt crate&lt;/a>, a wrapper
+around the formally verified crypto library &lt;a class="link" href="https://github.com/project-everest/hacl-star" target="_blank" rel="noopener"
+>HACL*&lt;/a>.
+HACL* is a customizable, fast, formally verified crypto library written in F* and extracted to C.&lt;/p>
+&lt;ul>
+&lt;li>&lt;a class="link" href="https://crates.io/crates/chacha20poly1305" target="_blank" rel="noopener"
+>RustCrypto’s ChaCha20-Poly1305&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://crates.io/crates/aes-gcm" target="_blank" rel="noopener"
+>RustCrypto’s AES-256-GCM&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://crates.io/crates/ring" target="_blank" rel="noopener"
+>ring’s ChaCha20-Poly1305&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://crates.io/crates/ring" target="_blank" rel="noopener"
+>ring’s AES-256-GCM&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="results">Results
+&lt;/h2>&lt;p>I&amp;rsquo;m listing all results here for comparison as I&amp;rsquo;m (obviously) running the benchmarks on a different machine.&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>&lt;/th>
+&lt;th>100B&lt;/th>
+&lt;th>1kB&lt;/th>
+&lt;th>100kB&lt;/th>
+&lt;th>1MB&lt;/th>
+&lt;th>10MB&lt;/th>
+&lt;th>100MB&lt;/th>
+&lt;th>1GB&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;a class="link" href="https://crates.io/crates/chacha20poly1305" target="_blank" rel="noopener"
+>RustCrypto’s ChaCha20-Poly1305&lt;/a> v0.8.2&lt;/td>
+&lt;td>1.6232 us (58.753 MiB/s)&lt;/td>
+&lt;td>2.6941 us (353.98 MiB/s)&lt;/td>
+&lt;td>120.10 us (794.10 MiB/s)&lt;/td>
+&lt;td>1.1921 ms (800.02 MiB/s)&lt;/td>
+&lt;td>12.015 ms (793.75 MiB/s)&lt;/td>
+&lt;td>119.87 ms (795.58 MiB/s)&lt;/td>
+&lt;td>1.1947 s (798.27 MiB/s)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a class="link" href="https://crates.io/crates/aes-gcm" target="_blank" rel="noopener"
+>RustCrypto’s AES-256-GCM&lt;/a> v0.9.4&lt;/td>
+&lt;td>448.97 ns (212.42 MiB/s)&lt;/td>
+&lt;td>1.5090 us (632.01 MiB/s)&lt;/td>
+&lt;td>118.13 us (807.33 MiB/s)&lt;/td>
+&lt;td>1.1947 ms (798.24 MiB/s)&lt;/td>
+&lt;td>11.986 ms (795.68 MiB/s)&lt;/td>
+&lt;td>119.39 ms (798.81 MiB/s)&lt;/td>
+&lt;td>1.1974 s (796.43 MiB/s)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a class="link" href="https://crates.io/crates/ring" target="_blank" rel="noopener"
+>ring’s ChaCha20-Poly1305&lt;/a> v0.16.20&lt;/td>
+&lt;td>193.82 ns (492.04 MiB/s)&lt;/td>
+&lt;td>730.23 ns (1.2754 GiB/s)&lt;/td>
+&lt;td>48.293 us (1.9285 GiB/s)&lt;/td>
+&lt;td>490.64 us (1.8982 GiB/s)&lt;/td>
+&lt;td>5.0475 ms (1.8451 GiB/s)&lt;/td>
+&lt;td>51.438 ms (1.8106 GiB/s)&lt;/td>
+&lt;td>514.99 ms (1.8084 GiB/s)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a class="link" href="https://crates.io/crates/ring" target="_blank" rel="noopener"
+>ring’s AES-256-GCM&lt;/a> v0.16.20&lt;/td>
+&lt;td>235.57 ns (404.83 MiB/s)&lt;/td>
+&lt;td>556.64 ns (1.6731 GiB/s)&lt;/td>
+&lt;td>34.609 us (2.6910 GiB/s)&lt;/td>
+&lt;td>343.41 us (2.7120 GiB/s)&lt;/td>
+&lt;td>3.5471 ms (2.6256 GiB/s)&lt;/td>
+&lt;td>34.873 ms (2.6706 GiB/s)&lt;/td>
+&lt;td>348.51 ms (2.6723 GiB/s)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a class="link" href="https://crates.io/crates/evercrypt" target="_blank" rel="noopener"
+>HACL*’s ChaCha20-Poly1305&lt;/a> v0.0.10&lt;/td>
+&lt;td>862.79 ns (110.53 MiB/s)&lt;/td>
+&lt;td>1.2804 us (744.81 MiB/s)&lt;/td>
+&lt;td>55.550 us (1.6765 GiB/s)&lt;/td>
+&lt;td>549.11 us (1.6961 GiB/s)&lt;/td>
+&lt;td>5.8844 ms (1.5827 GiB/s)&lt;/td>
+&lt;td>88.801 ms (1.0488 GiB/s)&lt;/td>
+&lt;td>847.39 ms (1.0990 GiB/s)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a class="link" href="https://crates.io/crates/evercrypt" target="_blank" rel="noopener"
+>HACL*’s AES-256-GCM&lt;/a> v0.0.10&lt;/td>
+&lt;td>238.12 ns (400.51 MiB/s)&lt;/td>
+&lt;td>598.56 ns (1.5560 GiB/s)&lt;/td>
+&lt;td>38.997 us (2.3882 GiB/s)&lt;/td>
+&lt;td>391.87 us (2.3766 GiB/s)&lt;/td>
+&lt;td>4.0217 ms (2.3157 GiB/s)&lt;/td>
+&lt;td>68.004 ms (1.3695 GiB/s)&lt;/td>
+&lt;td>642.12 ms (1.4504 GiB/s)&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>It is interesting to see that the HACL* AES-256-GCM implementation is only slightly
+slower than ring&amp;rsquo;s (2.3GiB/s vs 2.7GiB/s) for 1MB and 10MB chunks.
+But it significantly drops in performance for larger blobs while ring&amp;rsquo;s performance
+stays the same.
+The picture for Chacha20Poly1305 is similar, which points to general issues of
+handling large data sizes within HACL*.&lt;/p>
+&lt;p>&lt;a class="link" href="./aead-intel-benchmarks.txt" >Raw number&lt;/a>&lt;/p>
+&lt;h2 id="m1">M1
+&lt;/h2>&lt;p>My main machine right now is a MacBook with M1 chip.
+This is a very different machine.
+Here are the numbers.&lt;/p>
+&lt;p>Note that HACL* doesn&amp;rsquo;t support AES on ARM chips yet unfortunately.&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>&lt;/th>
+&lt;th>100B&lt;/th>
+&lt;th>1kB&lt;/th>
+&lt;th>100kB&lt;/th>
+&lt;th>1MB&lt;/th>
+&lt;th>10MB&lt;/th>
+&lt;th>100MB&lt;/th>
+&lt;th>1GB&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>[RustCrypto’s XChaCha20-Poly1305] v0.8.2&lt;/td>
+&lt;td>558.20 ns (170.85 MiB/s)&lt;/td>
+&lt;td>3.0136 us (316.46 MiB/s)&lt;/td>
+&lt;td>274.25 us (347.74 MiB/s)&lt;/td>
+&lt;td>2.7434 ms (347.62 MiB/s)&lt;/td>
+&lt;td>27.535 ms (346.35 MiB/s)&lt;/td>
+&lt;td>279.16 ms (341.62 MiB/s)&lt;/td>
+&lt;td>2.7657 s (344.83 MiB/s)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a class="link" href="https://crates.io/crates/chacha20poly1305" target="_blank" rel="noopener"
+>RustCrypto’s ChaCha20-Poly1305&lt;/a> v0.8.2&lt;/td>
+&lt;td>460.31 ns (207.18 MiB/s)&lt;/td>
+&lt;td>2.9189 us (326.73 MiB/s)&lt;/td>
+&lt;td>273.95 us (348.12 MiB/s)&lt;/td>
+&lt;td>2.7429 ms (347.69 MiB/s)&lt;/td>
+&lt;td>27.623 ms (345.25 MiB/s)&lt;/td>
+&lt;td>281.35 ms (338.96 MiB/s)&lt;/td>
+&lt;td>2.7525 s (346.48 MiB/s)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a class="link" href="https://crates.io/crates/aes-gcm" target="_blank" rel="noopener"
+>RustCrypto’s AES-256-GCM&lt;/a> v0.9.4&lt;/td>
+&lt;td>3.0838 us (30.925 MiB/s)&lt;/td>
+&lt;td>9.3825 us (101.64 MiB/s)&lt;/td>
+&lt;td>707.99 us (134.70 MiB/s)&lt;/td>
+&lt;td>7.0729 ms (134.83 MiB/s)&lt;/td>
+&lt;td>70.655 ms (134.98 MiB/s)&lt;/td>
+&lt;td>706.42 ms (135.00 MiB/s)&lt;/td>
+&lt;td>7.1158 s (134.02 MiB/s)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a class="link" href="https://crates.io/crates/ring" target="_blank" rel="noopener"
+>ring’s ChaCha20-Poly1305&lt;/a> v0.16.20&lt;/td>
+&lt;td>407.12 ns (234.25 MiB/s)&lt;/td>
+&lt;td>1.3175 us (723.85 MiB/s)&lt;/td>
+&lt;td>96.781 us (985.40 MiB/s)&lt;/td>
+&lt;td>963.70 us (989.60 MiB/s)&lt;/td>
+&lt;td>9.6676 ms (986.46 MiB/s)&lt;/td>
+&lt;td>98.252 ms (970.64 MiB/s)&lt;/td>
+&lt;td>975.96 ms (977.17 MiB/s)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a class="link" href="https://crates.io/crates/ring" target="_blank" rel="noopener"
+>ring’s AES-256-GCM&lt;/a> v0.16.20&lt;/td>
+&lt;td>79.751 ns (1.1678 GiB/s)&lt;/td>
+&lt;td>394.01 ns (2.3637 GiB/s)&lt;/td>
+&lt;td>34.355 us (2.7109 GiB/s)&lt;/td>
+&lt;td>344.78 us (2.7012 GiB/s)&lt;/td>
+&lt;td>3.4792 ms (2.6768 GiB/s)&lt;/td>
+&lt;td>34.543 ms (2.6961 GiB/s)&lt;/td>
+&lt;td>345.92 ms (2.6923 GiB/s)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a class="link" href="https://crates.io/crates/evercrypt" target="_blank" rel="noopener"
+>HACL*’s ChaCha20-Poly1305&lt;/a> v0.0.10&lt;/td>
+&lt;td>690.43 ns (138.13 MiB/s)&lt;/td>
+&lt;td>1.7545 us (543.55 MiB/s)&lt;/td>
+&lt;td>132.59 us (719.25 MiB/s)&lt;/td>
+&lt;td>1.3096 ms (728.24 MiB/s)&lt;/td>
+&lt;td>13.261 ms (719.13 MiB/s)&lt;/td>
+&lt;td>137.91 ms (691.53 MiB/s)&lt;/td>
+&lt;td>1.4217 s (670.82 MiB/s)&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>Ring&amp;rsquo;s performance is again great and very stable across different payload sizes.
+Rust Crypto&amp;rsquo;s implementations are significantly slower than ring&amp;rsquo;s again but also slower than on the Intel machine.
+The HACL* performance for Chacha20Poly1305 is again a little worse than ring&amp;rsquo;s but significantly better than Rust Crypto&amp;rsquo;s.&lt;/p>
+&lt;p>&lt;a class="link" href="./aead-m1-benchmarks.txt" >Raw number&lt;/a>&lt;/p>
+&lt;h2 id="cpu-info">CPU Info
+&lt;/h2>&lt;h3 id="intel">Intel
+&lt;/h3>&lt;pre tabindex="0">&lt;code>Architecture: x86_64
+CPU op-mode(s): 32-bit, 64-bit
+Address sizes: 39 bits physical, 48 bits virtual
+Byte Order: Little Endian
+CPU(s): 8
+On-line CPU(s) list: 0-7
+Vendor ID: GenuineIntel
+Model name: Intel(R) Core(TM) i7-4900MQ CPU @ 2.80GHz
+CPU family: 6
+Model: 60
+Thread(s) per core: 2
+Core(s) per socket: 4
+Socket(s): 1
+Stepping: 3
+CPU max MHz: 3800.0000
+CPU min MHz: 800.0000
+BogoMIPS: 5589.60
+Flags: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx f
+xsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_
+good nopl xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx e
+st tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c
+rdrand lahf_lm abm cpuid_fault epb invpcid_single pti tpr_shadow vnmi flexpriority ept vpid e
+pt_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid xsaveopt dtherm ida arat pln pts
+Virtualization features:
+Virtualization: VT-x
+Caches (sum of all):
+L1d: 128 KiB (4 instances)
+L1i: 128 KiB (4 instances)
+L2: 1 MiB (4 instances)
+L3: 8 MiB (1 instance)
+NUMA:
+NUMA node(s): 1
+NUMA node0 CPU(s): 0-7
+Vulnerabilities:
+Itlb multihit: KVM: Mitigation: VMX disabled
+L1tf: Mitigation; PTE Inversion; VMX conditional cache flushes, SMT vulnerable
+Mds: Vulnerable: Clear CPU buffers attempted, no microcode; SMT vulnerable
+Meltdown: Mitigation; PTI
+Spec store bypass: Vulnerable
+Spectre v1: Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+Spectre v2: Mitigation; Full generic retpoline, STIBP disabled, RSB filling
+Srbds: Vulnerable: No microcode
+Tsx async abort: Not affected
+&lt;/code>&lt;/pre>&lt;h3 id="m1-1">M1
+&lt;/h3>&lt;pre tabindex="0">&lt;code>machdep.cpu.brand_string: Apple M1
+machdep.cpu.core_count: 8
+machdep.cpu.cores_per_package: 8
+machdep.cpu.logical_per_package: 8
+machdep.cpu.thread_count: 8
+&lt;/code>&lt;/pre>&lt;hr>
+&lt;p>The code changes needed for these experiments are on &lt;a class="link" href="https://github.com/franziskuskiefer/kerkour.com/tree/hacl" target="_blank" rel="noopener"
+>Github&lt;/a>.&lt;/p></description></item><item><title>OpenMLS Performance</title><link>https://www.franziskuskiefer.de/p/openmls-performance/</link><pubDate>Tue, 18 May 2021 00:00:00 +0000</pubDate><guid>https://www.franziskuskiefer.de/p/openmls-performance/</guid><description>&lt;img src="https://www.franziskuskiefer.de/p/openmls-performance/openmls-logo.svg" alt="Featured image of post OpenMLS Performance" />&lt;p>The Messaging Layer Security (&lt;a class="link" href="https://datatracker.ietf.org/wg/mls/about/" target="_blank" rel="noopener"
+>MLS&lt;/a>) protocol is an &lt;a class="link" href="https://datatracker.ietf.org/doc/draft-ietf-mls-protocol/" target="_blank" rel="noopener"
+>IETF proposal&lt;/a> for group key establishment
+and message protection.
+&lt;a class="link" href="https://github.com/openmls/openmls/" target="_blank" rel="noopener"
+>OpenMLS&lt;/a> is a Rust implementation of the MLS protocol in its current state (&lt;a class="link" href="https://datatracker.ietf.org/doc/html/draft-ietf-mls-protocol-11" target="_blank" rel="noopener"
+>draft 11&lt;/a> as of the point of writing this) that is being implemented by &lt;a class="link" href="https://twitter.com/raphaelrobert" target="_blank" rel="noopener"
+>Raphael&lt;/a>, &lt;a class="link" href="https://kkohbrok.github.io/" target="_blank" rel="noopener"
+>Konrad&lt;/a> and myself.
+For more general information on MLS I refer to the &lt;a class="link" href="https://messaginglayersecurity.rocks/mls-protocol/draft-ietf-mls-protocol.html" target="_blank" rel="noopener"
+>spec&lt;/a> and &lt;a class="link" href="https://wire.com/en/blog/mls-future-of-messaging/" target="_blank" rel="noopener"
+>other&lt;/a> blog &lt;a class="link" href="https://wickr.com/the-messaging-layer-security-protocol/" target="_blank" rel="noopener"
+>posts&lt;/a>.
+This blog post is only about MLS, and in particular OpenMLS, performance.&lt;/p>
+&lt;p>One goal of MLS is that it &lt;a class="link" href="https://datatracker.ietf.org/doc/charter-ietf-mls/" target="_blank" rel="noopener"
+>is supposed to be scalable&lt;/a>.
+The charter in particular claims the following:&lt;/p>
+&lt;blockquote>
+&lt;p>Resource requirements have good scaling in the size of the group (preferably sub-linear)&lt;/p>
+&lt;/blockquote>
+&lt;p>While performance can be theoretically analysed for MLS it is also interesting to see whether the performance goals hold up in a real implementation.
+This of course only looks at a single implementation.
+Nonetheless, I think that it gives a good impression on the actual performance of MLS implementations.
+Particularly because OpenMLS at this point is not optimised but rather implements the MLS spec as is.&lt;/p>
+&lt;h2 id="methodology">Methodology
+&lt;/h2>&lt;p>MLS is a pretty complex protocol with many moving parts.
+It is therefore important to clearly define what is being measured and how.&lt;/p>
+&lt;p>First, all tests are done with the only mandatory cipher suite in MLS 1.0 MLS10_128_DHKEMX25519_AES128GCM_SHA256_Ed25519.
+While other cipher suites obviously have different performance, the goal here is to investigate the general performance of MLS depending on the group size.
+The exact cipher suite used is therefore irrelevant.&lt;/p>
+&lt;h3 id="measurements">Measurements
+&lt;/h3>&lt;p>The measurements here do not cover all possible messages in MLS.
+Not all of them are fully supported by OpenMLS yet.
+Pre-shared key, re-init, external-init, app-ack, and external proposals will be checked once they are implemented.
+The measured messages nonetheless represent the core of the MLS protocol and should give a good idea of the general performance of the protocol.
+We test performance of group creation, group join as well as the three basic messages update, add, and remove, and application messages.&lt;/p>
+&lt;p>All measurements except for the first two use one of the following set-ups:&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>&lt;strong>Base&lt;/strong>: The group is created by a user.
+All other participants are invited and each participant creates the group locally.
+Then every participant sends an update message to the group and everyone else processes it.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Bare:&lt;/strong> The group is created by a user.
+All other participants are invited and each participant creates the group locally.
+This creates an extremely sparse version of the underlying tree in MLS and is therefore interesting to look at.&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;p>Measurements are run on different group sizes.
+When running benchmarks with large groups such as 1000 participants a lot of memory is used in order to simulate all devices (up to 10 GB) such that larger groups are hard to simulate.
+The chosen group sizes allow us to get a good idea how MLS performs depending on the group size.
+We in particular test groups of the size 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 30, 40, 50, 100, 200, 300, 400, 500, 1000.&lt;/p>
+&lt;h4 id="operations">Operations
+&lt;/h4>&lt;ul>
+&lt;li>&lt;strong>Group creation:&lt;/strong>
+Creating a group involves creating the group, proposals and welcome messages for the other participants, and applying the commit.&lt;/li>
+&lt;li>&lt;strong>Join group:&lt;/strong>
+Joining a group is equivalent to processing a welcome message to locally create the new group.&lt;/li>
+&lt;li>&lt;strong>Update messages:&lt;/strong>
+Sending an update to a group involves creating a proposal, the corresponding commit and applying the commit.
+When receiving an update message the commit is being processed.&lt;/li>
+&lt;li>&lt;strong>Adding a user:&lt;/strong>
+When a new user is added to the group the add proposal and welcome message are created and the commit is locally applied by the adder.
+When receiving a commit with an add proposal it is processed by the user.&lt;/li>
+&lt;li>&lt;strong>Removing a user:&lt;/strong>
+When a user is removed from the group the remove proposal and commit are created and locally applied by the remover.
+When receiving a commit with a remove proposal it is processed by the user.&lt;/li>
+&lt;li>&lt;strong>Application messages:&lt;/strong>
+Sending an application message consists of creating the plaintext message and encrypting it for the group.
+In order to receive an application message the user has to decrypt and parse the message.
+We measure performance of a single message that is being sent and processed.
+Note that the processing time of subsequent messages is not significantly different from the first one.&lt;/li>
+&lt;/ul>
+&lt;h2 id="results">Results
+&lt;/h2>&lt;p>You can find the raw data and some more graphs in the &lt;a class="link" href="https://docs.google.com/spreadsheets/d/1nZv8lpT28JctDVo4ARBLZCKcIdvo-h8cIyN3_dIedFU" target="_blank" rel="noopener"
+>OpenMLS performance spreadsheet&lt;/a>.&lt;/p>
+&lt;p>All measurements were performed on a laptop with Arch Linux, an Intel Core i7-4900MQ @ 2.80GHz and 16 GB memory.&lt;/p>
+&lt;h3 id="group-setup">Group setup
+&lt;/h3>&lt;p>As the following graph shows the time needed to create a group is linear in the number of participants added when creating the group.
+The blue line shows the actual measurements while the magenta one is a trend line showing the linear relation.
+This is what is to be expected because the performance is dominated by the creation of welcome messages, which have to be created for each member.&lt;/p>
+&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/openmls-performance/group-creation.png"
+width="600"
+height="371"
+srcset="https://www.franziskuskiefer.de/p/openmls-performance/group-creation_hu390722887585268607.png 480w, https://www.franziskuskiefer.de/p/openmls-performance/group-creation_hu13105536394070267109.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="161"
+data-flex-basis="388px"
+>&lt;/p>
+&lt;h3 id="join-group">Join group
+&lt;/h3>&lt;p>The performance of joining a group is linear in the group size because the information in the welcome message as well as the tree that is being processed when joining the group are linear in the number of group members.
+Note that it is not logarithmic because the tree needs to be constructed.
+This requires processing of each node in some way, which is linear in the group size.
+The blue line again shows the actual measurements while the magenta one is a trend line for the linear relation.&lt;/p>
+&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/openmls-performance/join.png"
+width="600"
+height="371"
+srcset="https://www.franziskuskiefer.de/p/openmls-performance/join_hu8434490448179972974.png 480w, https://www.franziskuskiefer.de/p/openmls-performance/join_hu586860903247748959.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="161"
+data-flex-basis="388px"
+>&lt;/p>
+&lt;h3 id="update">Update
+&lt;/h3>&lt;p>Sending and processing updates are both sub-linear in the number of group members because the number of computations depend on the height of the tree in the &lt;em>base&lt;/em> case.&lt;/p>
+&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/openmls-performance/update.png"
+width="600"
+height="371"
+srcset="https://www.franziskuskiefer.de/p/openmls-performance/update_hu9873159883853717952.png 480w, https://www.franziskuskiefer.de/p/openmls-performance/update_hu3643139880533845239.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="161"
+data-flex-basis="388px"
+>&lt;/p>
+&lt;p>In the case of a very sparse tree, which we have in the &lt;em>bare&lt;/em> case because every leaf only processed the welcome message, the performance of sending an update however is linear in the group size.
+When creating a commit for an update proposal the sender has to include a path and refresh the private tree.
+The following two flamegraphs show the difference between the base and the bare case.
+While it doesn&amp;rsquo;t show directly what&amp;rsquo;s going on, it can be seen that in the base case (first flamegraph) the &lt;code>new_with_keys&lt;/code> function requires a lot more time relative to the rest of the &lt;code>replace_private_tree&lt;/code> function.
+This is a strong indicator for where to look for the differences.&lt;/p>
+&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/openmls-performance/send-update-base.png"
+width="3606"
+height="762"
+srcset="https://www.franziskuskiefer.de/p/openmls-performance/send-update-base_hu4874649569774633425.png 480w, https://www.franziskuskiefer.de/p/openmls-performance/send-update-base_hu5991119730222648403.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="473"
+data-flex-basis="1135px"
+>&lt;/p>
+&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/openmls-performance/send-update-bare.png"
+width="3606"
+height="900"
+srcset="https://www.franziskuskiefer.de/p/openmls-performance/send-update-bare_hu17457979822156307379.png 480w, https://www.franziskuskiefer.de/p/openmls-performance/send-update-bare_hu12985293488775238139.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="400"
+data-flex-basis="961px"
+>&lt;/p>
+&lt;p>Looking at a tree with 300 leaves for example we have to encrypt 299 times (for every other leaf) in the case of a bare tree.
+In a fully updated tree however only 9 encryptions are necessary, one for each level of the tree.
+It is therefore expected that the performance of sending an update (with commit) in the bare case is linear in the group size.&lt;/p>
+&lt;h3 id="adding-a-user">Adding a user
+&lt;/h3>&lt;p>Looking at the performance of adding a user and processing an add commit in the following graph we can again see the linear growth in relation to the number of group members.
+This is almost independent of the state of the tree.
+The operations appear to be slightly more expensive in a fully updated tree though.&lt;/p>
+&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/openmls-performance/add.png"
+width="600"
+height="371"
+srcset="https://www.franziskuskiefer.de/p/openmls-performance/add_hu480920004077346561.png 480w, https://www.franziskuskiefer.de/p/openmls-performance/add_hu1289853682501411927.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="161"
+data-flex-basis="388px"
+>&lt;/p>
+&lt;h3 id="removing-a-user">Removing a user
+&lt;/h3>&lt;p>Like updating, removing a user and processing a remove commit are linear in complexity in the base case as the following graph shows.
+Removing in a very sparse tree is significantly more expensive than in a fully updated tree.
+The reason is the same as for updating the tree.
+The remove information has to be encrypted to all other remaining participants in the tree.&lt;/p>
+&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/openmls-performance/remove.png"
+width="600"
+height="371"
+srcset="https://www.franziskuskiefer.de/p/openmls-performance/remove_hu5303864267182273244.png 480w, https://www.franziskuskiefer.de/p/openmls-performance/remove_hu2574459668790701661.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="161"
+data-flex-basis="388px"
+>&lt;/p>
+&lt;h3 id="application-messages">Application messages
+&lt;/h3>&lt;p>Sending and receiving application messages is essentially independent of the group size, as expected.
+Receiving the first message within an epoch has a small overhead compared to subsequent message as seen in the second graph.
+This should be negligible in practice though.&lt;/p>
+&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/openmls-performance/application-message-send.png"
+width="600"
+height="371"
+srcset="https://www.franziskuskiefer.de/p/openmls-performance/application-message-send_hu2157335197267976492.png 480w, https://www.franziskuskiefer.de/p/openmls-performance/application-message-send_hu6324650358861094575.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="161"
+data-flex-basis="388px"
+>&lt;/p>
+&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/openmls-performance/application-message-receive.png"
+width="600"
+height="371"
+srcset="https://www.franziskuskiefer.de/p/openmls-performance/application-message-receive_hu5643673153265419165.png 480w, https://www.franziskuskiefer.de/p/openmls-performance/application-message-receive_hu3098709710336373218.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="161"
+data-flex-basis="388px"
+>&lt;/p>
+&lt;h2 id="analysis">Analysis
+&lt;/h2>&lt;p>First, the plain performance numbers tell us that the goal of the MLS charter of a protocol that scales well for large groups has been mostly.
+Depending on the state of the tree some operations might take longer than expected.
+However, this can be mitigated by the application ensuring that the tree is updated and shrunk regularly.
+Notably, the real world performance appears to be consistent with the theoretical expectations.&lt;/p>
+&lt;h2 id="technical-background">Technical background
+&lt;/h2>&lt;p>The measurements are &lt;em>not&lt;/em> done with any Rust benchmarking framework such as &lt;a class="link" href="https://crates.io/crates/criterion" target="_blank" rel="noopener"
+>criterion&lt;/a>.
+Due to the way criterion works there&amp;rsquo;s significant &lt;a class="link" href="https://github.com/bheisler/criterion.rs/issues/475" target="_blank" rel="noopener"
+>overhead in criterion&lt;/a>.
+While the numbers in this post can be reliably reproduced a more thorough measurement framework&lt;/p>
+&lt;p>The flamegraphs are produced with &lt;a class="link" href="https://crates.io/crates/pprof" target="_blank" rel="noopener"
+>pprof&lt;/a>, a simple to use CPU profiler for Rust.&lt;/p>
+&lt;p>All measurements were performed on &lt;a class="link" href="https://github.com/openmls/openmls/tree/65030529e43716d482a6e57a432da5a388fd0a3c" target="_blank" rel="noopener"
+>this revision&lt;/a>.
+To reproduce them check out the revision and run&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="k">for&lt;/span> i in &lt;span class="m">2&lt;/span> &lt;span class="m">3&lt;/span> &lt;span class="m">4&lt;/span> &lt;span class="m">5&lt;/span> &lt;span class="m">6&lt;/span> &lt;span class="m">7&lt;/span> &lt;span class="m">8&lt;/span> &lt;span class="m">9&lt;/span> &lt;span class="m">10&lt;/span> &lt;span class="m">20&lt;/span> &lt;span class="m">30&lt;/span> &lt;span class="m">40&lt;/span> &lt;span class="m">50&lt;/span> &lt;span class="m">100&lt;/span> &lt;span class="m">200&lt;/span> &lt;span class="m">300&lt;/span> &lt;span class="m">400&lt;/span> &lt;span class="m">500&lt;/span> 1000&lt;span class="p">;&lt;/span> &lt;span class="k">do&lt;/span> &lt;span class="se">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="se">&lt;/span> cargo bench --bench group -- &lt;span class="nv">$i&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="se">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="se">&lt;/span>&lt;span class="k">done&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="conclusion--future-work">Conclusion &amp;amp; Future work
+&lt;/h2>&lt;p>Measuring performance of a protocol as complex as MLS is pretty difficult.
+Without an application and elaborate test framework that can simulate many different scenarios it is only possible to get the basic numbers as shown here.
+While they give a good indicator towards the performance of the MLS protocol they are insufficient to claim any performance of real applications that use MLS.&lt;/p>
+&lt;p>Nonetheless, the numbers show that the MLS protocol appears to allow for efficient, end-to-end-encrypted messaging in large groups.
+Sending and receiving application messages is independent of the group size while group operations are sub-linear in the group size in most cases.&lt;/p>
+&lt;p>When OpenMLS is further developed and we have a messaging client using it another set of measurements should be performed with real world usage scenarios in mind in order to investigate whether the performance we have seen here translates to efficient group messaging in an application.
+The MLS specification further leaves anything around authentication and authorization policies open to the application.
+These might be complex procedures and impact the MLS performance as well.&lt;/p></description></item></channel></rss>

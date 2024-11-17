@@ -1,21 +1,40 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>constant-time on Dr Franziskus Kiefer</title>
-    <link>https://www.franziskuskiefer.de/tags/constant-time/</link>
-    <description>Recent content in constant-time on Dr Franziskus Kiefer</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Wed, 28 Dec 2016 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/tags/constant-time/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>On Constant Time Division</title>
-      <link>https://www.franziskuskiefer.de/p/on-constant-time-division/</link>
-      <pubDate>Wed, 28 Dec 2016 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.franziskuskiefer.de/p/on-constant-time-division/</guid>
-      <description>Writing constant time code is hard. We all know that. But I&amp;rsquo;m always amazed again on how difficult it is. In preparation for making NSS more constant time I looked into certain CPU instructions that are known to be not constant time. So I wrote a little thing to measure the time (CPU cycles) needed for division.
-div rcx ; eax is now a/b The CPU I&amp;rsquo;m using in this post is an Intel i7-4790 (haswell).</description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Constant-Time on Dr Franziskus Kiefer</title><link>https://www.franziskuskiefer.de/tags/constant-time/</link><description>Recent content in Constant-Time on Dr Franziskus Kiefer</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 28 Dec 2016 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/tags/constant-time/index.xml" rel="self" type="application/rss+xml"/><item><title>On Constant Time Division</title><link>https://www.franziskuskiefer.de/p/on-constant-time-division/</link><pubDate>Wed, 28 Dec 2016 00:00:00 +0000</pubDate><guid>https://www.franziskuskiefer.de/p/on-constant-time-division/</guid><description>&lt;img src="https://www.franziskuskiefer.de/p/on-constant-time-division/plot_low-1.png" alt="Featured image of post On Constant Time Division" />&lt;p>Writing constant time code is hard. We all know that. But I&amp;rsquo;m always amazed again on how difficult it is. In preparation for making NSS more constant time I looked into certain CPU instructions that are known to be not constant time.
+So I wrote a little thing to measure the time (CPU cycles) needed for division.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-asm" data-lang="asm">&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">div&lt;/span> &lt;span class="no">rcx&lt;/span> &lt;span class="c1">; eax is now a/b
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The CPU I&amp;rsquo;m using in this post is an Intel i7-4790 (haswell). Running the same measurements on other processors architectures will most likely yield different results. I&amp;rsquo;m describing two experiments I did. First, I look at bits in the divisor and how they influence the timing of the division. And then I look at the dividend and its influence.&lt;/p>
+&lt;h1 id="the-divisor">The Divisor
+&lt;/h1>&lt;p>There are two interesting things we can look at here. The very small divisors as well as the pattern that we get in larger divisors.&lt;/p>
+&lt;h2 id="-129">&amp;lt; 129
+&lt;/h2>&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/on-constant-time-division/plot_low-1.png"
+width="2558"
+height="1347"
+srcset="https://www.franziskuskiefer.de/p/on-constant-time-division/plot_low-1_hu15842502754747643451.png 480w, https://www.franziskuskiefer.de/p/on-constant-time-division/plot_low-1_hu10953608243128651236.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="189"
+data-flex-basis="455px"
+>&lt;/p>
+&lt;p>This graph plots the number of cycles needed for the division of numbers &amp;lt; 130. It&amp;rsquo;s easy to see that the number of cycles needed is in general around 300. However, there are a couple of &amp;ldquo;outliers&amp;rdquo; that need significantly less.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-C" data-lang="C">&lt;span class="line">&lt;span class="cl"> &lt;span class="mi">128&lt;/span> &lt;span class="mi">123&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="mi">64&lt;/span> &lt;span class="mi">135&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="mi">32&lt;/span> &lt;span class="mi">132&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="mi">16&lt;/span> &lt;span class="mi">132&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="mi">8&lt;/span> &lt;span class="mi">123&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="mi">4&lt;/span> &lt;span class="mi">123&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="mi">2&lt;/span> &lt;span class="mi">123&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="mi">1&lt;/span> &lt;span class="mi">126&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You might have spotted the pattern already. The CPU probably doesn&amp;rsquo;t want to do this expensive division and simply shifts the dividend to get the result. This trend continues later on but is more difficult to observe. (And there&amp;rsquo;s a more interesting pattern there.)&lt;/p>
+&lt;h2 id="the-larger-pattern">The larger pattern
+&lt;/h2>&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/on-constant-time-division/plot-1.png"
+width="2558"
+height="1347"
+srcset="https://www.franziskuskiefer.de/p/on-constant-time-division/plot-1_hu15793922373718518580.png 480w, https://www.franziskuskiefer.de/p/on-constant-time-division/plot-1_hu8612448082123602519.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="189"
+data-flex-basis="455px"
+>&lt;/p>
+&lt;p>The graph shows a striking pattern and makes it obvious that division is not constant-time. Let&amp;rsquo;s try to understand what&amp;rsquo;s happening here.&lt;/p>
+&lt;p>The first part of the pattern can be explained by changing bit-lengths in the divisor. At &lt;code>8191&lt;/code> and &lt;code>16383&lt;/code> for example a streak of fast division ends. This is probably because the &lt;code>8192&lt;/code> and &lt;code>16384&lt;/code> require an additional bit each.&lt;/p>
+&lt;p>However, I&amp;rsquo;m clueless on how to explain the rest of the pattern.&lt;/p>
+&lt;p>(I&amp;rsquo;ll update this post when I figured out what&amp;rsquo;s going on.)&lt;/p></description></item></channel></rss>

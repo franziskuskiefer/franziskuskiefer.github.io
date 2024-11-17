@@ -1,182 +1,41 @@
-<!DOCTYPE html>
-<html lang="en-us">
-    <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='With my company Cryspen we build high assurance cryptography. But what does this actually mean?
-Before focusing on cryptography it is interesting to look at high assurance software in general. How is high assurance software different from other software?
-High assurance software is usually seen as being more trustworthy than other software. This is especially interesting in high-risk/high-stakes environments such as financial institutions or governments. There are different ways to achieve better guarantees for software.'><title>What is High Assurance Cryptography?</title>
-
-<link rel='canonical' href='https://www.franziskuskiefer.de/p/what-is-high-assurance-cryptography/'>
-
-<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='What is High Assurance Cryptography?'>
-<meta property='og:description' content='With my company Cryspen we build high assurance cryptography. But what does this actually mean?
-Before focusing on cryptography it is interesting to look at high assurance software in general. How is high assurance software different from other software?
-High assurance software is usually seen as being more trustworthy than other software. This is especially interesting in high-risk/high-stakes environments such as financial institutions or governments. There are different ways to achieve better guarantees for software.'>
-<meta property='og:url' content='https://www.franziskuskiefer.de/p/what-is-high-assurance-cryptography/'>
-<meta property='og:site_name' content='Dr Franziskus Kiefer'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='high-assurance' /><meta property='article:tag' content='Cryspen' /><meta property='article:published_time' content='2022-05-02T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2022-05-02T00:00:00&#43;00:00'/><meta property='og:image' content='https://www.franziskuskiefer.de/p/what-is-high-assurance-cryptography/header.jpg' />
-<meta name="twitter:site" content="@_franziskus_">
-    <meta name="twitter:creator" content="@_franziskus_"><meta name="twitter:title" content="What is High Assurance Cryptography?">
-<meta name="twitter:description" content="With my company Cryspen we build high assurance cryptography. But what does this actually mean?
-Before focusing on cryptography it is interesting to look at high assurance software in general. How is high assurance software different from other software?
-High assurance software is usually seen as being more trustworthy than other software. This is especially interesting in high-risk/high-stakes environments such as financial institutions or governments. There are different ways to achieve better guarantees for software."><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://www.franziskuskiefer.de/p/what-is-high-assurance-cryptography/header.jpg' />
-    </head>
-    <body class="
-    article-page has-toc
-">
-    <script>
-        (function() {
-            const colorSchemeKey = 'StackColorScheme';
-            if(!localStorage.getItem(colorSchemeKey)){
-                localStorage.setItem(colorSchemeKey, "auto");
-            }
-        })();
-    </script><script>
-    (function() {
-        const colorSchemeKey = 'StackColorScheme';
-        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
-        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
-
-        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
-            
-
-            document.documentElement.dataset.scheme = 'dark';
-        } else {
-            document.documentElement.dataset.scheme = 'light';
-        }
-    })();
-</script>
-<div class="container main-container flex 
-    
-        extended
-    
-">
-    
-        <div id="article-toolbar">
-            <a href="https://www.franziskuskiefer.de/" class="back-home">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <polyline points="15 6 9 12 15 18" />
-</svg>
-
-
-
-                <span>Back</span>
-            </a>
-        </div>
-    
-<main class="main full-width">
-    <article class="has-image main-article">
-    <header class="article-header">
-        <div class="article-image">
-            <a href="/p/what-is-high-assurance-cryptography/">
-                <img src="/p/what-is-high-assurance-cryptography/header_hu3d03a01dcc18bc5be0e67db3d8d209a6_551395_800x0_resize_q75_box.jpg"
-                        srcset="/p/what-is-high-assurance-cryptography/header_hu3d03a01dcc18bc5be0e67db3d8d209a6_551395_800x0_resize_q75_box.jpg 800w, /p/what-is-high-assurance-cryptography/header_hu3d03a01dcc18bc5be0e67db3d8d209a6_551395_1600x0_resize_q75_box.jpg 1600w"
-                        width="800" 
-                        height="533" 
-                        loading="lazy"
-                        alt="Featured image of post What is High Assurance Cryptography?" />
-                
-            </a>
-        </div>
-    
-
-    <div class="article-details">
-    
-
-    <h2 class="article-title">
-        <a href="/p/what-is-high-assurance-cryptography/">What is High Assurance Cryptography?</a>
-    </h2>
-
-    
-
-    
-    <footer class="article-time">
-        
-            <div>
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
-  <circle cx="18" cy="18" r="4" />
-  <path d="M15 3v4" />
-  <path d="M7 3v4" />
-  <path d="M3 11h16" />
-  <path d="M18 16.496v1.504l1 1" />
-</svg>
-                <time class="article-time--published">May 02, 2022</time>
-            </div>
-        
-
-        
-            <div>
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="12" cy="12" r="9" />
-  <polyline points="12 7 12 12 15 15" />
-</svg>
-
-
-
-                <time class="article-time--reading">
-                    9 min read
-                </time>
-            </div>
-        
-    </footer>
-    
-</div>
-</header>
-
-    <section class="article-content">
-    <p>With my company <a class="link" href="https://www.cryspen.com"  target="_blank" rel="noopener"
-    >Cryspen</a> we build high assurance cryptography.
-But what does this actually mean?</p>
-<p>Before focusing on cryptography it is interesting to look at high assurance
+<!doctype html><html lang=en-us dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="With my company Cryspen we build high assurance cryptography. But what does this actually mean?\nBefore focusing on cryptography it is interesting to look at high assurance software in general. How is high assurance software different from other software?\nHigh assurance software is usually seen as being more trustworthy than other software. This is especially interesting in high-risk/high-stakes environments such as financial institutions or governments. There are different ways to achieve better guarantees for software. Today the most commonly used technique to increase trust into software is using certifications like common criteria or FIPS. While these certifications offer a certain level of additional guarantees, only the highest levels require some form of formal verification of the production source code. As such certification usually reaches only up to a certain level of high assurance.\n"><title>What is High Assurance Cryptography?</title>
+<link rel=canonical href=https://www.franziskuskiefer.de/p/what-is-high-assurance-cryptography/><link rel=stylesheet href=/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css><meta property='og:title' content="What is High Assurance Cryptography?"><meta property='og:description' content="With my company Cryspen we build high assurance cryptography. But what does this actually mean?\nBefore focusing on cryptography it is interesting to look at high assurance software in general. How is high assurance software different from other software?\nHigh assurance software is usually seen as being more trustworthy than other software. This is especially interesting in high-risk/high-stakes environments such as financial institutions or governments. There are different ways to achieve better guarantees for software. Today the most commonly used technique to increase trust into software is using certifications like common criteria or FIPS. While these certifications offer a certain level of additional guarantees, only the highest levels require some form of formal verification of the production source code. As such certification usually reaches only up to a certain level of high assurance.\n"><meta property='og:url' content='https://www.franziskuskiefer.de/p/what-is-high-assurance-cryptography/'><meta property='og:site_name' content='Dr Franziskus Kiefer'><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:tag' content='high-assurance'><meta property='article:tag' content='Cryspen'><meta property='article:published_time' content='2022-05-02T00:00:00+00:00'><meta property='article:modified_time' content='2022-05-02T00:00:00+00:00'><meta property='og:image' content='https://www.franziskuskiefer.de/p/what-is-high-assurance-cryptography/header.jpg'><meta name=twitter:title content="What is High Assurance Cryptography?"><meta name=twitter:description content="With my company Cryspen we build high assurance cryptography. But what does this actually mean?\nBefore focusing on cryptography it is interesting to look at high assurance software in general. How is high assurance software different from other software?\nHigh assurance software is usually seen as being more trustworthy than other software. This is especially interesting in high-risk/high-stakes environments such as financial institutions or governments. There are different ways to achieve better guarantees for software. Today the most commonly used technique to increase trust into software is using certifications like common criteria or FIPS. While these certifications offer a certain level of additional guarantees, only the highest levels require some form of formal verification of the production source code. As such certification usually reaches only up to a certain level of high assurance.\n"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content='https://www.franziskuskiefer.de/p/what-is-high-assurance-cryptography/header.jpg'></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label="Toggle Menu">
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/images/profilepic_hu11425891720239459000.jpg width=300 height=300 class=site-logo loading=lazy alt=Avatar></a></figure><div class=site-meta><h1 class=site-name><a href=/>Dr Franziskus Kiefer</a></h1><h2 class=site-description>Cryptography & Security Engineer and Researcher based in Berlin</h2></div></header><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>Home</span></a></li><li><a href=/about/><svg class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
+<span>About</span></a></li><li><a href=/publications/><svg class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11 3l9 9a1.5 1.5.0 010 2l-6 6a1.5 1.5.0 01-2 0L3 11V7a4 4 0 014-4h4"/><circle cx="9" cy="9" r="2"/></svg>
+<span>Publications</span></a></li><li><a href=/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>Search</span></a></li><li><a href=https://github.com/franziskuskiefer/ target=_blank><svg class="icon icon-tabler icon-tabler-brand-github" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>
+<span>Github</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>Dark Mode</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">Table of contents</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#techniques>Techniques</a></li><li><a href=#assurance-levels>Assurance Levels</a><ol><li><a href=#ca-1>CA-1</a></li><li><a href=#ca-2>CA-2</a><ol><li><a href=#ca-2-1>CA-2+</a></li></ol></li><li><a href=#ca-3a>CA-3a</a></li><li><a href=#ca-3b>CA-3b</a></li></ol></li><li><a href=#high-assurance>High-Assurance?</a></li><li><a href=#cryspen-high-assurance-cryptography>Cryspen High Assurance Cryptography</a><ol><li><a href=#hacl>HACL</a></li><li><a href=#hpke>HPKE</a></li><li><a href=#tls-13>TLS 1.3</a></li></ol></li></ol></nav></div></section></aside><main class="main full-width"><article class="has-image main-article"><header class=article-header><div class=article-image><a href=/p/what-is-high-assurance-cryptography/><img src=/p/what-is-high-assurance-cryptography/header_hu2423050749132218846.jpg srcset="/p/what-is-high-assurance-cryptography/header_hu2423050749132218846.jpg 800w, /p/what-is-high-assurance-cryptography/header_hu12003856416223334017.jpg 1600w" width=800 height=533 loading=lazy alt="Featured image of post What is High Assurance Cryptography?"></a></div><div class=article-details><div class=article-title-wrapper><h2 class=article-title><a href=/p/what-is-high-assurance-cryptography/>What is High Assurance Cryptography?</a></h2></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published>May 02, 2022</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>9 minute read</time></div></footer></div></header><section class=article-content><p>With my company <a class=link href=https://www.cryspen.com target=_blank rel=noopener>Cryspen</a> we build high assurance cryptography.
+But what does this actually mean?</p><p>Before focusing on cryptography it is interesting to look at high assurance
 software in general.
-How is high assurance software different from other software?</p>
-<p>High assurance software is usually seen as being more trustworthy than other
+How is high assurance software different from other software?</p><p>High assurance software is usually seen as being more trustworthy than other
 software.
 This is especially interesting in high-risk/high-stakes environments such as
 financial institutions or governments.
 There are different ways to achieve better guarantees for software.
 Today the most commonly used technique to increase trust into software is using
-certifications like <a class="link" href="https://en.wikipedia.org/wiki/Common_Criteria"  target="_blank" rel="noopener"
-    >common criteria</a>
-or <a class="link" href="https://en.wikipedia.org/wiki/FIPS_140-2"  target="_blank" rel="noopener"
-    >FIPS</a>.
+certifications like <a class=link href=https://en.wikipedia.org/wiki/Common_Criteria target=_blank rel=noopener>common criteria</a>
+or <a class=link href=https://en.wikipedia.org/wiki/FIPS_140-2 target=_blank rel=noopener>FIPS</a>.
 While these certifications offer a certain level of additional guarantees, only
 the highest levels require some form of formal verification of the production
 source code.
-As such certification usually reaches only up to a certain level of high assurance.</p>
-<p>Instead, using formal methods to increase trust in software offers real tangible
+As such certification usually reaches only up to a certain level of high assurance.</p><p>Instead, using formal methods to increase trust in software offers real tangible
 guarantees on a software artifact.
 But in order to get actual guarantees we have to define the properties that are
 guaranteed and put it into perspective by defining different assurance levels.
 Before doing this we look at the different techniques used in high assurance
-software engineering.</p>
-<h2 id="techniques">Techniques</h2>
-<p>There are a number of different techniques used in (high assurance) software engineering.
+software engineering.</p><h2 id=techniques>Techniques</h2><p>There are a number of different techniques used in (high assurance) software engineering.
 Some are simply good engineering practice while others go beyond what is done for most software.
 The following picture gives a high-level overview of the different techniques.
-(The list is of course not exhaustive and some grouping might be arbitrary.)</p>
-<p><figure style="flex-grow: 200; flex-basis: 480px">
-		<a href="/p/what-is-high-assurance-cryptography/overview1.png" data-size="1440x720"><img src="/p/what-is-high-assurance-cryptography/overview1.png"
-				srcset="/p/what-is-high-assurance-cryptography/overview1_hu3cede752948e24ef3b92606ea47496ec_569899_480x0_resize_box_3.png 480w, /p/what-is-high-assurance-cryptography/overview1_hu3cede752948e24ef3b92606ea47496ec_569899_1024x0_resize_box_3.png 1024w"
-				width="1440"
-				height="720"
-				loading="lazy"
-				alt="High assurance tools - an overview">
-		</a>
-		
-		<figcaption>High assurance tools - an overview</figcaption>
-		
-	</figure></p>
-<p>On the left side we have safe programming languages and engineering processes
+(The list is of course not exhaustive and some grouping might be arbitrary.)</p><p><img src=/p/what-is-high-assurance-cryptography/overview1.png width=1440 height=720 srcset="/p/what-is-high-assurance-cryptography/overview1_hu1970889969198621401.png 480w, /p/what-is-high-assurance-cryptography/overview1_hu6355104638587915922.png 1024w" loading=lazy alt="High assurance tools - an overview" class=gallery-image data-flex-grow=200 data-flex-basis=480px></p><p>On the left side we have safe programming languages and engineering processes
 that are the bedrock of high assurance software engineering.
 Processes ensure that the development and maintenance process is safe while
 using a safe programming language such as Rust that gives memory safety
-guarantees provides a safety baseline for the software.</p>
-<p>The engineering infrastructure in the center is used to enforce policies and link
+guarantees provides a safety baseline for the software.</p><p>The engineering infrastructure in the center is used to enforce policies and link
 everything together.
 It is the glue that implements engineering processes and ensures safe operations
 of the code at all times.
@@ -186,119 +45,51 @@ There are a lot of different testing techniques from fuzzing to known answer
 tests that ensure that the code is operating correctly and safely for a certain
 set of inputs.
 With static analysis and formal methods we can go a step further and ensure that
-the code is correct and safe for all inputs.</p>
-<h2 id="assurance-levels">Assurance Levels</h2>
-<p>Speaking about “high assurance” is so vague that it can be considered meaningless.
+the code is correct and safe for all inputs.</p><h2 id=assurance-levels>Assurance Levels</h2><p>Speaking about “high assurance” is so vague that it can be considered meaningless.
 When speaking about high assurance software it is paramount to define a set of
 properties the software guarantees.
 To this end we define a set of assurance levels a software artifact can achieve
 and a set of techniques used to get there.
 The following picture sorts the previously defined techniques according to the
-level of assurance they provide and the complexity required to use them.</p>
-<p><figure style="flex-grow: 192; flex-basis: 462px">
-		<a href="/p/what-is-high-assurance-cryptography/overview2.png" data-size="2018x1047"><img src="/p/what-is-high-assurance-cryptography/overview2.png"
-				srcset="/p/what-is-high-assurance-cryptography/overview2_hu6645ebbbb45afaa59acb0d3491403de9_661764_480x0_resize_box_3.png 480w, /p/what-is-high-assurance-cryptography/overview2_hu6645ebbbb45afaa59acb0d3491403de9_661764_1024x0_resize_box_3.png 1024w"
-				width="2018"
-				height="1047"
-				loading="lazy"
-				alt="High assurance - an overview">
-		</a>
-		
-		<figcaption>High assurance - an overview</figcaption>
-		
-	</figure></p>
-<h3 id="ca-1">CA-1</h3>
-<p>The first level of high assurance software is what I’d flippantly call “well
+level of assurance they provide and the complexity required to use them.</p><p><img src=/p/what-is-high-assurance-cryptography/overview2.png width=2018 height=1047 srcset="/p/what-is-high-assurance-cryptography/overview2_hu3604698546197174614.png 480w, /p/what-is-high-assurance-cryptography/overview2_hu15061777128408909.png 1024w" loading=lazy alt="High assurance - an overview" class=gallery-image data-flex-grow=192 data-flex-basis=462px></p><h3 id=ca-1>CA-1</h3><p>The first level of high assurance software is what I’d flippantly call “well
 written software”.
 At this level no complex tools are required. Instead good engineering principles
-are applied.</p>
-<p>Note that this level must not be used for cryptographic software.
-<strong>Cryptography requires at least CA-2.</strong></p>
-<p>The programming language and how it is used is the first important point.
+are applied.</p><p>Note that this level must not be used for cryptographic software.
+<strong>Cryptography requires at least CA-2.</strong></p><p>The programming language and how it is used is the first important point.
 A programming language like Rust that is memory safe and has a lot of additional
 features that allow to ensure that the code is “safe” is paramount.
 It is well known that memory safety is the root cause for most security issues
-with about 70% (see what <a class="link" href="https://www.chromium.org/Home/chromium-security/memory-safety/"  target="_blank" rel="noopener"
-    >Google</a>, <a class="link" href="https://msrnd-cdn-stor.azureedge.net/bluehat/bluehatil/2019/assets/doc/Trends%2C%20Challenges%2C%20and%20Strategic%20Shifts%20in%20the%20Software%20Vulnerability%20Mitigation%20Landscape.pdf"  target="_blank" rel="noopener"
-    >Microsoft</a>, or the <a class="link" href="https://www.memorysafety.org/docs/memory-safety/"  target="_blank" rel="noopener"
-    >ISRG</a> say about this).
-They are only possible because languages like C and C++ are not memory safe.</p>
-<p>The code requires a sufficient amount of tests. It is difficult and arbitrary to
+with about 70% (see what <a class=link href=https://www.chromium.org/Home/chromium-security/memory-safety/ target=_blank rel=noopener>Google</a>, <a class=link href=https://msrnd-cdn-stor.azureedge.net/bluehat/bluehatil/2019/assets/doc/Trends%2C%20Challenges%2C%20and%20Strategic%20Shifts%20in%20the%20Software%20Vulnerability%20Mitigation%20Landscape.pdf target=_blank rel=noopener>Microsoft</a>, or the <a class=link href=https://www.memorysafety.org/docs/memory-safety/ target=_blank rel=noopener>ISRG</a> say about this).
+They are only possible because languages like C and C++ are not memory safe.</p><p>The code requires a sufficient amount of tests. It is difficult and arbitrary to
 define an exact number for test coverage.
 But I think it is safe to say that a test coverage of less than 70% is not
 acceptable.
 Defining test coverage, quantitatively and qualitatively, is part of the
-engineering process.</p>
-<p>Because testing against itself is not sufficient, test vectors with known answer
+engineering process.</p><p>Because testing against itself is not sufficient, test vectors with known answer
 tests must be used.
 If the implementation does not have a generally accepted specification or
 (de-facto) reference implementation that can be used to get test vectors, a
-reference implementation (specification) must be written to produce test vectors.</p>
-<p>Engineering processes must be implemented that ensure that the code can be safely
+reference implementation (specification) must be written to produce test vectors.</p><p>Engineering processes must be implemented that ensure that the code can be safely
 maintained in the long-run.
-An engineering infrastructure must be in place to enforce processes and help the engineering process.</p>
-<p><strong>Properties:</strong></p>
-<ul>
-<li>Memory safety</li>
-<li>Adequate test coverage</li>
-<li>Known answer tests</li>
-<li>Engineering best practices
-<ul>
-<li>Review guidelines</li>
-<li>Continuous integration</li>
-<li>Documentation</li>
-<li>(Security) bug reporting</li>
-<li>Release management</li>
-</ul>
-</li>
-</ul>
-<h3 id="ca-2">CA-2</h3>
-<p>The second level includes everything from the first level but adds properties
-specific to cryptographic code and more advanced testing methods.</p>
-<p>In cryptographic code it is important that no decisions are made based on secret
+An engineering infrastructure must be in place to enforce processes and help the engineering process.</p><p><strong>Properties:</strong></p><ul><li>Memory safety</li><li>Adequate test coverage</li><li>Known answer tests</li><li>Engineering best practices<ul><li>Review guidelines</li><li>Continuous integration</li><li>Documentation</li><li>(Security) bug reporting</li><li>Release management</li></ul></li></ul><h3 id=ca-2>CA-2</h3><p>The second level includes everything from the first level but adds properties
+specific to cryptographic code and more advanced testing methods.</p><p>In cryptographic code it is important that no decisions are made based on secret
 information.
 It is therefore necessary to avoid any branching on secret data or memory access
 based on secret data.
 There is research tooling out there that tries to ensure this and a lot of good
 practices to avoid it. But there’s no comprehensive way of doing this right now.
-With Cryspen we develop a set of tools to ensure secret independent computation that we use and maintain.</p>
-<p>On this level more advanced testing such as fuzzing and property based testing
+With Cryspen we develop a set of tools to ensure secret independent computation that we use and maintain.</p><p>On this level more advanced testing such as fuzzing and property based testing
 is required as well to make sure that the code is not only safe in well defined
-states but can handle any input.</p>
-<p><strong>Properties:</strong></p>
-<ul>
-<li>Secret independent computation
-<ul>
-<li>No secret-dependent branching</li>
-<li>No secret-dependent memory access</li>
-</ul>
-</li>
-<li>Advanced testing
-<ul>
-<li>Fuzzing</li>
-<li>Sanitizer builds</li>
-<li>Property based testing</li>
-</ul>
-</li>
-</ul>
-<h4 id="ca-2-1">CA-2+</h4>
-<p>The secret independent computation properties in CA-2 can be shown on different
+states but can handle any input.</p><p><strong>Properties:</strong></p><ul><li>Secret independent computation<ul><li>No secret-dependent branching</li><li>No secret-dependent memory access</li></ul></li><li>Advanced testing<ul><li>Fuzzing</li><li>Sanitizer builds</li><li>Property based testing</li></ul></li></ul><h4 id=ca-2-1>CA-2+</h4><p>The secret independent computation properties in CA-2 can be shown on different
 levels.
 Often this is done only on the programming language level rather than the machine
 code.
 If the secret independent computation is ensured on the machine code level, we
 call this CA-2+.
 Higher levels are augmented with the + in the same way if the secret independence
-is given after compilation.</p>
-<p><strong>Properties:</strong></p>
-<ul>
-<li>Secret independent computation ensured on the machine code level</li>
-</ul>
-<h3 id="ca-3a">CA-3a</h3>
-<p>The third assurance level includes the first two but requires formal methods.
+is given after compilation.</p><p><strong>Properties:</strong></p><ul><li>Secret independent computation ensured on the machine code level</li></ul><h3 id=ca-3a>CA-3a</h3><p>The third assurance level includes the first two but requires formal methods.
 This is what we will always aim for. But because of the complexity and real world
-constraints it is not always feasible to achieve this level for all code.</p>
-<p>Cryptographic primitives are one building block used to build cryptographic
+constraints it is not always feasible to achieve this level for all code.</p><p>Cryptographic primitives are one building block used to build cryptographic
 protocols.
 Because they require highly efficient implementations but usually have a rather
 succinct mathematical definition, functional and semantic correctness are the
@@ -307,295 +98,58 @@ In particular, the efficient implementation of a cryptographic primitive must be
 shown equivalent to a self-evidently correct specification.
 Additionally semantic properties such as “decryption is the inverse of encryption”
 can be shown.
-The exact properties proven must be clearly stated for every artifact.</p>
-<p>Data structures and other building blocks are needed to build cryptographic
+The exact properties proven must be clearly stated for every artifact.</p><p>Data structures and other building blocks are needed to build cryptographic
 protocols in addition to the primitives.
 They must be similarly shown to be correct and safe to use by using functional
-and semantic correctness proofs.</p>
-<p>On this level the cryptographic protocols themselves are written in a succinct
+and semantic correctness proofs.</p><p>On this level the cryptographic protocols themselves are written in a succinct
 way such that they can be inspected by hand and compared to a general
-specification if available.</p>
-<p><strong>Properties:</strong></p>
-<ul>
-<li>Functional and semantic security proofs</li>
-</ul>
-<h3 id="ca-3b">CA-3b</h3>
-<p>The third level can be extended to require formal proofs on the protocol layer.
+specification if available.</p><p><strong>Properties:</strong></p><ul><li>Functional and semantic security proofs</li></ul><h3 id=ca-3b>CA-3b</h3><p>The third level can be extended to require formal proofs on the protocol layer.
 While cryptographic protocols can often be written in a way that they are
 self-evidently correct and efficient, this is not enough if the protocol is not
-standardized or is too complex to inspect manually.</p>
-<p>Security models and properties are defined for a protocol and they are proven on
+standardized or is too complex to inspect manually.</p><p>Security models and properties are defined for a protocol and they are proven on
 the implementation of the cryptographic protocols using formal methods.
 These properties are very specific to each protocol and can range from the
-correctness of a state machine to the security against a certain type of attacker.</p>
-<p><strong>Properties:</strong></p>
-<ul>
-<li>Security proofs</li>
-</ul>
-<h2 id="high-assurance">High-Assurance?</h2>
-<p><a class="link" href="https://highassurance.rs"  target="_blank" rel="noopener"
-    >https://highassurance.rs</a> has some great documentation on writing good Rust code.
+correctness of a state machine to the security against a certain type of attacker.</p><p><strong>Properties:</strong></p><ul><li>Security proofs</li></ul><h2 id=high-assurance>High-Assurance?</h2><p><a class=link href=https://highassurance.rs target=_blank rel=noopener>https://highassurance.rs</a> has some great documentation on writing good Rust code.
 However, it also has a good example of what I <em>don’t</em> consider high assurance software
 and exemplifies why it is so important to specify all claims precisely instead of
 simply claiming high assurance.
-<em>(Note that this is just an example to show why it is so important to exactly specify what assurances are given. This is not supposed to bash the <a class="link" href="https://highassurance.rs"  target="_blank" rel="noopener"
-    >https://highassurance.rs</a> folks. I think it&rsquo;s a great effort.)</em></p>
-<p>Let’s take a look at chapters <a class="link" href="https://highassurance.rs/chp2/dynamic_assurance_1.html"  target="_blank" rel="noopener"
-    >2.4-2.6</a> that describe a high assurance
+<em>(Note that this is just an example to show why it is so important to exactly specify what assurances are given. This is not supposed to bash the <a class=link href=https://highassurance.rs target=_blank rel=noopener>https://highassurance.rs</a> folks. I think it&rsquo;s a great effort.)</em></p><p>Let’s take a look at chapters <a class=link href=https://highassurance.rs/chp2/dynamic_assurance_1.html target=_blank rel=noopener>2.4-2.6</a> that describe a high assurance
 implementation of the RC4 stream cipher. At the end of the section the authors
-state the following:</p>
-<blockquote>
-<p>You&rsquo;ve now built your first piece of high assurance software (sans the RC4 algorithm itself). Your RC4 library is:</p>
-<ul>
-<li>Fully memory-safe, hence <code>#![forbid(unsafe_code)]</code></li>
-<li>Stand-alone and capable for running almost anywhere, hence <code>#![no_std]</code></li>
-<li>Functionally validated, using official IETF test vectors</li>
-</ul>
-</blockquote>
-<p>While these points are all on the list above they are what I would consider good
+state the following:</p><blockquote><p>You&rsquo;ve now built your first piece of high assurance software (sans the RC4 algorithm itself). Your RC4 library is:</p><ul><li>Fully memory-safe, hence <code>#![forbid(unsafe_code)]</code></li><li>Stand-alone and capable for running almost anywhere, hence <code>#![no_std]</code></li><li>Functionally validated, using official IETF test vectors</li></ul></blockquote><p>While these points are all on the list above they are what I would consider good
 engineering principles (known answer tests with test vectors, and memory safety).
 In particular, they lay the foundation for high assurance software but don’t
 constitute high assurance in itself. As is, the code itself would be CA-1 but
 additional mechanisms in the form of engineering processes and infrastructure
 are needed for full CA-1 compliance.
-(Similar additional mechanisms are mentioned in <a class="link" href="https://highassurance.rs/chp2/_index.html"  target="_blank" rel="noopener"
-    >Chapter 2</a>.)</p>
-<p>However, CA-1 is not sufficient for cryptographic primitives as stated above.
+(Similar additional mechanisms are mentioned in <a class=link href=https://highassurance.rs/chp2/_index.html target=_blank rel=noopener>Chapter 2</a>.)</p><p>However, CA-1 is not sufficient for cryptographic primitives as stated above.
 To reach CA-2 the code needs to be rewritten though because <strong>it has secret
 dependent memory access</strong>.
 After doing this property based testing, fuzzing, and techniques ensuring secret
-independent computation have to be added.</p>
-<p>Because the code can be seen as a spec one can argue that it reaches CA-3a now
+independent computation have to be added.</p><p>Because the code can be seen as a spec one can argue that it reaches CA-3a now
 as well.
 CA-3b is not applicable.
 However it is not very efficient but rather a specification.
 In order to use the algorithm in a real application one might want to implement
 an efficient version that would then require an equivalence proof with the
-specification.</p>
-<p><em>RC4 itself is of course not secure and must not be used! This is just taking the example from <a class="link" href="https://highassurance.rs"  target="_blank" rel="noopener"
-    >https://highassurance.rs</a>.</em></p>
-<h2 id="cryspen-high-assurance-cryptography">Cryspen High Assurance Cryptography</h2>
-<p>At Cryspen we consider CA-1 regular software.
-Cryptographic code at Cryspen must always be CA-2 or higher.</p>
-<p>We are working on different high assurance cryptographic primitives and
-protocols right now.</p>
-<h3 id="hacl">HACL</h3>
-<p>The <a class="link" href="https://github.com/cryspen/hacl-packages"  target="_blank" rel="noopener"
-    >HACL packages</a> wrap the HACL* research artifacts and constitute a high
+specification.</p><p><em>RC4 itself is of course not secure and must not be used! This is just taking the example from <a class=link href=https://highassurance.rs target=_blank rel=noopener>https://highassurance.rs</a>.</em></p><h2 id=cryspen-high-assurance-cryptography>Cryspen High Assurance Cryptography</h2><p>At Cryspen we consider CA-1 regular software.
+Cryptographic code at Cryspen must always be CA-2 or higher.</p><p>We are working on different high assurance cryptographic primitives and
+protocols right now.</p><h3 id=hacl>HACL</h3><p>The <a class=link href=https://github.com/cryspen/hacl-packages target=_blank rel=noopener>HACL packages</a> wrap the HACL* research artifacts and constitute a high
 assurance cryptographic library.
 The library is CA-3a because it is proven to be memory safe, has correctness
 proofs with respect to a specification and ensures secret independent computation
-on a programming language level.</p>
-<h3 id="hpke">HPKE</h3>
-<p>The <a class="link" href="https://github.com/cryspen/hpke-spec/"  target="_blank" rel="noopener"
-    >HPKE implementation</a> is a specification of the <a class="link" href="https://datatracker.ietf.org/doc/rfc9180/"  target="_blank" rel="noopener"
-    >HPKE RFC</a> and as such is CA-3a
+on a programming language level.</p><h3 id=hpke>HPKE</h3><p>The <a class=link href=https://github.com/cryspen/hpke-spec/ target=_blank rel=noopener>HPKE implementation</a> is a specification of the <a class=link href=https://datatracker.ietf.org/doc/rfc9180/ target=_blank rel=noopener>HPKE RFC</a> and as such is CA-3a
 because it is self-evidently correct as a specification and uses formally
 verified cryptography with CA-3a.
-In a next step the <a class="link" href="https://github.com/cryspen/hpke-spec/"  target="_blank" rel="noopener"
-    >HPKE implementation</a> will be connected to the <a class="link" href="https://www.benjaminlipp.de/p/hpke-cryptographic-standard/#pre"  target="_blank" rel="noopener"
-    >Cryptoverif</a>
+In a next step the <a class=link href=https://github.com/cryspen/hpke-spec/ target=_blank rel=noopener>HPKE implementation</a> will be connected to the <a class=link href=https://www.benjaminlipp.de/p/hpke-cryptographic-standard/#pre target=_blank rel=noopener>Cryptoverif</a>
 models to prove security properties and thus reach the highest assurance
-level CA-3b.</p>
-<h3 id="tls-13">TLS 1.3</h3>
-<p>In an <a class="link" href="https://www.assure.ngi.eu/"  target="_blank" rel="noopener"
-    >NGI Assure</a> project we develop the first formally verified, production
-ready TLS 1.3 implementation.</p>
-<hr>
-<p><a class="link" href="https://www.cryspen.com"  target="_blank" rel="noopener"
-    >Cryspen</a> offers high assurance cryptographic implementations.
-<a class="link" href="mailto:franziskus@cryspen.com" >Get in touch for more information.</a></p>
-
-</section>
-
-
-    <footer class="article-footer">
-    
-    <section class="article-tags">
-        
-            <a href="/tags/high-assurance/">high-assurance</a>
-        
-            <a href="/tags/cryspen/">Cryspen</a>
-        
-    </section>
-
-
-    </footer>
-
-
-    
-</article>
-
-    <aside class="related-contents--wrapper">
-    
-    
-</aside>
-
-     
-     
-        
-    
-
-    <footer class="site-footer">
-    <section class="copyright">
-        &copy; 
-        
-            2013 - 
-        
-        2022 Dr Franziskus Kiefer
-    </section>
-    
-    <section class="powerby">
-        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.1.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
-    </section>
-</footer>
-
-
-    
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-
-    
-    <div class="pswp__bg"></div>
-
-    
-    <div class="pswp__scroll-wrap">
-
-        
-        <div class="pswp__container">
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-        </div>
-
-        
-        <div class="pswp__ui pswp__ui--hidden">
-
-            <div class="pswp__top-bar">
-
-                
-
-                <div class="pswp__counter"></div>
-
-                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-
-                <button class="pswp__button pswp__button--share" title="Share"></button>
-
-                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-
-                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-
-                
-                
-                <div class="pswp__preloader">
-                    <div class="pswp__preloader__icn">
-                        <div class="pswp__preloader__cut">
-                            <div class="pswp__preloader__donut"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                <div class="pswp__share-tooltip"></div>
-            </div>
-
-            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-            </button>
-
-            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-            </button>
-
-            <div class="pswp__caption">
-                <div class="pswp__caption__center"></div>
-            </div>
-
-        </div>
-
-    </div>
-
-</div><script 
-                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
-                defer="true"
-                >
-            </script><script 
-                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
-                defer="true"
-                >
-            </script><link 
-                rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
-            ><link 
-                rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
-            >
-
-            </main>
-    
-        <aside class="sidebar right-sidebar sticky">
-            <section class="widget archives">
-                <div class="widget-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <line x1="5" y1="9" x2="19" y2="9" />
-  <line x1="5" y1="15" x2="19" y2="15" />
-  <line x1="11" y1="4" x2="7" y2="20" />
-  <line x1="17" y1="4" x2="13" y2="20" />
-</svg>
-
-
-
-                </div>
-                <h2 class="widget-title section-title">Table of contents</h2>
-                
-                <div class="widget--toc">
-                    <nav id="TableOfContents">
-  <ol>
-    <li><a href="#techniques">Techniques</a></li>
-    <li><a href="#assurance-levels">Assurance Levels</a>
-      <ol>
-        <li><a href="#ca-1">CA-1</a></li>
-        <li><a href="#ca-2">CA-2</a>
-          <ol>
-            <li><a href="#ca-2-1">CA-2+</a></li>
-          </ol>
-        </li>
-        <li><a href="#ca-3a">CA-3a</a></li>
-        <li><a href="#ca-3b">CA-3b</a></li>
-      </ol>
-    </li>
-    <li><a href="#high-assurance">High-Assurance?</a></li>
-    <li><a href="#cryspen-high-assurance-cryptography">Cryspen High Assurance Cryptography</a>
-      <ol>
-        <li><a href="#hacl">HACL</a></li>
-        <li><a href="#hpke">HPKE</a></li>
-        <li><a href="#tls-13">TLS 1.3</a></li>
-      </ol>
-    </li>
-  </ol>
-</nav>
-                </div>
-            </section>
-        </aside>
-    
-
-        </div>
-        <script 
-                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
-                defer="false"
-                >
-            </script><script type="text/javascript" src="/ts/main.js" defer></script>
-<script>
-    (function () {
-        const customFont = document.createElement('link');
-        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
-
-        customFont.type = "text/css";
-        customFont.rel = "stylesheet";
-
-        document.head.appendChild(customFont);
-    }());
-</script>
-
-    </body>
-</html>
+level CA-3b.</p><h3 id=tls-13>TLS 1.3</h3><p>In an <a class=link href=https://www.assure.ngi.eu/ target=_blank rel=noopener>NGI Assure</a> project we develop the first formally verified, production
+ready TLS 1.3 implementation.</p><hr><p><a class=link href=https://www.cryspen.com target=_blank rel=noopener>Cryspen</a> offers high assurance cryptographic implementations.
+<a class=link href=mailto:franziskus@cryspen.com>Get in touch for more information.</a></p></section><footer class=article-footer><section class=article-tags><a href=/tags/high-assurance/>High-Assurance</a>
+<a href=/tags/cryspen/>Cryspen</a></section></footer></article><footer class=site-footer><section class=copyright>&copy;
+2013 -
+2024 Dr Franziskus Kiefer</section><section class=powerby>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.29.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js defer></script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>

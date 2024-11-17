@@ -1,20 +1,117 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>berlin crypto on Dr Franziskus Kiefer</title>
-    <link>https://www.franziskuskiefer.de/tags/berlin-crypto/</link>
-    <description>Recent content in berlin crypto on Dr Franziskus Kiefer</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Mon, 23 Dec 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/tags/berlin-crypto/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Shared-Secrets Service</title>
-      <link>https://www.franziskuskiefer.de/p/shared-secrets-service/</link>
-      <pubDate>Mon, 23 Dec 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.franziskuskiefer.de/p/shared-secrets-service/</guid>
-      <description>At the Berlin Crypto this month we had a talk by Kevin about a shared-secret service they developed at Syselevn. After experimenting with PGP and deciding that it doesn&amp;rsquo;t do what they needed, they decided to go with a very simple, custom encrypt-then-mac scheme. You can find details here. When someone says they built their own encryption scheme and message format I get obviously curious. In this post I want to summarize the scheme, design decisions, compare it standard authenticated encryption schemes, and ponder the question of the right security definitions.</description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Berlin Crypto on Dr Franziskus Kiefer</title><link>https://www.franziskuskiefer.de/tags/berlin-crypto/</link><description>Recent content in Berlin Crypto on Dr Franziskus Kiefer</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 23 Dec 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/tags/berlin-crypto/index.xml" rel="self" type="application/rss+xml"/><item><title>Shared-Secrets Service</title><link>https://www.franziskuskiefer.de/p/shared-secrets-service/</link><pubDate>Mon, 23 Dec 2019 00:00:00 +0000</pubDate><guid>https://www.franziskuskiefer.de/p/shared-secrets-service/</guid><description>&lt;img src="https://www.franziskuskiefer.de/p/shared-secrets-service/hero.jpg" alt="Featured image of post Shared-Secrets Service" />&lt;p>At the &lt;a class="link" href="https://berlin-crypto.github.io" target="_blank" rel="noopener"
+>Berlin Crypto&lt;/a> this month we had a talk by &lt;a class="link" href="https://twitter.com/xyahe/" target="_blank" rel="noopener"
+>Kevin&lt;/a> about a &lt;a class="link" href="https://secrets.syseleven.de" target="_blank" rel="noopener"
+>shared-secret service&lt;/a> they developed at &lt;a class="link" href="https://syseleven.de" target="_blank" rel="noopener"
+>Syselevn&lt;/a>.
+After experimenting with PGP and deciding that it doesn&amp;rsquo;t do what they needed, they decided to go with a very simple, custom encrypt-then-mac scheme. You can find details &lt;a class="link" href="https://github.com/syseleven/shared-secrets/blob/master/ENCRYPTION.md" target="_blank" rel="noopener"
+>here&lt;/a>.
+When someone says they built their own encryption scheme and message format I get obviously curious.
+In this post I want to summarize the scheme, design decisions, compare it standard authenticated encryption schemes, and ponder the question of the right security definitions.&lt;/p>
+&lt;p>Note that I refrain from formal definitions in this post.
+I only want to give the intuition.
+Please read the linked documents for formal definitions and details.
+See for example the &lt;a class="link" href="https://cseweb.ucsd.edu/~mihir/papers/oem.pdf" target="_blank" rel="noopener"
+>Authenticated Encryption paper by Bellare and Namprempre&lt;/a> for details on authenticated encryption and the &lt;a class="link" href="https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.76.4921&amp;amp;rep=rep1&amp;amp;type=pdf" target="_blank" rel="noopener"
+>Authenticated Encryption with Associated Data by Rogaway&lt;/a> on AEADs.&lt;/p>
+&lt;h2 id="shared-secrets">Shared-Secrets
+&lt;/h2>&lt;p>The service and scheme are described as follows:&lt;/p>
+&lt;blockquote>
+&lt;p>Shared-Secrets is an application that helps you to simply share one-time secrets over the web.
+Using the Shared-Secrets service allows you to transfer the actual secret in an encrypted form.
+Retrieving the secret is as simple as following a link.
+In contrast to other secret sharing services, Shared-Secrets does not store the secret on the server, but puts the encrypted secret into the link that you share with the desired recipient.&lt;/p>
+&lt;/blockquote>
+&lt;p>I leave aside the fact that any attacker that can intercept the message can trivially retrieve the secret and focus on the encryption scheme used for the service.
+Note that the service allows to encrypt the message with a password before sharing it to prevent the aforementioned attack.&lt;/p>
+&lt;p>The encryption scheme used for this service is a basic encrypt-then-mac scheme that can be written as&lt;/p>
+&lt;pre tabindex="0">&lt;code>(c, t) &amp;lt;- EtM(key, nonce, msg, aad)
+&lt;/code>&lt;/pre>&lt;p>where &lt;code>aad&lt;/code> contains all meta-data (version etc.).
+Keys for the mac and encryption algorithms are derived as follows&lt;/p>
+&lt;pre tabindex="0">&lt;code>key &amp;lt;- random() # 32-byte
+(k_c, k_t) &amp;lt;- (HMAC-SHA256(key, &amp;#34;enc&amp;#34;), HMAC-SHA256(key, &amp;#34;mac&amp;#34;))
+rsakey &amp;lt;- RSA-OAEP(pk, key)
+&lt;/code>&lt;/pre>&lt;p>The RSA key &lt;code>pk&lt;/code> is the server&amp;rsquo;s public key.
+Now we can compute the ciphertext and mac.&lt;/p>
+&lt;pre tabindex="0">&lt;code>c &amp;lt;- AES-256-CTR(k_c, nonce, msg)
+t &amp;lt;- HMAC-SHA256(k_t, aad, c)
+&lt;/code>&lt;/pre>&lt;p>The message format is defined as&lt;/p>
+&lt;pre tabindex="0">&lt;code>[version:01][rsakeycount:02][rsakeyid:32][rsakeylength:02][rsakey:mm][...][rsakeyid:32][rsakeylength:02][rsakey:mm][nonce:16][message:nn][mac:32]
+&lt;/code>&lt;/pre>&lt;p>with &lt;code>rsakeyid := SHA256(pk)&lt;/code> and &lt;code>nonce := $(date +%s)|0..0&lt;/code> (8-byte unix timestamp, padded 8 zero bytes).&lt;/p>
+&lt;h3 id="observations">Observations
+&lt;/h3>&lt;p>Looking at the scheme there are a two things that stand out.
+This is in addition to the unclear threat scenario that I won&amp;rsquo;t discuss in this post.&lt;/p>
+&lt;p>Note that there&amp;rsquo;s currently no standardized way of doing hybrid encryption. There&amp;rsquo;s currently an &lt;a class="link" href="https://tools.ietf.org/html/draft-irtf-cfrg-hpke-02" target="_blank" rel="noopener"
+>RFC in the making&lt;/a> but until that&amp;rsquo;s finished it is necessary to define custom hybrid schemes as done here.&lt;/p>
+&lt;h4 id="the-nonce-is-not-random">The nonce is not random
+&lt;/h4>&lt;p>When using encryption schemes such as AES-CTR it is paramount that the nonce is unique.
+If this is not the case, the key-stream becomes known and allows full message recovery.
+Using a timestamp as nonce is usually a bad move as time is predictable and not random.&lt;/p>
+&lt;h4 id="how-is-this-different-from-an-aead">How is this different from an AEAD
+&lt;/h4>&lt;p>The scheme as described above looks like an AEAD scheme.
+So the question is why didn&amp;rsquo;t they just use an established AEAD scheme such as AES-GCM or ChaCha20Poly1305.&lt;/p>
+&lt;h2 id="encrypt-then-mac--aead">Encrypt-then-Mac == AEAD?
+&lt;/h2>&lt;p>Let&amp;rsquo;s talk about encryption and authentication first.
+Historically encryption offered confidentiality but no integrity.
+Something that&amp;rsquo;s not immediately obvious to non-cryptographers who want to use encryption to protect their data.
+Authenticated Encryption (AE) and its relation to non-authenticated encryption was first described in the previously mentioned paper by &lt;a class="link" href="https://cseweb.ucsd.edu/~mihir/papers/oem.pdf" target="_blank" rel="noopener"
+>Bellare and Namprempre&lt;/a> in 2000.&lt;/p>
+&lt;p>Encryption was considered secure if it satisfied the indistinguishable under chosen plaintext property, i.e. if an attacker couldn&amp;rsquo;t distinguish whether a ciphertext encrypts message &lt;code>a&lt;/code> or message &lt;code>b&lt;/code>.
+But &amp;ldquo;security&amp;rdquo; of an encryption scheme intuitively might mean something else as well.
+In addition to not being able to know which message is encrypted in a ciphertext it shouldn&amp;rsquo;t be possible for an attacker to change the content of the message or the ciphertext without the recipient noticing it.
+This property can be described as ciphertext (or plaintext) integrity and allows the definition of authenticated encryption.
+Adding associated data (AD) that is not encrypted but authenticated we get Authenticated Encryption with Associated Data (AEAD).
+For a comprehensive overview of AEAD and its history I recommend checking out these &lt;a class="link" href="https://summerschool-croatia.cs.ru.nl/2016/slides/PhilRogaway.pdf" target="_blank" rel="noopener"
+>slides by Phillip Rogaway&lt;/a>.&lt;/p>
+&lt;h3 id="encrypt-then-mac--aead-1">Encrypt-then-Mac != AEAD
+&lt;/h3>&lt;p>Generally encrypt-then-mac schemes can be considered AEADs.
+For this to be true however, the Mac has to be strongly unforgeable.
+Luckily this is the case for HMAC such that the scheme described above is fine in this regard.&lt;/p>
+&lt;p>A MAC scheme is weakly unforgeable (WUF-CMA) if an attacker is not able to generate a tag for a new message, i.e. a message that she hasn&amp;rsquo;t seen a tag for before.
+If a scheme is strongly unforgeable (SUF-CMA), it must me impossible for an attacker to generate a new message, tag pair, i.e. not only a new message but also a new tag.
+While SUF-CMA seems like an artificial extension of the intuitive notion of WUF-CMA it is necessary to build an AEAD as WUF-CMA doesn&amp;rsquo;t provide integrity guarantees for the ciphertext or plaintext.&lt;/p>
+&lt;h2 id="aead-properties">AEAD Properties
+&lt;/h2>&lt;p>The motivation to build this custom AEAD scheme instead of using an existing one was a big point of discussion at the meetup.
+The essence is that Kenny didn&amp;rsquo;t trust that an AEAD provided exactly what he needed.
+So what are properties of an AEAD?
+Generally AEADs are supposed to offer IND-CCA security where the attacker is allowed to decrypt arbitrary ciphertexts.
+Instead of thinking of AEAD as IND-CCA secure it is more intuitive to think of it as IND-CPA secure (i.e. the attacker can&amp;rsquo;t do better than guessing which message is encrypted in a ciphertext when given the ciphertext to one of two adversarially chosen messages) and offering INT-CTXT, i.e. integrity of the ciphertext.
+Note that this &lt;strong>does not&lt;/strong> imply authenticity of the plaintext because IND-CCA does not guarantee that it is impossible for an attacker to generate a valid ciphertext for a specially crafted message.&lt;/p>
+&lt;h3 id="uniqueness-of-tags">Uniqueness of Tags
+&lt;/h3>&lt;p>The property that was questioned to be part of the AEAD security definition but was important to the Shared-Secrets service is the uniqueness of the ciphertext and tag.
+This is necessary to make sure secrets can only be retrieved once.
+According to the &lt;a class="link" href="https://secrets.syseleven.de/how" target="_blank" rel="noopener"
+>website&lt;/a> the server uses a fingerprint to achieve this.
+First I notice that fingerprint is not defined in the encryption scheme.
+Looking at &lt;a class="link" href="https://github.com/syseleven/shared-secrets/blob/2fa63d5bf0673d497c7ee5afa766176ccb34b34f/lib/shared-secrets.exec.php#L256" target="_blank" rel="noopener"
+>the code&lt;/a> it appears that the fingerprint is the tag.
+The fingerprint is stored on the server and the service refuses to decrypt anything with the fingerprint if it did so once before.&lt;/p>
+&lt;p>So the question is whether the used encrypt-then-mac scheme makes sure that the tag is unique and whether an AEAD would have offered this property as well.&lt;/p>
+&lt;p>In other words, can an attacker generate a second, different, valid tag &lt;code>t'&lt;/code> for an existing ciphertext, tag pair &lt;code>(c, t)&lt;/code>.
+Note that I do not consider encodings here.
+(Using base64 encoding for example it is possible to generate two different base64 strings that decode to the same binary message.)
+To this end there has to exist a pair &lt;code>(c, t), (c', t')&lt;/code> with &lt;code>Dec(c) == Dec(c') &amp;amp;&amp;amp; Verify(t) == Verify(t')&lt;/code> i.e. two ciphertext, tag pairs that decrypt to the same message and both tags are valid.
+First note that the unforgeability of the Mac ensures that it is impossible to generate a valid tag &lt;code>t'&lt;/code> for a given ciphertext &lt;code>c&lt;/code> without knowledge of the key.
+It follows that the ciphertext &lt;code>c'&lt;/code> has to be different from the original ciphertext &lt;code>c&lt;/code>.
+But without knowledge of the message &lt;code>m&lt;/code> encrypted in &lt;code>c&lt;/code> (or the key) it is impossible to generate a ciphertext &lt;code>c'&lt;/code> that decrypts to &lt;code>m&lt;/code>.
+Hence this is not possible.&lt;/p>
+&lt;p>While everything else in this post were well established properties of AEADs this one doesn&amp;rsquo;t appear to follow trivially.
+However, this applies to the custom scheme used in Shared-Secrets as well as an off-the-shelf AEAD.&lt;/p>
+&lt;h2 id="timestamps-as-nonces">Timestamps as Nonces
+&lt;/h2>&lt;p>Non-random nonces break most AEAD schemes.
+This is one reason &lt;a class="link" href="https://web.cs.ucdavis.edu/~rogaway/papers/keywrap.pdf" target="_blank" rel="noopener"
+>Misuse-Resistant AE (MRAE)&lt;/a> was introduced and specified for schemes such as AES-GCM (&lt;a class="link" href="https://tools.ietf.org/html/rfc8452" target="_blank" rel="noopener"
+>AES-GCM-SIV&lt;/a>).&lt;/p>
+&lt;p>So how does choosing a timestamp as nonce fare in the Shared-Secret scheme?&lt;/p>
+&lt;p>Recall that AES in counter mode, as used here, is an XOR of a plaintext block with the AES encryption of the concatenation of the nonce and the counter (&lt;code>c_i = m_i xor AES(key, nonce||ctr)&lt;/code>).
+Thus, one can recover an unknown plaintext by computing the xor of its ciphertext with the xor of a known ciphertext, plaintext pair (&lt;code>m_i = c_i xor (c'_i xor m'_i)&lt;/code>) when the nonce is known.&lt;/p>
+&lt;p>While the Shared-Secrets scheme is very fragile here and not well-designed here (why not just take a random nonce?) I can&amp;rsquo;t see how this can be exploited.
+Even if an attacker is able to generate two ciphertexts with the same nonce (this can be easily done by sending two requests to the server at the same time), the key will be different in both cases.&lt;/p>
+&lt;h2 id="discussion-how-to-define-security">Discussion: How to define security?
+&lt;/h2>&lt;p>This episode illustrates how important it is for security definitions to model real-world scenarios that people actually have when using a primitive.
+But it also shows that sometimes, even though standard primitives with appropriate security definitions exist, communicating these properties fail.
+The use case of the Shared-Secrets is a peculiar one but highlights these issues.
+Something I did not expect is that people rather define their own crypto schemes than using existing ones because they think they don&amp;rsquo;t understand the properties properly.
+But this is all the more reason to make sure the exact security properties a scheme offers are communicated and well understood by everyone.&lt;/p>
+&lt;p>For me this is another pointer that it is important to have properly working communication channels between people analyzing crypto and everyone using it in order to transport requirements and make sure everyone is on the same page.
+And this is, among others things, what we do at the &lt;a class="link" href="https://berlin-crypto.github.io" target="_blank" rel="noopener"
+>Berlin Crypto&lt;/a> meetup in a very informal and local setting.&lt;/p></description></item></channel></rss>

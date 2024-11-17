@@ -1,32 +1,57 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>SURF on Dr Franziskus Kiefer</title>
-    <link>https://www.franziskuskiefer.de/tags/surf/</link>
-    <description>Recent content in SURF on Dr Franziskus Kiefer</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Tue, 12 Nov 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/tags/surf/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Mozilla SURF Summit Vienna 2019</title>
-      <link>https://www.franziskuskiefer.de/p/mozilla-surf-summit-vienna-2019/</link>
-      <pubDate>Tue, 12 Nov 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.franziskuskiefer.de/p/mozilla-surf-summit-vienna-2019/</guid>
-      <description>Last week we had the third Security Engineering University Relationship Framework (SURF) summit in Vienna. The last SURF summit I attended was the first one in London 2018.
-This time we had four talks by Mozillians, three invited talks, as well as eight lightning talks. I live-tweeted a little during the event if you like slides on photos.
-Christoph talked about how to harden the content security landscape of Firefox and posed the question how we could do some of that on the web.</description>
-    </item>
-    
-    <item>
-      <title>Mozilla Security Research Summit London 2018</title>
-      <link>https://www.franziskuskiefer.de/p/mozilla-security-research-summit-london-2018/</link>
-      <pubDate>Mon, 19 Nov 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.franziskuskiefer.de/p/mozilla-security-research-summit-london-2018/</guid>
-      <description>The Security Engineering University Relationship Framework (SURF) is an initiative within the Firefox security engineering team to improve relations with privacy and security researchers. SURF includes a variety of possible relationships but is focused on building long-term relationships with researchers and organisations. The goal of SURF projects is to explore topics that are outside of Mozilla&amp;rsquo;s immediate product needs, influence Mozilla&amp;rsquo;s long-term product development and vision.
-On November 12th the first SURF summit was held in London.</description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>SURF on Dr Franziskus Kiefer</title><link>https://www.franziskuskiefer.de/tags/surf/</link><description>Recent content in SURF on Dr Franziskus Kiefer</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 12 Nov 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/tags/surf/index.xml" rel="self" type="application/rss+xml"/><item><title>Mozilla SURF Summit Vienna 2019</title><link>https://www.franziskuskiefer.de/p/mozilla-surf-summit-vienna-2019/</link><pubDate>Tue, 12 Nov 2019 00:00:00 +0000</pubDate><guid>https://www.franziskuskiefer.de/p/mozilla-surf-summit-vienna-2019/</guid><description>&lt;img src="https://www.franziskuskiefer.de/p/mozilla-surf-summit-vienna-2019/surf-vienna-2019.jpg" alt="Featured image of post Mozilla SURF Summit Vienna 2019" />&lt;p>Last week we had the third Security Engineering University Relationship Framework (&lt;a class="link" href="https://surf.mozilla.org/" target="_blank" rel="noopener"
+>SURF&lt;/a>) &lt;a class="link" href="https://web.archive.org/web/20191111151144/https://events.mozilla.org/mozillasecurityresearchsummit2019" target="_blank" rel="noopener"
+>summit in Vienna&lt;/a>.
+The last SURF summit I attended was the first one &lt;a class="link" href="../mozilla-security-research-summit-london-2018/" >in London 2018&lt;/a>.&lt;/p>
+&lt;p>This time we had four talks by Mozillians, three invited talks, as well as eight lightning talks.
+I &lt;a class="link" href="https://twitter.com/_franziskus_/status/1192730087487135744" target="_blank" rel="noopener"
+>live-tweeted&lt;/a> a little during the event if you like slides on photos.&lt;/p>
+&lt;p>&lt;a class="link" href="https://christophkerschbaumer.com/" target="_blank" rel="noopener"
+>Christoph&lt;/a> talked about how to &lt;a class="link" href="surf_vienna_kerschbaumer.pdf" >harden the content security landscape of Firefox&lt;/a> and posed the question how we could do some of that on the web.
+The web PKI with all its problems was the topic of &lt;a class="link" href="thyla-webpki.pdf" >Thyla&amp;rsquo;s talk&lt;/a>, with a focus on &lt;a class="link" href="https://mislove.org/publications/CRLite-Oakland.pdf" target="_blank" rel="noopener"
+>CRLite&lt;/a>. There&amp;rsquo;s also a &lt;a class="link" href="https://blog.mozilla.org/security/2019/11/01/validating-delegated-credentials-for-tls-in-firefox/" target="_blank" rel="noopener"
+>blog post&lt;/a> on the Mozilla security blog on this with more details and links.&lt;/p>
+&lt;p>One prominent topic at this SURF summit was how to preserve privacy online and counter tracking.
+&lt;a class="link" href="https://twitter.com/nataliabielova" target="_blank" rel="noopener"
+>Natliia&lt;/a> gave an invited talk on &lt;a class="link" href="https://arxiv.org/abs/1812.01514" target="_blank" rel="noopener"
+>detecting trackers missed by filter lists and browser extensions&lt;/a>, &lt;a class="link" href="https://senglehardt.com/" target="_blank" rel="noopener"
+>Steven&lt;/a> talked about &lt;a class="link" href="senglehardt-private-web.pdf" >challenges in building a private web&lt;/a> and &lt;a class="link" href="https://www.esat.kuleuven.be/cosic/people/gunes-acar/" target="_blank" rel="noopener"
+>Gunes&lt;/a> about &lt;a class="link" href="dark_patterns_surf_vienna_mozilla.pdf" >dark patterns&lt;/a> and how to find them on the web.&lt;/p>
+&lt;p>On the crypto side we had &lt;a class="link" href="https://twitter.com/kennyog" target="_blank" rel="noopener"
+>Kenny&lt;/a> talk about &lt;a class="link" href="kenny-api-design.pdf" >API design of crypto primitves&lt;/a> and primality testing.
+Details can be found in the well titled papers &lt;a class="link" href="https://eprint.iacr.org/2019/032" target="_blank" rel="noopener"
+>safety in numbers&lt;/a> and &lt;a class="link" href="https://eprint.iacr.org/2018/749" target="_blank" rel="noopener"
+>prime and prejudice&lt;/a>.
+I talked about &lt;a class="link" href="kiefer-pq-mozilla.pdf" >Post Quantum Crypto and Mozilla&lt;/a> calling on more experiments with post quantum crypto beyond TLS key exchange.&lt;/p>
+&lt;p>We closed the summit with a panel discussion on the gap between theory and practice.&lt;/p></description></item><item><title>Mozilla Security Research Summit London 2018</title><link>https://www.franziskuskiefer.de/p/mozilla-security-research-summit-london-2018/</link><pubDate>Mon, 19 Nov 2018 00:00:00 +0000</pubDate><guid>https://www.franziskuskiefer.de/p/mozilla-security-research-summit-london-2018/</guid><description>&lt;p>The Security Engineering University Relationship Framework (SURF) is an initiative within the Firefox security engineering team to improve relations with privacy and security researchers.
+SURF includes a variety of possible relationships but is focused on building long-term relationships with researchers and organisations.
+The goal of SURF projects is to explore topics that are outside of Mozilla&amp;rsquo;s immediate product needs, influence Mozilla&amp;rsquo;s long-term product development and vision.&lt;/p>
+&lt;p>On November 12th the &lt;a class="link" href="https://web.archive.org/web/20181119104824/https://events.mozilla.org/securityresearchsummit" target="_blank" rel="noopener"
+>first SURF summit&lt;/a> was held in London.
+SURF summits are an opportunity for researchers and Mozillians to get together and exchange ideas.
+This very first summit, organised by &lt;a class="link" href="https://twitter.com/ThylaVdMerwe" target="_blank" rel="noopener"
+>Thyla&lt;/a>, was attended by a number of Mozillians, UK academics, and grad students.&lt;/p>
+&lt;p>Four Mozillians presented challenges they are currently facing, pitching possible research challenges.&lt;/p>
+&lt;ul>
+&lt;li>&lt;a class="link" href="https://senglehardt.com/" target="_blank" rel="noopener"
+>Steven Englehardt&lt;/a> talked about the need for &lt;a class="link" href="https://drive.google.com/file/d/1AG_fFXiJOUSAj3Bwe9UVxO3aSL-2YVAP/view" target="_blank" rel="noopener"
+>tracking protection&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://christophkerschbaumer.com/" target="_blank" rel="noopener"
+>Christoph Kerschbaumer&lt;/a> talked about &lt;a class="link" href="https://drive.google.com/file/d/1CwhFz3sUs3qbL1X8LGM9DcGmC9RQWTkJ/view" target="_blank" rel="noopener"
+>preventing data exfiltration from the browser&lt;/a>&lt;/li>
+&lt;li>I talked about &lt;a class="link" href="https://drive.google.com/file/d/1Ly3S3BE-S8tDbty7nX6UTcuwn2CrGyAe/view" target="_blank" rel="noopener"
+>securely implementing cryptography&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://twitter.com/ThylaVdMerwe" target="_blank" rel="noopener"
+>Thyla van der Merwe&lt;/a> talked about &lt;a class="link" href="https://drive.google.com/file/d/1XIJLIp-TuG9tSiu40EfatAOWydnUQIFB/view" target="_blank" rel="noopener"
+>Tor at scale&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>There were also two invited speakers.
+&lt;a class="link" href="https://www.kcl.ac.uk/nms/depts/informatics/people/Academic-Staff.aspx" target="_blank" rel="noopener"
+>Lorenzo Cavallaro&lt;/a> introduced us to &lt;a class="link" href="https://drive.google.com/file/d/1t4Y1QpJqZ0wZ6C1vmW0bLqJu3zTExTyH/view" target="_blank" rel="noopener"
+>TESSERACT&lt;/a>, an attempt to elliminate experimental bias in malware classification systems.
+And &lt;a class="link" href="https://www.sba-research.org/team/key-researchers/stefan-brunthaler/" target="_blank" rel="noopener"
+>Stefan Brunthaler&lt;/a> talked about software diversity as possible solutions to spectre-like attacks (no slides online yet).
+In two rounds grad students also presented ongoing work on &lt;a class="link" href="https://drive.google.com/file/d/1wShMHfhrfSxGqJDv7XNpnjEK4wgVshDc/view" target="_blank" rel="noopener"
+>MPC&lt;/a>, &lt;a class="link" href="https://drive.google.com/file/d/16R_O-Y14wt5cr0zqL_IdW63ri3ZYQOPE/view" target="_blank" rel="noopener"
+>Primality Testing&lt;/a>, &lt;a class="link" href="https://drive.google.com/file/d/1On2B8v6Dfw-N3hY3mKWKAOCAZCMPuZU1/view" target="_blank" rel="noopener"
+>Blockchains&lt;/a>, and &lt;a class="link" href="https://drive.google.com/file/d/1iOZAUSdBpGXi9WfZJg4NdcpBfvE10MV6/view" target="_blank" rel="noopener"
+>UnlimitID&lt;/a> in lightning talks.&lt;/p></description></item></channel></rss>

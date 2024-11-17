@@ -1,43 +1,522 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>hacl* on Dr Franziskus Kiefer</title>
-    <link>https://www.franziskuskiefer.de/tags/hacl/</link>
-    <description>Recent content in hacl* on Dr Franziskus Kiefer</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Fri, 12 Nov 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/tags/hacl/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>(HACL*) AEAD Benchmarks</title>
-      <link>https://www.franziskuskiefer.de/p/hacl-aead-benchmarks/</link>
-      <pubDate>Fri, 12 Nov 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.franziskuskiefer.de/p/hacl-aead-benchmarks/</guid>
-      <description>This is in response to the blog post by Sylvain Kerkour benchmarking ring and Rust Crypto AEADs. I was curious how HACL* stacks up to these two with these parameters.
- I&amp;rsquo;m maintaining the Evercrypt crate, a wrapper around the formally verified crypto library HACL*. HACL* is a customizable, fast, formally verified crypto library written in F* and extracted to C.
- RustCrypto’s ChaCha20-Poly1305 RustCrypto’s AES-256-GCM ring’s ChaCha20-Poly1305 ring’s AES-256-GCM  Results I&amp;rsquo;m listing all results here for comparison as I&amp;rsquo;m (obviously) running the benchmarks on a different machine.</description>
-    </item>
-    
-    <item>
-      <title>Shipping (some) HACL*</title>
-      <link>https://www.franziskuskiefer.de/p/shipping-some-hacl/</link>
-      <pubDate>Thu, 12 Apr 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.franziskuskiefer.de/p/shipping-some-hacl/</guid>
-      <description>If you didn&amp;rsquo;t read the article about the HACL* approach, go there first and read it. tl;dr
- HACL* is a cryptographic library written in F* that allows translation to C using kremlin. It guarantees memory safety, secret independent computation, and functional correctness with respect to a mathematical specification.
-  In this second blog post I describe the process of integrating code from HACL*, a researchy crypto library, into NSS, a production library shipping to millions of people, running on a plethora of platforms.</description>
-    </item>
-    
-    <item>
-      <title>The HACL* approach</title>
-      <link>https://www.franziskuskiefer.de/p/the-hacl-approach/</link>
-      <pubDate>Wed, 14 Feb 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.franziskuskiefer.de/p/the-hacl-approach/</guid>
-      <description>HACL* (High-Assurance Cryptographic Library) is a formally verified cryptographic library in F*, developed by the Prosecco team at INRIA Paris in collaboration with Microsoft Research, as part of Project Everest. HACL* was inspired by discussions at the HACS workshop and aims at developing a set of reference implementations in C for common cryptographic primitives.
-This is the first post in a series describing formal verification in NSS as an approach to improve confidence in highly complex, highly security critical code.</description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>HACL* on Dr Franziskus Kiefer</title><link>https://www.franziskuskiefer.de/tags/hacl/</link><description>Recent content in HACL* on Dr Franziskus Kiefer</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 12 Nov 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/tags/hacl/index.xml" rel="self" type="application/rss+xml"/><item><title>(HACL*) AEAD Benchmarks</title><link>https://www.franziskuskiefer.de/p/hacl-aead-benchmarks/</link><pubDate>Fri, 12 Nov 2021 00:00:00 +0000</pubDate><guid>https://www.franziskuskiefer.de/p/hacl-aead-benchmarks/</guid><description>&lt;img src="https://www.franziskuskiefer.de/p/hacl-aead-benchmarks/AeadBenchHero.png" alt="Featured image of post (HACL*) AEAD Benchmarks" />&lt;blockquote>
+&lt;p>This is in response to the &lt;a class="link" href="https://kerkour.com/rust-symmetric-encryption-aead-benchmark/" target="_blank" rel="noopener"
+>blog post by Sylvain Kerkour&lt;/a> benchmarking ring and
+Rust Crypto AEADs.
+I was curious how HACL* stacks up to these two with these parameters.&lt;/p>
+&lt;/blockquote>
+&lt;p>I&amp;rsquo;m maintaining the &lt;a class="link" href="https://crates.io/crates/evercrypt" target="_blank" rel="noopener"
+>Evercrypt crate&lt;/a>, a wrapper
+around the formally verified crypto library &lt;a class="link" href="https://github.com/project-everest/hacl-star" target="_blank" rel="noopener"
+>HACL*&lt;/a>.
+HACL* is a customizable, fast, formally verified crypto library written in F* and extracted to C.&lt;/p>
+&lt;ul>
+&lt;li>&lt;a class="link" href="https://crates.io/crates/chacha20poly1305" target="_blank" rel="noopener"
+>RustCrypto’s ChaCha20-Poly1305&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://crates.io/crates/aes-gcm" target="_blank" rel="noopener"
+>RustCrypto’s AES-256-GCM&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://crates.io/crates/ring" target="_blank" rel="noopener"
+>ring’s ChaCha20-Poly1305&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://crates.io/crates/ring" target="_blank" rel="noopener"
+>ring’s AES-256-GCM&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="results">Results
+&lt;/h2>&lt;p>I&amp;rsquo;m listing all results here for comparison as I&amp;rsquo;m (obviously) running the benchmarks on a different machine.&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>&lt;/th>
+&lt;th>100B&lt;/th>
+&lt;th>1kB&lt;/th>
+&lt;th>100kB&lt;/th>
+&lt;th>1MB&lt;/th>
+&lt;th>10MB&lt;/th>
+&lt;th>100MB&lt;/th>
+&lt;th>1GB&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;a class="link" href="https://crates.io/crates/chacha20poly1305" target="_blank" rel="noopener"
+>RustCrypto’s ChaCha20-Poly1305&lt;/a> v0.8.2&lt;/td>
+&lt;td>1.6232 us (58.753 MiB/s)&lt;/td>
+&lt;td>2.6941 us (353.98 MiB/s)&lt;/td>
+&lt;td>120.10 us (794.10 MiB/s)&lt;/td>
+&lt;td>1.1921 ms (800.02 MiB/s)&lt;/td>
+&lt;td>12.015 ms (793.75 MiB/s)&lt;/td>
+&lt;td>119.87 ms (795.58 MiB/s)&lt;/td>
+&lt;td>1.1947 s (798.27 MiB/s)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a class="link" href="https://crates.io/crates/aes-gcm" target="_blank" rel="noopener"
+>RustCrypto’s AES-256-GCM&lt;/a> v0.9.4&lt;/td>
+&lt;td>448.97 ns (212.42 MiB/s)&lt;/td>
+&lt;td>1.5090 us (632.01 MiB/s)&lt;/td>
+&lt;td>118.13 us (807.33 MiB/s)&lt;/td>
+&lt;td>1.1947 ms (798.24 MiB/s)&lt;/td>
+&lt;td>11.986 ms (795.68 MiB/s)&lt;/td>
+&lt;td>119.39 ms (798.81 MiB/s)&lt;/td>
+&lt;td>1.1974 s (796.43 MiB/s)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a class="link" href="https://crates.io/crates/ring" target="_blank" rel="noopener"
+>ring’s ChaCha20-Poly1305&lt;/a> v0.16.20&lt;/td>
+&lt;td>193.82 ns (492.04 MiB/s)&lt;/td>
+&lt;td>730.23 ns (1.2754 GiB/s)&lt;/td>
+&lt;td>48.293 us (1.9285 GiB/s)&lt;/td>
+&lt;td>490.64 us (1.8982 GiB/s)&lt;/td>
+&lt;td>5.0475 ms (1.8451 GiB/s)&lt;/td>
+&lt;td>51.438 ms (1.8106 GiB/s)&lt;/td>
+&lt;td>514.99 ms (1.8084 GiB/s)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a class="link" href="https://crates.io/crates/ring" target="_blank" rel="noopener"
+>ring’s AES-256-GCM&lt;/a> v0.16.20&lt;/td>
+&lt;td>235.57 ns (404.83 MiB/s)&lt;/td>
+&lt;td>556.64 ns (1.6731 GiB/s)&lt;/td>
+&lt;td>34.609 us (2.6910 GiB/s)&lt;/td>
+&lt;td>343.41 us (2.7120 GiB/s)&lt;/td>
+&lt;td>3.5471 ms (2.6256 GiB/s)&lt;/td>
+&lt;td>34.873 ms (2.6706 GiB/s)&lt;/td>
+&lt;td>348.51 ms (2.6723 GiB/s)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a class="link" href="https://crates.io/crates/evercrypt" target="_blank" rel="noopener"
+>HACL*’s ChaCha20-Poly1305&lt;/a> v0.0.10&lt;/td>
+&lt;td>862.79 ns (110.53 MiB/s)&lt;/td>
+&lt;td>1.2804 us (744.81 MiB/s)&lt;/td>
+&lt;td>55.550 us (1.6765 GiB/s)&lt;/td>
+&lt;td>549.11 us (1.6961 GiB/s)&lt;/td>
+&lt;td>5.8844 ms (1.5827 GiB/s)&lt;/td>
+&lt;td>88.801 ms (1.0488 GiB/s)&lt;/td>
+&lt;td>847.39 ms (1.0990 GiB/s)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a class="link" href="https://crates.io/crates/evercrypt" target="_blank" rel="noopener"
+>HACL*’s AES-256-GCM&lt;/a> v0.0.10&lt;/td>
+&lt;td>238.12 ns (400.51 MiB/s)&lt;/td>
+&lt;td>598.56 ns (1.5560 GiB/s)&lt;/td>
+&lt;td>38.997 us (2.3882 GiB/s)&lt;/td>
+&lt;td>391.87 us (2.3766 GiB/s)&lt;/td>
+&lt;td>4.0217 ms (2.3157 GiB/s)&lt;/td>
+&lt;td>68.004 ms (1.3695 GiB/s)&lt;/td>
+&lt;td>642.12 ms (1.4504 GiB/s)&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>It is interesting to see that the HACL* AES-256-GCM implementation is only slightly
+slower than ring&amp;rsquo;s (2.3GiB/s vs 2.7GiB/s) for 1MB and 10MB chunks.
+But it significantly drops in performance for larger blobs while ring&amp;rsquo;s performance
+stays the same.
+The picture for Chacha20Poly1305 is similar, which points to general issues of
+handling large data sizes within HACL*.&lt;/p>
+&lt;p>&lt;a class="link" href="./aead-intel-benchmarks.txt" >Raw number&lt;/a>&lt;/p>
+&lt;h2 id="m1">M1
+&lt;/h2>&lt;p>My main machine right now is a MacBook with M1 chip.
+This is a very different machine.
+Here are the numbers.&lt;/p>
+&lt;p>Note that HACL* doesn&amp;rsquo;t support AES on ARM chips yet unfortunately.&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>&lt;/th>
+&lt;th>100B&lt;/th>
+&lt;th>1kB&lt;/th>
+&lt;th>100kB&lt;/th>
+&lt;th>1MB&lt;/th>
+&lt;th>10MB&lt;/th>
+&lt;th>100MB&lt;/th>
+&lt;th>1GB&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>[RustCrypto’s XChaCha20-Poly1305] v0.8.2&lt;/td>
+&lt;td>558.20 ns (170.85 MiB/s)&lt;/td>
+&lt;td>3.0136 us (316.46 MiB/s)&lt;/td>
+&lt;td>274.25 us (347.74 MiB/s)&lt;/td>
+&lt;td>2.7434 ms (347.62 MiB/s)&lt;/td>
+&lt;td>27.535 ms (346.35 MiB/s)&lt;/td>
+&lt;td>279.16 ms (341.62 MiB/s)&lt;/td>
+&lt;td>2.7657 s (344.83 MiB/s)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a class="link" href="https://crates.io/crates/chacha20poly1305" target="_blank" rel="noopener"
+>RustCrypto’s ChaCha20-Poly1305&lt;/a> v0.8.2&lt;/td>
+&lt;td>460.31 ns (207.18 MiB/s)&lt;/td>
+&lt;td>2.9189 us (326.73 MiB/s)&lt;/td>
+&lt;td>273.95 us (348.12 MiB/s)&lt;/td>
+&lt;td>2.7429 ms (347.69 MiB/s)&lt;/td>
+&lt;td>27.623 ms (345.25 MiB/s)&lt;/td>
+&lt;td>281.35 ms (338.96 MiB/s)&lt;/td>
+&lt;td>2.7525 s (346.48 MiB/s)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a class="link" href="https://crates.io/crates/aes-gcm" target="_blank" rel="noopener"
+>RustCrypto’s AES-256-GCM&lt;/a> v0.9.4&lt;/td>
+&lt;td>3.0838 us (30.925 MiB/s)&lt;/td>
+&lt;td>9.3825 us (101.64 MiB/s)&lt;/td>
+&lt;td>707.99 us (134.70 MiB/s)&lt;/td>
+&lt;td>7.0729 ms (134.83 MiB/s)&lt;/td>
+&lt;td>70.655 ms (134.98 MiB/s)&lt;/td>
+&lt;td>706.42 ms (135.00 MiB/s)&lt;/td>
+&lt;td>7.1158 s (134.02 MiB/s)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a class="link" href="https://crates.io/crates/ring" target="_blank" rel="noopener"
+>ring’s ChaCha20-Poly1305&lt;/a> v0.16.20&lt;/td>
+&lt;td>407.12 ns (234.25 MiB/s)&lt;/td>
+&lt;td>1.3175 us (723.85 MiB/s)&lt;/td>
+&lt;td>96.781 us (985.40 MiB/s)&lt;/td>
+&lt;td>963.70 us (989.60 MiB/s)&lt;/td>
+&lt;td>9.6676 ms (986.46 MiB/s)&lt;/td>
+&lt;td>98.252 ms (970.64 MiB/s)&lt;/td>
+&lt;td>975.96 ms (977.17 MiB/s)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a class="link" href="https://crates.io/crates/ring" target="_blank" rel="noopener"
+>ring’s AES-256-GCM&lt;/a> v0.16.20&lt;/td>
+&lt;td>79.751 ns (1.1678 GiB/s)&lt;/td>
+&lt;td>394.01 ns (2.3637 GiB/s)&lt;/td>
+&lt;td>34.355 us (2.7109 GiB/s)&lt;/td>
+&lt;td>344.78 us (2.7012 GiB/s)&lt;/td>
+&lt;td>3.4792 ms (2.6768 GiB/s)&lt;/td>
+&lt;td>34.543 ms (2.6961 GiB/s)&lt;/td>
+&lt;td>345.92 ms (2.6923 GiB/s)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a class="link" href="https://crates.io/crates/evercrypt" target="_blank" rel="noopener"
+>HACL*’s ChaCha20-Poly1305&lt;/a> v0.0.10&lt;/td>
+&lt;td>690.43 ns (138.13 MiB/s)&lt;/td>
+&lt;td>1.7545 us (543.55 MiB/s)&lt;/td>
+&lt;td>132.59 us (719.25 MiB/s)&lt;/td>
+&lt;td>1.3096 ms (728.24 MiB/s)&lt;/td>
+&lt;td>13.261 ms (719.13 MiB/s)&lt;/td>
+&lt;td>137.91 ms (691.53 MiB/s)&lt;/td>
+&lt;td>1.4217 s (670.82 MiB/s)&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>Ring&amp;rsquo;s performance is again great and very stable across different payload sizes.
+Rust Crypto&amp;rsquo;s implementations are significantly slower than ring&amp;rsquo;s again but also slower than on the Intel machine.
+The HACL* performance for Chacha20Poly1305 is again a little worse than ring&amp;rsquo;s but significantly better than Rust Crypto&amp;rsquo;s.&lt;/p>
+&lt;p>&lt;a class="link" href="./aead-m1-benchmarks.txt" >Raw number&lt;/a>&lt;/p>
+&lt;h2 id="cpu-info">CPU Info
+&lt;/h2>&lt;h3 id="intel">Intel
+&lt;/h3>&lt;pre tabindex="0">&lt;code>Architecture: x86_64
+CPU op-mode(s): 32-bit, 64-bit
+Address sizes: 39 bits physical, 48 bits virtual
+Byte Order: Little Endian
+CPU(s): 8
+On-line CPU(s) list: 0-7
+Vendor ID: GenuineIntel
+Model name: Intel(R) Core(TM) i7-4900MQ CPU @ 2.80GHz
+CPU family: 6
+Model: 60
+Thread(s) per core: 2
+Core(s) per socket: 4
+Socket(s): 1
+Stepping: 3
+CPU max MHz: 3800.0000
+CPU min MHz: 800.0000
+BogoMIPS: 5589.60
+Flags: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx f
+xsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_
+good nopl xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx e
+st tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c
+rdrand lahf_lm abm cpuid_fault epb invpcid_single pti tpr_shadow vnmi flexpriority ept vpid e
+pt_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid xsaveopt dtherm ida arat pln pts
+Virtualization features:
+Virtualization: VT-x
+Caches (sum of all):
+L1d: 128 KiB (4 instances)
+L1i: 128 KiB (4 instances)
+L2: 1 MiB (4 instances)
+L3: 8 MiB (1 instance)
+NUMA:
+NUMA node(s): 1
+NUMA node0 CPU(s): 0-7
+Vulnerabilities:
+Itlb multihit: KVM: Mitigation: VMX disabled
+L1tf: Mitigation; PTE Inversion; VMX conditional cache flushes, SMT vulnerable
+Mds: Vulnerable: Clear CPU buffers attempted, no microcode; SMT vulnerable
+Meltdown: Mitigation; PTI
+Spec store bypass: Vulnerable
+Spectre v1: Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+Spectre v2: Mitigation; Full generic retpoline, STIBP disabled, RSB filling
+Srbds: Vulnerable: No microcode
+Tsx async abort: Not affected
+&lt;/code>&lt;/pre>&lt;h3 id="m1-1">M1
+&lt;/h3>&lt;pre tabindex="0">&lt;code>machdep.cpu.brand_string: Apple M1
+machdep.cpu.core_count: 8
+machdep.cpu.cores_per_package: 8
+machdep.cpu.logical_per_package: 8
+machdep.cpu.thread_count: 8
+&lt;/code>&lt;/pre>&lt;hr>
+&lt;p>The code changes needed for these experiments are on &lt;a class="link" href="https://github.com/franziskuskiefer/kerkour.com/tree/hacl" target="_blank" rel="noopener"
+>Github&lt;/a>.&lt;/p></description></item><item><title>Shipping (some) HACL*</title><link>https://www.franziskuskiefer.de/p/shipping-some-hacl/</link><pubDate>Thu, 12 Apr 2018 00:00:00 +0000</pubDate><guid>https://www.franziskuskiefer.de/p/shipping-some-hacl/</guid><description>&lt;img src="https://www.franziskuskiefer.de/p/shipping-some-hacl/hero.jpg" alt="Featured image of post Shipping (some) HACL*" />&lt;p>If you didn&amp;rsquo;t read the article about the &lt;a class="link" href="../hacl-star/" >HACL* approach&lt;/a>, go there first and read it. tl;dr&lt;/p>
+&lt;blockquote>
+&lt;p>&lt;a class="link" href="https://github.com/mitls/hacl-star/" target="_blank" rel="noopener"
+>HACL*&lt;/a> is a cryptographic library written in &lt;a class="link" href="https://www.fstar-lang.org/" target="_blank" rel="noopener"
+>F*&lt;/a> that allows translation to C using kremlin.
+It guarantees memory safety, secret independent computation, and functional correctness with respect to a mathematical specification.&lt;/p>
+&lt;/blockquote>
+&lt;hr>
+&lt;p>In this second blog post I describe the process of integrating code from HACL*, a researchy crypto library, into NSS, a production library shipping to millions of people, running on a plethora of platforms.
+In short, how to ship (some parts of) HACL*.&lt;/p>
+&lt;h1 id="shipping-formally-verified-code">Shipping formally verified code
+&lt;/h1>&lt;p>Before integrating any code from HACL* into NSS there had to be some criteria the code had to fulfil in order to get considered and a process of integrating, maintaining, and updating the code.
+The criteria roughly looked like this:&lt;/p>
+&lt;ul>
+&lt;li>The code has to be correct.&lt;/li>
+&lt;li>Performance must not be degraded by any new code.&lt;/li>
+&lt;li>The code has to be human readable and modifiable, i.e. it must pass a code review process.&lt;/li>
+&lt;li>The code must run on all platforms supported by NSS or must have fallback code for platforms that are not supported.&lt;/li>
+&lt;li>Upstream changes can to be integrated easily into NSS and fixes can be integrated upstream.&lt;/li>
+&lt;li>The verification and generation toolchain has to run in the NSS world.&lt;/li>
+&lt;/ul>
+&lt;p>We started integrating HACL* crypto primitives into NSS with &lt;a class="link" href="https://tools.ietf.org/html/rfc7748" target="_blank" rel="noopener"
+>Curve25519&lt;/a>.
+At the time of writing NSS contains code from HACL* for Curve25519 64-bit, &lt;a class="link" href="https://tools.ietf.org/html/rfc7539" target="_blank" rel="noopener"
+>Poly1305&lt;/a> 32-bit and 64-bit, &lt;a class="link" href="https://tools.ietf.org/html/rfc7539" target="_blank" rel="noopener"
+>ChaCha20&lt;/a>, and ChaCha20 with SSSE3 hardware acceleration.
+More primitives are in the pipeline and will be integrated in the near future.&lt;/p>
+&lt;h2 id="correctness">Correctness
+&lt;/h2>&lt;p>Any code that lands in NSS has to be correct, obviously.
+This might be evident but when talking about HACL* generated C code, correctness is not so simple.
+Correctness can be checked relatively easily by looking at the HACL* specification of a given primitive.
+This code is relatively easy to review (when familiar with F*) as it closely resembles the mathematical specification of the primitive.
+The correctness of the C code is guaranteed by the formal proofs from HACL*.
+In addition we run all the usual test vectors on it of course.
+To catch any errors in the extraction chain from F* to C the extracted C code is reviewed for correctness as well.&lt;/p>
+&lt;h2 id="performance">Performance
+&lt;/h2>&lt;p>Performance was not a big concern.
+As shown in the &lt;a class="link" href="https://github.com/mitls/hacl-star/blob/master/doc/papers/hacl-star-ccs2017.pdf" target="_blank" rel="noopener"
+>HACL* paper from CCS 2017&lt;/a>, performance of most primitives is on par with or better than the fastest C implementations out there.
+Nonetheless, performance of each primitive is compared between HACL* and the NSS to make sure not to degrade performance.
+For every primitive I looked at so far the performance of HACL* was at least as good as the performance of the NSS code.&lt;/p>
+&lt;h2 id="code-quality">Code quality
+&lt;/h2>&lt;p>Code quality was, as with any generated code, a big concern.
+How readable is the generated code? Can it easily be changed if the need arises?
+The first versions we looked at weren&amp;rsquo;t that great &amp;hellip;&lt;/p>
+&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/shipping-some-hacl/hacl-review.png"
+width="1983"
+height="747"
+srcset="https://www.franziskuskiefer.de/p/shipping-some-hacl/hacl-review_hu4499019627654614460.png 480w, https://www.franziskuskiefer.de/p/shipping-some-hacl/hacl-review_hu14670101420540871018.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="265"
+data-flex-basis="637px"
+>
+&lt;img src="https://www.franziskuskiefer.de/p/shipping-some-hacl/ugly-hacl.png"
+width="755"
+height="147"
+srcset="https://www.franziskuskiefer.de/p/shipping-some-hacl/ugly-hacl_hu6016185786980744563.png 480w, https://www.franziskuskiefer.de/p/shipping-some-hacl/ugly-hacl_hu14117722760368656323.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="513"
+data-flex-basis="1232px"
+>&lt;/p>
+&lt;p>But after a couple improvements to kremlin the code was good to go.
+While every new piece of code that&amp;rsquo;s being integrated has to pass code review the C code produced by kremlin is good enough now to land new primitives without having to improve upstream code first.
+Note however that code passes review here that wouldn&amp;rsquo;t pass if it were hand-written.
+The code generator is not perfect.
+We have to live with some rough edges.
+The most important point is that the code is understandable.&lt;/p>
+&lt;p>NSS if formatted with &lt;code>clang-format&lt;/code>, which is checked on CI.
+So the only change to the verified C code imported from HACL* is formatting.&lt;/p>
+&lt;h3 id="some-pain-points-remain">Some pain points remain
+&lt;/h3>&lt;p>There are some outstanding issues that I hope get fixed in kremlin and would improve code quality significantly.
+Kremlin doesn&amp;rsquo;t know &lt;code>const&lt;/code>, which is one of the few nice helpers one can use in C to control what&amp;rsquo;s happening to your pointer.
+While &lt;code>const&lt;/code> is not necessary because of the HACL* proofs, it would be nice to have.
+Kremlin further generates unnecessary casts such as &lt;code>(uint32_t)4U&lt;/code>.
+This is not a big deal but makes code harder to read.
+There&amp;rsquo;s also a big number of temporary variables that aren&amp;rsquo;t necessary and make the code harder to read.&lt;/p>
+&lt;h2 id="platform-support">Platform support
+&lt;/h2>&lt;p>Being a researchy library HACL* is not tested on a big variety of platforms.
+NSS on the other hand has to run on most available platforms as well as a number of legacy platforms.
+While the NSS CI covers Windows, Linux, and Mac in different configurations such as Intel 32-bit, 64-bit, and aarch64, there are other platforms such as BSD using NSS that are not covered.
+As expected we ran into a couple issues on some platforms such as BSD and Solaris but they were quickly resolved.&lt;/p>
+&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/shipping-some-hacl/nss-bsd-hacl-bug.png"
+width="2048"
+height="184"
+srcset="https://www.franziskuskiefer.de/p/shipping-some-hacl/nss-bsd-hacl-bug_hu5090590584940457725.png 480w, https://www.franziskuskiefer.de/p/shipping-some-hacl/nss-bsd-hacl-bug_hu14518716714003580782.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="1113"
+data-flex-basis="2671px"
+>&lt;/p>
+&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/shipping-some-hacl/nss-solaris-hacl-bug.png"
+width="2048"
+height="184"
+srcset="https://www.franziskuskiefer.de/p/shipping-some-hacl/nss-solaris-hacl-bug_hu5722108412057574063.png 480w, https://www.franziskuskiefer.de/p/shipping-some-hacl/nss-solaris-hacl-bug_hu1645630068384567860.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="1113"
+data-flex-basis="2671px"
+>&lt;/p>
+&lt;p>Especially code that is hardware dependent such as Intel intrinsics needs extra attention.
+The &lt;a class="link" href="https://github.com/mitls/hacl-star/blob/master/snapshots/kremlib/vec128.h" target="_blank" rel="noopener"
+>&lt;code>vec128.h&lt;/code>&lt;/a> header used by HACL* to abstract hardware instructions needed a couple iterations before it worked on all supported platforms.&lt;/p>
+&lt;h2 id="handling-change">Handling change
+&lt;/h2>&lt;p>The code imported from HACL* into NSS is not expected to change a lot.
+But there are always reasons why the code has to get updated and a process is required to do so.
+To fix issues like broken platforms, changes to the upstream projects have to be landed and the snapshot in NSS has to get updated to the new upstream version.
+For this process to run smoothly it&amp;rsquo;s necessary for both teams to work together.&lt;/p>
+&lt;p>Updating the HACL* code in NSS is pretty easy.
+First the new code is generated with a new version of HACL*, formatted, and copied to NSS.
+Then the docker image running the CI gets updated.
+Here&amp;rsquo;s a diff for a recent update.&lt;/p>
+&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/shipping-some-hacl/nss-hacl-patch.png"
+width="2922"
+height="1264"
+srcset="https://www.franziskuskiefer.de/p/shipping-some-hacl/nss-hacl-patch_hu12663953578200761238.png 480w, https://www.franziskuskiefer.de/p/shipping-some-hacl/nss-hacl-patch_hu5796332706377407724.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="231"
+data-flex-basis="554px"
+>&lt;/p>
+&lt;h2 id="running-the-verification-in-nss">Running the verification in NSS
+&lt;/h2>&lt;p>To make sure that whatever we use in NSS actually verifies and the generated code isn&amp;rsquo;t changed manually, the NSS CI has to verify the HACL* snapshot it uses on every run.
+NSS uses &lt;a class="link" href="https://github.com/taskcluster" target="_blank" rel="noopener"
+>taskcluster&lt;/a> as CI, which allows us to use a &lt;a class="link" href="https://searchfox.org/nss/source/automation/taskcluster/docker-hacl" target="_blank" rel="noopener"
+>docker image&lt;/a> that re-verifies the used HACL* revision on every push.
+Checking the code in NSS is then a simple diff.&lt;/p>
+&lt;h1 id="lessons-learned">Lessons learned
+&lt;/h1>&lt;p>The first lesson is that it&amp;rsquo;s possible to ship formally verified software.
+The code is relatively simple and self-contained, which makes this easier.
+But it shows that formal verification tools are good enough to be used in production.&lt;/p>
+&lt;p>The second lesson we learned is probably the more valuable one.&lt;/p>
+&lt;blockquote>
+&lt;p>&lt;em>Talk to each other and work together.&lt;/em>&lt;/p>
+&lt;/blockquote>
+&lt;p>From an engineering standpoint it might be frightening to start looking at formal verification tools and corresponding languages.
+But people working with these tools are happy to help out if that means more people are using their tools.
+It will need some effort getting used to the tools and languages but it&amp;rsquo;s well worth it.&lt;/p>
+&lt;p>For people working on formal methods; You might have to learn a little more than you wanted to know about differences between different platforms and compilers and how to ship software.
+But that might be worth the effort if it means your proofs are used in production software that&amp;rsquo;s used by millions of people.&lt;/p>
+&lt;hr>
+&lt;p>Looking for more material on this?
+There&amp;rsquo;s a high-level &lt;a class="link" href="https://blog.mozilla.org/security/2017/09/13/verified-cryptography-firefox-57/" target="_blank" rel="noopener"
+>blog post&lt;/a> that talks about the formal verification work in NSS happening at Mozilla.
+There has also been a talk at RWC 2018 earlier this year on this work (&lt;a class="link" href="https://rwc.iacr.org/2018/Slides/Beurdouche.pdf" target="_blank" rel="noopener"
+>slides&lt;/a>, &lt;a class="link" href="https://www.youtube.com/watch?v=xrZTVRICpSs" target="_blank" rel="noopener"
+>video&lt;/a>).&lt;/p></description></item><item><title>The HACL* approach</title><link>https://www.franziskuskiefer.de/p/the-hacl-approach/</link><pubDate>Wed, 14 Feb 2018 00:00:00 +0000</pubDate><guid>https://www.franziskuskiefer.de/p/the-hacl-approach/</guid><description>&lt;img src="https://www.franziskuskiefer.de/p/the-hacl-approach/hacl-chart.png" alt="Featured image of post The HACL* approach" />&lt;p>HACL* (High-Assurance Cryptographic Library) is a formally verified cryptographic library in &lt;a class="link" href="https://www.fstar-lang.org/" target="_blank" rel="noopener"
+>F*&lt;/a>, developed by the &lt;a class="link" href="http://prosecco.inria.fr/" target="_blank" rel="noopener"
+>Prosecco team&lt;/a> at &lt;a class="link" href="https://www.inria.fr/en/centre/paris" target="_blank" rel="noopener"
+>INRIA Paris&lt;/a> in collaboration with Microsoft Research, as part of &lt;a class="link" href="https://github.com/project-everest" target="_blank" rel="noopener"
+>Project Everest&lt;/a>.
+HACL* was inspired by discussions at the &lt;a class="link" href="https://hacs-workshop.github.io/" target="_blank" rel="noopener"
+>HACS workshop&lt;/a> and aims at developing a set of reference implementations in C for common cryptographic primitives.&lt;/p>
+&lt;p>This is the first post in a series describing formal verification in NSS as an approach to improve confidence in highly complex, highly security critical code.
+In this first post I describe the most important ideas and concepts of HACL*, the basis of most formally verified code in NSS.
+If you want to have all the juicy details about HACL*, I recommend reading the &lt;a class="link" href="https://github.com/mitls/hacl-star/blob/master/doc/papers/hacl-star-ccs2017.pdf" target="_blank" rel="noopener"
+>CCS'17 paper&lt;/a>.&lt;/p>
+&lt;h1 id="hacl">HACL*
+&lt;/h1>&lt;p>HACL*, though written in F*, can be compiled to C code with guaranteed memory safety, secret independent computation, and functional correctness with respect to some mathematical specification.
+Let&amp;rsquo;s first have a look at the high-level idea of HACL* on the example of Curve25519.&lt;/p>
+&lt;p>The first step is to take the specification (&lt;a class="link" href="https://tools.ietf.org/html/rfc7748" target="_blank" rel="noopener"
+>RFC 7748&lt;/a> in this case) and translate it into a high level F* specification.
+This specification is easy to read and can be checked for correctness against the RFC easily.
+All correctness guarantees HACL* gives for the generated C code are based on this specification, i.e. the C code is proven to be functionally equivalent to the the high level specification.
+Here the definition of the Montgomery ladder, an excerpt from the &lt;a class="link" href="https://github.com/mitls/hacl-star/blob/dev_specs/specs/Spec.Curve25519.fst" target="_blank" rel="noopener"
+>Curve25519 specification&lt;/a>. (Apologies for the highlighting, no F* support.)&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-ocaml" data-lang="ocaml">&lt;span class="line">&lt;span class="ln"> 1&lt;/span>&lt;span class="cl">&lt;span class="k">let&lt;/span> &lt;span class="k">rec&lt;/span> &lt;span class="n">montgomery_ladder_&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">init&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="n">elem&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="n">xp1&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">k&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="n">scalar&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">ctr&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="n">nat&lt;/span>&lt;span class="o">{&lt;/span>&lt;span class="n">ctr&lt;/span>&lt;span class="o">&amp;lt;=&lt;/span>&lt;span class="n">256&lt;/span>&lt;span class="o">})&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 2&lt;/span>&lt;span class="cl"> &lt;span class="o">:&lt;/span> &lt;span class="nc">Tot&lt;/span> &lt;span class="n">proj_point&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">decreases&lt;/span> &lt;span class="n">ctr&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">=&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 3&lt;/span>&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="n">ctr&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">0&lt;/span> &lt;span class="k">then&lt;/span> &lt;span class="n">x&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 4&lt;/span>&lt;span class="cl"> &lt;span class="k">else&lt;/span> &lt;span class="o">(&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 5&lt;/span>&lt;span class="cl"> &lt;span class="k">let&lt;/span> &lt;span class="n">ctr&amp;#39;&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">ctr&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">1&lt;/span> &lt;span class="k">in&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 6&lt;/span>&lt;span class="cl"> &lt;span class="k">let&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">x&amp;#39;&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">xp1&amp;#39;&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">=&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 7&lt;/span>&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="n">uint_to_nat&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">ith_bit&lt;/span> &lt;span class="n">k&lt;/span> &lt;span class="n">ctr&amp;#39;&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">1&lt;/span> &lt;span class="k">then&lt;/span> &lt;span class="o">(&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 8&lt;/span>&lt;span class="cl"> &lt;span class="k">let&lt;/span> &lt;span class="n">nqp2&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">nqp1&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">add_and_double&lt;/span> &lt;span class="n">init&lt;/span> &lt;span class="n">xp1&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="k">in&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 9&lt;/span>&lt;span class="cl"> &lt;span class="n">nqp1&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">nqp2&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">10&lt;/span>&lt;span class="cl"> &lt;span class="o">)&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="n">add_and_double&lt;/span> &lt;span class="n">init&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="n">xp1&lt;/span> &lt;span class="k">in&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">11&lt;/span>&lt;span class="cl"> &lt;span class="n">montgomery_ladder_&lt;/span> &lt;span class="n">init&lt;/span> &lt;span class="n">x&amp;#39;&lt;/span> &lt;span class="n">xp1&amp;#39;&lt;/span> &lt;span class="n">k&lt;/span> &lt;span class="n">ctr&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">12&lt;/span>&lt;span class="cl">&lt;span class="o">)&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Running the reference implementation is possible but obviously slow (it is executed in OCaml).
+However a subset of F* (called Low*) can be translated to C using &lt;a class="link" href="https://github.com/FStarLang/kremlin" target="_blank" rel="noopener"
+>Kremlin&lt;/a>.
+While the specification might be valid Low* code it is not optimised and thus won&amp;rsquo;t yield fast C code.
+In order to generate fast C code more efficient Low* code has to be written first.
+Looking at state of the art C code for the given algorithm (&lt;a class="link" href="https://github.com/jedisct1/libsodium/blob/e878bc141be12820dc6dbcd7a97bf50070bc1e2a/src/libsodium/crypto_scalarmult/curve25519/donna_c64/curve25519_donna_c64.c" target="_blank" rel="noopener"
+>Curve25519 Donna&lt;/a> for example) Low* code can be written that resembles the fast C code and can be extracted via Kremlin to similarly looking C code.&lt;/p>
+&lt;p>At this point the main benefit of the HACL* approach comes to light.
+The optimised Low* code (as well as the extracted C code) are hard to get right and even harder to review for correctness, memory safety, and secret independent execution.
+Using an SMT solver (&lt;a class="link" href="https://github.com/Z3Prover/z3" target="_blank" rel="noopener"
+>Z3&lt;/a> is used in HACL*) and F*&amp;rsquo;s strong type system, functional equivalence is proven between the high-level F* specification and the optimised Low* code.
+The Low* code usually has to be enhanced with additional information to help prove the equivalence.
+This additional code however is ignored by Kremlin and doesn&amp;rsquo;t get translated to C.&lt;/p>
+&lt;p>The following graphic gives an overview of the HACL* process.&lt;/p>
+&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/the-hacl-approach/hacl-chart.png"
+width="842"
+height="595"
+srcset="https://www.franziskuskiefer.de/p/the-hacl-approach/hacl-chart_hu3913347318361800738.png 480w, https://www.franziskuskiefer.de/p/the-hacl-approach/hacl-chart_hu17342941644776944915.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="141"
+data-flex-basis="339px"
+>&lt;/p>
+&lt;h2 id="an-example---conditional-swap">An Example - Conditional Swap
+&lt;/h2>&lt;p>HACL* is a pretty complex library and it might be hard to understand what&amp;rsquo;s going on.
+Therefore I&amp;rsquo;ll give a small example of the basic concepts behind HACL* focusing on functional correctness.&lt;/p>
+&lt;p>Conditional swaps are used for example in Curve25519 implementations to swap two variables &lt;code>a&lt;/code> and &lt;code>b&lt;/code> if a certain condition is given, &lt;code>c = 0&lt;/code> here.
+In F* this can be written as follows.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-ocaml" data-lang="ocaml">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">&lt;span class="k">val&lt;/span> &lt;span class="n">cswap&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="n">uint32&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">y&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="n">uint32&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">c&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="n">uint32&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">2&lt;/span>&lt;span class="cl"> &lt;span class="nc">Tot&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">uint32&lt;/span> &lt;span class="o">*&lt;/span> &lt;span class="n">uint32&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">3&lt;/span>&lt;span class="cl">&lt;span class="k">let&lt;/span> &lt;span class="n">cswap&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="n">y&lt;/span> &lt;span class="n">c&lt;/span> &lt;span class="o">=&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">4&lt;/span>&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="n">c&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">0ul&lt;/span> &lt;span class="k">then&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">5&lt;/span>&lt;span class="cl"> &lt;span class="o">(&lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">y&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">6&lt;/span>&lt;span class="cl"> &lt;span class="k">else&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">7&lt;/span>&lt;span class="cl"> &lt;span class="o">(&lt;/span>&lt;span class="n">y&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="o">)&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>This code can be easily inspected for correctness and is used as specification.
+However, this is not the code we want to have as it branches on potentially secret data in &lt;code>c&lt;/code>.
+Instead of checking &lt;code>c&lt;/code> for &lt;code>0&lt;/code> we should use masking and logical operations to achieve the variable swapping.
+Note that we require &lt;code>c&lt;/code> to be either all &lt;code>1&lt;/code> or all &lt;code>0&lt;/code> now.
+This can be easily computed from the single bit &lt;code>c&lt;/code> we had in the previous example.
+This looks as follows in pseudo-C-code.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-C" data-lang="C">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">&lt;span class="kt">void&lt;/span> &lt;span class="nf">cswap_constant_time&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">uint32_t&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kt">uint32_t&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kt">uint32_t&lt;/span> &lt;span class="n">c&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">2&lt;/span>&lt;span class="cl"> &lt;span class="kt">uint32_t&lt;/span> &lt;span class="n">mask&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="n">a&lt;/span> &lt;span class="o">^&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">&amp;amp;&lt;/span> &lt;span class="n">c&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">3&lt;/span>&lt;span class="cl"> &lt;span class="o">*&lt;/span>&lt;span class="n">a&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">a&lt;/span> &lt;span class="o">^&lt;/span> &lt;span class="n">mask&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">4&lt;/span>&lt;span class="cl"> &lt;span class="o">*&lt;/span>&lt;span class="n">b&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">b&lt;/span> &lt;span class="o">^&lt;/span> &lt;span class="n">mask&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">5&lt;/span>&lt;span class="cl">&lt;span class="p">}&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The same code in F* (with slightly different input/output behaviour) looks as follows.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-ocaml" data-lang="ocaml">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">&lt;span class="k">val&lt;/span> &lt;span class="n">cswap_constant_time&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="n">uint32&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">y&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="n">uint32&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">c&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="n">uint32&lt;/span>&lt;span class="o">{&lt;/span>&lt;span class="n">c&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">0xFFFFFFFFul&lt;/span> &lt;span class="err">\&lt;/span>&lt;span class="o">/&lt;/span> &lt;span class="n">c&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">0ul&lt;/span>&lt;span class="o">}&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">2&lt;/span>&lt;span class="cl"> &lt;span class="nc">Tot&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">uint32&lt;/span> &lt;span class="o">*&lt;/span> &lt;span class="n">uint32&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">3&lt;/span>&lt;span class="cl">&lt;span class="k">let&lt;/span> &lt;span class="n">cswap_constant_time&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="n">y&lt;/span> &lt;span class="n">c&lt;/span> &lt;span class="o">=&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">4&lt;/span>&lt;span class="cl"> &lt;span class="k">let&lt;/span> &lt;span class="n">mask&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">x&lt;/span> &lt;span class="o">^^&lt;/span> &lt;span class="n">y&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">&amp;amp;^&lt;/span> &lt;span class="n">c&lt;/span> &lt;span class="k">in&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">5&lt;/span>&lt;span class="cl"> &lt;span class="k">let&lt;/span> &lt;span class="n">a&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="o">^^&lt;/span> &lt;span class="n">mask&lt;/span> &lt;span class="k">in&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">6&lt;/span>&lt;span class="cl"> &lt;span class="k">let&lt;/span> &lt;span class="n">b&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">y&lt;/span> &lt;span class="o">^^&lt;/span> &lt;span class="n">mask&lt;/span> &lt;span class="k">in&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">7&lt;/span>&lt;span class="cl"> &lt;span class="o">(&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">b&lt;/span>&lt;span class="o">)&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>This code is not trivially correct anymore and requires considerable thought by both author and reviewer.
+But instead of staring at the code to understand it or writing incomplete tests we can use F* now to prove that &lt;code>cswap_constant_time&lt;/code> is equivalent to our spec, i.e. &lt;code>cswap&lt;/code>.
+To this end we write a lemma to ensures that.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-ocaml" data-lang="ocaml">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">&lt;span class="k">let&lt;/span> &lt;span class="n">a&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">b&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">cswap_constant_time&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="n">y&lt;/span> &lt;span class="n">c&lt;/span> &lt;span class="k">in&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">2&lt;/span>&lt;span class="cl">&lt;span class="k">let&lt;/span> &lt;span class="n">c&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">d&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">cswap&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="n">y&lt;/span> &lt;span class="n">c&lt;/span> &lt;span class="k">in&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">3&lt;/span>&lt;span class="cl">&lt;span class="n">a&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">c&lt;/span> &lt;span class="o">/&lt;/span>&lt;span class="err">\&lt;/span> &lt;span class="n">b&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">d&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>While this can&amp;rsquo;t be proven immediately it is relatively easy to write some helper lemmata that help F* and Z3 to understand the correctness of this statement.
+The C code extracted by Kremlin from the F* code above then looks as follows.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-C" data-lang="C">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">&lt;span class="k">typedef&lt;/span> &lt;span class="k">struct&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">2&lt;/span>&lt;span class="cl"> &lt;span class="kt">uint32_t&lt;/span> &lt;span class="n">fst&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">3&lt;/span>&lt;span class="cl"> &lt;span class="kt">uint32_t&lt;/span> &lt;span class="n">snd&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">4&lt;/span>&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">5&lt;/span>&lt;span class="cl">&lt;span class="n">K___uint32_t_uint32_t&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">6&lt;/span>&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">7&lt;/span>&lt;span class="cl">&lt;span class="n">K___uint32_t_uint32_t&lt;/span> &lt;span class="nf">Impl_CSwap_cswap_constant_time&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">uint32_t&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kt">uint32_t&lt;/span> &lt;span class="n">y&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kt">uint32_t&lt;/span> &lt;span class="n">c&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">8&lt;/span>&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="p">((&lt;/span>&lt;span class="n">K___uint32_t_uint32_t&lt;/span>&lt;span class="p">){&lt;/span> &lt;span class="p">.&lt;/span>&lt;span class="n">fst&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="o">^&lt;/span> &lt;span class="p">((&lt;/span>&lt;span class="n">x&lt;/span> &lt;span class="o">^&lt;/span> &lt;span class="n">y&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">&amp;amp;&lt;/span> &lt;span class="n">c&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="p">.&lt;/span>&lt;span class="n">snd&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">y&lt;/span> &lt;span class="o">^&lt;/span> &lt;span class="p">((&lt;/span>&lt;span class="n">x&lt;/span> &lt;span class="o">^&lt;/span> &lt;span class="n">y&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">&amp;amp;&lt;/span> &lt;span class="n">c&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">});&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">9&lt;/span>&lt;span class="cl">&lt;span class="p">}&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Check out the &lt;a class="link" href="https://github.com/franziskuskiefer/the-hacl-approach" target="_blank" rel="noopener"
+>repository&lt;/a> for the full source code of the example.&lt;/p>
+&lt;p>Memory safety can be proven easily as well by specifying liveliness conditions of buffers.
+In this example we don&amp;rsquo;t have buffers so no need for verifying memory safety.
+We skip proving secret-independent execution here as it requires additional support from HACL*.&lt;/p>
+&lt;h1 id="code-generation-vs-code-verification">Code Generation vs Code Verification
+&lt;/h1>&lt;p>The HACL* approach as described above is a great way of generating fast C code that&amp;rsquo;s proven to be correct, memory safe, and have secret-independent runtime.
+For &lt;a class="link" href="https://developer.mozilla.org/en-US/docs/Mozilla/Projects/NSS" target="_blank" rel="noopener"
+>NSS&lt;/a> we decided to use code generation and integrate code from HACL* into the code base.
+However, instead of generating code it would also be possible to verify existing C code with other tools such as Cryptol/SAW to prove similar properties of the code.&lt;/p>
+&lt;p>The main advantage of code generation is that the mathematical specifications can be easily used to build more complex algorithms and protocols on top and allow for re-use of specification code.
+The trusted code base written in F* is therefore very small.&lt;/p>
+&lt;p>The main drawback of generating code is a relatively large third-party code base that has to be trusted in order to generate the code.
+The weakest link in the case of HACL* is probably Kremlin, which has a &lt;a class="link" href="https://www.microsoft.com/en-us/research/wp-content/uploads/2017/05/icfp17main-main96-p-5064b17-32755-submitted.pdf" target="_blank" rel="noopener"
+>hand written proof&lt;/a> but is a relatively young piece of code that probably contains bugs.&lt;/p>
+&lt;p>There is no optimal solution to this problem that works for everyone but the HACL* approach as described in this post is a great way to get better confidence in correctness and security of complex C code using formal verification.&lt;/p>
+&lt;p>In the next post I&amp;rsquo;ll talk about challenges we faced when integrating code from HACL* into NSS and how we solved them.&lt;/p></description></item></channel></rss>

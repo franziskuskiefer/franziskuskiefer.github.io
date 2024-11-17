@@ -1,21 +1,179 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>hugo on Dr Franziskus Kiefer</title>
-    <link>https://www.franziskuskiefer.de/tags/hugo/</link>
-    <description>Recent content in hugo on Dr Franziskus Kiefer</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sun, 14 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>💲 Web Monetization 💲</title>
-      <link>https://www.franziskuskiefer.de/p/web-monetization/</link>
-      <pubDate>Sun, 14 Feb 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.franziskuskiefer.de/p/web-monetization/</guid>
-      <description>Thanks to Deez I gave web monetization a spin on this website today. Here I write up how I did it, how it went, and what I think about it.
-The proposed web monetization standard allows browsers to securely pay websites, and, in turn, allows for websites to react to being paid, for example by turning off ads or providing extra functionality to paying visitors. There is some good description of use cases on Coil&amp;rsquo;s website if you&amp;rsquo;re looking for a more general explainer.</description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hugo on Dr Franziskus Kiefer</title><link>https://www.franziskuskiefer.de/tags/hugo/</link><description>Recent content in Hugo on Dr Franziskus Kiefer</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 14 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/tags/hugo/index.xml" rel="self" type="application/rss+xml"/><item><title>💲 Web Monetization 💲</title><link>https://www.franziskuskiefer.de/p/web-monetization/</link><pubDate>Sun, 14 Feb 2021 00:00:00 +0000</pubDate><guid>https://www.franziskuskiefer.de/p/web-monetization/</guid><description>&lt;img src="https://www.franziskuskiefer.de/p/web-monetization/hero.jpg" alt="Featured image of post 💲 Web Monetization 💲" />&lt;p>Thanks to &lt;a class="link" href="https://about.me/cyberdees" target="_blank" rel="noopener"
+>Deez&lt;/a> I gave &lt;a class="link" href="https://webmonetization.org" target="_blank" rel="noopener"
+>web monetization&lt;/a> a spin on this website today.
+Here I write up how I did it, how it went, and what I think about it.&lt;/p>
+&lt;p>The proposed &lt;a class="link" href="https://webmonetization.org/specification.html" target="_blank" rel="noopener"
+>web monetization standard&lt;/a> allows browsers to securely pay websites, and, in turn, allows for websites to react to being paid, for example by turning off ads or providing extra functionality to paying visitors.
+There is some good description of use cases on &lt;a class="link" href="https://developers.coil.com/" target="_blank" rel="noopener"
+>Coil&amp;rsquo;s website&lt;/a> if you&amp;rsquo;re looking for a more general explainer.&lt;/p>
+&lt;p>The following diagram from the &lt;a class="link" href="https://webmonetization.org/docs/explainer/" target="_blank" rel="noopener"
+>web monetization docs&lt;/a> illustrate the information flow.
+In short, the &lt;code>monetization&lt;/code> meta-tag on the page is parsed by the browser, which initiates a session for a page visit and triggers the payment through the payment pointer.&lt;/p>
+&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/web-monetization/webmonetization-flow.png"
+width="1050"
+height="570"
+srcset="https://www.franziskuskiefer.de/p/web-monetization/webmonetization-flow_hu223726559760162503.png 480w, https://www.franziskuskiefer.de/p/web-monetization/webmonetization-flow_hu6528732100868382694.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="184"
+data-flex-basis="442px"
+>&lt;/p>
+&lt;h2 id="payment-pointer-">Payment pointer 📬
+&lt;/h2>&lt;p>To set up web monetization on a website like this, one first has to get a payment pointer that can receive payments.
+Getting this payment pointer was probably the hardest part for me.&lt;/p>
+&lt;p>I selected one of the recommended wallet providers &lt;a class="link" href="https://uphold.com" target="_blank" rel="noopener"
+>Uphold&lt;/a>.
+Uphold has a support page for &lt;a class="link" href="https://support.uphold.com/hc/en-us/articles/360043227832-How-to-find-your-ILP-address-Interledger-payment-pointer-" target="_blank" rel="noopener"
+>how to get the ILP (Interledger payment pointer)&lt;/a>.
+The problem is that it&amp;rsquo;s difficult to understand how to get to the &amp;ldquo;sub-account for the asset&amp;rdquo;.
+In fact I was only able to do this in &lt;a class="link" href="https://brave.com/" target="_blank" rel="noopener"
+>Brave&lt;/a> because &lt;a class="link" href="https://uphold.com/dashboard" target="_blank" rel="noopener"
+>uphold.com/dashboard&lt;/a> always forwards me to &lt;a class="link" href="https://wallet.uphold.com/dashboard" target="_blank" rel="noopener"
+>wallet.uphold.com/dashboard&lt;/a>, which doesn&amp;rsquo;t have the necessary information (or I just didn&amp;rsquo;t find it).&lt;/p>
+&lt;p>Setting all trust concerns aside (see the &lt;a class="link" href="#security-privacy" >privacy section&lt;/a>) I tried to verify my Uphold account.
+The verification didn&amp;rsquo;t go through yet 🤔.
+But I can still receive funds and have honestly no idea what&amp;rsquo;s happening here.
+This is a pretty bad sign for a provider that&amp;rsquo;s supposed to handle money for me.&lt;/p>
+&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/web-monetization/UpholdWallet.png"
+width="845"
+height="237"
+srcset="https://www.franziskuskiefer.de/p/web-monetization/UpholdWallet_hu1113602131308553112.png 480w, https://www.franziskuskiefer.de/p/web-monetization/UpholdWallet_hu11558232267134140092.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="356"
+data-flex-basis="855px"
+>&lt;/p>
+&lt;h3 id="the-interledger-">The Interledger 📒
+&lt;/h3>&lt;p>The &lt;a class="link" href="https://interledger.org/" target="_blank" rel="noopener"
+>Interledger&lt;/a> is an open protocol suite for sending payments across different ledgers.
+It is used by the web monetization framework to send the money to the website owner or content creator.
+You might know that I have opinions on cryptocurrencies and blockchain technologies (hint: they are not very positive).
+I understand that there aren&amp;rsquo;t a lot of good ways of sending money to individuals or organisations that supports a lot of different technologies and currencies.
+But I don&amp;rsquo;t understand why any sort of ledger needs to be involved.&lt;/p>
+&lt;h3 id="security-privacy">Privacy &amp;amp; Security considerations 🔐🕵🏻‍♀️
+&lt;/h3>&lt;p>The first road block I hit was the registration of the uphold account.
+It looks like it requires registration with a government ID.
+While the banking industry is for obvious reasons heavily regulated, I don&amp;rsquo;t understand why I need to send highly sensitive documents to a provider with a low trust level.
+Signing up with an existing bank account or credit card might have other privacy implications but would not have the trust issues a provider like Uphold has.&lt;/p>
+&lt;p>If the web monetization protocol wants to be successful, it has to be better than existing solutions (ads).
+Also in terms of privacy.
+It is therefore paramount in my opinion that the protocol does not yield any information about the person visiting a website.
+But I can see a couple ways privacy could get compromised here and no documents addressing them.
+A particular concern I have is how tracking users across different websites is prevented given that the user is always sending from the same account.
+The subscription provider like &lt;a class="link" href="https://coil.com/" target="_blank" rel="noopener"
+>Coil&lt;/a> is another big privacy risk as they see every transaction a user is taking.&lt;/p>
+&lt;p>All this can be remedied but requires transparency and clear technical solutions.&lt;/p>
+&lt;h2 id="getting-started-">Getting started 🌐
+&lt;/h2>&lt;p>There is a &lt;a class="link" href="https://github.com/sabinebertram/hugo-webmonetization-component" target="_blank" rel="noopener"
+>web monetization theme&lt;/a> for &lt;a class="link" href="https://gohugo.io" target="_blank" rel="noopener"
+>hugo&lt;/a> (the framework I use for this site) that allows for easy integration of web monetization.&lt;/p>
+&lt;p>First I added the hugo-webmonetization-component as second theme to my site:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">git submodule add git@github.com:sabinebertram/hugo-webmonetization-component.git themes/webmonetization
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Then I changed my theme in the &lt;code>config.toml&lt;/code> as follows:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-toml" data-lang="toml">&lt;span class="line">&lt;span class="cl">&lt;span class="nx">theme&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="s2">&amp;#34;gohugo-theme-ananke&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;webmonetization&amp;#34;&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>And then set my &lt;a class="link" href="https://paymentpointers.org/" target="_blank" rel="noopener"
+>payment pointer&lt;/a> in the &lt;code>params&lt;/code> section of the &lt;code>config.toml&lt;/code>:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-toml" data-lang="toml">&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="nx">params&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">monetization&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;$ilp.uphold.com/NMNKYReeKNNw&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>In order to actually use the monetization parameter I added it to the ananke theme&amp;rsquo;s &lt;code>&amp;lt;head&amp;gt;&lt;/code>.
+The &lt;code>head&lt;/code> is defined in &lt;code>themes/gohugo-theme-ananke/layouts/_default/baseof.html&lt;/code>, which includes a &lt;code>head-additions.html&lt;/code> where we can add the monetization partial.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-html" data-lang="html">&lt;span class="line">&lt;span class="cl">{{ partial &amp;#34;webmonetization.html&amp;#34; .}}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="sample-exclusive-content-">Sample exclusive content 💎
+&lt;/h3>&lt;p>In hugo it is simple to add exclusive content with the following short code.
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-C" data-lang="C">&lt;span class="line">&lt;span class="cl">&lt;span class="p">{{&lt;/span> &lt;span class="o">%&lt;/span> &lt;span class="n">exclusive&lt;/span> &lt;span class="o">%&lt;/span> &lt;span class="p">}}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">...&lt;/span> &lt;span class="n">exclusive&lt;/span> &lt;span class="n">content&lt;/span> &lt;span class="p">...&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">{{&lt;/span> &lt;span class="o">%&lt;/span> &lt;span class="o">/&lt;/span>&lt;span class="n">exclusive&lt;/span> &lt;span class="o">%&lt;/span> &lt;span class="p">}}&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+Note that this only works if &lt;code>blackfriday&lt;/code> is used as markup engine and things like markdown code blocks don&amp;rsquo;t work in there.
+This might be a shortcoming of the hugo theme I&amp;rsquo;m using here.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-toml" data-lang="toml">&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="nx">markup&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">defaultMarkdownHandler&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;blackfriday&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;strong>⚠️ I switched to a new theme on this blog that does not support webmonetization right now!&lt;/strong>&lt;/p>
+&lt;h3 id="issues-i-encountered-">Issues I encountered 🐞
+&lt;/h3>&lt;p>First this only worked on the main page after following the instructions.
+It turned out that I had to update &lt;a class="link" href="https://github.com/budparr/gohugo-theme-ananke" target="_blank" rel="noopener"
+>my hugo theme&lt;/a> to get support on every page.&lt;/p>
+&lt;p>The description on the &lt;a class="link" href="https://github.com/sabinebertram/hugo-webmonetization-component" target="_blank" rel="noopener"
+>web monetization theme&lt;/a> appears to be a little outdated.
+It is even easier to include it now.&lt;/p>
+&lt;h2 id="the-consumer-side---coil-">The consumer side - Coil 👩🏾‍💻
+&lt;/h2>&lt;p>To see how consumers visiting a website experience web monetization I used &lt;a class="link" href="https://coil.com" target="_blank" rel="noopener"
+>Coil&lt;/a>.
+With an account and an &lt;a class="link" href="https://coil.com/#Extension-Install-Section" target="_blank" rel="noopener"
+>extension for your favourite browser&lt;/a> we see that it is working.&lt;/p>
+&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/web-monetization/franziskuskiefer.de-coil.png"
+width="1822"
+height="1414"
+srcset="https://www.franziskuskiefer.de/p/web-monetization/franziskuskiefer.de-coil_hu1261618572122168537.png 480w, https://www.franziskuskiefer.de/p/web-monetization/franziskuskiefer.de-coil_hu1706154613804348378.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="128"
+data-flex-basis="309px"
+>&lt;/p>
+&lt;h3 id="thoughts-on-the-user-experience-">Thoughts on the user experience 🤔
+&lt;/h3>&lt;p>Seeing the green &lt;code>$&lt;/code> when visiting a page that uses web monetization shows the user that they are supporting the content creator and feels good.
+However, it takes a while for the monetization to kick in such that it looks like the page refreshes after a second for exclusive content.&lt;/p>
+&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/web-monetization/monetization-loading.gif"
+width="1296"
+height="234"
+srcset="https://www.franziskuskiefer.de/p/web-monetization/monetization-loading_hu10681860869619095284.gif 480w, https://www.franziskuskiefer.de/p/web-monetization/monetization-loading_hu14548680564489401132.gif 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="553"
+data-flex-basis="1329px"
+>&lt;/p>
+&lt;p>It is also not entirely clear how the membership works from the popup.
+In particular what&amp;rsquo;s included and how the money gets distributed.
+But this might be a trade-off for the sake of usability.
+A more detailed information panel would be nice though.
+The mobile &lt;a class="link" href="https://www.pumabrowser.com/" target="_blank" rel="noopener"
+>Puma browser&lt;/a> is a little better here.&lt;/p>
+&lt;p>Overall this reminds me a little of the donation system Amazon is running through smile.amazon.com, which is great idea but not very transparent (though this improved over time).&lt;/p>
+&lt;div class="row">
+&lt;div class="column" style="float: left; width: 50%;">
+&lt;img src="../../images/webmonetization-puma1.png" alt="Puma1" style="width:90%">
+&lt;/div>
+&lt;div class="column" style="float: left; width: 50%; margin-bottom: 25px;">
+&lt;img src="../../images/webmonetization-puma2.png" alt="Puma2" style="width:90%">
+&lt;/div>
+&lt;/div>
+&lt;h2 id="conclusion-">Conclusion 🚧
+&lt;/h2>&lt;p>First, I really like the idea of allowing users to give money directly to websites and content creators.
+It is also relatively easy to get web monetization set up on a website.
+If this is through integration in a framework or by manually adding the header tag.&lt;/p>
+&lt;p>My two main concerns are around privacy and the state of tooling.
+This is obviously not a final standard such that some hiccups are to be expected.
+Issues around more mature tools such as Uphold are a little more concerning though.
+To judge the real privacy impact a more in depth analysis of the standard as well as the implementations and services are needed.
+But it is worrying that the specification doesn&amp;rsquo;t even mention privacy implications.&lt;/p>
+&lt;hr>
+&lt;h2 id="update">Update
+&lt;/h2>&lt;p>I was pointed to a blog post on &lt;a class="link" href="https://coil.com/p/sharafian/Doubling-Down-on-Privacy/cD_ZiwT2J" target="_blank" rel="noopener"
+>privacy in Coil&lt;/a> that explains how they use &lt;a class="link" href="https://privacypass.github.io/" target="_blank" rel="noopener"
+>privacy pass&lt;/a> for user privacy (there&amp;rsquo;s an &lt;a class="link" href="https://datatracker.ietf.org/group/privacypass/documents/" target="_blank" rel="noopener"
+>IETF working group&lt;/a> in the process of standardising privacy pass) and something they call wallet privacy.&lt;/p>
+&lt;p>I also filed &lt;a class="link" href="https://github.com/WICG/webmonetization/issues/165" target="_blank" rel="noopener"
+>a spec issue&lt;/a> to get more explicit privacy treatment in the spec.&lt;/p>
+&lt;h2 id="update-2">Update 2
+&lt;/h2>&lt;p>I mentioned above that Uphold appears to be dubious.
+Now that they disabled my account I have to disable the web monetization experiment on this page.
+I don&amp;rsquo;t really care, but Uphold appears to be as bad as I expected.
+There was no communication whatsoever from Uphold except the following screen when logging in.&lt;/p>
+&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/web-monetization/uphold-account-lock.png"
+width="880"
+height="1262"
+srcset="https://www.franziskuskiefer.de/p/web-monetization/uphold-account-lock_hu1680130155481434162.png 480w, https://www.franziskuskiefer.de/p/web-monetization/uphold-account-lock_hu2931331024502949610.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="69"
+data-flex-basis="167px"
+>&lt;/p>
+&lt;p>While being logged in it actually says &amp;quot; Uphold is currently unavailable&amp;quot; 🤷🏻‍♂️&lt;/p>
+&lt;h2 id="update-3">Update 3
+&lt;/h2>&lt;p>After getting in touch with Uphold (thanks Kaily!) it turned out that the account verification didn&amp;rsquo;t go through for some reason and I had to redo it to unlock my account.&lt;/p>
+&lt;p>I got an innocuous email saying&lt;/p>
+&lt;blockquote>
+&lt;p>We’ve had to temporarily restrict your account while we gather some more information. You can still trade but you won’t be able to withdraw funds.&lt;/p>
+&lt;/blockquote>
+&lt;p>What this actually meant is that I had to get in touch with the Uphold support team to figure out what&amp;rsquo;s going on.&lt;/p>
+&lt;p>I re-enabled web-monetization on this page.
+While the initial experience on my end wasn&amp;rsquo;t great it was unrelated to web-monetization and due to some shortcomings in Uphold&amp;rsquo;s communication and me ignoring some of it 😬.&lt;/p></description></item></channel></rss>

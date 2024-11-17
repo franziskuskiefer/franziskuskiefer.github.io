@@ -1,545 +1,87 @@
-<!DOCTYPE html>
-<html lang="en-us">
-    <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='The Messaging Layer Security (MLS) protocol is an IETF proposal for group key establishment and message protection. OpenMLS is a Rust implementation of the MLS protocol in its current state (draft 11 as of the point of writing this) that is being implemented by Raphael, Konrad and myself. For more general information on MLS I refer to the spec and other blog posts. This blog post is only about MLS, and in particular OpenMLS, performance.'><title>OpenMLS Performance</title>
-
-<link rel='canonical' href='https://www.franziskuskiefer.de/p/openmls-performance/'>
-
-<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='OpenMLS Performance'>
-<meta property='og:description' content='The Messaging Layer Security (MLS) protocol is an IETF proposal for group key establishment and message protection. OpenMLS is a Rust implementation of the MLS protocol in its current state (draft 11 as of the point of writing this) that is being implemented by Raphael, Konrad and myself. For more general information on MLS I refer to the spec and other blog posts. This blog post is only about MLS, and in particular OpenMLS, performance.'>
-<meta property='og:url' content='https://www.franziskuskiefer.de/p/openmls-performance/'>
-<meta property='og:site_name' content='Dr Franziskus Kiefer'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='mls' /><meta property='article:tag' content='openmls' /><meta property='article:tag' content='benchmarks' /><meta property='article:published_time' content='2021-05-18T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2021-05-18T00:00:00&#43;00:00'/><meta property='og:image' content='https://www.franziskuskiefer.de/p/openmls-performance/openmls-logo.svg' />
-<meta name="twitter:site" content="@_franziskus_">
-    <meta name="twitter:creator" content="@_franziskus_"><meta name="twitter:title" content="OpenMLS Performance">
-<meta name="twitter:description" content="The Messaging Layer Security (MLS) protocol is an IETF proposal for group key establishment and message protection. OpenMLS is a Rust implementation of the MLS protocol in its current state (draft 11 as of the point of writing this) that is being implemented by Raphael, Konrad and myself. For more general information on MLS I refer to the spec and other blog posts. This blog post is only about MLS, and in particular OpenMLS, performance."><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://www.franziskuskiefer.de/p/openmls-performance/openmls-logo.svg' />
-    </head>
-    <body class="
-    article-page has-toc
-">
-    <script>
-        (function() {
-            const colorSchemeKey = 'StackColorScheme';
-            if(!localStorage.getItem(colorSchemeKey)){
-                localStorage.setItem(colorSchemeKey, "auto");
-            }
-        })();
-    </script><script>
-    (function() {
-        const colorSchemeKey = 'StackColorScheme';
-        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
-        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
-
-        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
-            
-
-            document.documentElement.dataset.scheme = 'dark';
-        } else {
-            document.documentElement.dataset.scheme = 'light';
-        }
-    })();
-</script>
-<div class="container main-container flex 
-    
-        extended
-    
-">
-    
-        <div id="article-toolbar">
-            <a href="https://www.franziskuskiefer.de/" class="back-home">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <polyline points="15 6 9 12 15 18" />
-</svg>
-
-
-
-                <span>Back</span>
-            </a>
-        </div>
-    
-<main class="main full-width">
-    <article class="has-image main-article">
-    <header class="article-header">
-        <div class="article-image">
-            <a href="/p/openmls-performance/">
-                
-                    <img src="/p/openmls-performance/openmls-logo.svg" loading="lazy" alt="Featured image of post OpenMLS Performance" />
-                
-            </a>
-        </div>
-    
-
-    <div class="article-details">
-    
-
-    <h2 class="article-title">
-        <a href="/p/openmls-performance/">OpenMLS Performance</a>
-    </h2>
-
-    
-
-    
-    <footer class="article-time">
-        
-            <div>
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
-  <circle cx="18" cy="18" r="4" />
-  <path d="M15 3v4" />
-  <path d="M7 3v4" />
-  <path d="M3 11h16" />
-  <path d="M18 16.496v1.504l1 1" />
-</svg>
-                <time class="article-time--published">May 18, 2021</time>
-            </div>
-        
-
-        
-            <div>
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="12" cy="12" r="9" />
-  <polyline points="12 7 12 12 15 15" />
-</svg>
-
-
-
-                <time class="article-time--reading">
-                    8 min read
-                </time>
-            </div>
-        
-    </footer>
-    
-</div>
-</header>
-
-    <section class="article-content">
-    <p>The Messaging Layer Security (<a class="link" href="https://datatracker.ietf.org/wg/mls/about/"  target="_blank" rel="noopener"
-    >MLS</a>) protocol is an <a class="link" href="https://datatracker.ietf.org/doc/draft-ietf-mls-protocol/"  target="_blank" rel="noopener"
-    >IETF proposal</a> for group key establishment
+<!doctype html><html lang=en-us dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="The Messaging Layer Security (MLS) protocol is an IETF proposal for group key establishment and message protection. OpenMLS is a Rust implementation of the MLS protocol in its current state (draft 11 as of the point of writing this) that is being implemented by Raphael, Konrad and myself. For more general information on MLS I refer to the spec and other blog posts. This blog post is only about MLS, and in particular OpenMLS, performance.\n"><title>OpenMLS Performance</title>
+<link rel=canonical href=https://www.franziskuskiefer.de/p/openmls-performance/><link rel=stylesheet href=/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css><meta property='og:title' content="OpenMLS Performance"><meta property='og:description' content="The Messaging Layer Security (MLS) protocol is an IETF proposal for group key establishment and message protection. OpenMLS is a Rust implementation of the MLS protocol in its current state (draft 11 as of the point of writing this) that is being implemented by Raphael, Konrad and myself. For more general information on MLS I refer to the spec and other blog posts. This blog post is only about MLS, and in particular OpenMLS, performance.\n"><meta property='og:url' content='https://www.franziskuskiefer.de/p/openmls-performance/'><meta property='og:site_name' content='Dr Franziskus Kiefer'><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:tag' content='mls'><meta property='article:tag' content='openmls'><meta property='article:tag' content='benchmarks'><meta property='article:published_time' content='2021-05-18T00:00:00+00:00'><meta property='article:modified_time' content='2021-05-18T00:00:00+00:00'><meta property='og:image' content='https://www.franziskuskiefer.de/p/openmls-performance/openmls-logo.svg'><meta name=twitter:title content="OpenMLS Performance"><meta name=twitter:description content="The Messaging Layer Security (MLS) protocol is an IETF proposal for group key establishment and message protection. OpenMLS is a Rust implementation of the MLS protocol in its current state (draft 11 as of the point of writing this) that is being implemented by Raphael, Konrad and myself. For more general information on MLS I refer to the spec and other blog posts. This blog post is only about MLS, and in particular OpenMLS, performance.\n"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content='https://www.franziskuskiefer.de/p/openmls-performance/openmls-logo.svg'></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label="Toggle Menu">
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/images/profilepic_hu11425891720239459000.jpg width=300 height=300 class=site-logo loading=lazy alt=Avatar></a></figure><div class=site-meta><h1 class=site-name><a href=/>Dr Franziskus Kiefer</a></h1><h2 class=site-description>Cryptography & Security Engineer and Researcher based in Berlin</h2></div></header><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>Home</span></a></li><li><a href=/about/><svg class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
+<span>About</span></a></li><li><a href=/publications/><svg class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11 3l9 9a1.5 1.5.0 010 2l-6 6a1.5 1.5.0 01-2 0L3 11V7a4 4 0 014-4h4"/><circle cx="9" cy="9" r="2"/></svg>
+<span>Publications</span></a></li><li><a href=/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>Search</span></a></li><li><a href=https://github.com/franziskuskiefer/ target=_blank><svg class="icon icon-tabler icon-tabler-brand-github" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>
+<span>Github</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>Dark Mode</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">Table of contents</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#methodology>Methodology</a><ol><li><a href=#measurements>Measurements</a><ol><li><a href=#operations>Operations</a></li></ol></li></ol></li><li><a href=#results>Results</a><ol><li><a href=#group-setup>Group setup</a></li><li><a href=#join-group>Join group</a></li><li><a href=#update>Update</a></li><li><a href=#adding-a-user>Adding a user</a></li><li><a href=#removing-a-user>Removing a user</a></li><li><a href=#application-messages>Application messages</a></li></ol></li><li><a href=#analysis>Analysis</a></li><li><a href=#technical-background>Technical background</a></li><li><a href=#conclusion--future-work>Conclusion & Future work</a></li></ol></nav></div></section></aside><main class="main full-width"><article class="has-image main-article"><header class=article-header><div class=article-image><a href=/p/openmls-performance/><img src=/p/openmls-performance/openmls-logo.svg loading=lazy alt="Featured image of post OpenMLS Performance"></a></div><div class=article-details><div class=article-title-wrapper><h2 class=article-title><a href=/p/openmls-performance/>OpenMLS Performance</a></h2></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published>May 18, 2021</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>8 minute read</time></div></footer></div></header><section class=article-content><p>The Messaging Layer Security (<a class=link href=https://datatracker.ietf.org/wg/mls/about/ target=_blank rel=noopener>MLS</a>) protocol is an <a class=link href=https://datatracker.ietf.org/doc/draft-ietf-mls-protocol/ target=_blank rel=noopener>IETF proposal</a> for group key establishment
 and message protection.
-<a class="link" href="https://github.com/openmls/openmls/"  target="_blank" rel="noopener"
-    >OpenMLS</a> is a Rust implementation of the MLS protocol in its current state (<a class="link" href="https://datatracker.ietf.org/doc/html/draft-ietf-mls-protocol-11"  target="_blank" rel="noopener"
-    >draft 11</a> as of the point of writing this) that is being implemented by <a class="link" href="https://twitter.com/raphaelrobert"  target="_blank" rel="noopener"
-    >Raphael</a>, <a class="link" href="https://kkohbrok.github.io/"  target="_blank" rel="noopener"
-    >Konrad</a> and myself.
-For more general information on MLS I refer to the <a class="link" href="https://messaginglayersecurity.rocks/mls-protocol/draft-ietf-mls-protocol.html"  target="_blank" rel="noopener"
-    >spec</a> and <a class="link" href="https://wire.com/en/blog/mls-future-of-messaging/"  target="_blank" rel="noopener"
-    >other</a> blog <a class="link" href="https://wickr.com/the-messaging-layer-security-protocol/"  target="_blank" rel="noopener"
-    >posts</a>.
-This blog post is only about MLS, and in particular OpenMLS, performance.</p>
-<p>One goal of MLS is that it <a class="link" href="https://datatracker.ietf.org/doc/charter-ietf-mls/"  target="_blank" rel="noopener"
-    >is supposed to be scalable</a>.
-The charter in particular claims the following:</p>
-<blockquote>
-<p>Resource requirements have good scaling in the size of the group (preferably sub-linear)</p>
-</blockquote>
-<p>While performance can be theoretically analysed for MLS it is also interesting to see whether the performance goals hold up in a real implementation.
+<a class=link href=https://github.com/openmls/openmls/ target=_blank rel=noopener>OpenMLS</a> is a Rust implementation of the MLS protocol in its current state (<a class=link href=https://datatracker.ietf.org/doc/html/draft-ietf-mls-protocol-11 target=_blank rel=noopener>draft 11</a> as of the point of writing this) that is being implemented by <a class=link href=https://twitter.com/raphaelrobert target=_blank rel=noopener>Raphael</a>, <a class=link href=https://kkohbrok.github.io/ target=_blank rel=noopener>Konrad</a> and myself.
+For more general information on MLS I refer to the <a class=link href=https://messaginglayersecurity.rocks/mls-protocol/draft-ietf-mls-protocol.html target=_blank rel=noopener>spec</a> and <a class=link href=https://wire.com/en/blog/mls-future-of-messaging/ target=_blank rel=noopener>other</a> blog <a class=link href=https://wickr.com/the-messaging-layer-security-protocol/ target=_blank rel=noopener>posts</a>.
+This blog post is only about MLS, and in particular OpenMLS, performance.</p><p>One goal of MLS is that it <a class=link href=https://datatracker.ietf.org/doc/charter-ietf-mls/ target=_blank rel=noopener>is supposed to be scalable</a>.
+The charter in particular claims the following:</p><blockquote><p>Resource requirements have good scaling in the size of the group (preferably sub-linear)</p></blockquote><p>While performance can be theoretically analysed for MLS it is also interesting to see whether the performance goals hold up in a real implementation.
 This of course only looks at a single implementation.
 Nonetheless, I think that it gives a good impression on the actual performance of MLS implementations.
-Particularly because OpenMLS at this point is not optimised but rather implements the MLS spec as is.</p>
-<h2 id="methodology">Methodology</h2>
-<p>MLS is a pretty complex protocol with many moving parts.
-It is therefore important to clearly define what is being measured and how.</p>
-<p>First, all tests are done with the only mandatory cipher suite in MLS 1.0 MLS10_128_DHKEMX25519_AES128GCM_SHA256_Ed25519.
+Particularly because OpenMLS at this point is not optimised but rather implements the MLS spec as is.</p><h2 id=methodology>Methodology</h2><p>MLS is a pretty complex protocol with many moving parts.
+It is therefore important to clearly define what is being measured and how.</p><p>First, all tests are done with the only mandatory cipher suite in MLS 1.0 MLS10_128_DHKEMX25519_AES128GCM_SHA256_Ed25519.
 While other cipher suites obviously have different performance, the goal here is to investigate the general performance of MLS depending on the group size.
-The exact cipher suite used is therefore irrelevant.</p>
-<h3 id="measurements">Measurements</h3>
-<p>The measurements here do not cover all possible messages in MLS.
+The exact cipher suite used is therefore irrelevant.</p><h3 id=measurements>Measurements</h3><p>The measurements here do not cover all possible messages in MLS.
 Not all of them are fully supported by OpenMLS yet.
 Pre-shared key, re-init, external-init, app-ack, and external proposals will be checked once they are implemented.
 The measured messages nonetheless represent the core of the MLS protocol and should give a good idea of the general performance of the protocol.
-We test performance of group creation, group join as well as the three basic messages update, add, and remove, and application messages.</p>
-<p>All measurements except for the first two use one of the following set-ups:</p>
-<ol>
-<li>
-<p><strong>Base</strong>: The group is created by a user.
+We test performance of group creation, group join as well as the three basic messages update, add, and remove, and application messages.</p><p>All measurements except for the first two use one of the following set-ups:</p><ol><li><p><strong>Base</strong>: The group is created by a user.
 All other participants are invited and each participant creates the group locally.
-Then every participant sends an update message to the group and everyone else processes it.</p>
-</li>
-<li>
-<p><strong>Bare:</strong> The group is created by a user.
+Then every participant sends an update message to the group and everyone else processes it.</p></li><li><p><strong>Bare:</strong> The group is created by a user.
 All other participants are invited and each participant creates the group locally.
-This creates an extremely sparse version of the underlying tree in MLS and is therefore interesting to look at.</p>
-</li>
-</ol>
-<p>Measurements are run on different group sizes.
+This creates an extremely sparse version of the underlying tree in MLS and is therefore interesting to look at.</p></li></ol><p>Measurements are run on different group sizes.
 When running benchmarks with large groups such as 1000 participants a lot of memory is used in order to simulate all devices (up to 10 GB) such that larger groups are hard to simulate.
 The chosen group sizes allow us to get a good idea how MLS performs depending on the group size.
-We in particular test groups of the size 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 30, 40, 50, 100, 200, 300, 400, 500, 1000.</p>
-<h4 id="operations">Operations</h4>
-<ul>
-<li><strong>Group creation:</strong>
-Creating a group involves creating the group, proposals and welcome messages for the other participants, and applying the commit.</li>
-<li><strong>Join group:</strong>
-Joining a group is equivalent to processing a welcome message to locally create the new group.</li>
-<li><strong>Update messages:</strong>
+We in particular test groups of the size 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 30, 40, 50, 100, 200, 300, 400, 500, 1000.</p><h4 id=operations>Operations</h4><ul><li><strong>Group creation:</strong>
+Creating a group involves creating the group, proposals and welcome messages for the other participants, and applying the commit.</li><li><strong>Join group:</strong>
+Joining a group is equivalent to processing a welcome message to locally create the new group.</li><li><strong>Update messages:</strong>
 Sending an update to a group involves creating a proposal, the corresponding commit and applying the commit.
-When receiving an update message the commit is being processed.</li>
-<li><strong>Adding a user:</strong>
+When receiving an update message the commit is being processed.</li><li><strong>Adding a user:</strong>
 When a new user is added to the group the add proposal and welcome message are created and the commit is locally applied by the adder.
-When receiving a commit with an add proposal it is processed by the user.</li>
-<li><strong>Removing a user:</strong>
+When receiving a commit with an add proposal it is processed by the user.</li><li><strong>Removing a user:</strong>
 When a user is removed from the group the remove proposal and commit are created and locally applied by the remover.
-When receiving a commit with a remove proposal it is processed by the user.</li>
-<li><strong>Application messages:</strong>
+When receiving a commit with a remove proposal it is processed by the user.</li><li><strong>Application messages:</strong>
 Sending an application message consists of creating the plaintext message and encrypting it for the group.
 In order to receive an application message the user has to decrypt and parse the message.
 We measure performance of a single message that is being sent and processed.
-Note that the processing time of subsequent messages is not significantly different from the first one.</li>
-</ul>
-<h2 id="results">Results</h2>
-<p>You can find the raw data and some more graphs in the <a class="link" href="https://docs.google.com/spreadsheets/d/1nZv8lpT28JctDVo4ARBLZCKcIdvo-h8cIyN3_dIedFU"  target="_blank" rel="noopener"
-    >OpenMLS performance spreadsheet</a>.</p>
-<p>All measurements were performed on a laptop with Arch Linux, an Intel Core i7-4900MQ @ 2.80GHz and 16 GB memory.</p>
-<h3 id="group-setup">Group setup</h3>
-<p>As the following graph shows the time needed to create a group is linear in the number of participants added when creating the group.
+Note that the processing time of subsequent messages is not significantly different from the first one.</li></ul><h2 id=results>Results</h2><p>You can find the raw data and some more graphs in the <a class=link href=https://docs.google.com/spreadsheets/d/1nZv8lpT28JctDVo4ARBLZCKcIdvo-h8cIyN3_dIedFU target=_blank rel=noopener>OpenMLS performance spreadsheet</a>.</p><p>All measurements were performed on a laptop with Arch Linux, an Intel Core i7-4900MQ @ 2.80GHz and 16 GB memory.</p><h3 id=group-setup>Group setup</h3><p>As the following graph shows the time needed to create a group is linear in the number of participants added when creating the group.
 The blue line shows the actual measurements while the magenta one is a trend line showing the linear relation.
-This is what is to be expected because the performance is dominated by the creation of welcome messages, which have to be created for each member.</p>
-<p><figure style="flex-grow: 161; flex-basis: 388px">
-		<a href="/p/openmls-performance/group-creation.png" data-size="600x371"><img src="/p/openmls-performance/group-creation.png"
-				srcset="/p/openmls-performance/group-creation_hu57a2dcf3e32b211e0f433ee29c03139d_18564_480x0_resize_box_3.png 480w, /p/openmls-performance/group-creation_hu57a2dcf3e32b211e0f433ee29c03139d_18564_1024x0_resize_box_3.png 1024w"
-				width="600"
-				height="371"
-				loading="lazy"
-				>
-		</a>
-		
-	</figure></p>
-<h3 id="join-group">Join group</h3>
-<p>The performance of joining a group is linear in the group size because the information in the welcome message as well as the tree that is being processed when joining the group are linear in the number of group members.
+This is what is to be expected because the performance is dominated by the creation of welcome messages, which have to be created for each member.</p><p><img src=/p/openmls-performance/group-creation.png width=600 height=371 srcset="/p/openmls-performance/group-creation_hu390722887585268607.png 480w, /p/openmls-performance/group-creation_hu13105536394070267109.png 1024w" loading=lazy class=gallery-image data-flex-grow=161 data-flex-basis=388px></p><h3 id=join-group>Join group</h3><p>The performance of joining a group is linear in the group size because the information in the welcome message as well as the tree that is being processed when joining the group are linear in the number of group members.
 Note that it is not logarithmic because the tree needs to be constructed.
 This requires processing of each node in some way, which is linear in the group size.
-The blue line again shows the actual measurements while the magenta one is a trend line for the linear relation.</p>
-<p><figure style="flex-grow: 161; flex-basis: 388px">
-		<a href="/p/openmls-performance/join.png" data-size="600x371"><img src="/p/openmls-performance/join.png"
-				srcset="/p/openmls-performance/join_hu734cf3b75b0b48c8e923a553d67cf8f2_17633_480x0_resize_box_3.png 480w, /p/openmls-performance/join_hu734cf3b75b0b48c8e923a553d67cf8f2_17633_1024x0_resize_box_3.png 1024w"
-				width="600"
-				height="371"
-				loading="lazy"
-				>
-		</a>
-		
-	</figure></p>
-<h3 id="update">Update</h3>
-<p>Sending and processing updates are both sub-linear in the number of group members because the number of computations depend on the height of the tree in the <em>base</em> case.</p>
-<p><figure style="flex-grow: 161; flex-basis: 388px">
-		<a href="/p/openmls-performance/update.png" data-size="600x371"><img src="/p/openmls-performance/update.png"
-				srcset="/p/openmls-performance/update_hu35214adaf455b57549cfd18cbec99d3a_21902_480x0_resize_box_3.png 480w, /p/openmls-performance/update_hu35214adaf455b57549cfd18cbec99d3a_21902_1024x0_resize_box_3.png 1024w"
-				width="600"
-				height="371"
-				loading="lazy"
-				>
-		</a>
-		
-	</figure></p>
-<p>In the case of a very sparse tree, which we have in the <em>bare</em> case because every leaf only processed the welcome message, the performance of sending an update however is linear in the group size.
+The blue line again shows the actual measurements while the magenta one is a trend line for the linear relation.</p><p><img src=/p/openmls-performance/join.png width=600 height=371 srcset="/p/openmls-performance/join_hu8434490448179972974.png 480w, /p/openmls-performance/join_hu586860903247748959.png 1024w" loading=lazy class=gallery-image data-flex-grow=161 data-flex-basis=388px></p><h3 id=update>Update</h3><p>Sending and processing updates are both sub-linear in the number of group members because the number of computations depend on the height of the tree in the <em>base</em> case.</p><p><img src=/p/openmls-performance/update.png width=600 height=371 srcset="/p/openmls-performance/update_hu9873159883853717952.png 480w, /p/openmls-performance/update_hu3643139880533845239.png 1024w" loading=lazy class=gallery-image data-flex-grow=161 data-flex-basis=388px></p><p>In the case of a very sparse tree, which we have in the <em>bare</em> case because every leaf only processed the welcome message, the performance of sending an update however is linear in the group size.
 When creating a commit for an update proposal the sender has to include a path and refresh the private tree.
 The following two flamegraphs show the difference between the base and the bare case.
 While it doesn&rsquo;t show directly what&rsquo;s going on, it can be seen that in the base case (first flamegraph) the <code>new_with_keys</code> function requires a lot more time relative to the rest of the <code>replace_private_tree</code> function.
-This is a strong indicator for where to look for the differences.</p>
-<p><figure style="flex-grow: 473; flex-basis: 1135px">
-		<a href="/p/openmls-performance/send-update-base.png" data-size="3606x762"><img src="/p/openmls-performance/send-update-base.png"
-				srcset="/p/openmls-performance/send-update-base_hufc51b128e635b21ce491e52af18006b2_543362_480x0_resize_box_3.png 480w, /p/openmls-performance/send-update-base_hufc51b128e635b21ce491e52af18006b2_543362_1024x0_resize_box_3.png 1024w"
-				width="3606"
-				height="762"
-				loading="lazy"
-				>
-		</a>
-		
-	</figure></p>
-<p><figure style="flex-grow: 400; flex-basis: 961px">
-		<a href="/p/openmls-performance/send-update-bare.png" data-size="3606x900"><img src="/p/openmls-performance/send-update-bare.png"
-				srcset="/p/openmls-performance/send-update-bare_hu0f10bb19fb0a7c72e6073eb1bf6f484b_687156_480x0_resize_box_3.png 480w, /p/openmls-performance/send-update-bare_hu0f10bb19fb0a7c72e6073eb1bf6f484b_687156_1024x0_resize_box_3.png 1024w"
-				width="3606"
-				height="900"
-				loading="lazy"
-				>
-		</a>
-		
-	</figure></p>
-<p>Looking at a tree with 300 leaves for example we have to encrypt 299 times (for every other leaf) in the case of a bare tree.
+This is a strong indicator for where to look for the differences.</p><p><img src=/p/openmls-performance/send-update-base.png width=3606 height=762 srcset="/p/openmls-performance/send-update-base_hu4874649569774633425.png 480w, /p/openmls-performance/send-update-base_hu5991119730222648403.png 1024w" loading=lazy class=gallery-image data-flex-grow=473 data-flex-basis=1135px></p><p><img src=/p/openmls-performance/send-update-bare.png width=3606 height=900 srcset="/p/openmls-performance/send-update-bare_hu17457979822156307379.png 480w, /p/openmls-performance/send-update-bare_hu12985293488775238139.png 1024w" loading=lazy class=gallery-image data-flex-grow=400 data-flex-basis=961px></p><p>Looking at a tree with 300 leaves for example we have to encrypt 299 times (for every other leaf) in the case of a bare tree.
 In a fully updated tree however only 9 encryptions are necessary, one for each level of the tree.
-It is therefore expected that the performance of sending an update (with commit) in the bare case is linear in the group size.</p>
-<h3 id="adding-a-user">Adding a user</h3>
-<p>Looking at the performance of adding a user and processing an add commit in the following graph we can again see the linear growth in relation to the number of group members.
+It is therefore expected that the performance of sending an update (with commit) in the bare case is linear in the group size.</p><h3 id=adding-a-user>Adding a user</h3><p>Looking at the performance of adding a user and processing an add commit in the following graph we can again see the linear growth in relation to the number of group members.
 This is almost independent of the state of the tree.
-The operations appear to be slightly more expensive in a fully updated tree though.</p>
-<p><figure style="flex-grow: 161; flex-basis: 388px">
-		<a href="/p/openmls-performance/add.png" data-size="600x371"><img src="/p/openmls-performance/add.png"
-				srcset="/p/openmls-performance/add_hua4318a423a34102703a7d11724cff97b_26376_480x0_resize_box_3.png 480w, /p/openmls-performance/add_hua4318a423a34102703a7d11724cff97b_26376_1024x0_resize_box_3.png 1024w"
-				width="600"
-				height="371"
-				loading="lazy"
-				>
-		</a>
-		
-	</figure></p>
-<h3 id="removing-a-user">Removing a user</h3>
-<p>Like updating, removing a user and processing a remove commit are linear in complexity in the base case as the following graph shows.
+The operations appear to be slightly more expensive in a fully updated tree though.</p><p><img src=/p/openmls-performance/add.png width=600 height=371 srcset="/p/openmls-performance/add_hu480920004077346561.png 480w, /p/openmls-performance/add_hu1289853682501411927.png 1024w" loading=lazy class=gallery-image data-flex-grow=161 data-flex-basis=388px></p><h3 id=removing-a-user>Removing a user</h3><p>Like updating, removing a user and processing a remove commit are linear in complexity in the base case as the following graph shows.
 Removing in a very sparse tree is significantly more expensive than in a fully updated tree.
 The reason is the same as for updating the tree.
-The remove information has to be encrypted to all other remaining participants in the tree.</p>
-<p><figure style="flex-grow: 161; flex-basis: 388px">
-		<a href="/p/openmls-performance/remove.png" data-size="600x371"><img src="/p/openmls-performance/remove.png"
-				srcset="/p/openmls-performance/remove_hue143a9c78448c9986e178aac44e5d629_24639_480x0_resize_box_3.png 480w, /p/openmls-performance/remove_hue143a9c78448c9986e178aac44e5d629_24639_1024x0_resize_box_3.png 1024w"
-				width="600"
-				height="371"
-				loading="lazy"
-				>
-		</a>
-		
-	</figure></p>
-<h3 id="application-messages">Application messages</h3>
-<p>Sending and receiving application messages is essentially independent of the group size, as expected.
+The remove information has to be encrypted to all other remaining participants in the tree.</p><p><img src=/p/openmls-performance/remove.png width=600 height=371 srcset="/p/openmls-performance/remove_hu5303864267182273244.png 480w, /p/openmls-performance/remove_hu2574459668790701661.png 1024w" loading=lazy class=gallery-image data-flex-grow=161 data-flex-basis=388px></p><h3 id=application-messages>Application messages</h3><p>Sending and receiving application messages is essentially independent of the group size, as expected.
 Receiving the first message within an epoch has a small overhead compared to subsequent message as seen in the second graph.
-This should be negligible in practice though.</p>
-<p><figure style="flex-grow: 161; flex-basis: 388px">
-		<a href="/p/openmls-performance/application-message-send.png" data-size="600x371"><img src="/p/openmls-performance/application-message-send.png"
-				srcset="/p/openmls-performance/application-message-send_hu05137400dfc3443fc55cd4df04c88ebb_15843_480x0_resize_box_3.png 480w, /p/openmls-performance/application-message-send_hu05137400dfc3443fc55cd4df04c88ebb_15843_1024x0_resize_box_3.png 1024w"
-				width="600"
-				height="371"
-				loading="lazy"
-				>
-		</a>
-		
-	</figure></p>
-<p><figure style="flex-grow: 161; flex-basis: 388px">
-		<a href="/p/openmls-performance/application-message-receive.png" data-size="600x371"><img src="/p/openmls-performance/application-message-receive.png"
-				srcset="/p/openmls-performance/application-message-receive_hu599bf318a9b6aa87504f8a066c21e800_23613_480x0_resize_box_3.png 480w, /p/openmls-performance/application-message-receive_hu599bf318a9b6aa87504f8a066c21e800_23613_1024x0_resize_box_3.png 1024w"
-				width="600"
-				height="371"
-				loading="lazy"
-				>
-		</a>
-		
-	</figure></p>
-<h2 id="analysis">Analysis</h2>
-<p>First, the plain performance numbers tell us that the goal of the MLS charter of a protocol that scales well for large groups has been mostly.
+This should be negligible in practice though.</p><p><img src=/p/openmls-performance/application-message-send.png width=600 height=371 srcset="/p/openmls-performance/application-message-send_hu2157335197267976492.png 480w, /p/openmls-performance/application-message-send_hu6324650358861094575.png 1024w" loading=lazy class=gallery-image data-flex-grow=161 data-flex-basis=388px></p><p><img src=/p/openmls-performance/application-message-receive.png width=600 height=371 srcset="/p/openmls-performance/application-message-receive_hu5643673153265419165.png 480w, /p/openmls-performance/application-message-receive_hu3098709710336373218.png 1024w" loading=lazy class=gallery-image data-flex-grow=161 data-flex-basis=388px></p><h2 id=analysis>Analysis</h2><p>First, the plain performance numbers tell us that the goal of the MLS charter of a protocol that scales well for large groups has been mostly.
 Depending on the state of the tree some operations might take longer than expected.
 However, this can be mitigated by the application ensuring that the tree is updated and shrunk regularly.
-Notably, the real world performance appears to be consistent with the theoretical expectations.</p>
-<h2 id="technical-background">Technical background</h2>
-<p>The measurements are <em>not</em> done with any Rust benchmarking framework such as <a class="link" href="https://crates.io/crates/criterion"  target="_blank" rel="noopener"
-    >criterion</a>.
-Due to the way criterion works there&rsquo;s significant <a class="link" href="https://github.com/bheisler/criterion.rs/issues/475"  target="_blank" rel="noopener"
-    >overhead in criterion</a>.
-While the numbers in this post can be reliably reproduced a more thorough measurement framework</p>
-<p>The flamegraphs are produced with <a class="link" href="https://crates.io/crates/pprof"  target="_blank" rel="noopener"
-    >pprof</a>, a simple to use CPU profiler for Rust.</p>
-<p>All measurements were performed on <a class="link" href="https://github.com/openmls/openmls/tree/65030529e43716d482a6e57a432da5a388fd0a3c"  target="_blank" rel="noopener"
-    >this revision</a>.
-To reproduce them check out the revision and run</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="k">for</span> i in <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span> <span class="m">7</span> <span class="m">8</span> <span class="m">9</span> <span class="m">10</span> <span class="m">20</span> <span class="m">30</span> <span class="m">40</span> <span class="m">50</span> <span class="m">100</span> <span class="m">200</span> <span class="m">300</span> <span class="m">400</span> <span class="m">500</span> 1000<span class="p">;</span> <span class="k">do</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>    cargo bench --bench group -- <span class="nv">$i</span><span class="p">;</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span><span class="k">done</span>
-</span></span></code></pre></div><h2 id="conclusion--future-work">Conclusion &amp; Future work</h2>
-<p>Measuring performance of a protocol as complex as MLS is pretty difficult.
+Notably, the real world performance appears to be consistent with the theoretical expectations.</p><h2 id=technical-background>Technical background</h2><p>The measurements are <em>not</em> done with any Rust benchmarking framework such as <a class=link href=https://crates.io/crates/criterion target=_blank rel=noopener>criterion</a>.
+Due to the way criterion works there&rsquo;s significant <a class=link href=https://github.com/bheisler/criterion.rs/issues/475 target=_blank rel=noopener>overhead in criterion</a>.
+While the numbers in this post can be reliably reproduced a more thorough measurement framework</p><p>The flamegraphs are produced with <a class=link href=https://crates.io/crates/pprof target=_blank rel=noopener>pprof</a>, a simple to use CPU profiler for Rust.</p><p>All measurements were performed on <a class=link href=https://github.com/openmls/openmls/tree/65030529e43716d482a6e57a432da5a388fd0a3c target=_blank rel=noopener>this revision</a>.
+To reproduce them check out the revision and run</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=k>for</span> i in <span class=m>2</span> <span class=m>3</span> <span class=m>4</span> <span class=m>5</span> <span class=m>6</span> <span class=m>7</span> <span class=m>8</span> <span class=m>9</span> <span class=m>10</span> <span class=m>20</span> <span class=m>30</span> <span class=m>40</span> <span class=m>50</span> <span class=m>100</span> <span class=m>200</span> <span class=m>300</span> <span class=m>400</span> <span class=m>500</span> 1000<span class=p>;</span> <span class=k>do</span> <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>    cargo bench --bench group -- <span class=nv>$i</span><span class=p>;</span> <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span><span class=k>done</span>
+</span></span></code></pre></div><h2 id=conclusion--future-work>Conclusion & Future work</h2><p>Measuring performance of a protocol as complex as MLS is pretty difficult.
 Without an application and elaborate test framework that can simulate many different scenarios it is only possible to get the basic numbers as shown here.
-While they give a good indicator towards the performance of the MLS protocol they are insufficient to claim any performance of real applications that use MLS.</p>
-<p>Nonetheless, the numbers show that the MLS protocol appears to allow for efficient, end-to-end-encrypted messaging in large groups.
-Sending and receiving application messages is independent of the group size while group operations are sub-linear in the group size in most cases.</p>
-<p>When OpenMLS is further developed and we have a messaging client using it another set of measurements should be performed with real world usage scenarios in mind in order to investigate whether the performance we have seen here translates to efficient group messaging in an application.
+While they give a good indicator towards the performance of the MLS protocol they are insufficient to claim any performance of real applications that use MLS.</p><p>Nonetheless, the numbers show that the MLS protocol appears to allow for efficient, end-to-end-encrypted messaging in large groups.
+Sending and receiving application messages is independent of the group size while group operations are sub-linear in the group size in most cases.</p><p>When OpenMLS is further developed and we have a messaging client using it another set of measurements should be performed with real world usage scenarios in mind in order to investigate whether the performance we have seen here translates to efficient group messaging in an application.
 The MLS specification further leaves anything around authentication and authorization policies open to the application.
-These might be complex procedures and impact the MLS performance as well.</p>
-
-</section>
-
-
-    <footer class="article-footer">
-    
-    <section class="article-tags">
-        
-            <a href="/tags/mls/">mls</a>
-        
-            <a href="/tags/openmls/">openmls</a>
-        
-            <a href="/tags/benchmarks/">benchmarks</a>
-        
-    </section>
-
-
-    </footer>
-
-
-    
-</article>
-
-    <aside class="related-contents--wrapper">
-    
-    
-</aside>
-
-     
-     
-        
-    
-
-    <footer class="site-footer">
-    <section class="copyright">
-        &copy; 
-        
-            2013 - 
-        
-        2022 Dr Franziskus Kiefer
-    </section>
-    
-    <section class="powerby">
-        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.1.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
-    </section>
-</footer>
-
-
-    
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-
-    
-    <div class="pswp__bg"></div>
-
-    
-    <div class="pswp__scroll-wrap">
-
-        
-        <div class="pswp__container">
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-        </div>
-
-        
-        <div class="pswp__ui pswp__ui--hidden">
-
-            <div class="pswp__top-bar">
-
-                
-
-                <div class="pswp__counter"></div>
-
-                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-
-                <button class="pswp__button pswp__button--share" title="Share"></button>
-
-                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-
-                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-
-                
-                
-                <div class="pswp__preloader">
-                    <div class="pswp__preloader__icn">
-                        <div class="pswp__preloader__cut">
-                            <div class="pswp__preloader__donut"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                <div class="pswp__share-tooltip"></div>
-            </div>
-
-            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-            </button>
-
-            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-            </button>
-
-            <div class="pswp__caption">
-                <div class="pswp__caption__center"></div>
-            </div>
-
-        </div>
-
-    </div>
-
-</div><script 
-                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
-                defer="true"
-                >
-            </script><script 
-                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
-                defer="true"
-                >
-            </script><link 
-                rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
-            ><link 
-                rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
-            >
-
-            </main>
-    
-        <aside class="sidebar right-sidebar sticky">
-            <section class="widget archives">
-                <div class="widget-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <line x1="5" y1="9" x2="19" y2="9" />
-  <line x1="5" y1="15" x2="19" y2="15" />
-  <line x1="11" y1="4" x2="7" y2="20" />
-  <line x1="17" y1="4" x2="13" y2="20" />
-</svg>
-
-
-
-                </div>
-                <h2 class="widget-title section-title">Table of contents</h2>
-                
-                <div class="widget--toc">
-                    <nav id="TableOfContents">
-  <ol>
-    <li><a href="#methodology">Methodology</a>
-      <ol>
-        <li><a href="#measurements">Measurements</a>
-          <ol>
-            <li><a href="#operations">Operations</a></li>
-          </ol>
-        </li>
-      </ol>
-    </li>
-    <li><a href="#results">Results</a>
-      <ol>
-        <li><a href="#group-setup">Group setup</a></li>
-        <li><a href="#join-group">Join group</a></li>
-        <li><a href="#update">Update</a></li>
-        <li><a href="#adding-a-user">Adding a user</a></li>
-        <li><a href="#removing-a-user">Removing a user</a></li>
-        <li><a href="#application-messages">Application messages</a></li>
-      </ol>
-    </li>
-    <li><a href="#analysis">Analysis</a></li>
-    <li><a href="#technical-background">Technical background</a></li>
-    <li><a href="#conclusion--future-work">Conclusion &amp; Future work</a></li>
-  </ol>
-</nav>
-                </div>
-            </section>
-        </aside>
-    
-
-        </div>
-        <script 
-                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
-                defer="false"
-                >
-            </script><script type="text/javascript" src="/ts/main.js" defer></script>
-<script>
-    (function () {
-        const customFont = document.createElement('link');
-        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
-
-        customFont.type = "text/css";
-        customFont.rel = "stylesheet";
-
-        document.head.appendChild(customFont);
-    }());
-</script>
-
-    </body>
-</html>
+These might be complex procedures and impact the MLS performance as well.</p></section><footer class=article-footer><section class=article-tags><a href=/tags/mls/>Mls</a>
+<a href=/tags/openmls/>Openmls</a>
+<a href=/tags/benchmarks/>Benchmarks</a></section></footer></article><footer class=site-footer><section class=copyright>&copy;
+2013 -
+2024 Dr Franziskus Kiefer</section><section class=powerby>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.29.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js defer></script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>

@@ -1,22 +1,103 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>prng on Dr Franziskus Kiefer</title>
-    <link>https://www.franziskuskiefer.de/tags/prng/</link>
-    <description>Recent content in prng on Dr Franziskus Kiefer</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Thu, 31 Aug 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/tags/prng/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>CVE-2017-5462 - A PRNG issue</title>
-      <link>https://www.franziskuskiefer.de/p/cve-2017-5462-a-prng-issue/</link>
-      <pubDate>Thu, 31 Aug 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.franziskuskiefer.de/p/cve-2017-5462-a-prng-issue/</guid>
-      <description>On April 19, 2017, Mozilla Foundation published the Security Advisory 2017-10 outlining several recently fixed security vulnerabilities. One of these vulnerabilities, tracked as CVE-2017-5462, affects the Pseudo-Random Number Generator (PRNG) within the Network Security Services (NSS) library prior to version 3.29.5 and Firefox prior to version 53.
-This post describes the bug and how it was discovered.
-Inside the NSS PRNG NSS uses Hash_DRBG as PRNG, which is one of several PRNG schemes defined in the NIST Special Publication 800-90.</description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Prng on Dr Franziskus Kiefer</title><link>https://www.franziskuskiefer.de/tags/prng/</link><description>Recent content in Prng on Dr Franziskus Kiefer</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 31 Aug 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/tags/prng/index.xml" rel="self" type="application/rss+xml"/><item><title>CVE-2017-5462 - A PRNG issue</title><link>https://www.franziskuskiefer.de/p/cve-2017-5462-a-prng-issue/</link><pubDate>Thu, 31 Aug 2017 00:00:00 +0000</pubDate><guid>https://www.franziskuskiefer.de/p/cve-2017-5462-a-prng-issue/</guid><description>&lt;img src="https://www.franziskuskiefer.de/p/cve-2017-5462-a-prng-issue/hero.jpg" alt="Featured image of post CVE-2017-5462 - A PRNG issue" />&lt;p>On April 19, 2017, Mozilla Foundation published the &lt;a class="link" href="https://www.mozilla.org/en-US/security/advisories/mfsa2017-10/%5c#CVE-2017-5462" target="_blank" rel="noopener"
+>Security Advisory 2017-10&lt;/a> outlining several recently fixed security vulnerabilities.
+One of these vulnerabilities, tracked as CVE-2017-5462, affects the Pseudo-Random Number Generator (PRNG) within the Network Security Services (NSS) library prior to version 3.29.5 and Firefox prior to version 53.&lt;/p>
+&lt;p>This post describes the bug and how it was discovered.&lt;/p>
+&lt;h1 id="inside-the-nss-prng">Inside the NSS PRNG
+&lt;/h1>&lt;p>NSS uses &lt;code>Hash_DRBG&lt;/code> as PRNG, which is one of several PRNG schemes defined in the &lt;a class="link" href="http://csrc.nist.gov/publications/nistpubs/" target="_blank" rel="noopener"
+>NIST Special Publication 800-90&lt;/a>.
+Like most widely used PRNGs the &lt;code>Hash_DRBG&lt;/code> is a Deterministic Random Bit Generator (DRBG). (Even though this term is usually only used for NIST PRNGs.)
+While the standard contains all the details, the relevant features can be summarised as follows.&lt;/p>
+&lt;p>The state of &lt;code>Hash_DRBG&lt;/code> is composed of three values:&lt;/p>
+&lt;ul>
+&lt;li>A 55-byte integer state variable &lt;code>V&lt;/code>, which is updated with each
+request of new bits&lt;/li>
+&lt;li>A 55-byte integer constant &lt;code>C&lt;/code> that depends on the seed and is updated when re-seeding the PRNG.&lt;/li>
+&lt;li>A counter &lt;code>c&lt;/code> tracking when the next re-seeding is needed.&lt;/li>
+&lt;/ul>
+&lt;p>To generate random bits, &lt;code>Hash_DRBG&lt;/code> concatenates &lt;code>H(V) || H(V+1) || H(V+2) || ...&lt;/code> until enough bits are generated.
+&lt;code>H&lt;/code> denotes a cryptographic hash function here.
+NSS uses the SHA-256 hash function for &lt;code>H&lt;/code> with a digest length of 32 bytes.
+After generating new bits the state variable &lt;code>V&lt;/code> is updated according to the rule &lt;code>V&lt;/code>&lt;sub>&lt;code>c+1&lt;/code>&lt;/sub> &lt;code> = V + H(0x03 || V&lt;/code>&lt;sub>&lt;code>c&lt;/code>&lt;/sub> &lt;code>) + C + c&lt;/code> and counter &lt;code>c&lt;/code> is incremented by one.
+Addition is performed modulo &lt;code>2&lt;/code>&lt;sup>&lt;code>440&lt;/code>&lt;/sup> &lt;code> = 2&lt;/code>&lt;sup>&lt;code>8*55&lt;/code>&lt;/sup> to fit it in the 55 bytes of &lt;code>V&lt;/code>.&lt;/p>
+&lt;p>The PRNG implementation can be found in the file &lt;a class="link" href="https://searchfox.org/nss/rev/fcdcad1fc1ddb6e70653637b0ea0f3359b8533f2/lib/freebl/drbg.c" target="_blank" rel="noopener"
+>drbg.c&lt;/a> within the NSS codebase.&lt;/p>
+&lt;h1 id="cve-2017-5462">CVE-2017-5462
+&lt;/h1>&lt;p>The issue identified in CVE-2017-5462 is in the code implementing the addition.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-C" data-lang="C">&lt;span class="line">&lt;span class="cl">&lt;span class="cm">/*
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cm"> * build some fast inline functions for adding.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cm"> */&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#define PRNG_ADD_CARRY_ONLY(dest, start, carry) \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"> { \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"> int k1; \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"> for (k1 = start; carry &amp;amp;&amp;amp; k1 &amp;gt;= 0; k1--) { \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"> carry = !(++dest[k1]); \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"> } \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"> }
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cm">/*
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cm"> * NOTE: dest must be an array for the following to work.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cm"> */&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#define PRNG_ADD_BITS(dest, dest_len, add, len, carry) \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"> carry = 0; \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"> PORT_Assert((dest_len) &amp;gt;= (len)); \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"> { \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"> int k1, k2; \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"> for (k1 = dest_len - 1, k2 = len - 1; k2 &amp;gt;= 0; --k1, --k2) { \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"> carry += dest[k1] + add[k2]; \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"> dest[k1] = (PRUint8)carry; \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"> carry &amp;gt;&amp;gt;= 8; \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"> } \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"> }
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#define PRNG_ADD_BITS_AND_CARRY(dest, dest_len, add, len, carry) \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"> PRNG_ADD_BITS(dest, dest_len, add, len, carry) \
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp"> PRNG_ADD_CARRY_ONLY(dest, dest_len - len, carry)
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>When the PRNG performs addition to update &lt;code>V&lt;/code> it uses the macro &lt;code>PRNG_ADD_BITS_AND_CARRY&lt;/code>, which first delegates to the macro &lt;code>PRNG_ADD_BITS&lt;/code> to add the two summands without considering the final carry and then the macro &lt;code>PRNG_ADD_CARRY_ONLY&lt;/code> to add the carry.&lt;/p>
+&lt;p>In this addition code it is clear that the carry should be added at the position &lt;em>preceding&lt;/em> the original most-significant-byte of the shorter of the two summands.
+This fact was supposed to be represented by the index &lt;code>dest_len-len&lt;/code> supplied as parameter to &lt;code>PRNG_ADD_CARRY_ONLY&lt;/code>.
+Note that numbers are represented as sequences of bytes with byte number zero being the most-significant byte.
+The essence of the bug is that &lt;code>dest_len-len&lt;/code> does not point to the correct position of the carry, which should have been added at position &lt;code>dest_len-len-1&lt;/code> instead.&lt;/p>
+&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/cve-2017-5462-a-prng-issue/CVE-2017-5462-bug.png"
+width="822"
+height="302"
+srcset="https://www.franziskuskiefer.de/p/cve-2017-5462-a-prng-issue/CVE-2017-5462-bug_hu8192818250878528882.png 480w, https://www.franziskuskiefer.de/p/cve-2017-5462-a-prng-issue/CVE-2017-5462-bug_hu13844593303691259105.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="272"
+data-flex-basis="653px"
+>&lt;/p>
+&lt;h2 id="example">Example
+&lt;/h2>&lt;p>We note that &lt;code>3 * 0x40 = 0xc0&lt;/code> under both proper and broken addition (the latter due to absence of carrying in this example).
+However, &lt;code>3 * 0x95 = 0x01bf&lt;/code> under proper unbounded addition resp. &lt;code>0xbf&lt;/code> under proper modulo addition.
+Yet, the result under broken addition is &lt;code>0x01 + 0xbf = 0xc0&lt;/code>.&lt;/p>
+&lt;h1 id="finding-the-bug-with-testing">Finding the Bug with Testing
+&lt;/h1>&lt;p>The easiest way to find most types of bugs in PRNGs following NIST SP 800-90 is by testing the implementation with the official test vectors (seeds and outputs) provided in the standard.
+I found the bug after implementing these test vectors.
+Functional unit testing would probably have caught this particular bug as well.
+For PRNGs not following the NIST standard, defining corresponding test vectors is a good idea to avoid regressions during maintenance.&lt;/p>
+&lt;p>Statistical tests such as NIST SP 800-22 or &lt;a class="link" href="https://github.com/ticki/diehardest" target="_blank" rel="noopener"
+>DIEHARDEST&lt;/a> are not very useful for testing cryptographic PRNGs.
+They can be used for testing the entropy pool that is fed into the PRNG.
+But such tests will not fail as long as the internal state does not stay constant and output passes through a cryptographic primitive (such as SHA-256) before reaching the consumer.&lt;/p>
+&lt;h1 id="formal-analysis">Formal Analysis
+&lt;/h1>&lt;p>Independ of my investigation, &lt;a class="link" href="https://formal.iti.kit.edu/klebanov/" target="_blank" rel="noopener"
+>Vladimir Klebanov&lt;/a> found this bug using &lt;a class="link" href="https://formal.iti.kit.edu/~klebanov/software/entroposcope/" target="_blank" rel="noopener"
+>Entroposcope&lt;/a>, a static analysis tool created for finding implementation bugs in pseudo-random number generators.&lt;/p>
+&lt;p>Entropy loss occurs when the number of possible output streams is less than the number of possible seeds.
+This is equivalent to the case when two different seeds produce the same output stream (also called a collision).
+Entroposcope is built on top of the bounded model checker &lt;a class="link" href="https://link.springer.com/chapter/10.1007/978-3-642-54862-8_26" target="_blank" rel="noopener"
+>CBMC&lt;/a>, which in turn transforms the problem into a challenge for a &lt;a class="link" href="https://en.wikipedia.org/wiki/Boolean_satisfiability_problem" target="_blank" rel="noopener"
+>SAT solver&lt;/a>.&lt;/p>
+&lt;p>Considering the &lt;code>Hash_DRBG&lt;/code>, the question whether &lt;code>V&lt;/code>&lt;sub>&lt;code>c+1&lt;/code>&lt;/sub> &lt;code> = V + H(0x03 || V&lt;/code>&lt;sub>&lt;code>c&lt;/code>&lt;/sub> &lt;code>) + C + c&lt;/code> produces a collision and the DRBG loses entropy or not boils down to whether distinct 55-byte values &lt;code>x&lt;/code>&lt;sub>&lt;code>1&lt;/code>&lt;/sub>, &lt;code>x&lt;/code>&lt;sub>&lt;code>2&lt;/code>&lt;/sub> exist, such that &lt;code>x&lt;/code>&lt;sub>&lt;code>1&lt;/code>&lt;/sub> &lt;code> + H(x&lt;/code>&lt;sub>&lt;code>1&lt;/code>&lt;/sub>&lt;code>) = x&lt;/code>&lt;sub>&lt;code>2&lt;/code>&lt;/sub> &lt;code> + H(x&lt;/code>&lt;sub>&lt;code>2&lt;/code>&lt;/sub>&lt;code>)&lt;/code>.
+Now, it is clear that this question cannot be answered without either knowing the output of &lt;code>H&lt;/code> for each 55-byte input (which is infeasible) or some (unknown to us and certainly also to the tool) nontrivial mathematical argument on the nature of &lt;code>H&lt;/code> in this context.
+In this regard, the &lt;code>Hash_DRBG&lt;/code> differs from many other PRNGs that employ significantly simpler operations on the output of &lt;code>H&lt;/code> before it makes its way to the PRNG caller.&lt;/p>
+&lt;p>As a consequence of this design, Entroposcope can not be used to prove absence of entropy loss in the &lt;code>Hash_DRBG&lt;/code>.
+Nonetheless, Entroposcope can check collision-freedom of the PRNG under an idealised &lt;code>H&lt;/code> and find bugs in the parts of the implementation that are not &lt;code>H&lt;/code>.
+For this purpose we consider an idealised PRNG with &lt;code>H(b||V) = V&lt;/code> and &lt;code>C = V&lt;/code>&lt;sub>&lt;code>0&lt;/code>&lt;/sub>.
+This is the same kind of idealisation that helped Vladimir to uncover previously unknown bugs in OpenSSL and &lt;a class="link" href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-6313" target="_blank" rel="noopener"
+>GnuPG&lt;/a>.
+With the idealisation, on the first iteration (&lt;code>c = 0&lt;/code>) updating the state becomes &lt;code>V&lt;/code>&lt;sub>&lt;code>1&lt;/code>&lt;/sub> &lt;code> = 3 * V&lt;/code>&lt;sub>&lt;code>0&lt;/code>&lt;/sub>.
+Because &lt;code>3&lt;/code> and &lt;code>2&lt;/code>&lt;sup>&lt;code>440&lt;/code>&lt;/sup> are co-prime, &lt;code>V&lt;/code>&lt;sub>&lt;code>1&lt;/code>&lt;/sub> will not produce a collision if implemented properly.&lt;/p>
+&lt;p>Indeed, given the idealised code, Entroposcope produced a counterexample to entropy preservation with two concrete seeds leading to the same output stream.
+Tracing these two executions makes it easy to pinpoint the cause of the collision in the addition code.&lt;/p>
+&lt;p>Thanks to Vladimir for finding this bug and helping to write this post.&lt;/p></description></item></channel></rss>

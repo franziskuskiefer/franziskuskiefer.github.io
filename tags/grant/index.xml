@@ -1,21 +1,10 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>grant on Dr Franziskus Kiefer</title>
-    <link>https://www.franziskuskiefer.de/tags/grant/</link>
-    <description>Recent content in grant on Dr Franziskus Kiefer</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Thu, 10 Feb 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/tags/grant/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Cryspen ERC PoC Grant</title>
-      <link>https://www.franziskuskiefer.de/p/cryspen-erc-poc-grant/</link>
-      <pubDate>Thu, 10 Feb 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.franziskuskiefer.de/p/cryspen-erc-poc-grant/</guid>
-      <description>My co-founder Karthik got awarded an ERC Proof of Concept grant for commercialising the know-how and landmark research results from his Inria research group PROSECCO through Cryspen.
-Announcement Cryptographic mechanisms are crucial to the security of our digital lives but their design and implementation remains notoriously difficult and error-prone. With the help of two ERC Grants, Karthikeyan Bhargavan and the Prosecco team at Inria have developed state-of-the-art formal verification techniques that can be applied to real-world cryptographic software.</description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Grant on Dr Franziskus Kiefer</title><link>https://www.franziskuskiefer.de/tags/grant/</link><description>Recent content in Grant on Dr Franziskus Kiefer</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 10 Feb 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/tags/grant/index.xml" rel="self" type="application/rss+xml"/><item><title>Cryspen ERC PoC Grant</title><link>https://www.franziskuskiefer.de/p/cryspen-erc-poc-grant/</link><pubDate>Thu, 10 Feb 2022 00:00:00 +0000</pubDate><guid>https://www.franziskuskiefer.de/p/cryspen-erc-poc-grant/</guid><description>&lt;img src="https://www.franziskuskiefer.de/p/cryspen-erc-poc-grant/erc.jpg" alt="Featured image of post Cryspen ERC PoC Grant" />&lt;p>My co-founder &lt;a class="link" href="https://bhargavan.info/" target="_blank" rel="noopener"
+>Karthik&lt;/a> got awarded an &lt;a class="link" href="https://erc.europa.eu/funding/proof-concept" target="_blank" rel="noopener"
+>ERC Proof of Concept grant&lt;/a> for
+commercialising the know-how and landmark research results from his Inria
+research group &lt;a class="link" href="https://team.inria.fr/prosecco/" target="_blank" rel="noopener"
+>PROSECCO&lt;/a> through Cryspen.&lt;/p>
+&lt;h2 id="announcement">Announcement
+&lt;/h2>&lt;p>Cryptographic mechanisms are crucial to the security of our digital lives but their design and implementation remains notoriously difficult and error-prone. With the help of two ERC Grants, Karthikeyan Bhargavan and the Prosecco team at Inria have developed state-of-the-art formal verification techniques that can be applied to real-world cryptographic software. In particular, they used these techniques to help design and analyze the TLS 1.3 protocol standard, as well to build the HACL* verified cryptographic library, code from which has been incorporated in mainstream software projects including Mozilla Firefox, the Linux Kernel, the Tezos Blockchain, the WireGuard VPN, and the ElectionGuard voting system.&lt;/p>
+&lt;p>The goal of this new ERC Proof of Concept grant is to build upon these these landmark research results and to commercialise the associated know-how through a new company called Cryspen. Cryspen will build a verified cryptographic software stack and an associated verification toolchain that is well-documented and easy to use for security developers. Cryspen will offer consulting and support contracts for this stack as well as software contracts for developing new cryptographic applications, ranging from secure messaging system to privacy-preserving machine learning.&lt;/p>
+&lt;p>Cryspen is co-founded by Franziskus Kiefer (CEO), Karthikeyan Bhargavan, and Jonathan Protzenko. For more information, email &lt;a class="link" href="mailto:info@cryspen.com" >info@cryspen.com&lt;/a>&lt;/p></description></item></channel></rss>

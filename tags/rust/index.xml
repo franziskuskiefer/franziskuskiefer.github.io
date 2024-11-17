@@ -1,32 +1,296 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>rust on Dr Franziskus Kiefer</title>
-    <link>https://www.franziskuskiefer.de/tags/rust/</link>
-    <description>Recent content in rust on Dr Franziskus Kiefer</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Fri, 12 Nov 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/tags/rust/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>(HACL*) AEAD Benchmarks</title>
-      <link>https://www.franziskuskiefer.de/p/hacl-aead-benchmarks/</link>
-      <pubDate>Fri, 12 Nov 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.franziskuskiefer.de/p/hacl-aead-benchmarks/</guid>
-      <description>This is in response to the blog post by Sylvain Kerkour benchmarking ring and Rust Crypto AEADs. I was curious how HACL* stacks up to these two with these parameters.
- I&amp;rsquo;m maintaining the Evercrypt crate, a wrapper around the formally verified crypto library HACL*. HACL* is a customizable, fast, formally verified crypto library written in F* and extracted to C.
- RustCrypto’s ChaCha20-Poly1305 RustCrypto’s AES-256-GCM ring’s ChaCha20-Poly1305 ring’s AES-256-GCM  Results I&amp;rsquo;m listing all results here for comparison as I&amp;rsquo;m (obviously) running the benchmarks on a different machine.</description>
-    </item>
-    
-    <item>
-      <title>Wrapping arithmetic in Rust</title>
-      <link>https://www.franziskuskiefer.de/p/wrapping-arithmetic-in-rust/</link>
-      <pubDate>Mon, 21 Oct 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.franziskuskiefer.de/p/wrapping-arithmetic-in-rust/</guid>
-      <description>One of Rusts great feature is that it catches integer overflows at runtime and panics rather than wraps (in debug builds). I recommend you read Huon&amp;rsquo;s blog post about this from a couple years ago.
-While this is a desirable behaviour in general, integer overflows are commonly used when implementing cryptography primitives. Rust offers wrapping alternatives such as wrapping_add etc. to allow wrapping behaviour. However, this makes code very hard to read, e.</description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Rust on Dr Franziskus Kiefer</title><link>https://www.franziskuskiefer.de/tags/rust/</link><description>Recent content in Rust on Dr Franziskus Kiefer</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 12 Nov 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/tags/rust/index.xml" rel="self" type="application/rss+xml"/><item><title>(HACL*) AEAD Benchmarks</title><link>https://www.franziskuskiefer.de/p/hacl-aead-benchmarks/</link><pubDate>Fri, 12 Nov 2021 00:00:00 +0000</pubDate><guid>https://www.franziskuskiefer.de/p/hacl-aead-benchmarks/</guid><description>&lt;img src="https://www.franziskuskiefer.de/p/hacl-aead-benchmarks/AeadBenchHero.png" alt="Featured image of post (HACL*) AEAD Benchmarks" />&lt;blockquote>
+&lt;p>This is in response to the &lt;a class="link" href="https://kerkour.com/rust-symmetric-encryption-aead-benchmark/" target="_blank" rel="noopener"
+>blog post by Sylvain Kerkour&lt;/a> benchmarking ring and
+Rust Crypto AEADs.
+I was curious how HACL* stacks up to these two with these parameters.&lt;/p>
+&lt;/blockquote>
+&lt;p>I&amp;rsquo;m maintaining the &lt;a class="link" href="https://crates.io/crates/evercrypt" target="_blank" rel="noopener"
+>Evercrypt crate&lt;/a>, a wrapper
+around the formally verified crypto library &lt;a class="link" href="https://github.com/project-everest/hacl-star" target="_blank" rel="noopener"
+>HACL*&lt;/a>.
+HACL* is a customizable, fast, formally verified crypto library written in F* and extracted to C.&lt;/p>
+&lt;ul>
+&lt;li>&lt;a class="link" href="https://crates.io/crates/chacha20poly1305" target="_blank" rel="noopener"
+>RustCrypto’s ChaCha20-Poly1305&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://crates.io/crates/aes-gcm" target="_blank" rel="noopener"
+>RustCrypto’s AES-256-GCM&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://crates.io/crates/ring" target="_blank" rel="noopener"
+>ring’s ChaCha20-Poly1305&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://crates.io/crates/ring" target="_blank" rel="noopener"
+>ring’s AES-256-GCM&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="results">Results
+&lt;/h2>&lt;p>I&amp;rsquo;m listing all results here for comparison as I&amp;rsquo;m (obviously) running the benchmarks on a different machine.&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>&lt;/th>
+&lt;th>100B&lt;/th>
+&lt;th>1kB&lt;/th>
+&lt;th>100kB&lt;/th>
+&lt;th>1MB&lt;/th>
+&lt;th>10MB&lt;/th>
+&lt;th>100MB&lt;/th>
+&lt;th>1GB&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;a class="link" href="https://crates.io/crates/chacha20poly1305" target="_blank" rel="noopener"
+>RustCrypto’s ChaCha20-Poly1305&lt;/a> v0.8.2&lt;/td>
+&lt;td>1.6232 us (58.753 MiB/s)&lt;/td>
+&lt;td>2.6941 us (353.98 MiB/s)&lt;/td>
+&lt;td>120.10 us (794.10 MiB/s)&lt;/td>
+&lt;td>1.1921 ms (800.02 MiB/s)&lt;/td>
+&lt;td>12.015 ms (793.75 MiB/s)&lt;/td>
+&lt;td>119.87 ms (795.58 MiB/s)&lt;/td>
+&lt;td>1.1947 s (798.27 MiB/s)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a class="link" href="https://crates.io/crates/aes-gcm" target="_blank" rel="noopener"
+>RustCrypto’s AES-256-GCM&lt;/a> v0.9.4&lt;/td>
+&lt;td>448.97 ns (212.42 MiB/s)&lt;/td>
+&lt;td>1.5090 us (632.01 MiB/s)&lt;/td>
+&lt;td>118.13 us (807.33 MiB/s)&lt;/td>
+&lt;td>1.1947 ms (798.24 MiB/s)&lt;/td>
+&lt;td>11.986 ms (795.68 MiB/s)&lt;/td>
+&lt;td>119.39 ms (798.81 MiB/s)&lt;/td>
+&lt;td>1.1974 s (796.43 MiB/s)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a class="link" href="https://crates.io/crates/ring" target="_blank" rel="noopener"
+>ring’s ChaCha20-Poly1305&lt;/a> v0.16.20&lt;/td>
+&lt;td>193.82 ns (492.04 MiB/s)&lt;/td>
+&lt;td>730.23 ns (1.2754 GiB/s)&lt;/td>
+&lt;td>48.293 us (1.9285 GiB/s)&lt;/td>
+&lt;td>490.64 us (1.8982 GiB/s)&lt;/td>
+&lt;td>5.0475 ms (1.8451 GiB/s)&lt;/td>
+&lt;td>51.438 ms (1.8106 GiB/s)&lt;/td>
+&lt;td>514.99 ms (1.8084 GiB/s)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a class="link" href="https://crates.io/crates/ring" target="_blank" rel="noopener"
+>ring’s AES-256-GCM&lt;/a> v0.16.20&lt;/td>
+&lt;td>235.57 ns (404.83 MiB/s)&lt;/td>
+&lt;td>556.64 ns (1.6731 GiB/s)&lt;/td>
+&lt;td>34.609 us (2.6910 GiB/s)&lt;/td>
+&lt;td>343.41 us (2.7120 GiB/s)&lt;/td>
+&lt;td>3.5471 ms (2.6256 GiB/s)&lt;/td>
+&lt;td>34.873 ms (2.6706 GiB/s)&lt;/td>
+&lt;td>348.51 ms (2.6723 GiB/s)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a class="link" href="https://crates.io/crates/evercrypt" target="_blank" rel="noopener"
+>HACL*’s ChaCha20-Poly1305&lt;/a> v0.0.10&lt;/td>
+&lt;td>862.79 ns (110.53 MiB/s)&lt;/td>
+&lt;td>1.2804 us (744.81 MiB/s)&lt;/td>
+&lt;td>55.550 us (1.6765 GiB/s)&lt;/td>
+&lt;td>549.11 us (1.6961 GiB/s)&lt;/td>
+&lt;td>5.8844 ms (1.5827 GiB/s)&lt;/td>
+&lt;td>88.801 ms (1.0488 GiB/s)&lt;/td>
+&lt;td>847.39 ms (1.0990 GiB/s)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a class="link" href="https://crates.io/crates/evercrypt" target="_blank" rel="noopener"
+>HACL*’s AES-256-GCM&lt;/a> v0.0.10&lt;/td>
+&lt;td>238.12 ns (400.51 MiB/s)&lt;/td>
+&lt;td>598.56 ns (1.5560 GiB/s)&lt;/td>
+&lt;td>38.997 us (2.3882 GiB/s)&lt;/td>
+&lt;td>391.87 us (2.3766 GiB/s)&lt;/td>
+&lt;td>4.0217 ms (2.3157 GiB/s)&lt;/td>
+&lt;td>68.004 ms (1.3695 GiB/s)&lt;/td>
+&lt;td>642.12 ms (1.4504 GiB/s)&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>It is interesting to see that the HACL* AES-256-GCM implementation is only slightly
+slower than ring&amp;rsquo;s (2.3GiB/s vs 2.7GiB/s) for 1MB and 10MB chunks.
+But it significantly drops in performance for larger blobs while ring&amp;rsquo;s performance
+stays the same.
+The picture for Chacha20Poly1305 is similar, which points to general issues of
+handling large data sizes within HACL*.&lt;/p>
+&lt;p>&lt;a class="link" href="./aead-intel-benchmarks.txt" >Raw number&lt;/a>&lt;/p>
+&lt;h2 id="m1">M1
+&lt;/h2>&lt;p>My main machine right now is a MacBook with M1 chip.
+This is a very different machine.
+Here are the numbers.&lt;/p>
+&lt;p>Note that HACL* doesn&amp;rsquo;t support AES on ARM chips yet unfortunately.&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>&lt;/th>
+&lt;th>100B&lt;/th>
+&lt;th>1kB&lt;/th>
+&lt;th>100kB&lt;/th>
+&lt;th>1MB&lt;/th>
+&lt;th>10MB&lt;/th>
+&lt;th>100MB&lt;/th>
+&lt;th>1GB&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>[RustCrypto’s XChaCha20-Poly1305] v0.8.2&lt;/td>
+&lt;td>558.20 ns (170.85 MiB/s)&lt;/td>
+&lt;td>3.0136 us (316.46 MiB/s)&lt;/td>
+&lt;td>274.25 us (347.74 MiB/s)&lt;/td>
+&lt;td>2.7434 ms (347.62 MiB/s)&lt;/td>
+&lt;td>27.535 ms (346.35 MiB/s)&lt;/td>
+&lt;td>279.16 ms (341.62 MiB/s)&lt;/td>
+&lt;td>2.7657 s (344.83 MiB/s)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a class="link" href="https://crates.io/crates/chacha20poly1305" target="_blank" rel="noopener"
+>RustCrypto’s ChaCha20-Poly1305&lt;/a> v0.8.2&lt;/td>
+&lt;td>460.31 ns (207.18 MiB/s)&lt;/td>
+&lt;td>2.9189 us (326.73 MiB/s)&lt;/td>
+&lt;td>273.95 us (348.12 MiB/s)&lt;/td>
+&lt;td>2.7429 ms (347.69 MiB/s)&lt;/td>
+&lt;td>27.623 ms (345.25 MiB/s)&lt;/td>
+&lt;td>281.35 ms (338.96 MiB/s)&lt;/td>
+&lt;td>2.7525 s (346.48 MiB/s)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a class="link" href="https://crates.io/crates/aes-gcm" target="_blank" rel="noopener"
+>RustCrypto’s AES-256-GCM&lt;/a> v0.9.4&lt;/td>
+&lt;td>3.0838 us (30.925 MiB/s)&lt;/td>
+&lt;td>9.3825 us (101.64 MiB/s)&lt;/td>
+&lt;td>707.99 us (134.70 MiB/s)&lt;/td>
+&lt;td>7.0729 ms (134.83 MiB/s)&lt;/td>
+&lt;td>70.655 ms (134.98 MiB/s)&lt;/td>
+&lt;td>706.42 ms (135.00 MiB/s)&lt;/td>
+&lt;td>7.1158 s (134.02 MiB/s)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a class="link" href="https://crates.io/crates/ring" target="_blank" rel="noopener"
+>ring’s ChaCha20-Poly1305&lt;/a> v0.16.20&lt;/td>
+&lt;td>407.12 ns (234.25 MiB/s)&lt;/td>
+&lt;td>1.3175 us (723.85 MiB/s)&lt;/td>
+&lt;td>96.781 us (985.40 MiB/s)&lt;/td>
+&lt;td>963.70 us (989.60 MiB/s)&lt;/td>
+&lt;td>9.6676 ms (986.46 MiB/s)&lt;/td>
+&lt;td>98.252 ms (970.64 MiB/s)&lt;/td>
+&lt;td>975.96 ms (977.17 MiB/s)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a class="link" href="https://crates.io/crates/ring" target="_blank" rel="noopener"
+>ring’s AES-256-GCM&lt;/a> v0.16.20&lt;/td>
+&lt;td>79.751 ns (1.1678 GiB/s)&lt;/td>
+&lt;td>394.01 ns (2.3637 GiB/s)&lt;/td>
+&lt;td>34.355 us (2.7109 GiB/s)&lt;/td>
+&lt;td>344.78 us (2.7012 GiB/s)&lt;/td>
+&lt;td>3.4792 ms (2.6768 GiB/s)&lt;/td>
+&lt;td>34.543 ms (2.6961 GiB/s)&lt;/td>
+&lt;td>345.92 ms (2.6923 GiB/s)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a class="link" href="https://crates.io/crates/evercrypt" target="_blank" rel="noopener"
+>HACL*’s ChaCha20-Poly1305&lt;/a> v0.0.10&lt;/td>
+&lt;td>690.43 ns (138.13 MiB/s)&lt;/td>
+&lt;td>1.7545 us (543.55 MiB/s)&lt;/td>
+&lt;td>132.59 us (719.25 MiB/s)&lt;/td>
+&lt;td>1.3096 ms (728.24 MiB/s)&lt;/td>
+&lt;td>13.261 ms (719.13 MiB/s)&lt;/td>
+&lt;td>137.91 ms (691.53 MiB/s)&lt;/td>
+&lt;td>1.4217 s (670.82 MiB/s)&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>Ring&amp;rsquo;s performance is again great and very stable across different payload sizes.
+Rust Crypto&amp;rsquo;s implementations are significantly slower than ring&amp;rsquo;s again but also slower than on the Intel machine.
+The HACL* performance for Chacha20Poly1305 is again a little worse than ring&amp;rsquo;s but significantly better than Rust Crypto&amp;rsquo;s.&lt;/p>
+&lt;p>&lt;a class="link" href="./aead-m1-benchmarks.txt" >Raw number&lt;/a>&lt;/p>
+&lt;h2 id="cpu-info">CPU Info
+&lt;/h2>&lt;h3 id="intel">Intel
+&lt;/h3>&lt;pre tabindex="0">&lt;code>Architecture: x86_64
+CPU op-mode(s): 32-bit, 64-bit
+Address sizes: 39 bits physical, 48 bits virtual
+Byte Order: Little Endian
+CPU(s): 8
+On-line CPU(s) list: 0-7
+Vendor ID: GenuineIntel
+Model name: Intel(R) Core(TM) i7-4900MQ CPU @ 2.80GHz
+CPU family: 6
+Model: 60
+Thread(s) per core: 2
+Core(s) per socket: 4
+Socket(s): 1
+Stepping: 3
+CPU max MHz: 3800.0000
+CPU min MHz: 800.0000
+BogoMIPS: 5589.60
+Flags: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx f
+xsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_
+good nopl xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx e
+st tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c
+rdrand lahf_lm abm cpuid_fault epb invpcid_single pti tpr_shadow vnmi flexpriority ept vpid e
+pt_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid xsaveopt dtherm ida arat pln pts
+Virtualization features:
+Virtualization: VT-x
+Caches (sum of all):
+L1d: 128 KiB (4 instances)
+L1i: 128 KiB (4 instances)
+L2: 1 MiB (4 instances)
+L3: 8 MiB (1 instance)
+NUMA:
+NUMA node(s): 1
+NUMA node0 CPU(s): 0-7
+Vulnerabilities:
+Itlb multihit: KVM: Mitigation: VMX disabled
+L1tf: Mitigation; PTE Inversion; VMX conditional cache flushes, SMT vulnerable
+Mds: Vulnerable: Clear CPU buffers attempted, no microcode; SMT vulnerable
+Meltdown: Mitigation; PTI
+Spec store bypass: Vulnerable
+Spectre v1: Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+Spectre v2: Mitigation; Full generic retpoline, STIBP disabled, RSB filling
+Srbds: Vulnerable: No microcode
+Tsx async abort: Not affected
+&lt;/code>&lt;/pre>&lt;h3 id="m1-1">M1
+&lt;/h3>&lt;pre tabindex="0">&lt;code>machdep.cpu.brand_string: Apple M1
+machdep.cpu.core_count: 8
+machdep.cpu.cores_per_package: 8
+machdep.cpu.logical_per_package: 8
+machdep.cpu.thread_count: 8
+&lt;/code>&lt;/pre>&lt;hr>
+&lt;p>The code changes needed for these experiments are on &lt;a class="link" href="https://github.com/franziskuskiefer/kerkour.com/tree/hacl" target="_blank" rel="noopener"
+>Github&lt;/a>.&lt;/p></description></item><item><title>Wrapping arithmetic in Rust</title><link>https://www.franziskuskiefer.de/p/wrapping-arithmetic-in-rust/</link><pubDate>Mon, 21 Oct 2019 00:00:00 +0000</pubDate><guid>https://www.franziskuskiefer.de/p/wrapping-arithmetic-in-rust/</guid><description>&lt;p>One of Rusts great feature is that it catches integer overflows at runtime and panics rather than wraps (in debug builds).
+I recommend you read &lt;a class="link" href="https://huonw.github.io/blog/2016/04/myths-and-legends-about-integer-overflow-in-rust/" target="_blank" rel="noopener"
+>Huon&amp;rsquo;s blog post&lt;/a> about this from a couple years ago.&lt;/p>
+&lt;p>While this is a desirable behaviour in general, integer overflows are commonly used when implementing cryptography primitives.
+Rust offers wrapping alternatives such as &lt;code>wrapping_add&lt;/code> etc. to allow wrapping behaviour.
+However, this makes code very hard to read, e.g. &lt;code>let c = a + b&lt;/code> is easier to read than &lt;code>let c = a.wrapping_add(b)&lt;/code>.&lt;/p>
+&lt;h2 id="other-wrapping-arithmetic">Other wrapping arithmetic
+&lt;/h2>&lt;p>Rust itself provides a wrapping integer type in &lt;a class="link" href="https://doc.rust-lang.org/std/num/struct.Wrapping.html" target="_blank" rel="noopener"
+>&lt;code>std::num::Wrapping&lt;/code>&lt;/a>.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Rust" data-lang="Rust">&lt;span class="line">&lt;span class="cl">&lt;span class="k">use&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">std&lt;/span>::&lt;span class="n">num&lt;/span>::&lt;span class="n">Wrapping&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">zero&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Wrapping&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="k">u32&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">one&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Wrapping&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="k">u32&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="fm">assert_eq!&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">std&lt;/span>::&lt;span class="kt">u32&lt;/span>::&lt;span class="no">MAX&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">zero&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">one&lt;/span>&lt;span class="p">).&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>This is a good solution when you want to be explicit about what you&amp;rsquo;re doing.
+However, its readability is still not great.&lt;/p>
+&lt;h2 id="wrappit">#[wrappit]
+&lt;/h2>&lt;p>To alleviate this shortcoming I implemented a &lt;a class="link" href="https://doc.rust-lang.org/reference/procedural-macros.html" target="_blank" rel="noopener"
+>procedural macro&lt;/a> that rewrites arithmetic operators &lt;code>+,-,*&lt;/code> into their wrapping equivalents &lt;code>wrapping_add, wrapping_sub, wrapping_mul&lt;/code> as well as their assigning versions &lt;code>+=,-=,*=&lt;/code>.&lt;/p>
+&lt;p>The following function for example&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Rust" data-lang="Rust">&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#[wrappit]&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">fn&lt;/span> &lt;span class="nf">mix&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">a&lt;/span>: &lt;span class="kt">u32&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">b&lt;/span>: &lt;span class="kt">u32&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">c&lt;/span>: &lt;span class="kp">&amp;amp;&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="kt">u32&lt;/span>&lt;span class="p">])&lt;/span>&lt;span class="w"> &lt;/span>-&amp;gt; &lt;span class="kt">u32&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">mut&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">r&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">for&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">u&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">in&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">c&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">r&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">*=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">u&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">r&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>is rewritten to&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Rust" data-lang="Rust">&lt;span class="line">&lt;span class="cl">&lt;span class="k">fn&lt;/span> &lt;span class="nf">mix&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">a&lt;/span>: &lt;span class="kt">u32&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">b&lt;/span>: &lt;span class="kt">u32&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">c&lt;/span>: &lt;span class="kp">&amp;amp;&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="kt">u32&lt;/span>&lt;span class="p">])&lt;/span>&lt;span class="w"> &lt;/span>-&amp;gt; &lt;span class="kt">u32&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">mut&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">r&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">wrapping_add&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">for&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">u&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">in&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">c&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">r&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">r&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">wrapping_mul&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">u&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">r&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You can find wrapping_arithmetic on &lt;a class="link" href="https://github.com/franziskuskiefer/wrapping-arithmetic" target="_blank" rel="noopener"
+>GitHub&lt;/a> and on &lt;a class="link" href="https://crates.io/crates/wrapping_arithmetic" target="_blank" rel="noopener"
+>crates.io&lt;/a>.
+To use &lt;code>#[wrappit]&lt;/code> add &lt;code>wrapping_arithmetic = &amp;quot;0.1&amp;quot;&lt;/code> to your &lt;code>cargo.toml&lt;/code>.&lt;/p></description></item></channel></rss>

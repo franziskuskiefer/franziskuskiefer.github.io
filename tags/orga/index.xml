@@ -1,20 +1,6 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>orga on Dr Franziskus Kiefer</title>
-    <link>https://www.franziskuskiefer.de/tags/orga/</link>
-    <description>Recent content in orga on Dr Franziskus Kiefer</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Tue, 29 Aug 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/tags/orga/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>New Website</title>
-      <link>https://www.franziskuskiefer.de/p/new-website/</link>
-      <pubDate>Tue, 29 Aug 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.franziskuskiefer.de/p/new-website/</guid>
-      <description>After a couple of years using ghost I switched to the static page generator hugo. Hugo is easy to write and easy to publish. But more importantly it doesn&amp;rsquo;t offer the attack surface ghost does and doesn&amp;rsquo;t require external ressources like ghost does. It further decreases the amount of ressources used on the server.</description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Orga on Dr Franziskus Kiefer</title><link>https://www.franziskuskiefer.de/tags/orga/</link><description>Recent content in Orga on Dr Franziskus Kiefer</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 29 Aug 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/tags/orga/index.xml" rel="self" type="application/rss+xml"/><item><title>New Website</title><link>https://www.franziskuskiefer.de/p/new-website/</link><pubDate>Tue, 29 Aug 2017 00:00:00 +0000</pubDate><guid>https://www.franziskuskiefer.de/p/new-website/</guid><description>&lt;p>After a couple of years using &lt;a class="link" href="https://ghost.org" target="_blank" rel="noopener"
+>ghost&lt;/a> I switched to the static page generator &lt;a class="link" href="https://gohugo.io/" target="_blank" rel="noopener"
+>hugo&lt;/a>.
+Hugo is easy to write and easy to publish.
+But more importantly it doesn&amp;rsquo;t offer the attack surface ghost does and doesn&amp;rsquo;t require external ressources like ghost does.
+It further decreases the amount of ressources used on the server.&lt;/p></description></item></channel></rss>

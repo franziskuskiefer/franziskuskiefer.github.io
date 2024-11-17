@@ -1,21 +1,27 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Firefox on Dr Franziskus Kiefer</title>
-    <link>https://www.franziskuskiefer.de/tags/firefox/</link>
-    <description>Recent content in Firefox on Dr Franziskus Kiefer</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sat, 02 Jan 2016 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/tags/firefox/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>RawGit Firefox Extension</title>
-      <link>https://www.franziskuskiefer.de/p/rawgit-firefox-extension/</link>
-      <pubDate>Sat, 02 Jan 2016 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.franziskuskiefer.de/p/rawgit-firefox-extension/</guid>
-      <description>~This extension doesn&amp;rsquo;t work from Firefox 57 on. I might update it when I find time.~
-Ever wanted to view HTML pages directly from GitHub? Me too. Unfortunately the Raw button doesn&amp;rsquo;t render the HTML but only displays the source code. There are a bunch of Chrome extensions that add a button to open file from Github at rawgit directly, but none for Firefox. So I wrote one. It&amp;rsquo;s still an early version and more of a hack than a real extension, but it works (mostly).</description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Firefox on Dr Franziskus Kiefer</title><link>https://www.franziskuskiefer.de/tags/firefox/</link><description>Recent content in Firefox on Dr Franziskus Kiefer</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 02 Jan 2016 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/tags/firefox/index.xml" rel="self" type="application/rss+xml"/><item><title>RawGit Firefox Extension</title><link>https://www.franziskuskiefer.de/p/rawgit-firefox-extension/</link><pubDate>Sat, 02 Jan 2016 00:00:00 +0000</pubDate><guid>https://www.franziskuskiefer.de/p/rawgit-firefox-extension/</guid><description>&lt;p>&lt;del>This extension doesn&amp;rsquo;t work from Firefox 57 on. I might update it when I find time.&lt;/del>&lt;/p>
+&lt;p>Ever wanted to view HTML pages directly from GitHub? Me too. Unfortunately the &lt;code>Raw&lt;/code> button doesn&amp;rsquo;t render the HTML but only displays the source code. There are a bunch of Chrome extensions that add a button to open file from Github at &lt;code>rawgit&lt;/code> directly, but none for Firefox. So I wrote one. It&amp;rsquo;s still an early version and more of a hack than a real extension, but it works (mostly).&lt;/p>
+&lt;p>Instead of
+&lt;img src="https://www.franziskuskiefer.de/p/rawgit-firefox-extension/Screenshot-from-2016-01-02-15-19-58.png"
+width="247"
+height="37"
+srcset="https://www.franziskuskiefer.de/p/rawgit-firefox-extension/Screenshot-from-2016-01-02-15-19-58_hu4173671888519952610.png 480w, https://www.franziskuskiefer.de/p/rawgit-firefox-extension/Screenshot-from-2016-01-02-15-19-58_hu18200278203597198030.png 1024w"
+loading="lazy"
+alt="without extension"
+class="gallery-image"
+data-flex-grow="667"
+data-flex-basis="1602px"
+>&lt;/p>
+&lt;p>you get now&lt;/p>
+&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/rawgit-firefox-extension/Screenshot-from-2016-01-02-15-19-28.png"
+width="312"
+height="36"
+srcset="https://www.franziskuskiefer.de/p/rawgit-firefox-extension/Screenshot-from-2016-01-02-15-19-28_hu4579144110355892245.png 480w, https://www.franziskuskiefer.de/p/rawgit-firefox-extension/Screenshot-from-2016-01-02-15-19-28_hu2296273596983362675.png 1024w"
+loading="lazy"
+alt="with extension"
+class="gallery-image"
+data-flex-grow="866"
+data-flex-basis="2080px"
+>&lt;/p>
+&lt;p>Download the source code at &lt;a class="link" href="https://github.com/franziskuskiefer/firefox-rawgit" target="_blank" rel="noopener"
+>Github&lt;/a> or download the &lt;a class="link" href="https://github.com/franziskuskiefer/firefox-rawgit/releases" target="_blank" rel="noopener"
+>signed extension&lt;/a>.&lt;/p></description></item></channel></rss>

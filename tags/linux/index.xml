@@ -1,22 +1,52 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>linux on Dr Franziskus Kiefer</title>
-    <link>https://www.franziskuskiefer.de/tags/linux/</link>
-    <description>Recent content in linux on Dr Franziskus Kiefer</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sun, 12 Oct 2014 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/tags/linux/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>OpenVPN HowTo</title>
-      <link>https://www.franziskuskiefer.de/p/openvpn-howto/</link>
-      <pubDate>Sun, 12 Oct 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.franziskuskiefer.de/p/openvpn-howto/</guid>
-      <description>OpenPVN is an easy to set-up and use VPN solution that offer TUN/TAP support. In this tutorial I describe how to set-up an OpenVPN connection between a Ubuntu server and an Arch client.
-Preparations (Server) First we have to install OpenVPN on the server.
-# apt-get install openvpn To see whether TUN/TAP is enabled in the kernel we can check the kernel log grep tun /var/log/kern.log and load it if it doesn&amp;rsquo;t show up modprobe tun.</description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Linux on Dr Franziskus Kiefer</title><link>https://www.franziskuskiefer.de/tags/linux/</link><description>Recent content in Linux on Dr Franziskus Kiefer</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 12 Oct 2014 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/tags/linux/index.xml" rel="self" type="application/rss+xml"/><item><title>OpenVPN HowTo</title><link>https://www.franziskuskiefer.de/p/openvpn-howto/</link><pubDate>Sun, 12 Oct 2014 00:00:00 +0000</pubDate><guid>https://www.franziskuskiefer.de/p/openvpn-howto/</guid><description>&lt;p>&lt;a class="link" href="https://openvpn.net" target="_blank" rel="noopener"
+>OpenPVN&lt;/a> is an easy to set-up and use VPN solution that offer &lt;a class="link" href="https://en.wikipedia.org/wiki/TUN/TAP" target="_blank" rel="noopener"
+>TUN/TAP&lt;/a> support. In this tutorial I describe how to set-up an OpenVPN connection between a Ubuntu server and an Arch client.&lt;/p>
+&lt;h1 id="preparations-server">Preparations (Server)
+&lt;/h1>&lt;p>First we have to install OpenVPN on the server.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># apt-get install openvpn&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>To see whether TUN/TAP is enabled in the kernel we can check the kernel log &lt;code>grep tun /var/log/kern.log&lt;/code> and load it if it doesn&amp;rsquo;t show up &lt;code>modprobe tun&lt;/code>.&lt;/p>
+&lt;h2 id="creating-a-pki">Creating a PKI
+&lt;/h2>&lt;p>To use OpenVPN we need a PKI and certificates. Fortunately there is a script for that.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># apt-get install easy-rsa&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>First we create a folder to store our certificates in &lt;code>mkdir easy-rsa&lt;/code> and get the default variables file &lt;code>cp /usr/share/easy-rsa/vars easy-rsa&lt;/code>. The file is prefilled but one may want to change&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-C" data-lang="C">&lt;span class="line">&lt;span class="cl"> &lt;span class="n">KEY_COUNTRY&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">KEY_PROVINCE&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">KEY_CITY&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">KEY_ORG&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">KEY_EMAIL&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">KEY_OU&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>All other standard parameteres should usually be fine but can be changed if desired. Now we change to &lt;code>/usr/share/easy-rsa&lt;/code> and load the variables &lt;code># source &amp;lt;PATH_TO_VARS&amp;gt;/vars&lt;/code> and run &lt;code>./build-ca&lt;/code>. If there have been keys before one should run &lt;code>./clean-all&lt;/code> first.&lt;/p>
+&lt;p>Now we can start creating keys and sign them. First we create the server key with&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># ./build-key-server my-test-server&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>and aswer with &lt;code>yes&lt;/code> two times. We do the same for a client key&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># ./build-key my-test-client&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>To build Diffie-Hellman parameters we run &lt;code>./build-dh&lt;/code> &lt;em>(this can take some time)&lt;/em>. Eventually we create an HMAC key for our VPN and store it with the other keys&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># openvpn --genkey --secret /usr/share/easy-rsa/keys/ta.key&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="configuring-openvpn-server">Configuring OpenVPN (Server)
+&lt;/h1>&lt;p>Everything is set-up now to configure and run the OpenVPN server. First we copy the sample configuration file to the correct folder&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># cp /usr/share/doc/openvpn/examples/sample-config-files/server.conf.gz /etc/openvpn/&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># gzip -d /etc/openvpn/server.conf.gz&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>At least the following changes to &lt;code>server.conf&lt;/code> should be made after copying keys, parameters and certificates.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">ca /etc/openvpn/ca.crt
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cert /etc/openvpn/my-test-server.crt
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">key /etc/openvpn/my-test-server.key
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dh /etc/openvpn/dh2048.pem
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tls-auth /etc/openvpn/ta.key &lt;span class="m">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">user nobody
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">group nobody
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="starting-openvpn-server">Starting OpenVPN (Server)
+&lt;/h1>&lt;p>The server can now be started with&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">openvpn /etc/openvpn/server.conf
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="configuring-openvpn-client">Configuring OpenVPN (Client)
+&lt;/h1>&lt;p>First we have to get key, certificate and parameters from the server to the client. Now we install OpenVPN on the client &lt;code>pacman -S openpvpn&lt;/code> copy the sample-configuration file somewhere nice &lt;code># cp /usr/share/openvpn/examples/client.conf /etc/openvpn/client.conf&lt;/code> and modify at least the following&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">remote test-server-ip &lt;span class="m">1194&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ca /etc/openvpn/ca.crt
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cert /etc/openvpn/my-test-client.crt
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">key /etc/openvpn/my-test-client.key
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dh /etc/openvpn/dh2048.pem
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tls-auth /etc/openvpn/ta.key &lt;span class="m">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">user nobody
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">group nobody
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The &lt;em>test-server-ip&lt;/em> has to be replaced with the server&amp;rsquo;s IP or URL. Now we can also start the client &lt;code># openvpn /etc/openvpn/client.conf&lt;/code>. The start-up should end with&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">Initialization Sequence Completed
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item></channel></rss>

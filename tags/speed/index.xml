@@ -1,22 +1,117 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>speed on Dr Franziskus Kiefer</title>
-    <link>https://www.franziskuskiefer.de/tags/speed/</link>
-    <description>Recent content in speed on Dr Franziskus Kiefer</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Tue, 27 Jun 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/tags/speed/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Aes Gcm Speedup</title>
-      <link>https://www.franziskuskiefer.de/p/aes-gcm-speedup/</link>
-      <pubDate>Tue, 27 Jun 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.franziskuskiefer.de/p/aes-gcm-speedup/</guid>
-      <description>AES-GCM is a NIST standardised authenticated encryption algorithm (FIPS 800-38D). Since its standardisation in 2008 its usage increased to a point where it is the prevalent encryption used with TLS. With 85% it is by far the most widely used cipher.
- Firefox 53 TLS cipher telemetry 
-Unfortunately the AES-GCM implementation used in Firefox (provided by NSS) does not take advantage of full hardware acceleration; it uses a slower software-only implementation on Mac, Linux 32-bit, or any device that doesn&amp;rsquo;t have the AVX, PCLMUL, and AES-NI hardware instructions.</description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Speed on Dr Franziskus Kiefer</title><link>https://www.franziskuskiefer.de/tags/speed/</link><description>Recent content in Speed on Dr Franziskus Kiefer</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 27 Jun 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/tags/speed/index.xml" rel="self" type="application/rss+xml"/><item><title>Aes Gcm Speedup</title><link>https://www.franziskuskiefer.de/p/aes-gcm-speedup/</link><pubDate>Tue, 27 Jun 2017 00:00:00 +0000</pubDate><guid>https://www.franziskuskiefer.de/p/aes-gcm-speedup/</guid><description>&lt;img src="https://www.franziskuskiefer.de/p/aes-gcm-speedup/linux64-encrypt.png" alt="Featured image of post Aes Gcm Speedup" />&lt;p>AES-GCM is a NIST standardised authenticated encryption algorithm (FIPS 800-38D). Since its standardisation in 2008 its usage increased to a point where it is the prevalent encryption used with TLS. With 85% it is by far the &lt;a class="link" href="https://telemetry.mozilla.org/new-pipeline/dist.html#!cumulative=0&amp;amp;end_date=2017-05-24&amp;amp;keys=__none__!__none__!__none__&amp;amp;max_channel_version=release%252F53&amp;amp;measure=SSL_SYMMETRIC_CIPHER_FULL&amp;amp;min_channel_version=null&amp;amp;processType=*&amp;amp;product=Firefox&amp;amp;sanitize=1&amp;amp;sort_keys=submissions&amp;amp;start_date=2017-04-13&amp;amp;table=0&amp;amp;trim=1&amp;amp;use_submission_date=0" target="_blank" rel="noopener"
+>most widely used cipher&lt;/a>.&lt;/p>
+&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/aes-gcm-speedup/Screenshot-from-2017-06-14-10-09-27.png"
+width="2136"
+height="996"
+srcset="https://www.franziskuskiefer.de/p/aes-gcm-speedup/Screenshot-from-2017-06-14-10-09-27_hu8631148032516591515.png 480w, https://www.franziskuskiefer.de/p/aes-gcm-speedup/Screenshot-from-2017-06-14-10-09-27_hu2776092876382993494.png 1024w"
+loading="lazy"
+alt="Firefox 53 TLS cipher telemetry"
+class="gallery-image"
+data-flex-grow="214"
+data-flex-basis="514px"
+>&lt;/p>
+&lt;p>Unfortunately the AES-GCM implementation used in Firefox (provided by NSS) does not take advantage of full hardware acceleration; it uses a slower software-only implementation on Mac, Linux 32-bit, or any device that doesn&amp;rsquo;t have the &lt;a class="link" href="https://en.wikipedia.org/wiki/Advanced_Vector_Extensions" target="_blank" rel="noopener"
+>AVX&lt;/a>, &lt;a class="link" href="https://en.wikipedia.org/wiki/CLMUL_instruction_set" target="_blank" rel="noopener"
+>PCLMUL&lt;/a>, and &lt;a class="link" href="https://en.wikipedia.org/wiki/AES_instruction_set" target="_blank" rel="noopener"
+>AES-NI&lt;/a> hardware instructions. Looking at these numbers about only 30% of Firefox users get full hardware acceleration.&lt;/p>
+&lt;p>Before jumping on the obvious issue of Firefox’s AES-GCM code being comparatively slow – as well as not being resistant to &lt;a class="link" href="https://en.wikipedia.org/wiki/Side-channel_attack" target="_blank" rel="noopener"
+>side channel analysis&lt;/a> – I wanted to see what the actual impact on Firefox users is. Downloading a file on a mid-2015 MacBook Pro Retina with Firefox incurs CPU usage of 50% with 17% of Firefox&amp;rsquo;s CPU usage is in &lt;code>ssl3_AESGCM&lt;/code>. In comparison, Chrome only creates 15% CPU usage with the same download. On a Windows laptop with an AMD C-70 (no AES-NI) Firefox CPU usage is 60% and the download speed is capped at 3.5MB/s. Chrome on the same machine needs 50% of the CPU and downloads with 10MB/s. This doesn&amp;rsquo;t seem to be only an academic issue: Particularly for battery-operated devices, the energy consumption difference would be noticeable.&lt;/p>
+&lt;h1 id="improving-gcm-performance">Improving GCM performance
+&lt;/h1>&lt;p>Speeding up the GCM multiplication function is the first obvious step to improve AES-GCM performance. A &lt;a class="link" href="https://bugzilla.mozilla.org/show_bug.cgi?id=868948" target="_blank" rel="noopener"
+>bug&lt;/a> was opened on integration of the original AES-GCM code to provide an alternative to the textbook implementation of &lt;code>gcm_HashMult&lt;/code>. This code is not only slow but has timing side channels. Here an excerpt from the &lt;a class="link" href="https://searchfox.org/mozilla-central/rev/d67ef71097da4d1aa344c9d9c672e49a7228e765/security/nss/lib/freebl/mpi/mp_gf2m.c#337" target="_blank" rel="noopener"
+>binary multiplication&lt;/a> algorithm.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-C++" data-lang="C++">&lt;span class="line">&lt;span class="cl">&lt;span class="k">for&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">ib&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="n">ib&lt;/span> &lt;span class="o">&amp;lt;&lt;/span> &lt;span class="n">b_used&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="n">ib&lt;/span>&lt;span class="o">++&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">b_i&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">pb&lt;/span>&lt;span class="o">++&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="cm">/* Inner product: Digits of a */&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">b_i&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">s_bmul_d_add&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">MP_DIGITS&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="n">a_used&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">b_i&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">MP_DIGITS&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">c&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">ib&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">else&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">MP_DIGIT&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">c&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">ib&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">a_used&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">b_i&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>We can improve on two fronts here. First NSS should use PCLMUL to speed up the ghash multiplication if possible. Second if PCLMUL is not available, NSS should use a fast constant-time implementation.&lt;/p>
+&lt;p>&lt;a class="link" href="https://bugzilla.mozilla.org/show_bug.cgi?id=868948" target="_blank" rel="noopener"
+>Bug 868948&lt;/a> has several attempts of speeding up the software implementation without introducing timing side-channels. Unfortunately the fastest code that was proposed uses table lookups and is therefore not constant-time. Thanks to &lt;a class="link" href="https://www.bearssl.org/constanttime.html" target="_blank" rel="noopener"
+>Thomas Pornin&lt;/a> I found a nicer way to implement the binary multiplication in a way that doesn&amp;rsquo;t leak any timing information and is still faster than any other code I&amp;rsquo;ve seen. (Check out Thomas&amp;rsquo; excellent write-up for details.)&lt;/p>
+&lt;p>If PCLMUL is available on the CPU, using it is of course the way to go. All modern compilers support intrinsics, which allows us to write &amp;ldquo;inline assembly&amp;rdquo; in C that runs on all platforms without having to write assembly. A hardware accelerated implementation of the ghash multiplication can be &lt;a class="link" href="https://searchfox.org/nss/rev/40ab32e6acb227e7ede4734573e448ff43d179d5/lib/freebl/gcm.c#314" target="_blank" rel="noopener"
+>easily implemented&lt;/a> with &lt;a class="link" href="https://software.intel.com/sites/landingpage/IntrinsicsGuide/#text=clmul&amp;amp;expand=641" target="_blank" rel="noopener"
+>&lt;code>_mm_clmulepi64_si128&lt;/code>&lt;/a>.&lt;/p>
+&lt;p>On Mac and Linux the new 32-bit and 64-bit software ghash functions (faster and constant-time) are used on the respective platforms if PCLMUL or AVX is not available. Since Windows doesn&amp;rsquo;t support 128-bit integers (outside of registers) NSS falls back to the slower 32-bit ghash code (which is still more than 25% faster).&lt;/p>
+&lt;h1 id="improving-aes-performance">Improving AES performance
+&lt;/h1>&lt;p>To speed up AES NSS requires hardware acceleration on Mac as well as on Linux 32-bit and any machine that doesn&amp;rsquo;t support AVX (or has it disabled). When NSS can&amp;rsquo;t use the specialised AES code it falls back to a table-based implementation that is again not constant-time (in addition to being slow). Implementing AES with &lt;a class="link" href="https://software.intel.com/sites/landingpage/IntrinsicsGuide/#text=aes&amp;amp;expand=641" target="_blank" rel="noopener"
+>intrinsics&lt;/a> is a breeze.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-C++" data-lang="C++">&lt;span class="line">&lt;span class="cl"> &lt;span class="n">m&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">_mm_xor_si128&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">m&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">cx&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="n">keySchedule&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">]);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">for&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">i&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">&amp;lt;&lt;/span> &lt;span class="n">cx&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="n">Nr&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="o">++&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">m&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">_mm_aesenc_si128&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">m&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">cx&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="n">keySchedule&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="p">]);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">m&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">_mm_aesenclast_si128&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">m&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">cx&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="n">keySchedule&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">cx&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="n">Nr&lt;/span>&lt;span class="p">]);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">_mm_storeu_si128&lt;/span>&lt;span class="p">((&lt;/span>&lt;span class="kr">__m128i&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="n">output&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">m&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Key expansion is a little bit more involved (for 192 and 256 bit). But is &lt;a class="link" href="https://searchfox.org/nss/rev/40ab32e6acb227e7ede4734573e448ff43d179d5/lib/freebl/rijndael.c#393" target="_blank" rel="noopener"
+>written&lt;/a> in about 100 lines as well.&lt;/p>
+&lt;p>Mac sees the biggest improvement here. Previously, only Windows and 64-bit Linux used AES-NI, and now all desktop x86 and x64 platforms use it when available.&lt;/p>
+&lt;h1 id="looking-at-the-numbers">Looking at the numbers
+&lt;/h1>&lt;p>To measure the performance gain of the new AES-GCM code I encrypt a 479MB file with a 128-bit key (the most widely used key size for AES-GCM). Note that these numbers are supposed to show a trend and heavily depend on the used machine and system load at the time.&lt;/p>
+&lt;p>Linux measurements are done on an Intel Core i7-4790, Windows measurements on a Surface Pro 2 with an Intel Core i5-4300U, and Mac (Core i7-4980HQ).&lt;/p>
+&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/aes-gcm-speedup/linux64-encrypt.png"
+width="665"
+height="412"
+srcset="https://www.franziskuskiefer.de/p/aes-gcm-speedup/linux64-encrypt_hu10086943397254153485.png 480w, https://www.franziskuskiefer.de/p/aes-gcm-speedup/linux64-encrypt_hu969099613805604214.png 1024w"
+loading="lazy"
+alt="Linux 64-bit encrypt"
+class="gallery-image"
+data-flex-grow="161"
+data-flex-basis="387px"
+>
+&lt;img src="https://www.franziskuskiefer.de/p/aes-gcm-speedup/linux32-encrypt.png"
+width="657"
+height="407"
+srcset="https://www.franziskuskiefer.de/p/aes-gcm-speedup/linux32-encrypt_hu10473480209911482808.png 480w, https://www.franziskuskiefer.de/p/aes-gcm-speedup/linux32-encrypt_hu17184927622994130837.png 1024w"
+loading="lazy"
+alt="Linux 32-bit encrypt"
+class="gallery-image"
+data-flex-grow="161"
+data-flex-basis="387px"
+>&lt;/p>
+&lt;p>On 64-bit Linux performance of any machine without AES, PCLMUL, or AVX instructions AES-GCM 128 is at least twice as fast now. If AES and PCLMUL is available, the new code only needs 33% of the time the old code took.
+The speed-up for 32-bit Linux is obviously more significant as it didn&amp;rsquo;t have any hardware accelerated code before. With full hardware acceleration the new code is more than 5 times faster than before. In the worst case, when PCLMUL is not available, the speed-up is still more than 50%.&lt;/p>
+&lt;p>The story is similar on Windows (though NSS had fast code for 32-bit there before).
+&lt;img src="https://www.franziskuskiefer.de/p/aes-gcm-speedup/win64-encrypt.png"
+width="600"
+height="371"
+srcset="https://www.franziskuskiefer.de/p/aes-gcm-speedup/win64-encrypt_hu15268150531908549230.png 480w, https://www.franziskuskiefer.de/p/aes-gcm-speedup/win64-encrypt_hu3293416628537479388.png 1024w"
+loading="lazy"
+alt="Windows 64-bit encrypt"
+class="gallery-image"
+data-flex-grow="161"
+data-flex-basis="388px"
+>&lt;/p>
+&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/aes-gcm-speedup/win32-encrypt.png"
+width="600"
+height="371"
+srcset="https://www.franziskuskiefer.de/p/aes-gcm-speedup/win32-encrypt_hu14438816655898579123.png 480w, https://www.franziskuskiefer.de/p/aes-gcm-speedup/win32-encrypt_hu5113623536179900788.png 1024w"
+loading="lazy"
+alt="Windows 32-bit encrypt"
+class="gallery-image"
+data-flex-grow="161"
+data-flex-basis="388px"
+>&lt;/p>
+&lt;p>Performance improvements on Mac (64-bit only) range from 60% in the best case to 44% when AES-NI or PCLMUL is not available.
+&lt;img src="https://www.franziskuskiefer.de/p/aes-gcm-speedup/mac-encrypt.png"
+width="600"
+height="371"
+srcset="https://www.franziskuskiefer.de/p/aes-gcm-speedup/mac-encrypt_hu1293817040194398281.png 480w, https://www.franziskuskiefer.de/p/aes-gcm-speedup/mac-encrypt_hu5387432531827102804.png 1024w"
+loading="lazy"
+alt="OS-X encrypt"
+class="gallery-image"
+data-flex-grow="161"
+data-flex-basis="388px"
+>&lt;/p>
+&lt;h1 id="the-numbers-in-firefox">The numbers in Firefox
+&lt;/h1>&lt;p>NSS 3.32 (Firefox 56) will ship with the new AES-GCM code. It will provide significantly reduced CPU usage for most TLS connections or higher download rates. NSS 3.32 is more intelligent in detecting the CPU&amp;rsquo;s capabilities and using hardware acceleration whenever possible. Assuming that all intrinsics and mathematical operations (other than division) are constant-time on the CPU, the new code doesn&amp;rsquo;t have any timing side-channels.&lt;/p>
+&lt;p>On the basic laptop with the AMD C-70 download rates increased from ~3MB/s to ~6MB/s. (Keep in mind that this is the software only 32-bit implementation.)&lt;/p>
+&lt;p>The most immediate effect can be seen on Mac. &lt;code>AES_Decrypt&lt;/code> as part of a TLS connection with &lt;a class="link" href="http://bit.ly/2rGm8S0" target="_blank" rel="noopener"
+>NSS 3.31 used 9% CPU&lt;/a> while in &lt;a class="link" href="http://bit.ly/2rGvGfz" target="_blank" rel="noopener"
+>NSS 3.32 it uses only 4%&lt;/a>.
+To see general performance improvements we can look at the case where AVX is not available (which is the case for about 2/3 of the Firefox population). Assuming that at least AES-NI and PCLMUL is supported by the CPU we see the CPU usage drop from &lt;a class="link" href="https://perfht.ml/2rrqbWS" target="_blank" rel="noopener"
+>15%&lt;/a> to &lt;a class="link" href="https://perfht.ml/2sa3aoA" target="_blank" rel="noopener"
+>3%&lt;/a> (measured on Linux).&lt;/p></description></item></channel></rss>

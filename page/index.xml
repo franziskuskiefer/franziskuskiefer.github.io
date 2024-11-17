@@ -1,41 +1,242 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Pages on Dr Franziskus Kiefer</title>
-    <link>https://www.franziskuskiefer.de/page/</link>
-    <description>Recent content in Pages on Dr Franziskus Kiefer</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://www.franziskuskiefer.de/page/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>About</title>
-      <link>https://www.franziskuskiefer.de/about/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.franziskuskiefer.de/about/</guid>
-      <description>Hi, I&amp;rsquo;m Franziskus, a security &amp;amp; cryptography engineer and researcher based in Berlin. I&amp;rsquo;m the co-founder of Cryspen, a company that builds custom high assurance cryptography.
-Previously I was leading the security engineering efforts at Wire. And before that I was working on Mozilla&amp;rsquo;s cryptography library NSS and Firefox. I&amp;rsquo;m interested in everything around applied cryptography, in particular authentication and key exchange protocols, formally verifiable specifications and implementations of cryptographic primitives, and privacy preserving data collection and computation.</description>
-    </item>
-    
-    <item>
-      <title>Publications</title>
-      <link>https://www.franziskuskiefer.de/publications/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.franziskuskiefer.de/publications/</guid>
-      <description>dblp | Google Scholar
-Conferences   Asynchronous Remote Key Generation: An Analysis of Yubico&amp;rsquo;s Proposal for W3C WebAuthn @ CCS 2020 • with Nick Frymann, Daniel Gardham, Emil Lundberg, Mark Manulis, and Dain Nilsson (Full version)
-  hacspec: towards verifiable crypto standard @ SSR 2018 • with Karthikeyan Bhargavan and Pierre-Yves Strub (Full version)
-  Universally Composable Two-Server PAKE @ ISC 2016 • with Mark Manulis (Full version)</description>
-    </item>
-    
-    <item>
-      <title>Search</title>
-      <link>https://www.franziskuskiefer.de/search/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.franziskuskiefer.de/search/</guid>
-      <description></description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Pages on Dr Franziskus Kiefer</title><link>https://www.franziskuskiefer.de/page/</link><description>Recent content in Pages on Dr Franziskus Kiefer</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><atom:link href="https://www.franziskuskiefer.de/page/index.xml" rel="self" type="application/rss+xml"/><item><title>About</title><link>https://www.franziskuskiefer.de/about/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://www.franziskuskiefer.de/about/</guid><description>&lt;img src="https://www.franziskuskiefer.de/about/yosemite.jpg" alt="Featured image of post About" />&lt;p>Hi, &lt;strong>I&amp;rsquo;m Franziskus&lt;/strong>, a security &amp;amp; cryptography engineer and researcher based in Berlin.
+I&amp;rsquo;m the co-founder of &lt;a class="link" href="https://www.cryspen.com" target="_blank" rel="noopener"
+>Cryspen&lt;/a>, a company that builds
+custom high assurance cryptography.&lt;/p>
+&lt;p>Previously I was leading the security engineering efforts at &lt;a class="link" href="https://wire.com" target="_blank" rel="noopener"
+>Wire&lt;/a>.
+And before that I was working on &lt;a class="link" href="https://mozilla.org" target="_blank" rel="noopener"
+>Mozilla&amp;rsquo;s&lt;/a> cryptography library &lt;a class="link" href="https://en.wikipedia.org/wiki/Network_Security_Services" target="_blank" rel="noopener"
+>NSS&lt;/a> and &lt;a class="link" href="https://firefox.com" target="_blank" rel="noopener"
+>Firefox&lt;/a>.
+I&amp;rsquo;m interested in everything around applied cryptography, in particular authentication and key exchange protocols, &lt;a class="link" href="http://hacspec.org" target="_blank" rel="noopener"
+>formally verifiable specifications&lt;/a> and implementations of cryptographic primitives, and privacy preserving data collection and computation.
+I&amp;rsquo;m also the initiator and co-organiser of the &lt;a class="link" href="https://berlin-crypto.github.io" target="_blank" rel="noopener"
+>Berlin Crypto Meetup&lt;/a>.&lt;/p>
+&lt;p>If you want to get in touch, send me a message to mail@ this domain or a DM on &lt;a class="link" href="https://bsky.app/profile/franziskus.bsky.social" target="_blank" rel="noopener"
+>Bluesky&lt;/a>, or &lt;a class="link" href="https://koalendar.com/e/meet-with-franziskus" target="_blank" rel="noopener"
+>schedule a call&lt;/a>.&lt;/p>
+&lt;p>&lt;img src="https://www.franziskuskiefer.de/images/profilepic.jpg"
+loading="lazy"
+>&lt;/p>
+&lt;hr>
+&lt;h2 id="résumé">Résumé
+&lt;/h2>&lt;p>&lt;em>A short overview of my professional life.
+A more formal CV can be found &lt;a class="link" href="./cv.pdf" >here as pdf.&lt;/a>&lt;/em>&lt;/p>
+&lt;p>&lt;strong>Co-founder &amp;amp; CEO&lt;/strong> &amp;mdash; &lt;a class="link" href="https://www.cryspen.com" target="_blank" rel="noopener"
+>Cryspen&lt;/a>, Since October 2021&lt;/p>
+&lt;p>&lt;strong>Co-founder &amp;amp; CEO&lt;/strong> &amp;mdash; &lt;a class="link" href="https://cryptoeng.de" target="_blank" rel="noopener"
+>CryptoEng&lt;/a>, Since March 2022&lt;/p>
+&lt;p>&lt;strong>Engineer&lt;/strong> &amp;mdash; &lt;a class="link" href="https://openmls.tech" target="_blank" rel="noopener"
+>OpenMLS&lt;/a>, October 2021 - March 2022&lt;/p>
+&lt;p>&lt;strong>Security Engineering Lead&lt;/strong> &amp;mdash; &lt;a class="link" href="https://wire.com" target="_blank" rel="noopener"
+>Wire&lt;/a>, June 2020 - August 2021&lt;/p>
+&lt;p>&lt;strong>Head of Cryptography Engineering&lt;/strong> &amp;mdash; &lt;a class="link" href="aisec.fraunhofer.de/" >Fraunhofer AISEC&lt;/a>, January 2020 until May 2020&lt;/p>
+&lt;p>&lt;strong>Senior Cryptography/Security Engineer&lt;/strong> &amp;mdash; &lt;a class="link" href="https://mozilla.com" target="_blank" rel="noopener"
+>Mozilla&lt;/a>, October 2015 - January 2020&lt;/p>
+&lt;p>&lt;strong>Security Engineering Intern&lt;/strong> &amp;mdash; &lt;a class="link" href="https://mozilla.com" target="_blank" rel="noopener"
+>Mozilla&lt;/a>, May 2015 - July 2015&lt;/p>
+&lt;p>Web Administrator for FMS Group &amp;mdash; &lt;a class="link" href="https://www.surrey.ac.uk/" target="_blank" rel="noopener"
+>University of Surrey&lt;/a>, May 2014 - September 2015&lt;/p>
+&lt;p>Server Administrator for Group Server &amp;mdash; &lt;a class="link" href="https://www.surrey.ac.uk/" target="_blank" rel="noopener"
+>University of Surrey&lt;/a>, March 2013 - September 2015&lt;/p>
+&lt;p>Teaching Assistance &amp;mdash; &lt;a class="link" href="https://www.surrey.ac.uk/" target="_blank" rel="noopener"
+>University of Surrey&lt;/a>, January 2013 - September 2015&lt;/p>
+&lt;!--* 2014-2015 Semester 2:
++ Multimedia Security and Digital Forensics
++ Secure Systems and Applications
+* 2014-2015 Semester 1:
++ Induction Tutorials
++ Information and Network Security
++ Symmetric Cryptography
++ Asymmetric Cryptography
++ Web Publishing and Databases
+* 2013-2014 Semester 2:
++ Web Hacking &amp; Countermeasures
++ Technologies and Applications
++ Parallel Architectures
++ Advanced Multimedia Security
+* 2013-2014 Semester 1:
++ Induction Tutorials
++ Foundations of Computing
+* 2012-2013 Semester 2:
++ Web Hacking &amp; Countermeasures-->
+&lt;p>Software Developer &amp;mdash; &lt;a class="link" href="https://www.kobil.com/" target="_blank" rel="noopener"
+>Flexsecure GmbH&lt;/a>, November 2009 - October 2012&lt;/p>
+&lt;hr>
+&lt;h3 id="education">Education
+&lt;/h3>&lt;p>&lt;strong>PhD in Computer Science (Cryptographic Protocols)&lt;/strong> &amp;mdash; &lt;a class="link" href="https://www.surrey.ac.uk/" target="_blank" rel="noopener"
+>University of Surrey&lt;/a>, January 2013 &amp;ndash; February 2016&lt;/p>
+&lt;blockquote>
+&lt;p>Working on &lt;strong>password-based authentication&lt;/strong> in the PRIMAKE project. The &lt;strong>Private Multi-Party Authentication and Key Exchange (PRIMAKE)&lt;/strong> project aims at the design and analysis of efficient provably private cryptographic protocols that will form a basis for a range of privacy-preserving applications. PRIMAKE protocols will give users full control over their own data, protect their anonymity, and eliminate user profiling. PRIMAKE protocols will have formal proofs of security and privacy, obtained using modern cryptographic techniques.&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;strong>M.Sc. in Computer Sciences (distinction)&lt;/strong> &amp;mdash; &lt;a class="link" href="https://www.tu-darmstadt.de/" target="_blank" rel="noopener"
+>Technische Universität Darmstadt&lt;/a>, October 2010 &amp;ndash; October 2012&lt;/p>
+&lt;p>&lt;strong>M.Sc. in IT-Security (distinction)&lt;/strong> &amp;mdash; &lt;a class="link" href="https://www.tu-darmstadt.de/" target="_blank" rel="noopener"
+>Technische Universität Darmstadt&lt;/a>, October 2010 &amp;ndash; October 2012&lt;/p>
+&lt;p>&lt;strong>B.Sc. in Computer Sciences (honours)&lt;/strong> &amp;mdash; &lt;a class="link" href="https://www.tu-darmstadt.de/" target="_blank" rel="noopener"
+>Technische Universität Darmstadt&lt;/a>, October 2007 &amp;ndash; October 2010&lt;/p>
+&lt;hr>
+&lt;h3 id="teaching">Teaching
+&lt;/h3>&lt;ul>
+&lt;li>2020/2021: &lt;a class="link" href="https://hpi.de/studium/lehrveranstaltungen/it-systems-engineering-ma/lehrveranstaltung/wise-20-21-3172-identity-management-for-secure-messaging.html" target="_blank" rel="noopener"
+>Identity Management for Secure Messaging&lt;/a> @ &lt;a class="link" href="https://hpi.de" target="_blank" rel="noopener"
+>HPI&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h4 id="guest-lectures">Guest Lectures
+&lt;/h4>&lt;ul>
+&lt;li>2019/2020: Key Exchange &amp;amp; Trust - Establish keys with(out) public key infrastructures @ &lt;a class="link" href="https://www.fu-berlin.de/" target="_blank" rel="noopener"
+>FU Berlin&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;!-- https://docs.google.com/presentation/d/1EBy70DGmOILfDs9i3uhRP4gpP4KpNdCKK-7wnSuLg_A/edit#slide=id.p -->
+&lt;ul>
+&lt;li>2019: WebPKI in Practice - Practical aspects and it&amp;rsquo;s implementation at Mozilla @ &lt;a class="link" href="https://www.tu-darmstadt.de/" target="_blank" rel="noopener"
+>TU Darmstadt&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;!-- https://docs.google.com/presentation/d/1W7nb52wIG1FSIIp8KiSM_Wp3lb5GBGBlstDLOIo9nLQ/edit#slide=id.p -->
+&lt;ul>
+&lt;li>2019: Secure Content Transfer on the Internet @ &lt;a class="link" href="https://www.tu.berlin" target="_blank" rel="noopener"
+>TU Berlin&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;!-- https://docs.google.com/presentation/d/13_NFEd5p-LEgAdKJ99wF7kZ2P6JYof079fPoAR0v3jM/edit#slide=id.p3 -->
+&lt;hr>
+&lt;h3 id="talks-selected">Talks (Selected)
+&lt;/h3>&lt;ul>
+&lt;li>Asynchronous Remote Key Generation: An Analysis of Yubico’s Proposal for W3C WebAuthn
+&amp;mdash; &lt;a class="link" href="https://rwc.iacr.org/2021/program.php#day-2021-01-12" target="_blank" rel="noopener"
+>RWC&lt;/a> (&lt;a class="link" href="https://iacr.org/submit/files/slides/2021/rwc/rwc2021/91/slides.pdf" target="_blank" rel="noopener"
+>Slides&lt;/a>, &lt;a class="link" href="https://youtu.be/jeQvDLPQsuw?list=PLeeS-3Ml-rpoVMNQkUrFDSfaTuUMxVtjy&amp;amp;t=1787" target="_blank" rel="noopener"
+>Video&lt;/a>), January 2021, Online (Presented by Emil Lundberg)&lt;/li>
+&lt;li>hacspec - towards verifiable crypto standards
+&amp;mdash; &lt;a class="link" href="https://docs.google.com/presentation/d/1QiDo76a1HZ9IUJtpNJUJDxwJ-5JCwdMxsARn0RI4pFw/edit?usp=sharing" target="_blank" rel="noopener"
+>SSR&lt;/a>, November 2018, Darmstadt&lt;/li>
+&lt;li>HACL* in Mozilla Firefox
+&amp;mdash; &lt;a class="link" href="https://rwc.iacr.org/2018/Slides/Beurdouche.pdf" target="_blank" rel="noopener"
+>RWC&lt;/a>, January 2018, Zürich&lt;/li>
+&lt;li>Universally Composable Two-Server PAKE
+&amp;mdash; &lt;a class="link" href="http://manoa.hawaii.edu/isc2016/" target="_blank" rel="noopener"
+>ISC&lt;/a>, September 2016, Honolulu&lt;/li>
+&lt;li>Oblivious PAKE – Efficient Handling of Password Trials
+&amp;mdash; &lt;a class="link" href="http://manoa.hawaii.edu/isc2016/" target="_blank" rel="noopener"
+>ISC&lt;/a>, September 2016, Honolulu&lt;/li>
+&lt;li>Zero-Knowledge Password Policy Checks and Verifier-Based PAKE
+&amp;mdash; &lt;a class="link" href="http://esorics2014.pwr.wroc.pl/" target="_blank" rel="noopener"
+>ESORICS&lt;/a>, September 2014, Wroclaw&lt;/li>
+&lt;li>Distributed Smooth Projective Hashing and its Application to 2Server PAKE
+&amp;mdash; &lt;a class="link" href="http://www.cryptoforma.org.uk/event/meeting-york-28-may-2014/" target="_blank" rel="noopener"
+>CryptoForma&lt;/a>, May 2014, York and &lt;a class="link" href="http://acns2014.epfl.ch/" target="_blank" rel="noopener"
+>ACNS&lt;/a>, June 2014, Lausanne&lt;/li>
+&lt;/ul>
+&lt;!-- * Secure Mobile Logins
+--- [UoS Seminar](http://www.surrey.ac.uk/computing/news/events/2014/secure_mobile_logins.htm), February 2014, Guildford -->
+&lt;ul>
+&lt;li>Oblivious PAKE: Efficient Handling of Password Trials
+&amp;mdash; &lt;a class="link" href="http://www.cryptoforma.org.uk/event/10th-meeting-1516-april-microsoft-research-cambridge/" target="_blank" rel="noopener"
+>CryptoForma&lt;/a>, April 2013, Microsoft Research, Cambridge&lt;/li>
+&lt;/ul>
+&lt;!-- * Practical Security in E-Mail Applications
+SAM, July 2012 Las Vegas --></description></item><item><title>Publications</title><link>https://www.franziskuskiefer.de/publications/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://www.franziskuskiefer.de/publications/</guid><description>&lt;img src="https://www.franziskuskiefer.de/publications/library.jpg" alt="Featured image of post Publications" />&lt;p>&lt;a class="link" href="http://dblp.dagstuhl.de/pers/hd/k/Kiefer:Franziskus" target="_blank" rel="noopener"
+>dblp&lt;/a> | &lt;a class="link" href="https://scholar.google.de/citations?user=10N53SYAAAAJ&amp;amp;hl=en" target="_blank" rel="noopener"
+>Google Scholar&lt;/a>&lt;/p>
+&lt;h2 id="conferences">Conferences
+&lt;/h2>&lt;ul>
+&lt;li>
+&lt;p>Asynchronous Remote Key Generation: An Analysis of Yubico&amp;rsquo;s Proposal for W3C WebAuthn @ &lt;a class="link" href="https://sigsac.org/ccs/CCS2020/" target="_blank" rel="noopener"
+>CCS 2020&lt;/a> • with Nick Frymann, Daniel Gardham, Emil Lundberg, Mark Manulis, and Dain Nilsson (&lt;a class="link" href="https://eprint.iacr.org/2020/1004.pdf" target="_blank" rel="noopener"
+>Full version&lt;/a>)&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>hacspec: towards verifiable crypto standard @ &lt;a class="link" href="https://ssr2018.net/" target="_blank" rel="noopener"
+>SSR 2018&lt;/a> • with Karthikeyan Bhargavan and Pierre-Yves Strub (&lt;a class="link" href="./hacspec-ssr18-paper.pdf" >Full version&lt;/a>)&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Universally Composable Two-Server PAKE @
+&lt;a class="link" href="http://manoa.hawaii.edu/isc2016/program.html" target="_blank" rel="noopener"
+>ISC 2016&lt;/a> • with Mark Manulis (&lt;a class="link" href="https://eprint.iacr.org/2016/520.pdf" target="_blank" rel="noopener"
+>Full version&lt;/a>)&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Blind Password Registration for Two-Server Password Authenticated Key Exchange and Secret Sharing Protocols @
+&lt;a class="link" href="http://manoa.hawaii.edu/isc2016/program.html" target="_blank" rel="noopener"
+>ISC 2016&lt;/a> • with Mark Manulis (&lt;a class="link" href="./2pass.pdf" >Proceedings version&lt;/a>)&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Blind Password Registration for Verifier-based PAKE @
+&lt;a class="link" href="http://www2.nict.go.jp/nsri/fund/asiapkc2016/" target="_blank" rel="noopener"
+>AsiaPKC 2016&lt;/a> • with Mark Manulis (&lt;a class="link" href="./KiMa_ASIAPKC16.pdf" >Full version&lt;/a>)&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Secure Set-based Policy Checking and Its Application to Password Registration @
+&lt;a class="link" href="http://www.cans2015.org" target="_blank" rel="noopener"
+>CANS 2015&lt;/a> • with Changyu Dong (&lt;a class="link" href="https://eprint.iacr.org/2015/945.pdf" target="_blank" rel="noopener"
+>Full Version&lt;/a>)&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Oblivious PAKE: Efficient Handling of Password Trials @
+&lt;a class="link" href="http://link.springer.com/chapter/10.1007/978-3-319-23318-5_11" target="_blank" rel="noopener"
+>ISC 2015&lt;/a> • with Mark Manulis (&lt;a class="link" href="https://eprint.iacr.org/2013/127.pdf" target="_blank" rel="noopener"
+>Full Version&lt;/a>)&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Zero-Knowledge Password Policy Checks and Verifier-Based PAKE @
+&lt;a class="link" href="http://link.springer.com/chapter/10.1007/978-3-319-11212-1_17" target="_blank" rel="noopener"
+>ESORICS 2014&lt;/a> • with Mark Manulis (&lt;a class="link" href="https://eprint.iacr.org/2014/242.pdf" target="_blank" rel="noopener"
+>Full Version&lt;/a>)&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Distributed Smooth Projective Hashing and its Application to Two-Server Password Authenticated Key Exchange @
+&lt;a class="link" href="https://www.springer.com/computer/security&amp;#43;and&amp;#43;cryptology/book/978-3-319-07535-8" target="_blank" rel="noopener"
+>ACNS 2014&lt;/a> • with Mark Manulis (&lt;a class="link" href="https://eprint.iacr.org/2014/350.pdf" target="_blank" rel="noopener"
+>Full Version&lt;/a>)&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Revocation and Non-repudiation: When the First Destroys the Latter @
+&lt;a class="link" href="https://www.springer.com/computer/communication&amp;#43;networks/book/978-3-642-53996-1" target="_blank" rel="noopener"
+>EuroPKI 2013&lt;/a> • with Johannes Braun and Andreas Hülsing (&lt;a class="link" href="./non-repudiation.pdf" >Full Version&lt;/a>)&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Pseudorandom Signatures @
+&lt;a class="link" href="http://dl.acm.org/citation.cfm?id=2484313" target="_blank" rel="noopener"
+>AsiaCCS 2013&lt;/a> • with Nils Fleischhacker, Felix Günther, Mark Manulis, and Bertram Poettering (&lt;a class="link" href="https://eprint.iacr.org/2011/673.pdf" target="_blank" rel="noopener"
+>Full Version&lt;/a>)&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Practical Security in E-Mail Applications @
+SAM 2012 • with Alexander Wiesmaier and Christian Fritz (&lt;a class="link" href="./Practical-Security-in-E-Mail-Apps.pdf" >Full Version&lt;/a>)&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>An efficient mobile PACE implementation @
+&lt;a class="link" href="http://dl.acm.org/citation.cfm?id=1966913&amp;amp;coll=DL&amp;amp;dl=GUIDE&amp;amp;CFID=393084620&amp;amp;CFTOKEN=51980528" target="_blank" rel="noopener"
+>AsiaCCS 2011&lt;/a> • with Alex Wiesmaier, Moritz Horsch, Johannes Braun, Detlef Hühnlein, Falko Strenzke, and Johannes Buchmann (&lt;a class="link" href="./201103_ASIACCS11_An_efficient_mobile_PACE_implementation.pdf" >Full Version&lt;/a>)&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="journals">Journals
+&lt;/h2>&lt;ul>
+&lt;li>Secure modular password authentication for the web using channel bindings @
+&lt;a class="link" href="https://link.springer.com/article/10.1007/s10207-016-0348-7" target="_blank" rel="noopener"
+>International Journal of Information Security 2016&lt;/a> • with Mark Manulis, Douglas Stebila, and Nick Denham (&lt;a class="link" href="https://eprint.iacr.org/2014/731.pdf" target="_blank" rel="noopener"
+>Full Version&lt;/a>)&lt;/li>
+&lt;/ul>
+&lt;h2 id="other">Other
+&lt;/h2>&lt;ul>
+&lt;li>
+&lt;p>&lt;a class="link" href="https://gitlab.com/franziskus/phd-thesis/tree/master/phd" target="_blank" rel="noopener"
+>Advancements in Password-based Cryptography&lt;/a> (PhD Thesis 2016)
+Supervised by &lt;a class="link" href="http://www.manulis.eu" target="_blank" rel="noopener"
+>Mark Manulis&lt;/a> and &lt;a class="link" href="http://www.hooklee.com/" target="_blank" rel="noopener"
+>Shujun Li&lt;/a>;
+Examination panel: &lt;a class="link" href="http://www.surrey.ac.uk/cs/people/steve_schneider/" target="_blank" rel="noopener"
+>Steve Schneider&lt;/a> and &lt;a class="link" href="http://homepages.cs.ncl.ac.uk/feng.hao/home.php" target="_blank" rel="noopener"
+>Feng Hao&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Group Signatures: Privacy-Preserving Authentication Methods @
+&lt;a class="link" href="https://www.bsi.bund.de/EN/" target="_blank" rel="noopener"
+>BSI&lt;/a> 2011 • with Nils Fleischhacker, Felix Günther, Mark Manulis, and Bertram Poettering (&lt;a class="link" href="./GruPA.pdf" >Full Report&lt;/a>, &lt;a class="link" href="https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/Publications/Studies/GruPA/GruPA.pdf" target="_blank" rel="noopener"
+>Official Website&lt;/a>))&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Towards a mobile eCard Client @
+Kryptotag 2010 • with Alex Wiesmaier, Moritz Horsch, Johannes Braun, Detlef Hühnlein, and Falko Strenzke (&lt;a class="link" href="http://tuprints.ulb.tu-darmstadt.de/2371/1/Tagungsband-13-Kryptotag-Darmstadt.pdf" target="_blank" rel="noopener"
+>Full Version&lt;/a>)&lt;/p>
+&lt;/li>
+&lt;/ul></description></item><item><title>Search</title><link>https://www.franziskuskiefer.de/search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://www.franziskuskiefer.de/search/</guid><description/></item></channel></rss>

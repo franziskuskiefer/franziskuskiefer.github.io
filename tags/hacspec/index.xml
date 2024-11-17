@@ -1,42 +1,573 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>hacspec on Dr Franziskus Kiefer</title>
-    <link>https://www.franziskuskiefer.de/tags/hacspec/</link>
-    <description>Recent content in hacspec on Dr Franziskus Kiefer</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Thu, 24 Feb 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/tags/hacspec/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>An Executable HPKE Specification</title>
-      <link>https://www.franziskuskiefer.de/p/an-executable-hpke-specification/</link>
-      <pubDate>Thu, 24 Feb 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.franziskuskiefer.de/p/an-executable-hpke-specification/</guid>
-      <description>HPKE, published as RFC 9180, describes a scheme for hybrid public key encryption.
- 📚 Please go and read our TL;DR on HPKE if you nee more background on HPKE.
- In this I describe the first executable HPKE specification using hacspec. It is not only an executable specification of HPKE, it is also an annotated version of the RFC that can be read instead of (or in addition to) the RFC.</description>
-    </item>
-    
-    <item>
-      <title>Update on hacspec</title>
-      <link>https://www.franziskuskiefer.de/p/update-on-hacspec/</link>
-      <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.franziskuskiefer.de/p/update-on-hacspec/</guid>
-      <description>Earlier this year I introduced hacspec, a new specification language for cryptographic primitives. After Karthik presented the idea and very preliminary results at IETF 101 in March we made quite some progress and presented a paper with a little more detail at SSR earlier this week. In this blog post I&amp;rsquo;ll give the gist of the SSR paper and introduce the first version of hacspec.
-All information about hacspec can be found at https://hacs-workshop.</description>
-    </item>
-    
-    <item>
-      <title>Introducing HacSpec</title>
-      <link>https://www.franziskuskiefer.de/p/introducing-hacspec/</link>
-      <pubDate>Thu, 08 Feb 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.franziskuskiefer.de/p/introducing-hacspec/</guid>
-      <description>HacSpec is a proposal for a new specification language for cryptographic primitives that is succinct, that is easy to read and implement, and that lends itself to formal verification. It aims to formalise the pseudocode used in cryptographic standards by proposing a formal syntax that can be checked for simple errors. HacSpec specifications are further executable to test against test vectors specified in a common syntax.
-The main focus of HacSpec is to allow specifications to be compiled to formal languages such as cryptol, coq, F*, and easycrypt and thus make it easier to formally verify implementations.</description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hacspec on Dr Franziskus Kiefer</title><link>https://www.franziskuskiefer.de/tags/hacspec/</link><description>Recent content in Hacspec on Dr Franziskus Kiefer</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 24 Feb 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.franziskuskiefer.de/tags/hacspec/index.xml" rel="self" type="application/rss+xml"/><item><title>An Executable HPKE Specification</title><link>https://www.franziskuskiefer.de/p/an-executable-hpke-specification/</link><pubDate>Thu, 24 Feb 2022 00:00:00 +0000</pubDate><guid>https://www.franziskuskiefer.de/p/an-executable-hpke-specification/</guid><description>&lt;img src="https://www.franziskuskiefer.de/p/an-executable-hpke-specification/header.png" alt="Featured image of post An Executable HPKE Specification" />&lt;p>&lt;a class="link" href="https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/" target="_blank" rel="noopener"
+>HPKE&lt;/a>, published as &lt;a class="link" href="https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/" target="_blank" rel="noopener"
+>RFC 9180&lt;/a>, describes a scheme for hybrid public key encryption.&lt;/p>
+&lt;blockquote>
+&lt;p>📚 Please go and read our &lt;a class="link" href="https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/" >TL;DR on HPKE&lt;/a> if you nee more background on HPKE.&lt;/p>
+&lt;/blockquote>
+&lt;p>In this I describe the first executable HPKE specification using &lt;a class="link" href="https://hacspec.org" target="_blank" rel="noopener"
+>hacspec&lt;/a>.
+It is not only an executable specification of &lt;a class="link" href="https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/" target="_blank" rel="noopener"
+>HPKE&lt;/a>, it is also an annotated version
+of the RFC that can be read instead of (or in addition to) the RFC.
+While the &lt;a class="link" href="https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/" >TL;DR on HPKE&lt;/a> was intended for consumers or potential users of HPKE,
+this blog post is aimed at implementators that want to implement HPKE or understand
+it better.&lt;/p>
+&lt;p>It is a showcase for Cryspen&amp;rsquo;s technology stack.
+In a follow up blog post we will describe how to connect the &lt;a class="link" href="https://hacspec.org" target="_blank" rel="noopener"
+>hacspec&lt;/a> specification
+to efficient cryptographic primitives and formal proofs.&lt;/p>
+&lt;p>&lt;em>This blog post focuses on the Base and Auth mode with DHKEM to demonstrate the capabilities
+of hacspec.
+For the full specification please read the full &lt;a class="link" href="https://tech.cryspen.com/hpke-spec" target="_blank" rel="noopener"
+>documentation&lt;/a>, or look at the
+&lt;a class="link" href="https://github.com/cryspen/hpke-spec" target="_blank" rel="noopener"
+>Github repository&lt;/a> for the HPKE hacspec source code.&lt;/em>&lt;/p>
+&lt;p>Recall that HPKE provides a variant of public-key encryption of arbitrary-sized plaintexts for a recipient public key.
+It works for any combination of an asymmetric key encapsulation mechanism (KEM), key derivation function (KDF), and authenticated encryption with additional data (AEAD) encryption function.&lt;/p>
+&lt;p>In the following I&amp;rsquo;ll first show the high-level API of HPKE works before giving
+details on the core functions within HPKE.
+All code examples are in hacspec.&lt;/p>
+&lt;blockquote>
+&lt;p>💡 Go ahead and &lt;a class="link" href="https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/#try-it-out-now" >run the hacspec HPKE in the browser&lt;/a>.&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="encrypting-to-a-public-key">Encrypting to a Public Key
+&lt;/h2>&lt;p>This is the most basic functionality HPKE offers; encrypting a payload to a public key.
+So how does this look on the outside?&lt;/p>
+&lt;p>The process consists of two steps.
+&lt;em>First&lt;/em> a random &lt;code>shared_secret&lt;/code> is generated that can be used for
+symmetric encryption with an AEAD, and an encapsulation that can be used by the
+receiver in combination with their private key to compute the same &lt;code>shared_secret&lt;/code>.
+This function is denoted &lt;code>SetupBaseS&lt;/code> below (because this is setting up the sender
+in the HPKE base mode).
+Note that the setup function expands the &lt;code>shared_secret&lt;/code> to a key schedule that
+is used by the AEAD.
+More details in the &lt;a class="link" href="#setup" >Setup&lt;/a> section.
+&lt;em>Then&lt;/em> the &lt;code>shared_secret&lt;/code> is used to encrypt the payload with an AEAD.
+This function is denoted &lt;code>AeadSeal&lt;/code> below.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-rust" data-lang="rust">&lt;span class="line">&lt;span class="cl">&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">enc&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">key&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">nonce&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">_&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">_&lt;/span>&lt;span class="p">))&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">SetupBaseS&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">config&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">pkR&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">info&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">randomness&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">?&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">cipher_text&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">AeadSeal&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">aead_id&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">key&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">nonce&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">aad&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">payload&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">?&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The receiver gets &lt;code>cipher_text&lt;/code> and &lt;code>enc&lt;/code> that it can use to retrieve the &lt;code>payload&lt;/code>.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-rust" data-lang="rust">&lt;span class="line">&lt;span class="cl">&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">key&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">nonce&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">_&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">_&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">SetupBaseR&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">config&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">enc&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">skR&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">info&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">?&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">payload&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">AeadOpen&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">aead&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">key&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">nonce&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">aad&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">ct&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">?&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>In the remainder of this blog post we&amp;rsquo;ll show how &lt;code>SetupBaseS&lt;/code> is defined.
+For a description of the receiver please check out the &lt;a class="link" href="https://tech.cryspen.com/hpke-spec" target="_blank" rel="noopener"
+>documentation&lt;/a>.
+We will not define &lt;code>AeadSeal&lt;/code> and &lt;code>AeadOpen&lt;/code> here as they follow the definition
+of &lt;a class="link" href="https://www.rfc-editor.org/info/rfc5116" target="_blank" rel="noopener"
+>RFC 5116&lt;/a>.&lt;/p>
+&lt;details>
+&lt;summary>💡 Background on hacspec Syntax&lt;/summary>
+In case you are not familiar with hacspec (Rust) syntax, here are some short explainers
+to understand the hacspec code.
+&lt;p>&lt;strong>The Question mark &lt;code>?&lt;/code>&lt;/strong>&lt;/p>
+&lt;p>The question mark &lt;code>?&lt;/code> at the end of most lines in the hacspec code is the
+way Rust performs error propagation.
+If the function that is called before the &lt;code>?&lt;/code> does not return an error result,
+the program continues as expected.
+But if the function returns an error, the function stops and returns with the error
+instead.&lt;/p>
+&lt;p>&lt;strong>The Result Type&lt;/strong>&lt;/p>
+&lt;p>hacspec (and Rust) uses a &lt;code>Result&lt;/code> type such as &lt;code>Result&amp;lt;OkType, ErrorType&amp;gt;&lt;/code> to return errors.
+In hacspec result types are often wrapped into type aliases.
+For example the &lt;code>SenderContextResult&lt;/code> type in the code snippet for &lt;code>SetupBaseS&lt;/code>
+below is a type alias for &lt;code>Result&amp;lt;(Encapsulation, KeySchedule), Error&amp;gt;&lt;/code>.
+If the function is successful and we reach line 10, the function returns success,
+which is written as &lt;code>SenderContextResult::Ok(...)&lt;/code>.&lt;/p>
+&lt;/details>
+&lt;h3 id="the-auth-mode">The Auth Mode
+&lt;/h3>&lt;p>In the Auth mode HPKE requires additional input to the &lt;code>Setup&lt;/code> functions.
+The sender needs to provide their private key &lt;code>skS&lt;/code> to authenticate themselves.
+The receiver uses the sender&amp;rsquo;s public key &lt;code>pkS&lt;/code> in addition to authenticate the sender.
+The two functions are defined as follows.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-rust" data-lang="rust">&lt;span class="line">&lt;span class="cl">&lt;span class="n">SetupAuthS&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">config&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">pkR&lt;/span>:&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">info&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">skS&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">randomness&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="n">SetupAuthR&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">config&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">enc&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">skR&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">info&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">pkS&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="setup">Setup
+&lt;/h3>&lt;p>In order to set up the KEM and key schedule the sender uses the following &lt;code>SetupBaseS&lt;/code>
+function.
+Recall that the &lt;code>BaseS&lt;/code> refers to the HPKE base mode and sender.&lt;/p>
+&lt;p>The function takes the receiver&amp;rsquo;s public key &lt;code>pkR&lt;/code> and context information &lt;code>info&lt;/code>
+(a sequence of bytes to bind the setup to a specific context).
+In addition we need to pass in the &lt;code>configuration&lt;/code> that contains the mode as well
+as the algorithm identifiers for the KEM.
+Because hacspec can&amp;rsquo;t draw its own &lt;code>randomness&lt;/code>, as explained &lt;a class="link" href="#randomness" >below&lt;/a>,
+it is passed in as well.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-rust" data-lang="rust">&lt;span class="line">&lt;span class="cl">&lt;span class="k">pub&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">fn&lt;/span> &lt;span class="nf">SetupBaseS&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">configuration&lt;/span>: &lt;span class="nc">HPKEConfig&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">pkR&lt;/span>: &lt;span class="kp">&amp;amp;&lt;/span>&lt;span class="nc">HpkePublicKey&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">info&lt;/span>: &lt;span class="kp">&amp;amp;&lt;/span>&lt;span class="nc">Info&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">randomness&lt;/span>: &lt;span class="nc">Randomness&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>-&amp;gt; &lt;span class="nc">SenderContextResult&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">shared_secret&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">enc&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Encap&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">kem&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">configuration&lt;/span>&lt;span class="p">),&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">pkR&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">randomness&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">?&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">key_schedule&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">KeySchedule&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">config&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">shared_secret&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">info&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">default_psk&lt;/span>&lt;span class="p">(),&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">default_psk_id&lt;/span>&lt;span class="p">(),&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">?&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">SenderContextResult&lt;/span>::&lt;span class="nb">Ok&lt;/span>&lt;span class="p">((&lt;/span>&lt;span class="n">enc&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">key_schedule&lt;/span>&lt;span class="p">))&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>For comparison you can find the RFC pseudocode definition of &lt;code>SetupBaseS&lt;/code> below
+(which is not well defined as is because it is missing the algorithm identifiers).
+The main difference between the two functions is the explicit configuration and
+randomness required in hacspec.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-text" data-lang="text">&lt;span class="line">&lt;span class="cl">def SetupBaseS(pkR, info):
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> shared_secret, enc = Encap(pkR)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> return enc, KeyScheduleS(mode_base, shared_secret, info,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> default_psk, default_psk_id)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The setup function calls the two functions &lt;a class="link" href="#encap" >&lt;code>Encap&lt;/code>&lt;/a> and &lt;a class="link" href="#keyschedule" >&lt;code>KeySchedule&lt;/code>&lt;/a>.&lt;/p>
+&lt;h3 id="encap">Encap
+&lt;/h3>&lt;p>&lt;em>(Reminder: For demonstration purposes we use the DHKEM defined in the RFC.)&lt;/em>&lt;/p>
+&lt;p>The &lt;code>Encap&lt;/code> function takes the receiver&amp;rsquo;s public key &lt;code>pkR&lt;/code> and generates a &lt;code>shared_secret&lt;/code> as well
+as an &lt;code>encapsulation&lt;/code>.&lt;/p>
+&lt;p>It is necessary to pass in the algorithm identifier to know
+which KEM to use and the randomness to generate a new ephemeral key pair for the
+KEM.
+See the &lt;a class="link" href="#implementation-considerations" >discussion section below&lt;/a> on the necessity of the API changes.
+Because the function can fail it returns a result instead of simply the computed
+values as described in the RFC pseudocode.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-text" data-lang="text">&lt;span class="line">&lt;span class="cl">def Encap(pkR):
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> skE, pkE = GenerateKeyPair()
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> dh = DH(skE, pkR)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> enc = SerializePublicKey(pkE)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> pkRm = SerializePublicKey(pkR)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> kem_context = concat(enc, pkRm)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> shared_secret = ExtractAndExpand(dh, kem_context)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> return shared_secret, enc
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>All these changes make it much clearer what can happen within the function and
+in particular which error states might occur.&lt;/p>
+&lt;p>The &lt;code>Encap&lt;/code> function generates a fresh DH key pair and computes the DH between the
+receivers public key and the ephemeral private key $\text{dh}=\text{skE}*\text{pkR}$.
+The &lt;code>shared_secret&lt;/code> is then computed as the output of a key derivation function (HKDF)
+on input of the &lt;code>dh&lt;/code> value and the context that binds the key derivation to the
+parameters and public values.
+The encapsulation &lt;code>enc&lt;/code> is the serialized public key &lt;code>pkE&lt;/code> generated in the first
+step.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-rust" data-lang="rust">&lt;span class="line">&lt;span class="cl">&lt;span class="k">pub&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">fn&lt;/span> &lt;span class="nf">Encap&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">pkR&lt;/span>: &lt;span class="kp">&amp;amp;&lt;/span>&lt;span class="nc">PublicKey&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">alg&lt;/span>: &lt;span class="nc">KEM&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">rand&lt;/span>: &lt;span class="nc">Randomness&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>-&amp;gt; &lt;span class="nc">EncapResult&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">skE&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">pkE&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">GenerateKeyPair&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">alg&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">rand&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">?&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">dh&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="no">DH&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">alg&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">skE&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">pkR&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">?&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">encapsulation&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">SerializePublicKey&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">alg&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">pkE&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">?&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">pkRm&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">SerializePublicKey&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">alg&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">pkR&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">?&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">kem_context&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">enc&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">concat&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">pkRm&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">shared_secret&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">ExtractAndExpand&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">alg&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">suite_id&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">alg&lt;/span>&lt;span class="p">),&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">dh&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">kem_context&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">?&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">EncapResult&lt;/span>::&lt;span class="nb">Ok&lt;/span>&lt;span class="p">((&lt;/span>&lt;span class="n">shared_secret&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">encapsulation&lt;/span>&lt;span class="p">))&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="keyschedule">KeySchedule
+&lt;/h3>&lt;p>In order to use the &lt;code>shared_secret&lt;/code> with an AEAD and allow exporting additional
+key material, the following &lt;code>KeySchedule&lt;/code> derives the &lt;code>key&lt;/code> and &lt;code>base_nonce&lt;/code> for the
+AEAD and an &lt;code>exporter_secret&lt;/code> to export other keys.
+The key schedule is essentially a series of HKDF calls to extract different keys
+from the shared secret.&lt;/p>
+&lt;p>The main difference to the RFC here is again that it is necessary to pass in algorithm
+identifiers and the &lt;code>suite_id&lt;/code> to &lt;code>LabeledExtract&lt;/code> and &lt;code>LabeledExpand&lt;/code>.
+The &lt;code>suite_id&lt;/code> binds the KDF extract and expand functions to the specific context
+and is implicit in the RFC.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-rust" data-lang="rust">&lt;span class="line">&lt;span class="cl">&lt;span class="k">pub&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">fn&lt;/span> &lt;span class="nf">KeySchedule&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">config&lt;/span>: &lt;span class="nc">HPKEConfig&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">shared_secret&lt;/span>: &lt;span class="kp">&amp;amp;&lt;/span>&lt;span class="nc">SharedSecret&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">info&lt;/span>: &lt;span class="kp">&amp;amp;&lt;/span>&lt;span class="nc">Info&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">psk&lt;/span>: &lt;span class="kp">&amp;amp;&lt;/span>&lt;span class="nc">Psk&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">psk_id&lt;/span>: &lt;span class="kp">&amp;amp;&lt;/span>&lt;span class="nc">PskId&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>-&amp;gt; &lt;span class="nc">ContextResult&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">VerifyPSKInputs&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">config&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">psk&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">psk_id&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">?&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">HPKEConfig&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">mode&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">_kem&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">kdf&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">aead&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">config&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">psk_id_hash&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">LabeledExtract&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">kdf&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">suite_id&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">config&lt;/span>&lt;span class="p">),&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">empty_bytes&lt;/span>&lt;span class="p">(),&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">psk_id_hash_label&lt;/span>&lt;span class="p">(),&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">psk_id&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">?&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">info_hash&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">LabeledExtract&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">kdf&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">suite_id&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">config&lt;/span>&lt;span class="p">),&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">empty_bytes&lt;/span>&lt;span class="p">(),&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">info_hash_label&lt;/span>&lt;span class="p">(),&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">info&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">?&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">key_schedule_context&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">hpke_mode_label&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">mode&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">concat_owned&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">psk_id_hash&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">concat_owned&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">info_hash&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">secret&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">LabeledExtract&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">kdf&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">suite_id&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">config&lt;/span>&lt;span class="p">),&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">shared_secret&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">secret_label&lt;/span>&lt;span class="p">(),&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">psk&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">?&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">key&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">LabeledExpand&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">kdf&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">suite_id&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">config&lt;/span>&lt;span class="p">),&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">secret&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">key_label&lt;/span>&lt;span class="p">(),&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">key_schedule_context&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">Nk&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">aead&lt;/span>&lt;span class="p">),&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">?&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">base_nonce&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">LabeledExpand&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">kdf&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">suite_id&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">config&lt;/span>&lt;span class="p">),&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">secret&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">base_nonce_label&lt;/span>&lt;span class="p">(),&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">key_schedule_context&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">Nn&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">aead&lt;/span>&lt;span class="p">),&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">?&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">exporter_secret&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">LabeledExpand&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">kdf&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">suite_id&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">config&lt;/span>&lt;span class="p">),&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">secret&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">exp_label&lt;/span>&lt;span class="p">(),&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">key_schedule_context&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">Nh&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">kdf&lt;/span>&lt;span class="p">),&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">?&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>For comparison you can find the RFC pseudocode definition of &lt;code>KeySchedule&lt;/code> below.
+Note that the significantly longer hacspec definition above is not in fact longer
+but has longer lines that are wrapped.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-text" data-lang="text">&lt;span class="line">&lt;span class="cl">def KeySchedule&amp;lt;ROLE&amp;gt;(mode, shared_secret, info, psk, psk_id):
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> VerifyPSKInputs(mode, psk, psk_id)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> psk_id_hash = LabeledExtract(&amp;#34;&amp;#34;, &amp;#34;psk_id_hash&amp;#34;, psk_id)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> info_hash = LabeledExtract(&amp;#34;&amp;#34;, &amp;#34;info_hash&amp;#34;, info)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> key_schedule_context = concat(mode, psk_id_hash, info_hash)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> secret = LabeledExtract(shared_secret, &amp;#34;secret&amp;#34;, psk)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> key = LabeledExpand(secret, &amp;#34;key&amp;#34;, key_schedule_context, Nk)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> base_nonce = LabeledExpand(secret, &amp;#34;base_nonce&amp;#34;, key_schedule_context, Nn)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> exporter_secret = LabeledExpand(secret, &amp;#34;exp&amp;#34;, key_schedule_context, Nh)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> return Context&amp;lt;ROLE&amp;gt;(key, base_nonce, 0, exporter_secret)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>This is all that is needed to implement &lt;a class="link" href="https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/" target="_blank" rel="noopener"
+>HPKE&lt;/a>.
+All code examples here are taken directly from the Cryspen HPKE reference implementation.
+You can find the full code in the &lt;a class="link" href="https://github.com/cryspen/hpke-spec" target="_blank" rel="noopener"
+>Github repository&lt;/a> as well as the &lt;a class="link" href="https://tech.cryspen.com/hpke-spec" target="_blank" rel="noopener"
+>documentation&lt;/a>.&lt;/p>
+&lt;h2 id="implementation-considerations">Implementation Considerations
+&lt;/h2>&lt;p>When defining HPKE in hacspec, or most other programming languages, there are a
+number of considerations that impact the way the code looks.&lt;/p>
+&lt;p>The hacspec code is as close to the RFC pseudocode as possible.
+But some changes are needed.&lt;/p>
+&lt;h3 id="randomness">Randomness
+&lt;/h3>&lt;p>hacspec does not allow to draw randomness.
+It is therefore necessary to pass in randomness every time it is needed.&lt;/p>
+&lt;p>This approach is pretty close to the way this would be implemented in native Rust
+where a random-number generator is passed in and used to generate randomness.
+For simplicity hacspec expects the randomness to be drawn on the outside instead
+of doing it within the specification.&lt;/p>
+&lt;p>Note that it is possible to pre-determine the amount of randomness needed by HPKE
+calls because randomness is only needed when setting up the sender.
+At this point the KEM mechanisms and hence the required randomness is known.&lt;/p>
+&lt;h3 id="configuration-parameters">Configuration Parameters
+&lt;/h3>&lt;p>The &lt;a class="link" href="https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/" target="_blank" rel="noopener"
+>HPKE&lt;/a> RFC makes most of the configuration implicit to the functions rather than
+passing the algorithm identifiers around.
+Because the hacspec implementation has to know which algorithm to pick, this is
+of course not possible here.&lt;/p>
+&lt;p>HPKE hacspec functions take either an &lt;a class="link" href="https://tech.cryspen.com/hpke-spec/hpke/struct.HPKEConfig.html" target="_blank" rel="noopener"
+>&lt;code>HPKEConfig&lt;/code>&lt;/a> object with all algorithms
+in it or the specific algorithm identifier needed for the operation.&lt;/p>
+&lt;h3 id="naming">Naming
+&lt;/h3>&lt;p>The &lt;a class="link" href="https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/" target="_blank" rel="noopener"
+>HPKE&lt;/a> RFC uses, in some cases, names that are impossible to use in hacspec
+because they are keywords or contain illegal characters.
+Further does hacspec not support member functions as defined for the &lt;code>Context&lt;/code>.&lt;/p>
+&lt;p>We therefore replace &lt;code>.&lt;/code> in member function calls such as &lt;code>Context.Export&lt;/code> with an underscore,
+i.e. write &lt;code>Context_Export&lt;/code>.
+Keywords such as &lt;code>open&lt;/code> are replaced with a semantically equivalent version, i.e.
+&lt;code>HpkeOpen&lt;/code> in this example.&lt;/p>
+&lt;h3 id="secret-bytes">Secret bytes
+&lt;/h3>&lt;p>hacspec has the notion of secret integers that can&amp;rsquo;t be used for certain operations
+and should enforce secret-independent computation time.&lt;/p>
+&lt;p>For simplicity the hacspec HPKE implementation uses secret bytes everywhere even
+if not necessary, e.g. for cipher texts.&lt;/p>
+&lt;h3 id="errors">Errors
+&lt;/h3>&lt;p>While the RFC defines a set of errors it does not always define which errors
+are raised.
+For example, it leaves open whether implementations convert errors from the
+Diffie-Hellman operations into KEM errors (&lt;code>EncapError&lt;/code>/&lt;code>DecapError&lt;/code>) or not.&lt;/p>
+&lt;p>With the specific implementation in hacspec here the errors are clearly defined.&lt;/p>
+&lt;h2 id="about-hacspec">About hacspec
+&lt;/h2>&lt;p>&lt;a class="link" href="https://hacspec.org" target="_blank" rel="noopener"
+>hacspec&lt;/a> is a specification language for cryptographic mechanisms, and more, embedded in &lt;a class="link" href="https://www.rust-lang.org/" target="_blank" rel="noopener"
+>Rust&lt;/a>.
+It is a language for writing succinct, executable, formal specifications for cryptographic components.
+Syntactically, hacspec is a purely functional subset of Rust that aims to be readable by developers, cryptographers, and verification experts.
+An application developer can use hacspec to specify and prototype cryptographic components in Rust, and then either replace this specification with a verified implementation before deployment
+or use the hacspec code directly.&lt;/p>
+&lt;p>We used &lt;a class="link" href="https://hacspec.org" target="_blank" rel="noopener"
+>hacspec&lt;/a> here to write an executable, succinct, specification of &lt;a class="link" href="https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/" target="_blank" rel="noopener"
+>HPKE&lt;/a>
+that&amp;rsquo;s embedding the full RFC into its &lt;a class="link" href="https://tech.cryspen.com/hpke-spec" target="_blank" rel="noopener"
+>documentation&lt;/a>&lt;/p>
+&lt;p>&lt;a class="link" href="https://hacspec.org" target="_blank" rel="noopener"
+>hacspec&lt;/a> is at the heart of a novel, modular verification framework for Rust
+applications developed by &lt;a class="link" href="https://www.cryspen.com" target="_blank" rel="noopener"
+>Cryspen&lt;/a> in cooperation with the &lt;a class="link" href="https://team.inria.fr/prosecco/" target="_blank" rel="noopener"
+>Prosecco&lt;/a> team.&lt;/p>
+&lt;h2 id="summary">Summary
+&lt;/h2>&lt;p>Even though &lt;a class="link" href="https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/" target="_blank" rel="noopener"
+>HPKE&lt;/a> is a relatively simple scheme it requires care when implementing.
+This blog post gives an overview of how &lt;a class="link" href="https://hacspec.org" target="_blank" rel="noopener"
+>hacspec&lt;/a> can be used to achieve an executable
+version of the &lt;a class="link" href="https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/" target="_blank" rel="noopener"
+>HPKE&lt;/a> RFC that can be used as implementation on its own or as
+specification and reference implementation when implementing HPKE.&lt;/p>
+&lt;p>My company &lt;a class="link" href="https://www.cryspen.com" target="_blank" rel="noopener"
+>Cryspen&lt;/a> offers support for using &lt;a class="link" href="https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/" target="_blank" rel="noopener"
+>HPKE&lt;/a> as well as high assurance implementations
+of HPKE and other protocols.
+&lt;a class="link" href="mailto:franziskus@cryspen.com" >Get in touch for more information.&lt;/a>&lt;/p>
+&lt;hr>
+&lt;ul>
+&lt;li>&lt;i class="fab fa-github">&lt;/i> &lt;a class="link" href="https://github.com/cryspen/hpke-spec" target="_blank" rel="noopener"
+>Github repository&lt;/a>&lt;/li>
+&lt;li>&lt;i class="fa fa-book" aria-hidden="true">&lt;/i> &lt;a class="link" href="https://tech.cryspen.com/hpke-spec" target="_blank" rel="noopener"
+>Documentation&lt;/a>&lt;/li>
+&lt;li>&lt;i class="fa fa-file" aria-hidden="true">&lt;/i> &lt;a class="link" href="https://www.rfc-editor.org/rfc/rfc9180.html" target="_blank" rel="noopener"
+>RFC&lt;/a>&lt;/li>
+&lt;/ul></description></item><item><title>Update on hacspec</title><link>https://www.franziskuskiefer.de/p/update-on-hacspec/</link><pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate><guid>https://www.franziskuskiefer.de/p/update-on-hacspec/</guid><description>&lt;img src="https://www.franziskuskiefer.de/p/update-on-hacspec/hacspec2-architecture.png" alt="Featured image of post Update on hacspec" />&lt;p>Earlier this year I introduced &lt;a class="link" href="../hacspec1" >hacspec, a new specification language for cryptographic primitives&lt;/a>.
+After Karthik presented the idea and very preliminary results at &lt;a class="link" href="https://github.com/HACS-workshop/hacspec/blob/master/doc/hacspec-short-talk-CFRG-IETF-101.pdf" target="_blank" rel="noopener"
+>IETF 101&lt;/a> in March we made quite some progress and presented a paper with a little more detail at &lt;a class="link" href="https://ssr2018.net/" target="_blank" rel="noopener"
+>SSR&lt;/a> earlier this week.
+In this blog post I&amp;rsquo;ll give the gist of the &lt;a class="link" href="https://github.com/HACS-workshop/hacspec/blob/master/doc/hacspec-ssr18-paper.pdf" target="_blank" rel="noopener"
+>SSR paper&lt;/a> and introduce the first version of &lt;em>hacspec&lt;/em>.&lt;/p>
+&lt;p>All information about &lt;em>hacspec&lt;/em> can be found at &lt;a class="link" href="https://hacs-workshop.github.io/hacspec/" target="_blank" rel="noopener"
+>https://hacs-workshop.github.io/hacspec/&lt;/a>.&lt;/p>
+&lt;h2 id="the-language">The language
+&lt;/h2>&lt;p>The &lt;em>hacspec&lt;/em> language is a DSL for cryptographic algorithms.
+But it can also be seen as a typed subset of Python.
+The following describes the language.&lt;/p>
+&lt;pre tabindex="0">&lt;code> Values v ::=
+n integer constants
+| True | False boolean constants
+| &amp;#39;...&amp;#39; | &amp;#34;...&amp;#34; string constants
+| (v1,...,vn) tuple constant
+| array([v1,...,vn]) array constant
+Expressions e ::=
+v values
+| x | m.x local and global variables
+| (e1,...,en) tuple construction
+| array([e1,...,en]) array construction
+| array.length(e) array length
+| e[e0] array access
+| e[e0:e1] array slice
+| e(e1,...,en) function call
+| e1 binop e2 builtin binary operators
+| unaryop e builtin unary operators
+Types t ::=
+int, str, bool basic types
+| tuple_t(t1,...,tn) tuples
+| vlarray_t(t) variable-length array
+| x user-defined or builtin type
+| x(t1,...,tn,e1,...,em) builtin type application
+Statements s ::=
+x: Type = t type declaration
+| x: t variable declaration
+| x = e variable assignment
+| x binop= e augmented variable assignment
+| (x1,..,xn) = e tuple matching
+| x[i] = e array update
+| x[i] binop= e augmented array update
+| x[i:j] = e array slice update
+| if e: if-elif-else conditional
+s1...sn
+elif e:
+s1&amp;#39;...sn&amp;#39;
+else
+s1&amp;#39;&amp;#39;...sn&amp;#39;&amp;#39;
+| for i in range(e): for loop
+s1...sn
+| break break from loop
+| def x(x1:t1,...,xn:tn) -&amp;gt; t: function declaration
+s1 ... sn
+| return e return from function
+| from x import x1, x2,..., xn module import
+Specs σ ::= s1...sn sequence of statements
+&lt;/code>&lt;/pre>&lt;h2 id="hacspec-architecture">hacspec architecture
+&lt;/h2>&lt;p>The &lt;em>hacspec&lt;/em> architecture is depicted in the following graph.&lt;/p>
+&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/update-on-hacspec/hacspec2-architecture.png"
+width="2873"
+height="2451"
+srcset="https://www.franziskuskiefer.de/p/update-on-hacspec/hacspec2-architecture_hu3195581800283001141.png 480w, https://www.franziskuskiefer.de/p/update-on-hacspec/hacspec2-architecture_hu2649430833740968362.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="117"
+data-flex-basis="281px"
+>&lt;/p>
+&lt;h2 id="writing-hacspec">Writing hacspec
+&lt;/h2>&lt;p>Every spec should be accompanied by a test and some test vectors leaving the author with at least two files, e.g. &lt;code>poly.py&lt;/code> and &lt;code>poly_test.py&lt;/code> (also see &lt;a class="link" href="#Example" >Example section&lt;/a>).
+Note that only the spec file has to be &lt;em>hacspec&lt;/em> syntax.
+The test file can make use of all of Python.
+&lt;em>hacspec&lt;/em> comes with a standard library called speclib and a spec-checker.
+To use the &lt;em>hacspec&lt;/em> speclib and spec-checker install them via &lt;code>pip install hacspec&lt;/code> or from the source (the &lt;code>setup.py&lt;/code> for the Python package can be found in &lt;code>/build/&lt;/code>).
+Running &lt;em>hacspec&lt;/em> requires a Python interpreter version 3.6.4 or newer.&lt;/p>
+&lt;h3 id="speclib">speclib
+&lt;/h3>&lt;p>Commonly used functionality is provided in &lt;em>speclib&lt;/em> (&lt;code>from hacspec.speclib import *&lt;/code>).
+The full speclib documentation can be found &lt;a class="link" href="https://hacs-workshop.github.io/hacspec/docs/" target="_blank" rel="noopener"
+>here&lt;/a>.
+Some highlights are&lt;/p>
+&lt;ul>
+&lt;li>&lt;em>modular arithmetic&lt;/em>: &lt;code>natmod_t&lt;/code> is an integer data type that provides modular arithmetic, e.g. &lt;code>felem_t = natmod_t((2**130)-5)&lt;/code> defines field elements modulo &lt;code>(2**130)-5&lt;/code>.&lt;/li>
+&lt;li>&lt;em>machine integers&lt;/em>: &lt;code>unitN_t&lt;/code> define commonly used machine integer types for &lt;code>N = 8, 16, 32, 64, 128&lt;/code>.&lt;/li>
+&lt;li>&lt;em>byte arrays, vectors, and matrices&lt;/em>: provided data structures are &lt;code>array_t, bytes_t, vector_t, matrix_t&lt;/code> as well as the variable length versions &lt;code>vlarray_t&lt;/code> and &lt;code>vlbytes_t&lt;/code>. Note that the vector and matrix data types offer point-wise arithmetic.&lt;/li>
+&lt;li>&lt;em>refinements&lt;/em>: &lt;code>refine_t&lt;/code> allows to refine data types.&lt;/li>
+&lt;li>&lt;em>contracts&lt;/em>: &lt;code>@contract&lt;/code> annotation on functions can be used for pre- and post-conditions.&lt;sup>1&lt;/sup>&lt;/li>
+&lt;/ul>
+&lt;h3 id="spec-checker">spec-checker
+&lt;/h3>&lt;p>Since hacspecs are executed with a Python interpreter it is not sufficient to run &lt;em>hacspec&lt;/em> to check their syntax.
+To check that the syntax is valid a spec-checker is provided.&lt;sup>2&lt;/sup>&lt;/p>
+&lt;pre tabindex="0">&lt;code>hacspec-check &amp;lt;your-hacspec&amp;gt;
+&lt;/code>&lt;/pre>&lt;h3 id="executing-hacspec">Executing hacspec
+&lt;/h3>&lt;p>&lt;em>hacspec&lt;/em> tests are executed with the Python interpreter.
+Executing tests on a spec can yield three different results.&lt;/p>
+&lt;ol>
+&lt;li>The execution is successful and all test vectors pass. In this case the spec is most likely correct and doesn&amp;rsquo;t contain any obvious typing issues.&lt;/li>
+&lt;li>The execution fails because of a failing test case. In this case the spec is probably wrong (or the test vectors are incorrect).&lt;/li>
+&lt;li>The execution fails because of a type error. The speclib as well as &lt;a class="link" href="https://github.com/agronholm/typeguard/" target="_blank" rel="noopener"
+>typeguard&lt;/a> are used to perform runtime type checks.&lt;/li>
+&lt;/ol>
+&lt;h2 id="checking-and-compiling-hacspec">Checking and compiling hacspec
+&lt;/h2>&lt;p>To use &lt;em>hacspecs&lt;/em> for formal verification such as verification of cryptographic properties of an algorithm, generating code in other languages from the spec, or verifying correctness of other implementations with it, a second set of tools is provided.
+These tools are written in OCaml and thus require additional setup and are not packaged right now.&lt;sup>3&lt;/sup>
+Check out the &lt;a class="link" href="https://github.com/HACS-workshop/hacspec" target="_blank" rel="noopener"
+>repository&lt;/a> to use them.
+All tools can be easily called via &lt;code>make&lt;/code> (see documentation in the repo &lt;code>/compiler/&lt;/code> for details).&lt;/p>
+&lt;h3 id="type-checker">Type checker
+&lt;/h3>&lt;p>To perform proper type checking Python is impractical.
+A native type checker is implemented in OCaml that performs syntax and type checking for &lt;em>hacspec&lt;/em>.
+To run the type checker on a spec simply run &lt;code>./checker.native &amp;lt;your-spec&amp;gt;&lt;/code>.&lt;/p>
+&lt;h3 id="compiler">Compiler
+&lt;/h3>&lt;p>The type checker also produces a typed AST that can be used to generate the spec in another formal language.
+There are currently compiler for EasyCrypt and F*.
+I&amp;rsquo;ll only describe the F* compiler as it&amp;rsquo;s more complete.&lt;/p>
+&lt;h4 id="f-compiler">F* compiler
+&lt;/h4>&lt;p>The F* compiler requires &lt;a class="link" href="https://github.com/mitls/hacl-star/" target="_blank" rel="noopener"
+>&lt;code>HACL_HOME&lt;/code>&lt;/a> and &lt;a class="link" href="https://github.com/FStarLang/FStar" target="_blank" rel="noopener"
+>&lt;code>FSTAR_HOME&lt;/code>&lt;/a> environment variables to be set.
+The compiler is then invoked like this &lt;code>./to_fstar &amp;lt;your-spec&amp;gt;&lt;/code>.
+The generated F* spec can then be type checked or executed on test vectors to check correctness of the spec.
+Using &lt;a class="link" href="https://github.com/FStarLang/kremlin" target="_blank" rel="noopener"
+>kremlin&lt;/a> the F* code can also be used to generate C code.&lt;/p>
+&lt;h2 id="Example">Example
+&lt;/h2>&lt;p>The &lt;a class="link" href="https://github.com/HACS-workshop/hacspec/tree/master/specs" target="_blank" rel="noopener"
+>&lt;em>hacspec&lt;/em> repo&lt;/a> has many examples.
+I&amp;rsquo;ll only give a short one here.&lt;/p>
+&lt;p>The spec &lt;code>poly.py&lt;/code>:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Python" data-lang="Python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">hacspec.speclib&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="o">*&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">p130m5&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">nat_t&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="mi">2&lt;/span> &lt;span class="o">**&lt;/span> &lt;span class="mi">130&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="mi">5&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">felem_t&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">natmod_t&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">p130m5&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nd">@typechecked&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">felem&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">n&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">nat_t&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">felem_t&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="n">natmod&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">n&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">p130m5&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nd">@typechecked&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">poly&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">m&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">vlarray_t&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">felem_t&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="n">r&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">felem_t&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">felem_t&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">acc&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">felem_t&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">felem&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">for&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="nb">range&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">array&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">length&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">m&lt;/span>&lt;span class="p">)):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">acc&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">acc&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">m&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="p">])&lt;/span> &lt;span class="o">*&lt;/span> &lt;span class="n">r&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="n">acc&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The test &lt;code>poly_test.py&lt;/code>:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Python" data-lang="Python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">poly&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="o">*&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="p">():&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">m&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">array&lt;/span>&lt;span class="p">([&lt;/span>&lt;span class="n">felem&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mh">0x6f4620636968706172676f7470797243&lt;/span>&lt;span class="p">),&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">felem&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mh">0x6f7247206863726165736552206d7572&lt;/span>&lt;span class="p">)])&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">k&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">felem&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mh">0xa806d542fe52447f336d555778bed685&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">expected&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">natmod&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mh">0xa01b776a69ea8c1cd3ba00179dc218ab&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">p130m5&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">p&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">poly&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">m&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">k&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="ow">not&lt;/span> &lt;span class="n">expected&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="n">p&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;Error&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;Expected: &amp;#34;&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="nb">str&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">expected&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;Got: &amp;#34;&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="nb">str&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">p&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">else&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;Test successful&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">if&lt;/span> &lt;span class="vm">__name__&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="s2">&amp;#34;__main__&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">main&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>This can now be run with &lt;code>python poly_test.py&lt;/code> and checked with &lt;code>hacspec-check poly.py&lt;/code> and &lt;code>checker.native poly.py&lt;/code>.
+Compiling this to F* can be done with &lt;code>to_fstar.native poly.py&lt;/code>, generating the following F* code.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-ocaml" data-lang="ocaml">&lt;span class="line">&lt;span class="cl">&lt;span class="k">module&lt;/span> &lt;span class="nc">Poly&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">open&lt;/span> &lt;span class="nc">Speclib&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">let&lt;/span> &lt;span class="n">p130m5&lt;/span> &lt;span class="o">:&lt;/span> &lt;span class="n">nat_t&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">2&lt;/span> &lt;span class="o">**.&lt;/span> &lt;span class="n">130&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">-.&lt;/span> &lt;span class="n">5&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">let&lt;/span> &lt;span class="n">felem_t&lt;/span> &lt;span class="o">:&lt;/span> &lt;span class="nc">Type0&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">natmod_t&lt;/span> &lt;span class="n">p130m5&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">let&lt;/span> &lt;span class="n">felem&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">n&lt;/span> &lt;span class="o">:&lt;/span> &lt;span class="n">nat_t&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">:&lt;/span> &lt;span class="n">felem_t&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">natmod&lt;/span> &lt;span class="n">n&lt;/span> &lt;span class="n">p130m5&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">let&lt;/span> &lt;span class="n">poly&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">m&lt;/span> &lt;span class="o">:&lt;/span> &lt;span class="n">vlarray_t&lt;/span> &lt;span class="n">felem_t&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">r&lt;/span> &lt;span class="o">:&lt;/span> &lt;span class="n">felem_t&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">:&lt;/span> &lt;span class="n">felem_t&lt;/span> &lt;span class="o">=&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">let&lt;/span> &lt;span class="n">acc&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">felem&lt;/span> &lt;span class="n">0&lt;/span> &lt;span class="k">in&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">let&lt;/span> &lt;span class="n">acc&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">repeati&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">array_length&lt;/span> &lt;span class="n">m&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="k">fun&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="n">acc&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">acc&lt;/span> &lt;span class="o">+.&lt;/span> &lt;span class="n">m&lt;/span>&lt;span class="o">.[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="o">])&lt;/span> &lt;span class="o">*.&lt;/span> &lt;span class="n">r&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="n">acc&lt;/span> &lt;span class="k">in&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">acc&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="next-steps">Next steps
+&lt;/h1>&lt;p>We hope that &lt;em>hacspec&lt;/em> is a useful tool for spec authors and many people indeed voiced interest already.
+While the tooling isn&amp;rsquo;t perfect yet, the language is developed enough to start using it.
+The next steps for &lt;em>hacspec&lt;/em> is to get some usage from spec authors and improve tooling.
+We also hope to get more compilers for different formal languages implemented.&lt;/p>
+&lt;br>
+&lt;hr>
+&lt;br>
+&lt;ol>
+&lt;li>Note that contracts are still in development and not fully supported yet.&lt;/li>
+&lt;li>In future &lt;em>hacspec&lt;/em> syntax checks and running test vectors on the spec should be done in one invocation.&lt;/li>
+&lt;li>In future pre-built binaries should be distributed to make this easier.&lt;/li>
+&lt;/ol>
+&lt;p>&lt;em>hacspec is mostly a spare time project for me at the moment. Development is therefore not always as fast as I&amp;rsquo;d like.&lt;/em>&lt;/p></description></item><item><title>Introducing HacSpec</title><link>https://www.franziskuskiefer.de/p/introducing-hacspec/</link><pubDate>Thu, 08 Feb 2018 00:00:00 +0000</pubDate><guid>https://www.franziskuskiefer.de/p/introducing-hacspec/</guid><description>&lt;img src="https://www.franziskuskiefer.de/p/introducing-hacspec/hero.png" alt="Featured image of post Introducing HacSpec" />&lt;p>HacSpec is a proposal for a new specification language for cryptographic primitives that is succinct, that is easy to read and implement, and that lends itself to formal verification.
+It aims to formalise the pseudocode used in cryptographic standards by proposing a formal syntax that can be checked for simple errors.
+HacSpec specifications are further executable to test against test vectors specified in a common syntax.&lt;/p>
+&lt;p>The main focus of HacSpec is to allow specifications to be compiled to formal languages such as cryptol, coq, F*, and easycrypt and thus make it easier to formally verify implementations.
+This allows a specification using HacSpec to be the basis not only for implementations but also for formal proofs of functional correctness, cryptographic security, and side-channel resistance.&lt;/p>
+&lt;p>The idea of having a language like HacSpec stems from discussions at the recent HACS workshop in Zurich.
+The &lt;a class="link" href="https://hacs-workshop.github.io/" target="_blank" rel="noopener"
+>High-Assurance-Cryptographic-Software workshop (HACS)&lt;/a> is an invite-only workshop co-located with the &lt;a class="link" href="https://rwc.iacr.org/" target="_blank" rel="noopener"
+>Real World Crypto&lt;/a> symposium.&lt;/p>
+&lt;p>Anyone interested in moving this project forward should subscribe to the &lt;a class="link" href="https://moderncrypto.org/mail-archive/hacspec/" target="_blank" rel="noopener"
+>mailing list&lt;/a> or file issues and pull requests against the &lt;a class="link" href="https://github.com/HACS-workshop/hacspec/" target="_blank" rel="noopener"
+>Github repository&lt;/a>.&lt;/p>
+&lt;h2 id="how-far-are-we">How far are we?
+&lt;/h2>&lt;p>We discussed and hacked at HACS a month ago and improved a little over the last weeks.
+The current state can be found at &lt;a class="link" href="https://github.com/HACS-workshop/hacspec/" target="_blank" rel="noopener"
+>Github repository&lt;/a>.&lt;/p>
+&lt;h3 id="the-language">The language
+&lt;/h3>&lt;p>There are &lt;a class="link" href="https://github.com/HACS-workshop/hacspec/tree/master/specs" target="_blank" rel="noopener"
+>examples&lt;/a> written in what we believe could be the HacSpec.
+The language is valid Python 3.6 using PEP484 and PEP526 for typing.
+It further uses comments (similar to PEP484 types) to define lengths and ranges.&lt;/p>
+&lt;p>There are also &lt;a class="link" href="https://github.com/HACS-workshop/hacspec/tree/master/specs/hacspec-rust" target="_blank" rel="noopener"
+>experiments using Rust&lt;/a> as basis for HacSpec.
+While Rust&amp;rsquo;s type system makes it a compelling candidate, limitations in handling integers of arbitrary size means we probably won&amp;rsquo;t be basing HacSpec on Rust.&lt;/p>
+&lt;p>The &lt;a class="link" href="https://github.com/HACS-workshop/hacspec/blob/master/LANGUAGE.md" target="_blank" rel="noopener"
+>language specification&lt;/a> is currently vague and not fully formalised yet.
+It lives in a markdown document but will move to an RFC layout later.&lt;/p>
+&lt;h3 id="formal-specifications">Formal specifications
+&lt;/h3>&lt;p>To show how cryptographic primitives are modelled in formal languages we added a number of &lt;a class="link" href="https://github.com/HACS-workshop/hacspec/tree/master/formal-models" target="_blank" rel="noopener"
+>specifications&lt;/a> in different languages such as cryptol, coq, F*, and easycrypt to the repository.&lt;/p>
+&lt;h3 id="spec-checker">Spec checker
+&lt;/h3>&lt;p>In order to verify whether a specification is a valid HacSpec Aaron started to implement a &lt;a class="link" href="https://github.com/HACS-workshop/hacspec/tree/master/spec-checker" target="_blank" rel="noopener"
+>spec-checker&lt;/a>.
+Basing HacSpec on another language like Python means that not all valid Python programs are valid HacSpec programs.
+The spec checker is supposed to tell authors whether a given python program is a valid HacSpec.&lt;/p>
+&lt;h3 id="compilers">Compilers
+&lt;/h3>&lt;p>There&amp;rsquo;s currently a very basic &lt;a class="link" href="https://github.com/HACS-workshop/hacspec/tree/master/spec-compilers" target="_blank" rel="noopener"
+>HacSpec to F* compiler&lt;/a> from Karthik.
+Eventually we would like to have compilers from HacSpec to all common formal languages such as cryptol, coq, F*, and easycrypt.&lt;/p>
+&lt;h2 id="call-for-participation">Call for participation
+&lt;/h2>&lt;p>We invite contributions in the following areas.&lt;/p>
+&lt;ul>
+&lt;li>We invite people to submit “standalone&amp;quot; formal specs for inclusion in the formal-models directory.&lt;/li>
+&lt;li>We invite formal methods people to build compilers from HacSpec to their favourite modelling language.&lt;/li>
+&lt;li>We invite spec authors and developers to comment on HacSpec and provide examples of what they consider good crypto specs or beautiful “obviously correct” crypto implementations.&lt;/li>
+&lt;li>We invite developers to build compilers from HacSpec to their favourite programming language.&lt;/li>
+&lt;/ul>
+&lt;h2 id="what-hacspec-is-not-about">What HacSpec is not about
+&lt;/h2>&lt;p>HacSpec does &lt;em>not&lt;/em> aim to be general enough to express protocols at this point. While this might be a target in the future the first iteration of HacSpec is only targeting crypto primitives.&lt;/p>
+&lt;h2 id="links">Links
+&lt;/h2>&lt;ul>
+&lt;li>&lt;a class="link" href="https://github.com/HACS-workshop/hacspec/" target="_blank" rel="noopener"
+>Github repository&lt;/a>&lt;/li>
+&lt;li>&lt;a class="link" href="https://moderncrypto.org/mail-archive/hacspec/" target="_blank" rel="noopener"
+>Mailing list&lt;/a>&lt;/li>
+&lt;/ul></description></item></channel></rss>
