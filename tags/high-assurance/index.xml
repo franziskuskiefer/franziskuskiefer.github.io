@@ -32,7 +32,7 @@ The following picture gives a high-level overview of the different techniques.
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/what-is-high-assurance-cryptography/overview1.png"
 width="1440"
 height="720"
-srcset="https://www.franziskuskiefer.de/p/what-is-high-assurance-cryptography/overview1_hu1970889969198621401.png 480w, https://www.franziskuskiefer.de/p/what-is-high-assurance-cryptography/overview1_hu6355104638587915922.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/what-is-high-assurance-cryptography/overview1_hu_b7de326a85959a85.png 480w, https://www.franziskuskiefer.de/p/what-is-high-assurance-cryptography/overview1_hu_80767626755f6959.png 1024w"
 loading="lazy"
 alt="High assurance tools - an overview"
 class="gallery-image"
@@ -66,7 +66,7 @@ level of assurance they provide and the complexity required to use them.&lt;/p>
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/what-is-high-assurance-cryptography/overview2.png"
 width="2018"
 height="1047"
-srcset="https://www.franziskuskiefer.de/p/what-is-high-assurance-cryptography/overview2_hu3604698546197174614.png 480w, https://www.franziskuskiefer.de/p/what-is-high-assurance-cryptography/overview2_hu15061777128408909.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/what-is-high-assurance-cryptography/overview2_hu_202a6d43dd58e2c4.png 480w, https://www.franziskuskiefer.de/p/what-is-high-assurance-cryptography/overview2_hu_33514b732c83a68d.png 1024w"
 loading="lazy"
 alt="High assurance - an overview"
 class="gallery-image"
@@ -216,8 +216,7 @@ state the following:&lt;/p>
 &lt;li>Fully memory-safe, hence &lt;code>#![forbid(unsafe_code)]&lt;/code>&lt;/li>
 &lt;li>Stand-alone and capable for running almost anywhere, hence &lt;code>#![no_std]&lt;/code>&lt;/li>
 &lt;li>Functionally validated, using official IETF test vectors&lt;/li>
-&lt;/ul>
-&lt;/blockquote>
+&lt;/ul>&lt;/blockquote>
 &lt;p>While these points are all on the list above they are what I would consider good
 engineering principles (known answer tests with test vectors, and memory safety).
 In particular, they lay the foundation for high assurance software but don’t

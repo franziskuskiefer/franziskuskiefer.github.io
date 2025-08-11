@@ -2,8 +2,7 @@
 &lt;p>This is in response to the &lt;a class="link" href="https://kerkour.com/rust-symmetric-encryption-aead-benchmark/" target="_blank" rel="noopener"
 >blog post by Sylvain Kerkour&lt;/a> benchmarking ring and
 Rust Crypto AEADs.
-I was curious how HACL* stacks up to these two with these parameters.&lt;/p>
-&lt;/blockquote>
+I was curious how HACL* stacks up to these two with these parameters.&lt;/p>&lt;/blockquote>
 &lt;p>I&amp;rsquo;m maintaining the &lt;a class="link" href="https://crates.io/crates/evercrypt" target="_blank" rel="noopener"
 >Evercrypt crate&lt;/a>, a wrapper
 around the formally verified crypto library &lt;a class="link" href="https://github.com/project-everest/hacl-star" target="_blank" rel="noopener"

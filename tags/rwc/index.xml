@@ -19,8 +19,7 @@ See for example the &lt;a class="link" href="https://cseweb.ucsd.edu/~mihir/pape
 &lt;p>Shared-Secrets is an application that helps you to simply share one-time secrets over the web.
 Using the Shared-Secrets service allows you to transfer the actual secret in an encrypted form.
 Retrieving the secret is as simple as following a link.
-In contrast to other secret sharing services, Shared-Secrets does not store the secret on the server, but puts the encrypted secret into the link that you share with the desired recipient.&lt;/p>
-&lt;/blockquote>
+In contrast to other secret sharing services, Shared-Secrets does not store the secret on the server, but puts the encrypted secret into the link that you share with the desired recipient.&lt;/p>&lt;/blockquote>
 &lt;p>I leave aside the fact that any attacker that can intercept the message can trivially retrieve the secret and focus on the encryption scheme used for the service.
 Note that the service allows to encrypt the message with a password before sharing it to prevent the aforementioned attack.&lt;/p>
 &lt;p>The encryption scheme used for this service is a basic encrypt-then-mac scheme that can be written as&lt;/p>

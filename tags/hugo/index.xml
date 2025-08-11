@@ -12,7 +12,7 @@ In short, the &lt;code>monetization&lt;/code> meta-tag on the page is parsed by 
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/web-monetization/webmonetization-flow.png"
 width="1050"
 height="570"
-srcset="https://www.franziskuskiefer.de/p/web-monetization/webmonetization-flow_hu223726559760162503.png 480w, https://www.franziskuskiefer.de/p/web-monetization/webmonetization-flow_hu6528732100868382694.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/web-monetization/webmonetization-flow_hu_5815eb18ee3ef2a4.png 480w, https://www.franziskuskiefer.de/p/web-monetization/webmonetization-flow_hu_d27efa21a9759bb2.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="184"
@@ -37,7 +37,7 @@ This is a pretty bad sign for a provider that&amp;rsquo;s supposed to handle mon
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/web-monetization/UpholdWallet.png"
 width="845"
 height="237"
-srcset="https://www.franziskuskiefer.de/p/web-monetization/UpholdWallet_hu1113602131308553112.png 480w, https://www.franziskuskiefer.de/p/web-monetization/UpholdWallet_hu11558232267134140092.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/web-monetization/UpholdWallet_hu_56bc4ad312e0bedd.png 480w, https://www.franziskuskiefer.de/p/web-monetization/UpholdWallet_hu_5b48612fa2a6af42.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="356"
@@ -103,7 +103,7 @@ With an account and an &lt;a class="link" href="https://coil.com/#Extension-Inst
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/web-monetization/franziskuskiefer.de-coil.png"
 width="1822"
 height="1414"
-srcset="https://www.franziskuskiefer.de/p/web-monetization/franziskuskiefer.de-coil_hu1261618572122168537.png 480w, https://www.franziskuskiefer.de/p/web-monetization/franziskuskiefer.de-coil_hu1706154613804348378.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/web-monetization/franziskuskiefer.de-coil_hu_e086fa890bdc182f.png 480w, https://www.franziskuskiefer.de/p/web-monetization/franziskuskiefer.de-coil_hu_183806739d6d944f.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="128"
@@ -115,7 +115,7 @@ However, it takes a while for the monetization to kick in such that it looks lik
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/web-monetization/monetization-loading.gif"
 width="1296"
 height="234"
-srcset="https://www.franziskuskiefer.de/p/web-monetization/monetization-loading_hu10681860869619095284.gif 480w, https://www.franziskuskiefer.de/p/web-monetization/monetization-loading_hu14548680564489401132.gif 1024w"
+srcset="https://www.franziskuskiefer.de/p/web-monetization/monetization-loading_hu_11503fa888298593.gif 480w, https://www.franziskuskiefer.de/p/web-monetization/monetization-loading_hu_f3e3553cdea5853d.gif 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="553"
@@ -161,7 +161,7 @@ There was no communication whatsoever from Uphold except the following screen wh
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/web-monetization/uphold-account-lock.png"
 width="880"
 height="1262"
-srcset="https://www.franziskuskiefer.de/p/web-monetization/uphold-account-lock_hu1680130155481434162.png 480w, https://www.franziskuskiefer.de/p/web-monetization/uphold-account-lock_hu2931331024502949610.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/web-monetization/uphold-account-lock_hu_6b74195670761a7c.png 480w, https://www.franziskuskiefer.de/p/web-monetization/uphold-account-lock_hu_f388b809cf653a6.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="69"
@@ -172,8 +172,7 @@ data-flex-basis="167px"
 &lt;/h2>&lt;p>After getting in touch with Uphold (thanks Kaily!) it turned out that the account verification didn&amp;rsquo;t go through for some reason and I had to redo it to unlock my account.&lt;/p>
 &lt;p>I got an innocuous email saying&lt;/p>
 &lt;blockquote>
-&lt;p>We’ve had to temporarily restrict your account while we gather some more information. You can still trade but you won’t be able to withdraw funds.&lt;/p>
-&lt;/blockquote>
+&lt;p>We’ve had to temporarily restrict your account while we gather some more information. You can still trade but you won’t be able to withdraw funds.&lt;/p>&lt;/blockquote>
 &lt;p>What this actually meant is that I had to get in touch with the Uphold support team to figure out what&amp;rsquo;s going on.&lt;/p>
 &lt;p>I re-enabled web-monetization on this page.
 While the initial experience on my end wasn&amp;rsquo;t great it was unrelated to web-monetization and due to some shortcomings in Uphold&amp;rsquo;s communication and me ignoring some of it 😬.&lt;/p></description></item></channel></rss>

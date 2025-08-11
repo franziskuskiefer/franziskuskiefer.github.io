@@ -2,8 +2,7 @@
 &lt;p>This is in response to the &lt;a class="link" href="https://kerkour.com/rust-symmetric-encryption-aead-benchmark/" target="_blank" rel="noopener"
 >blog post by Sylvain Kerkour&lt;/a> benchmarking ring and
 Rust Crypto AEADs.
-I was curious how HACL* stacks up to these two with these parameters.&lt;/p>
-&lt;/blockquote>
+I was curious how HACL* stacks up to these two with these parameters.&lt;/p>&lt;/blockquote>
 &lt;p>I&amp;rsquo;m maintaining the &lt;a class="link" href="https://crates.io/crates/evercrypt" target="_blank" rel="noopener"
 >Evercrypt crate&lt;/a>, a wrapper
 around the formally verified crypto library &lt;a class="link" href="https://github.com/project-everest/hacl-star" target="_blank" rel="noopener"
@@ -258,8 +257,7 @@ machdep.cpu.thread_count: 8
 &lt;p>&lt;a class="link" href="https://github.com/mitls/hacl-star/" target="_blank" rel="noopener"
 >HACL*&lt;/a> is a cryptographic library written in &lt;a class="link" href="https://www.fstar-lang.org/" target="_blank" rel="noopener"
 >F*&lt;/a> that allows translation to C using kremlin.
-It guarantees memory safety, secret independent computation, and functional correctness with respect to a mathematical specification.&lt;/p>
-&lt;/blockquote>
+It guarantees memory safety, secret independent computation, and functional correctness with respect to a mathematical specification.&lt;/p>&lt;/blockquote>
 &lt;hr>
 &lt;p>In this second blog post I describe the process of integrating code from HACL*, a researchy crypto library, into NSS, a production library shipping to millions of people, running on a plethora of platforms.
 In short, how to ship (some parts of) HACL*.&lt;/p>
@@ -301,7 +299,7 @@ The first versions we looked at weren&amp;rsquo;t that great &amp;hellip;&lt;/p>
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/shipping-some-hacl/hacl-review.png"
 width="1983"
 height="747"
-srcset="https://www.franziskuskiefer.de/p/shipping-some-hacl/hacl-review_hu4499019627654614460.png 480w, https://www.franziskuskiefer.de/p/shipping-some-hacl/hacl-review_hu14670101420540871018.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/shipping-some-hacl/hacl-review_hu_dc7cc53ebaebad91.png 480w, https://www.franziskuskiefer.de/p/shipping-some-hacl/hacl-review_hu_9b604c9cc957aac.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="265"
@@ -310,7 +308,7 @@ data-flex-basis="637px"
 &lt;img src="https://www.franziskuskiefer.de/p/shipping-some-hacl/ugly-hacl.png"
 width="755"
 height="147"
-srcset="https://www.franziskuskiefer.de/p/shipping-some-hacl/ugly-hacl_hu6016185786980744563.png 480w, https://www.franziskuskiefer.de/p/shipping-some-hacl/ugly-hacl_hu14117722760368656323.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/shipping-some-hacl/ugly-hacl_hu_a335ff08fbc7a63a.png 480w, https://www.franziskuskiefer.de/p/shipping-some-hacl/ugly-hacl_hu_67d61d8e2d1f243c.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="513"
@@ -339,7 +337,7 @@ As expected we ran into a couple issues on some platforms such as BSD and Solari
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/shipping-some-hacl/nss-bsd-hacl-bug.png"
 width="2048"
 height="184"
-srcset="https://www.franziskuskiefer.de/p/shipping-some-hacl/nss-bsd-hacl-bug_hu5090590584940457725.png 480w, https://www.franziskuskiefer.de/p/shipping-some-hacl/nss-bsd-hacl-bug_hu14518716714003580782.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/shipping-some-hacl/nss-bsd-hacl-bug_hu_22de423f74418db3.png 480w, https://www.franziskuskiefer.de/p/shipping-some-hacl/nss-bsd-hacl-bug_hu_fe22262a6f4debb0.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="1113"
@@ -348,7 +346,7 @@ data-flex-basis="2671px"
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/shipping-some-hacl/nss-solaris-hacl-bug.png"
 width="2048"
 height="184"
-srcset="https://www.franziskuskiefer.de/p/shipping-some-hacl/nss-solaris-hacl-bug_hu5722108412057574063.png 480w, https://www.franziskuskiefer.de/p/shipping-some-hacl/nss-solaris-hacl-bug_hu1645630068384567860.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/shipping-some-hacl/nss-solaris-hacl-bug_hu_880cd95fb94c19bd.png 480w, https://www.franziskuskiefer.de/p/shipping-some-hacl/nss-solaris-hacl-bug_hu_3d611ef34f96cbd.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="1113"
@@ -369,7 +367,7 @@ Here&amp;rsquo;s a diff for a recent update.&lt;/p>
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/shipping-some-hacl/nss-hacl-patch.png"
 width="2922"
 height="1264"
-srcset="https://www.franziskuskiefer.de/p/shipping-some-hacl/nss-hacl-patch_hu12663953578200761238.png 480w, https://www.franziskuskiefer.de/p/shipping-some-hacl/nss-hacl-patch_hu5796332706377407724.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/shipping-some-hacl/nss-hacl-patch_hu_cd3aa9c5c2b53aa9.png 480w, https://www.franziskuskiefer.de/p/shipping-some-hacl/nss-hacl-patch_hu_7a01cd98eb0314ff.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="231"
@@ -387,8 +385,7 @@ The code is relatively simple and self-contained, which makes this easier.
 But it shows that formal verification tools are good enough to be used in production.&lt;/p>
 &lt;p>The second lesson we learned is probably the more valuable one.&lt;/p>
 &lt;blockquote>
-&lt;p>&lt;em>Talk to each other and work together.&lt;/em>&lt;/p>
-&lt;/blockquote>
+&lt;p>&lt;em>Talk to each other and work together.&lt;/em>&lt;/p>&lt;/blockquote>
 &lt;p>From an engineering standpoint it might be frightening to start looking at formal verification tools and corresponding languages.
 But people working with these tools are happy to help out if that means more people are using their tools.
 It will need some effort getting used to the tools and languages but it&amp;rsquo;s well worth it.&lt;/p>
@@ -449,7 +446,7 @@ This additional code however is ignored by Kremlin and doesn&amp;rsquo;t get tra
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/the-hacl-approach/hacl-chart.png"
 width="842"
 height="595"
-srcset="https://www.franziskuskiefer.de/p/the-hacl-approach/hacl-chart_hu3913347318361800738.png 480w, https://www.franziskuskiefer.de/p/the-hacl-approach/hacl-chart_hu17342941644776944915.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/the-hacl-approach/hacl-chart_hu_9683bf7354fc0b1e.png 480w, https://www.franziskuskiefer.de/p/the-hacl-approach/hacl-chart_hu_7cbcf00e30c5a9f0.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="141"

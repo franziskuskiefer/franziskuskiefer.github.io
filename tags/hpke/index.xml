@@ -2,8 +2,7 @@
 >HPKE&lt;/a>, published as &lt;a class="link" href="https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/" target="_blank" rel="noopener"
 >RFC 9180&lt;/a>, describes a scheme for hybrid public key encryption.&lt;/p>
 &lt;blockquote>
-&lt;p>📚 Please go and read our &lt;a class="link" href="https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/" >TL;DR on HPKE&lt;/a> if you nee more background on HPKE.&lt;/p>
-&lt;/blockquote>
+&lt;p>📚 Please go and read our &lt;a class="link" href="https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/" >TL;DR on HPKE&lt;/a> if you nee more background on HPKE.&lt;/p>&lt;/blockquote>
 &lt;p>In this I describe the first executable HPKE specification using &lt;a class="link" href="https://hacspec.org" target="_blank" rel="noopener"
 >hacspec&lt;/a>.
 It is not only an executable specification of &lt;a class="link" href="https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/" target="_blank" rel="noopener"
@@ -28,8 +27,7 @@ It works for any combination of an asymmetric key encapsulation mechanism (KEM),
 details on the core functions within HPKE.
 All code examples are in hacspec.&lt;/p>
 &lt;blockquote>
-&lt;p>💡 Go ahead and &lt;a class="link" href="https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/#try-it-out-now" >run the hacspec HPKE in the browser&lt;/a>.&lt;/p>
-&lt;/blockquote>
+&lt;p>💡 Go ahead and &lt;a class="link" href="https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/#try-it-out-now" >run the hacspec HPKE in the browser&lt;/a>.&lt;/p>&lt;/blockquote>
 &lt;h2 id="encrypting-to-a-public-key">Encrypting to a Public Key
 &lt;/h2>&lt;p>This is the most basic functionality HPKE offers; encrypting a payload to a public key.
 So how does this look on the outside?&lt;/p>
@@ -395,7 +393,7 @@ can retrieve the shared secret with their corresponding private key.&lt;/p>
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/hybrid-encryption.png"
 width="1229"
 height="1237"
-srcset="https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/hybrid-encryption_hu14889700381132618719.png 480w, https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/hybrid-encryption_hu10603913873542110441.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/hybrid-encryption_hu_ad814504bf32c71b.png 480w, https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/hybrid-encryption_hu_fb1cf3e3265cd55.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="99"
@@ -410,7 +408,7 @@ they use for the sender corresponds to the used private key.&lt;/p>
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/authenticated-hybrid-encryption.png"
 width="1470"
 height="1237"
-srcset="https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/authenticated-hybrid-encryption_hu9594378189453069159.png 480w, https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/authenticated-hybrid-encryption_hu14116682228995873758.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/authenticated-hybrid-encryption_hu_cf1bd566fcf29ade.png 480w, https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/authenticated-hybrid-encryption_hu_9947d954a170bb2c.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="118"

@@ -2,8 +2,7 @@
 &lt;p>This is in response to the &lt;a class="link" href="https://kerkour.com/rust-symmetric-encryption-aead-benchmark/" target="_blank" rel="noopener"
 >blog post by Sylvain Kerkour&lt;/a> benchmarking ring and
 Rust Crypto AEADs.
-I was curious how HACL* stacks up to these two with these parameters.&lt;/p>
-&lt;/blockquote>
+I was curious how HACL* stacks up to these two with these parameters.&lt;/p>&lt;/blockquote>
 &lt;p>I&amp;rsquo;m maintaining the &lt;a class="link" href="https://crates.io/crates/evercrypt" target="_blank" rel="noopener"
 >Evercrypt crate&lt;/a>, a wrapper
 around the formally verified crypto library &lt;a class="link" href="https://github.com/project-everest/hacl-star" target="_blank" rel="noopener"
@@ -274,8 +273,7 @@ See for example the &lt;a class="link" href="https://cseweb.ucsd.edu/~mihir/pape
 &lt;p>Shared-Secrets is an application that helps you to simply share one-time secrets over the web.
 Using the Shared-Secrets service allows you to transfer the actual secret in an encrypted form.
 Retrieving the secret is as simple as following a link.
-In contrast to other secret sharing services, Shared-Secrets does not store the secret on the server, but puts the encrypted secret into the link that you share with the desired recipient.&lt;/p>
-&lt;/blockquote>
+In contrast to other secret sharing services, Shared-Secrets does not store the secret on the server, but puts the encrypted secret into the link that you share with the desired recipient.&lt;/p>&lt;/blockquote>
 &lt;p>I leave aside the fact that any attacker that can intercept the message can trivially retrieve the secret and focus on the encryption scheme used for the service.
 Note that the service allows to encrypt the message with a password before sharing it to prevent the aforementioned attack.&lt;/p>
 &lt;p>The encryption scheme used for this service is a basic encrypt-then-mac scheme that can be written as&lt;/p>
@@ -472,7 +470,7 @@ Specs σ ::= s1...sn sequence of statements
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/update-on-hacspec/hacspec2-architecture.png"
 width="2873"
 height="2451"
-srcset="https://www.franziskuskiefer.de/p/update-on-hacspec/hacspec2-architecture_hu3195581800283001141.png 480w, https://www.franziskuskiefer.de/p/update-on-hacspec/hacspec2-architecture_hu2649430833740968362.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/update-on-hacspec/hacspec2-architecture_hu_8de99e7eeff4771e.png 480w, https://www.franziskuskiefer.de/p/update-on-hacspec/hacspec2-architecture_hu_950af34ffa8e638f.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="117"
@@ -646,7 +644,7 @@ This additional code however is ignored by Kremlin and doesn&amp;rsquo;t get tra
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/the-hacl-approach/hacl-chart.png"
 width="842"
 height="595"
-srcset="https://www.franziskuskiefer.de/p/the-hacl-approach/hacl-chart_hu3913347318361800738.png 480w, https://www.franziskuskiefer.de/p/the-hacl-approach/hacl-chart_hu17342941644776944915.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/the-hacl-approach/hacl-chart_hu_9683bf7354fc0b1e.png 480w, https://www.franziskuskiefer.de/p/the-hacl-approach/hacl-chart_hu_7cbcf00e30c5a9f0.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="141"
@@ -833,7 +831,7 @@ The essence of the bug is that &lt;code>dest_len-len&lt;/code> does not point to
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/cve-2017-5462-a-prng-issue/CVE-2017-5462-bug.png"
 width="822"
 height="302"
-srcset="https://www.franziskuskiefer.de/p/cve-2017-5462-a-prng-issue/CVE-2017-5462-bug_hu8192818250878528882.png 480w, https://www.franziskuskiefer.de/p/cve-2017-5462-a-prng-issue/CVE-2017-5462-bug_hu13844593303691259105.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/cve-2017-5462-a-prng-issue/CVE-2017-5462-bug_hu_e8b8cedd1aa54041.png 480w, https://www.franziskuskiefer.de/p/cve-2017-5462-a-prng-issue/CVE-2017-5462-bug_hu_85a39c5e97dacc3c.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="272"
@@ -878,7 +876,7 @@ Tracing these two executions makes it easy to pinpoint the cause of the collisio
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/aes-gcm-speedup/Screenshot-from-2017-06-14-10-09-27.png"
 width="2136"
 height="996"
-srcset="https://www.franziskuskiefer.de/p/aes-gcm-speedup/Screenshot-from-2017-06-14-10-09-27_hu8631148032516591515.png 480w, https://www.franziskuskiefer.de/p/aes-gcm-speedup/Screenshot-from-2017-06-14-10-09-27_hu2776092876382993494.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/aes-gcm-speedup/Screenshot-from-2017-06-14-10-09-27_hu_a00db76a02ce7800.png 480w, https://www.franziskuskiefer.de/p/aes-gcm-speedup/Screenshot-from-2017-06-14-10-09-27_hu_9d629983117762ba.png 1024w"
 loading="lazy"
 alt="Firefox 53 TLS cipher telemetry"
 class="gallery-image"
@@ -930,7 +928,7 @@ data-flex-basis="514px"
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/aes-gcm-speedup/linux64-encrypt.png"
 width="665"
 height="412"
-srcset="https://www.franziskuskiefer.de/p/aes-gcm-speedup/linux64-encrypt_hu10086943397254153485.png 480w, https://www.franziskuskiefer.de/p/aes-gcm-speedup/linux64-encrypt_hu969099613805604214.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/aes-gcm-speedup/linux64-encrypt_hu_b15de098b1144d0f.png 480w, https://www.franziskuskiefer.de/p/aes-gcm-speedup/linux64-encrypt_hu_595bdc315318072.png 1024w"
 loading="lazy"
 alt="Linux 64-bit encrypt"
 class="gallery-image"
@@ -940,7 +938,7 @@ data-flex-basis="387px"
 &lt;img src="https://www.franziskuskiefer.de/p/aes-gcm-speedup/linux32-encrypt.png"
 width="657"
 height="407"
-srcset="https://www.franziskuskiefer.de/p/aes-gcm-speedup/linux32-encrypt_hu10473480209911482808.png 480w, https://www.franziskuskiefer.de/p/aes-gcm-speedup/linux32-encrypt_hu17184927622994130837.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/aes-gcm-speedup/linux32-encrypt_hu_1b8c84b88fdb7236.png 480w, https://www.franziskuskiefer.de/p/aes-gcm-speedup/linux32-encrypt_hu_6cd5f261677dca18.png 1024w"
 loading="lazy"
 alt="Linux 32-bit encrypt"
 class="gallery-image"
@@ -953,7 +951,7 @@ The speed-up for 32-bit Linux is obviously more significant as it didn&amp;rsquo
 &lt;img src="https://www.franziskuskiefer.de/p/aes-gcm-speedup/win64-encrypt.png"
 width="600"
 height="371"
-srcset="https://www.franziskuskiefer.de/p/aes-gcm-speedup/win64-encrypt_hu15268150531908549230.png 480w, https://www.franziskuskiefer.de/p/aes-gcm-speedup/win64-encrypt_hu3293416628537479388.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/aes-gcm-speedup/win64-encrypt_hu_79ecb61b925e7e01.png 480w, https://www.franziskuskiefer.de/p/aes-gcm-speedup/win64-encrypt_hu_ffeff8d750e3e1d0.png 1024w"
 loading="lazy"
 alt="Windows 64-bit encrypt"
 class="gallery-image"
@@ -963,7 +961,7 @@ data-flex-basis="388px"
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/aes-gcm-speedup/win32-encrypt.png"
 width="600"
 height="371"
-srcset="https://www.franziskuskiefer.de/p/aes-gcm-speedup/win32-encrypt_hu14438816655898579123.png 480w, https://www.franziskuskiefer.de/p/aes-gcm-speedup/win32-encrypt_hu5113623536179900788.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/aes-gcm-speedup/win32-encrypt_hu_c9c434eb89453188.png 480w, https://www.franziskuskiefer.de/p/aes-gcm-speedup/win32-encrypt_hu_94ad5e97af38e585.png 1024w"
 loading="lazy"
 alt="Windows 32-bit encrypt"
 class="gallery-image"
@@ -974,7 +972,7 @@ data-flex-basis="388px"
 &lt;img src="https://www.franziskuskiefer.de/p/aes-gcm-speedup/mac-encrypt.png"
 width="600"
 height="371"
-srcset="https://www.franziskuskiefer.de/p/aes-gcm-speedup/mac-encrypt_hu1293817040194398281.png 480w, https://www.franziskuskiefer.de/p/aes-gcm-speedup/mac-encrypt_hu5387432531827102804.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/aes-gcm-speedup/mac-encrypt_hu_9d1fbc2fd46b74bf.png 480w, https://www.franziskuskiefer.de/p/aes-gcm-speedup/mac-encrypt_hu_f075882d1ea0a6ef.png 1024w"
 loading="lazy"
 alt="OS-X encrypt"
 class="gallery-image"
@@ -999,7 +997,7 @@ So I wrote a little thing to measure the time (CPU cycles) needed for division.&
 &lt;/h2>&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/on-constant-time-division/plot_low-1.png"
 width="2558"
 height="1347"
-srcset="https://www.franziskuskiefer.de/p/on-constant-time-division/plot_low-1_hu15842502754747643451.png 480w, https://www.franziskuskiefer.de/p/on-constant-time-division/plot_low-1_hu10953608243128651236.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/on-constant-time-division/plot_low-1_hu_fdb3d05d68bef2e8.png 480w, https://www.franziskuskiefer.de/p/on-constant-time-division/plot_low-1_hu_29153d0125de3c2d.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="189"
@@ -1019,7 +1017,7 @@ data-flex-basis="455px"
 &lt;/h2>&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/on-constant-time-division/plot-1.png"
 width="2558"
 height="1347"
-srcset="https://www.franziskuskiefer.de/p/on-constant-time-division/plot-1_hu15793922373718518580.png 480w, https://www.franziskuskiefer.de/p/on-constant-time-division/plot-1_hu8612448082123602519.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/on-constant-time-division/plot-1_hu_99759b9081b2391a.png 480w, https://www.franziskuskiefer.de/p/on-constant-time-division/plot-1_hu_a3074d5514f86497.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="189"

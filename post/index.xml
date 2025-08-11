@@ -32,7 +32,7 @@ The following picture gives a high-level overview of the different techniques.
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/what-is-high-assurance-cryptography/overview1.png"
 width="1440"
 height="720"
-srcset="https://www.franziskuskiefer.de/p/what-is-high-assurance-cryptography/overview1_hu1970889969198621401.png 480w, https://www.franziskuskiefer.de/p/what-is-high-assurance-cryptography/overview1_hu6355104638587915922.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/what-is-high-assurance-cryptography/overview1_hu_b7de326a85959a85.png 480w, https://www.franziskuskiefer.de/p/what-is-high-assurance-cryptography/overview1_hu_80767626755f6959.png 1024w"
 loading="lazy"
 alt="High assurance tools - an overview"
 class="gallery-image"
@@ -66,7 +66,7 @@ level of assurance they provide and the complexity required to use them.&lt;/p>
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/what-is-high-assurance-cryptography/overview2.png"
 width="2018"
 height="1047"
-srcset="https://www.franziskuskiefer.de/p/what-is-high-assurance-cryptography/overview2_hu3604698546197174614.png 480w, https://www.franziskuskiefer.de/p/what-is-high-assurance-cryptography/overview2_hu15061777128408909.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/what-is-high-assurance-cryptography/overview2_hu_202a6d43dd58e2c4.png 480w, https://www.franziskuskiefer.de/p/what-is-high-assurance-cryptography/overview2_hu_33514b732c83a68d.png 1024w"
 loading="lazy"
 alt="High assurance - an overview"
 class="gallery-image"
@@ -216,8 +216,7 @@ state the following:&lt;/p>
 &lt;li>Fully memory-safe, hence &lt;code>#![forbid(unsafe_code)]&lt;/code>&lt;/li>
 &lt;li>Stand-alone and capable for running almost anywhere, hence &lt;code>#![no_std]&lt;/code>&lt;/li>
 &lt;li>Functionally validated, using official IETF test vectors&lt;/li>
-&lt;/ul>
-&lt;/blockquote>
+&lt;/ul>&lt;/blockquote>
 &lt;p>While these points are all on the list above they are what I would consider good
 engineering principles (known answer tests with test vectors, and memory safety).
 In particular, they lay the foundation for high assurance software but don’t
@@ -274,8 +273,7 @@ ready TLS 1.3 implementation.&lt;/p>
 >HPKE&lt;/a>, published as &lt;a class="link" href="https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/" target="_blank" rel="noopener"
 >RFC 9180&lt;/a>, describes a scheme for hybrid public key encryption.&lt;/p>
 &lt;blockquote>
-&lt;p>📚 Please go and read our &lt;a class="link" href="https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/" >TL;DR on HPKE&lt;/a> if you nee more background on HPKE.&lt;/p>
-&lt;/blockquote>
+&lt;p>📚 Please go and read our &lt;a class="link" href="https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/" >TL;DR on HPKE&lt;/a> if you nee more background on HPKE.&lt;/p>&lt;/blockquote>
 &lt;p>In this I describe the first executable HPKE specification using &lt;a class="link" href="https://hacspec.org" target="_blank" rel="noopener"
 >hacspec&lt;/a>.
 It is not only an executable specification of &lt;a class="link" href="https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/" target="_blank" rel="noopener"
@@ -300,8 +298,7 @@ It works for any combination of an asymmetric key encapsulation mechanism (KEM),
 details on the core functions within HPKE.
 All code examples are in hacspec.&lt;/p>
 &lt;blockquote>
-&lt;p>💡 Go ahead and &lt;a class="link" href="https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/#try-it-out-now" >run the hacspec HPKE in the browser&lt;/a>.&lt;/p>
-&lt;/blockquote>
+&lt;p>💡 Go ahead and &lt;a class="link" href="https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/#try-it-out-now" >run the hacspec HPKE in the browser&lt;/a>.&lt;/p>&lt;/blockquote>
 &lt;h2 id="encrypting-to-a-public-key">Encrypting to a Public Key
 &lt;/h2>&lt;p>This is the most basic functionality HPKE offers; encrypting a payload to a public key.
 So how does this look on the outside?&lt;/p>
@@ -667,7 +664,7 @@ can retrieve the shared secret with their corresponding private key.&lt;/p>
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/hybrid-encryption.png"
 width="1229"
 height="1237"
-srcset="https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/hybrid-encryption_hu14889700381132618719.png 480w, https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/hybrid-encryption_hu10603913873542110441.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/hybrid-encryption_hu_ad814504bf32c71b.png 480w, https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/hybrid-encryption_hu_fb1cf3e3265cd55.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="99"
@@ -682,7 +679,7 @@ they use for the sender corresponds to the used private key.&lt;/p>
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/authenticated-hybrid-encryption.png"
 width="1470"
 height="1237"
-srcset="https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/authenticated-hybrid-encryption_hu9594378189453069159.png 480w, https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/authenticated-hybrid-encryption_hu14116682228995873758.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/authenticated-hybrid-encryption_hu_cf1bd566fcf29ade.png 480w, https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/authenticated-hybrid-encryption_hu_9947d954a170bb2c.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="118"
@@ -810,8 +807,7 @@ research group &lt;a class="link" href="https://team.inria.fr/prosecco/" target=
 &lt;p>This is in response to the &lt;a class="link" href="https://kerkour.com/rust-symmetric-encryption-aead-benchmark/" target="_blank" rel="noopener"
 >blog post by Sylvain Kerkour&lt;/a> benchmarking ring and
 Rust Crypto AEADs.
-I was curious how HACL* stacks up to these two with these parameters.&lt;/p>
-&lt;/blockquote>
+I was curious how HACL* stacks up to these two with these parameters.&lt;/p>&lt;/blockquote>
 &lt;p>I&amp;rsquo;m maintaining the &lt;a class="link" href="https://crates.io/crates/evercrypt" target="_blank" rel="noopener"
 >Evercrypt crate&lt;/a>, a wrapper
 around the formally verified crypto library &lt;a class="link" href="https://github.com/project-everest/hacl-star" target="_blank" rel="noopener"
@@ -1079,8 +1075,7 @@ This blog post is only about MLS, and in particular OpenMLS, performance.&lt;/p>
 >is supposed to be scalable&lt;/a>.
 The charter in particular claims the following:&lt;/p>
 &lt;blockquote>
-&lt;p>Resource requirements have good scaling in the size of the group (preferably sub-linear)&lt;/p>
-&lt;/blockquote>
+&lt;p>Resource requirements have good scaling in the size of the group (preferably sub-linear)&lt;/p>&lt;/blockquote>
 &lt;p>While performance can be theoretically analysed for MLS it is also interesting to see whether the performance goals hold up in a real implementation.
 This of course only looks at a single implementation.
 Nonetheless, I think that it gives a good impression on the actual performance of MLS implementations.
@@ -1146,7 +1141,7 @@ This is what is to be expected because the performance is dominated by the creat
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/openmls-performance/group-creation.png"
 width="600"
 height="371"
-srcset="https://www.franziskuskiefer.de/p/openmls-performance/group-creation_hu390722887585268607.png 480w, https://www.franziskuskiefer.de/p/openmls-performance/group-creation_hu13105536394070267109.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/openmls-performance/group-creation_hu_711f7220390f570b.png 480w, https://www.franziskuskiefer.de/p/openmls-performance/group-creation_hu_a7c4146796121254.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="161"
@@ -1160,7 +1155,7 @@ The blue line again shows the actual measurements while the magenta one is a tre
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/openmls-performance/join.png"
 width="600"
 height="371"
-srcset="https://www.franziskuskiefer.de/p/openmls-performance/join_hu8434490448179972974.png 480w, https://www.franziskuskiefer.de/p/openmls-performance/join_hu586860903247748959.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/openmls-performance/join_hu_6aaf206d7a3d39eb.png 480w, https://www.franziskuskiefer.de/p/openmls-performance/join_hu_9f767674d648977f.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="161"
@@ -1171,7 +1166,7 @@ data-flex-basis="388px"
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/openmls-performance/update.png"
 width="600"
 height="371"
-srcset="https://www.franziskuskiefer.de/p/openmls-performance/update_hu9873159883853717952.png 480w, https://www.franziskuskiefer.de/p/openmls-performance/update_hu3643139880533845239.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/openmls-performance/update_hu_b6384e698aef9ecf.png 480w, https://www.franziskuskiefer.de/p/openmls-performance/update_hu_9f03c3b6a007180.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="161"
@@ -1185,7 +1180,7 @@ This is a strong indicator for where to look for the differences.&lt;/p>
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/openmls-performance/send-update-base.png"
 width="3606"
 height="762"
-srcset="https://www.franziskuskiefer.de/p/openmls-performance/send-update-base_hu4874649569774633425.png 480w, https://www.franziskuskiefer.de/p/openmls-performance/send-update-base_hu5991119730222648403.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/openmls-performance/send-update-base_hu_ebfa9c70c142c4cd.png 480w, https://www.franziskuskiefer.de/p/openmls-performance/send-update-base_hu_eac6b5d50105e99f.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="473"
@@ -1194,7 +1189,7 @@ data-flex-basis="1135px"
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/openmls-performance/send-update-bare.png"
 width="3606"
 height="900"
-srcset="https://www.franziskuskiefer.de/p/openmls-performance/send-update-bare_hu17457979822156307379.png 480w, https://www.franziskuskiefer.de/p/openmls-performance/send-update-bare_hu12985293488775238139.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/openmls-performance/send-update-bare_hu_dd7355c5d880ac03.png 480w, https://www.franziskuskiefer.de/p/openmls-performance/send-update-bare_hu_ac606ee3ba0048bc.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="400"
@@ -1210,7 +1205,7 @@ The operations appear to be slightly more expensive in a fully updated tree thou
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/openmls-performance/add.png"
 width="600"
 height="371"
-srcset="https://www.franziskuskiefer.de/p/openmls-performance/add_hu480920004077346561.png 480w, https://www.franziskuskiefer.de/p/openmls-performance/add_hu1289853682501411927.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/openmls-performance/add_hu_9c38b82ff3e244c2.png 480w, https://www.franziskuskiefer.de/p/openmls-performance/add_hu_2ead502d3b5dff0b.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="161"
@@ -1224,7 +1219,7 @@ The remove information has to be encrypted to all other remaining participants i
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/openmls-performance/remove.png"
 width="600"
 height="371"
-srcset="https://www.franziskuskiefer.de/p/openmls-performance/remove_hu5303864267182273244.png 480w, https://www.franziskuskiefer.de/p/openmls-performance/remove_hu2574459668790701661.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/openmls-performance/remove_hu_7ecf46df3ffbc881.png 480w, https://www.franziskuskiefer.de/p/openmls-performance/remove_hu_4724a6e21d07a0ac.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="161"
@@ -1237,7 +1232,7 @@ This should be negligible in practice though.&lt;/p>
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/openmls-performance/application-message-send.png"
 width="600"
 height="371"
-srcset="https://www.franziskuskiefer.de/p/openmls-performance/application-message-send_hu2157335197267976492.png 480w, https://www.franziskuskiefer.de/p/openmls-performance/application-message-send_hu6324650358861094575.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/openmls-performance/application-message-send_hu_edc77415743ac28a.png 480w, https://www.franziskuskiefer.de/p/openmls-performance/application-message-send_hu_4d09a3ffb2673bb6.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="161"
@@ -1246,7 +1241,7 @@ data-flex-basis="388px"
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/openmls-performance/application-message-receive.png"
 width="600"
 height="371"
-srcset="https://www.franziskuskiefer.de/p/openmls-performance/application-message-receive_hu5643673153265419165.png 480w, https://www.franziskuskiefer.de/p/openmls-performance/application-message-receive_hu3098709710336373218.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/openmls-performance/application-message-receive_hu_fde770f19d41ed90.png 480w, https://www.franziskuskiefer.de/p/openmls-performance/application-message-receive_hu_8836068b72b1aff6.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="161"
@@ -1293,7 +1288,7 @@ In short, the &lt;code>monetization&lt;/code> meta-tag on the page is parsed by 
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/web-monetization/webmonetization-flow.png"
 width="1050"
 height="570"
-srcset="https://www.franziskuskiefer.de/p/web-monetization/webmonetization-flow_hu223726559760162503.png 480w, https://www.franziskuskiefer.de/p/web-monetization/webmonetization-flow_hu6528732100868382694.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/web-monetization/webmonetization-flow_hu_5815eb18ee3ef2a4.png 480w, https://www.franziskuskiefer.de/p/web-monetization/webmonetization-flow_hu_d27efa21a9759bb2.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="184"
@@ -1318,7 +1313,7 @@ This is a pretty bad sign for a provider that&amp;rsquo;s supposed to handle mon
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/web-monetization/UpholdWallet.png"
 width="845"
 height="237"
-srcset="https://www.franziskuskiefer.de/p/web-monetization/UpholdWallet_hu1113602131308553112.png 480w, https://www.franziskuskiefer.de/p/web-monetization/UpholdWallet_hu11558232267134140092.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/web-monetization/UpholdWallet_hu_56bc4ad312e0bedd.png 480w, https://www.franziskuskiefer.de/p/web-monetization/UpholdWallet_hu_5b48612fa2a6af42.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="356"
@@ -1384,7 +1379,7 @@ With an account and an &lt;a class="link" href="https://coil.com/#Extension-Inst
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/web-monetization/franziskuskiefer.de-coil.png"
 width="1822"
 height="1414"
-srcset="https://www.franziskuskiefer.de/p/web-monetization/franziskuskiefer.de-coil_hu1261618572122168537.png 480w, https://www.franziskuskiefer.de/p/web-monetization/franziskuskiefer.de-coil_hu1706154613804348378.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/web-monetization/franziskuskiefer.de-coil_hu_e086fa890bdc182f.png 480w, https://www.franziskuskiefer.de/p/web-monetization/franziskuskiefer.de-coil_hu_183806739d6d944f.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="128"
@@ -1396,7 +1391,7 @@ However, it takes a while for the monetization to kick in such that it looks lik
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/web-monetization/monetization-loading.gif"
 width="1296"
 height="234"
-srcset="https://www.franziskuskiefer.de/p/web-monetization/monetization-loading_hu10681860869619095284.gif 480w, https://www.franziskuskiefer.de/p/web-monetization/monetization-loading_hu14548680564489401132.gif 1024w"
+srcset="https://www.franziskuskiefer.de/p/web-monetization/monetization-loading_hu_11503fa888298593.gif 480w, https://www.franziskuskiefer.de/p/web-monetization/monetization-loading_hu_f3e3553cdea5853d.gif 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="553"
@@ -1442,7 +1437,7 @@ There was no communication whatsoever from Uphold except the following screen wh
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/web-monetization/uphold-account-lock.png"
 width="880"
 height="1262"
-srcset="https://www.franziskuskiefer.de/p/web-monetization/uphold-account-lock_hu1680130155481434162.png 480w, https://www.franziskuskiefer.de/p/web-monetization/uphold-account-lock_hu2931331024502949610.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/web-monetization/uphold-account-lock_hu_6b74195670761a7c.png 480w, https://www.franziskuskiefer.de/p/web-monetization/uphold-account-lock_hu_f388b809cf653a6.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="69"
@@ -1453,8 +1448,7 @@ data-flex-basis="167px"
 &lt;/h2>&lt;p>After getting in touch with Uphold (thanks Kaily!) it turned out that the account verification didn&amp;rsquo;t go through for some reason and I had to redo it to unlock my account.&lt;/p>
 &lt;p>I got an innocuous email saying&lt;/p>
 &lt;blockquote>
-&lt;p>We’ve had to temporarily restrict your account while we gather some more information. You can still trade but you won’t be able to withdraw funds.&lt;/p>
-&lt;/blockquote>
+&lt;p>We’ve had to temporarily restrict your account while we gather some more information. You can still trade but you won’t be able to withdraw funds.&lt;/p>&lt;/blockquote>
 &lt;p>What this actually meant is that I had to get in touch with the Uphold support team to figure out what&amp;rsquo;s going on.&lt;/p>
 &lt;p>I re-enabled web-monetization on this page.
 While the initial experience on my end wasn&amp;rsquo;t great it was unrelated to web-monetization and due to some shortcomings in Uphold&amp;rsquo;s communication and me ignoring some of it 😬.&lt;/p></description></item><item><title>I'm leaving AISEC</title><link>https://www.franziskuskiefer.de/p/im-leaving-aisec/</link><pubDate>Mon, 04 May 2020 00:00:00 +0000</pubDate><guid>https://www.franziskuskiefer.de/p/im-leaving-aisec/</guid><description>&lt;img src="https://www.franziskuskiefer.de/p/im-leaving-aisec/hero.jpg" alt="Featured image of post I'm leaving AISEC" />&lt;p>I don&amp;rsquo;t like to write a post like this but I really feel that this one is necessary.
@@ -1517,8 +1511,7 @@ See for example the &lt;a class="link" href="https://cseweb.ucsd.edu/~mihir/pape
 &lt;p>Shared-Secrets is an application that helps you to simply share one-time secrets over the web.
 Using the Shared-Secrets service allows you to transfer the actual secret in an encrypted form.
 Retrieving the secret is as simple as following a link.
-In contrast to other secret sharing services, Shared-Secrets does not store the secret on the server, but puts the encrypted secret into the link that you share with the desired recipient.&lt;/p>
-&lt;/blockquote>
+In contrast to other secret sharing services, Shared-Secrets does not store the secret on the server, but puts the encrypted secret into the link that you share with the desired recipient.&lt;/p>&lt;/blockquote>
 &lt;p>I leave aside the fact that any attacker that can intercept the message can trivially retrieve the secret and focus on the encryption scheme used for the service.
 Note that the service allows to encrypt the message with a password before sharing it to prevent the aforementioned attack.&lt;/p>
 &lt;p>The encryption scheme used for this service is a basic encrypt-then-mac scheme that can be written as&lt;/p>
@@ -1739,7 +1732,7 @@ Specs σ ::= s1...sn sequence of statements
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/update-on-hacspec/hacspec2-architecture.png"
 width="2873"
 height="2451"
-srcset="https://www.franziskuskiefer.de/p/update-on-hacspec/hacspec2-architecture_hu3195581800283001141.png 480w, https://www.franziskuskiefer.de/p/update-on-hacspec/hacspec2-architecture_hu2649430833740968362.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/update-on-hacspec/hacspec2-architecture_hu_8de99e7eeff4771e.png 480w, https://www.franziskuskiefer.de/p/update-on-hacspec/hacspec2-architecture_hu_950af34ffa8e638f.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="117"
@@ -1901,8 +1894,7 @@ In two rounds grad students also presented ongoing work on &lt;a class="link" hr
 &lt;p>&lt;a class="link" href="https://github.com/mitls/hacl-star/" target="_blank" rel="noopener"
 >HACL*&lt;/a> is a cryptographic library written in &lt;a class="link" href="https://www.fstar-lang.org/" target="_blank" rel="noopener"
 >F*&lt;/a> that allows translation to C using kremlin.
-It guarantees memory safety, secret independent computation, and functional correctness with respect to a mathematical specification.&lt;/p>
-&lt;/blockquote>
+It guarantees memory safety, secret independent computation, and functional correctness with respect to a mathematical specification.&lt;/p>&lt;/blockquote>
 &lt;hr>
 &lt;p>In this second blog post I describe the process of integrating code from HACL*, a researchy crypto library, into NSS, a production library shipping to millions of people, running on a plethora of platforms.
 In short, how to ship (some parts of) HACL*.&lt;/p>
@@ -1944,7 +1936,7 @@ The first versions we looked at weren&amp;rsquo;t that great &amp;hellip;&lt;/p>
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/shipping-some-hacl/hacl-review.png"
 width="1983"
 height="747"
-srcset="https://www.franziskuskiefer.de/p/shipping-some-hacl/hacl-review_hu4499019627654614460.png 480w, https://www.franziskuskiefer.de/p/shipping-some-hacl/hacl-review_hu14670101420540871018.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/shipping-some-hacl/hacl-review_hu_dc7cc53ebaebad91.png 480w, https://www.franziskuskiefer.de/p/shipping-some-hacl/hacl-review_hu_9b604c9cc957aac.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="265"
@@ -1953,7 +1945,7 @@ data-flex-basis="637px"
 &lt;img src="https://www.franziskuskiefer.de/p/shipping-some-hacl/ugly-hacl.png"
 width="755"
 height="147"
-srcset="https://www.franziskuskiefer.de/p/shipping-some-hacl/ugly-hacl_hu6016185786980744563.png 480w, https://www.franziskuskiefer.de/p/shipping-some-hacl/ugly-hacl_hu14117722760368656323.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/shipping-some-hacl/ugly-hacl_hu_a335ff08fbc7a63a.png 480w, https://www.franziskuskiefer.de/p/shipping-some-hacl/ugly-hacl_hu_67d61d8e2d1f243c.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="513"
@@ -1982,7 +1974,7 @@ As expected we ran into a couple issues on some platforms such as BSD and Solari
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/shipping-some-hacl/nss-bsd-hacl-bug.png"
 width="2048"
 height="184"
-srcset="https://www.franziskuskiefer.de/p/shipping-some-hacl/nss-bsd-hacl-bug_hu5090590584940457725.png 480w, https://www.franziskuskiefer.de/p/shipping-some-hacl/nss-bsd-hacl-bug_hu14518716714003580782.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/shipping-some-hacl/nss-bsd-hacl-bug_hu_22de423f74418db3.png 480w, https://www.franziskuskiefer.de/p/shipping-some-hacl/nss-bsd-hacl-bug_hu_fe22262a6f4debb0.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="1113"
@@ -1991,7 +1983,7 @@ data-flex-basis="2671px"
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/shipping-some-hacl/nss-solaris-hacl-bug.png"
 width="2048"
 height="184"
-srcset="https://www.franziskuskiefer.de/p/shipping-some-hacl/nss-solaris-hacl-bug_hu5722108412057574063.png 480w, https://www.franziskuskiefer.de/p/shipping-some-hacl/nss-solaris-hacl-bug_hu1645630068384567860.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/shipping-some-hacl/nss-solaris-hacl-bug_hu_880cd95fb94c19bd.png 480w, https://www.franziskuskiefer.de/p/shipping-some-hacl/nss-solaris-hacl-bug_hu_3d611ef34f96cbd.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="1113"
@@ -2012,7 +2004,7 @@ Here&amp;rsquo;s a diff for a recent update.&lt;/p>
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/shipping-some-hacl/nss-hacl-patch.png"
 width="2922"
 height="1264"
-srcset="https://www.franziskuskiefer.de/p/shipping-some-hacl/nss-hacl-patch_hu12663953578200761238.png 480w, https://www.franziskuskiefer.de/p/shipping-some-hacl/nss-hacl-patch_hu5796332706377407724.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/shipping-some-hacl/nss-hacl-patch_hu_cd3aa9c5c2b53aa9.png 480w, https://www.franziskuskiefer.de/p/shipping-some-hacl/nss-hacl-patch_hu_7a01cd98eb0314ff.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="231"
@@ -2030,8 +2022,7 @@ The code is relatively simple and self-contained, which makes this easier.
 But it shows that formal verification tools are good enough to be used in production.&lt;/p>
 &lt;p>The second lesson we learned is probably the more valuable one.&lt;/p>
 &lt;blockquote>
-&lt;p>&lt;em>Talk to each other and work together.&lt;/em>&lt;/p>
-&lt;/blockquote>
+&lt;p>&lt;em>Talk to each other and work together.&lt;/em>&lt;/p>&lt;/blockquote>
 &lt;p>From an engineering standpoint it might be frightening to start looking at formal verification tools and corresponding languages.
 But people working with these tools are happy to help out if that means more people are using their tools.
 It will need some effort getting used to the tools and languages but it&amp;rsquo;s well worth it.&lt;/p>
@@ -2092,7 +2083,7 @@ This additional code however is ignored by Kremlin and doesn&amp;rsquo;t get tra
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/the-hacl-approach/hacl-chart.png"
 width="842"
 height="595"
-srcset="https://www.franziskuskiefer.de/p/the-hacl-approach/hacl-chart_hu3913347318361800738.png 480w, https://www.franziskuskiefer.de/p/the-hacl-approach/hacl-chart_hu17342941644776944915.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/the-hacl-approach/hacl-chart_hu_9683bf7354fc0b1e.png 480w, https://www.franziskuskiefer.de/p/the-hacl-approach/hacl-chart_hu_7cbcf00e30c5a9f0.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="141"
@@ -2279,7 +2270,7 @@ The essence of the bug is that &lt;code>dest_len-len&lt;/code> does not point to
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/cve-2017-5462-a-prng-issue/CVE-2017-5462-bug.png"
 width="822"
 height="302"
-srcset="https://www.franziskuskiefer.de/p/cve-2017-5462-a-prng-issue/CVE-2017-5462-bug_hu8192818250878528882.png 480w, https://www.franziskuskiefer.de/p/cve-2017-5462-a-prng-issue/CVE-2017-5462-bug_hu13844593303691259105.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/cve-2017-5462-a-prng-issue/CVE-2017-5462-bug_hu_e8b8cedd1aa54041.png 480w, https://www.franziskuskiefer.de/p/cve-2017-5462-a-prng-issue/CVE-2017-5462-bug_hu_85a39c5e97dacc3c.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="272"
@@ -2329,7 +2320,7 @@ It further decreases the amount of ressources used on the server.&lt;/p></descri
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/aes-gcm-speedup/Screenshot-from-2017-06-14-10-09-27.png"
 width="2136"
 height="996"
-srcset="https://www.franziskuskiefer.de/p/aes-gcm-speedup/Screenshot-from-2017-06-14-10-09-27_hu8631148032516591515.png 480w, https://www.franziskuskiefer.de/p/aes-gcm-speedup/Screenshot-from-2017-06-14-10-09-27_hu2776092876382993494.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/aes-gcm-speedup/Screenshot-from-2017-06-14-10-09-27_hu_a00db76a02ce7800.png 480w, https://www.franziskuskiefer.de/p/aes-gcm-speedup/Screenshot-from-2017-06-14-10-09-27_hu_9d629983117762ba.png 1024w"
 loading="lazy"
 alt="Firefox 53 TLS cipher telemetry"
 class="gallery-image"
@@ -2381,7 +2372,7 @@ data-flex-basis="514px"
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/aes-gcm-speedup/linux64-encrypt.png"
 width="665"
 height="412"
-srcset="https://www.franziskuskiefer.de/p/aes-gcm-speedup/linux64-encrypt_hu10086943397254153485.png 480w, https://www.franziskuskiefer.de/p/aes-gcm-speedup/linux64-encrypt_hu969099613805604214.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/aes-gcm-speedup/linux64-encrypt_hu_b15de098b1144d0f.png 480w, https://www.franziskuskiefer.de/p/aes-gcm-speedup/linux64-encrypt_hu_595bdc315318072.png 1024w"
 loading="lazy"
 alt="Linux 64-bit encrypt"
 class="gallery-image"
@@ -2391,7 +2382,7 @@ data-flex-basis="387px"
 &lt;img src="https://www.franziskuskiefer.de/p/aes-gcm-speedup/linux32-encrypt.png"
 width="657"
 height="407"
-srcset="https://www.franziskuskiefer.de/p/aes-gcm-speedup/linux32-encrypt_hu10473480209911482808.png 480w, https://www.franziskuskiefer.de/p/aes-gcm-speedup/linux32-encrypt_hu17184927622994130837.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/aes-gcm-speedup/linux32-encrypt_hu_1b8c84b88fdb7236.png 480w, https://www.franziskuskiefer.de/p/aes-gcm-speedup/linux32-encrypt_hu_6cd5f261677dca18.png 1024w"
 loading="lazy"
 alt="Linux 32-bit encrypt"
 class="gallery-image"
@@ -2404,7 +2395,7 @@ The speed-up for 32-bit Linux is obviously more significant as it didn&amp;rsquo
 &lt;img src="https://www.franziskuskiefer.de/p/aes-gcm-speedup/win64-encrypt.png"
 width="600"
 height="371"
-srcset="https://www.franziskuskiefer.de/p/aes-gcm-speedup/win64-encrypt_hu15268150531908549230.png 480w, https://www.franziskuskiefer.de/p/aes-gcm-speedup/win64-encrypt_hu3293416628537479388.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/aes-gcm-speedup/win64-encrypt_hu_79ecb61b925e7e01.png 480w, https://www.franziskuskiefer.de/p/aes-gcm-speedup/win64-encrypt_hu_ffeff8d750e3e1d0.png 1024w"
 loading="lazy"
 alt="Windows 64-bit encrypt"
 class="gallery-image"
@@ -2414,7 +2405,7 @@ data-flex-basis="388px"
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/aes-gcm-speedup/win32-encrypt.png"
 width="600"
 height="371"
-srcset="https://www.franziskuskiefer.de/p/aes-gcm-speedup/win32-encrypt_hu14438816655898579123.png 480w, https://www.franziskuskiefer.de/p/aes-gcm-speedup/win32-encrypt_hu5113623536179900788.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/aes-gcm-speedup/win32-encrypt_hu_c9c434eb89453188.png 480w, https://www.franziskuskiefer.de/p/aes-gcm-speedup/win32-encrypt_hu_94ad5e97af38e585.png 1024w"
 loading="lazy"
 alt="Windows 32-bit encrypt"
 class="gallery-image"
@@ -2425,7 +2416,7 @@ data-flex-basis="388px"
 &lt;img src="https://www.franziskuskiefer.de/p/aes-gcm-speedup/mac-encrypt.png"
 width="600"
 height="371"
-srcset="https://www.franziskuskiefer.de/p/aes-gcm-speedup/mac-encrypt_hu1293817040194398281.png 480w, https://www.franziskuskiefer.de/p/aes-gcm-speedup/mac-encrypt_hu5387432531827102804.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/aes-gcm-speedup/mac-encrypt_hu_9d1fbc2fd46b74bf.png 480w, https://www.franziskuskiefer.de/p/aes-gcm-speedup/mac-encrypt_hu_f075882d1ea0a6ef.png 1024w"
 loading="lazy"
 alt="OS-X encrypt"
 class="gallery-image"
@@ -2450,7 +2441,7 @@ So I wrote a little thing to measure the time (CPU cycles) needed for division.&
 &lt;/h2>&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/on-constant-time-division/plot_low-1.png"
 width="2558"
 height="1347"
-srcset="https://www.franziskuskiefer.de/p/on-constant-time-division/plot_low-1_hu15842502754747643451.png 480w, https://www.franziskuskiefer.de/p/on-constant-time-division/plot_low-1_hu10953608243128651236.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/on-constant-time-division/plot_low-1_hu_fdb3d05d68bef2e8.png 480w, https://www.franziskuskiefer.de/p/on-constant-time-division/plot_low-1_hu_29153d0125de3c2d.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="189"
@@ -2470,7 +2461,7 @@ data-flex-basis="455px"
 &lt;/h2>&lt;p>&lt;img src="https://www.franziskuskiefer.de/p/on-constant-time-division/plot-1.png"
 width="2558"
 height="1347"
-srcset="https://www.franziskuskiefer.de/p/on-constant-time-division/plot-1_hu15793922373718518580.png 480w, https://www.franziskuskiefer.de/p/on-constant-time-division/plot-1_hu8612448082123602519.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/on-constant-time-division/plot-1_hu_99759b9081b2391a.png 480w, https://www.franziskuskiefer.de/p/on-constant-time-division/plot-1_hu_a3074d5514f86497.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="189"
@@ -2496,7 +2487,7 @@ data-flex-basis="455px"
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/nss-static-analysis/static-analysis.png"
 width="848"
 height="592"
-srcset="https://www.franziskuskiefer.de/p/nss-static-analysis/static-analysis_hu17197089755401763875.png 480w, https://www.franziskuskiefer.de/p/nss-static-analysis/static-analysis_hu1203676365463136346.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/nss-static-analysis/static-analysis_hu_213fb67cb88acdbf.png 480w, https://www.franziskuskiefer.de/p/nss-static-analysis/static-analysis_hu_e07580a8380bd653.png 1024w"
 loading="lazy"
 alt="Coverity Analysis Overview"
 class="gallery-image"
@@ -2507,7 +2498,7 @@ data-flex-basis="343px"
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/nss-static-analysis/density.png"
 width="848"
 height="300"
-srcset="https://www.franziskuskiefer.de/p/nss-static-analysis/density_hu9525628018459590055.png 480w, https://www.franziskuskiefer.de/p/nss-static-analysis/density_hu15005834468007398272.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/nss-static-analysis/density_hu_52c0518069b87049.png 480w, https://www.franziskuskiefer.de/p/nss-static-analysis/density_hu_5166819bacb04c96.png 1024w"
 loading="lazy"
 alt="Coverity density over time"
 class="gallery-image"
@@ -2520,7 +2511,7 @@ data-flex-basis="678px"
 &lt;img src="https://www.franziskuskiefer.de/p/rawgit-firefox-extension/Screenshot-from-2016-01-02-15-19-58.png"
 width="247"
 height="37"
-srcset="https://www.franziskuskiefer.de/p/rawgit-firefox-extension/Screenshot-from-2016-01-02-15-19-58_hu4173671888519952610.png 480w, https://www.franziskuskiefer.de/p/rawgit-firefox-extension/Screenshot-from-2016-01-02-15-19-58_hu18200278203597198030.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/rawgit-firefox-extension/Screenshot-from-2016-01-02-15-19-58_hu_b552212164e1bc7d.png 480w, https://www.franziskuskiefer.de/p/rawgit-firefox-extension/Screenshot-from-2016-01-02-15-19-58_hu_54f524f6fa4e68b6.png 1024w"
 loading="lazy"
 alt="without extension"
 class="gallery-image"
@@ -2531,7 +2522,7 @@ data-flex-basis="1602px"
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/rawgit-firefox-extension/Screenshot-from-2016-01-02-15-19-28.png"
 width="312"
 height="36"
-srcset="https://www.franziskuskiefer.de/p/rawgit-firefox-extension/Screenshot-from-2016-01-02-15-19-28_hu4579144110355892245.png 480w, https://www.franziskuskiefer.de/p/rawgit-firefox-extension/Screenshot-from-2016-01-02-15-19-28_hu2296273596983362675.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/rawgit-firefox-extension/Screenshot-from-2016-01-02-15-19-28_hu_47739d3c580b5902.png 480w, https://www.franziskuskiefer.de/p/rawgit-firefox-extension/Screenshot-from-2016-01-02-15-19-28_hu_6f2ccff7fbc879d.png 1024w"
 loading="lazy"
 alt="with extension"
 class="gallery-image"

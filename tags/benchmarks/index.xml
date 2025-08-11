@@ -2,8 +2,7 @@
 &lt;p>This is in response to the &lt;a class="link" href="https://kerkour.com/rust-symmetric-encryption-aead-benchmark/" target="_blank" rel="noopener"
 >blog post by Sylvain Kerkour&lt;/a> benchmarking ring and
 Rust Crypto AEADs.
-I was curious how HACL* stacks up to these two with these parameters.&lt;/p>
-&lt;/blockquote>
+I was curious how HACL* stacks up to these two with these parameters.&lt;/p>&lt;/blockquote>
 &lt;p>I&amp;rsquo;m maintaining the &lt;a class="link" href="https://crates.io/crates/evercrypt" target="_blank" rel="noopener"
 >Evercrypt crate&lt;/a>, a wrapper
 around the formally verified crypto library &lt;a class="link" href="https://github.com/project-everest/hacl-star" target="_blank" rel="noopener"
@@ -271,8 +270,7 @@ This blog post is only about MLS, and in particular OpenMLS, performance.&lt;/p>
 >is supposed to be scalable&lt;/a>.
 The charter in particular claims the following:&lt;/p>
 &lt;blockquote>
-&lt;p>Resource requirements have good scaling in the size of the group (preferably sub-linear)&lt;/p>
-&lt;/blockquote>
+&lt;p>Resource requirements have good scaling in the size of the group (preferably sub-linear)&lt;/p>&lt;/blockquote>
 &lt;p>While performance can be theoretically analysed for MLS it is also interesting to see whether the performance goals hold up in a real implementation.
 This of course only looks at a single implementation.
 Nonetheless, I think that it gives a good impression on the actual performance of MLS implementations.
@@ -338,7 +336,7 @@ This is what is to be expected because the performance is dominated by the creat
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/openmls-performance/group-creation.png"
 width="600"
 height="371"
-srcset="https://www.franziskuskiefer.de/p/openmls-performance/group-creation_hu390722887585268607.png 480w, https://www.franziskuskiefer.de/p/openmls-performance/group-creation_hu13105536394070267109.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/openmls-performance/group-creation_hu_711f7220390f570b.png 480w, https://www.franziskuskiefer.de/p/openmls-performance/group-creation_hu_a7c4146796121254.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="161"
@@ -352,7 +350,7 @@ The blue line again shows the actual measurements while the magenta one is a tre
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/openmls-performance/join.png"
 width="600"
 height="371"
-srcset="https://www.franziskuskiefer.de/p/openmls-performance/join_hu8434490448179972974.png 480w, https://www.franziskuskiefer.de/p/openmls-performance/join_hu586860903247748959.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/openmls-performance/join_hu_6aaf206d7a3d39eb.png 480w, https://www.franziskuskiefer.de/p/openmls-performance/join_hu_9f767674d648977f.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="161"
@@ -363,7 +361,7 @@ data-flex-basis="388px"
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/openmls-performance/update.png"
 width="600"
 height="371"
-srcset="https://www.franziskuskiefer.de/p/openmls-performance/update_hu9873159883853717952.png 480w, https://www.franziskuskiefer.de/p/openmls-performance/update_hu3643139880533845239.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/openmls-performance/update_hu_b6384e698aef9ecf.png 480w, https://www.franziskuskiefer.de/p/openmls-performance/update_hu_9f03c3b6a007180.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="161"
@@ -377,7 +375,7 @@ This is a strong indicator for where to look for the differences.&lt;/p>
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/openmls-performance/send-update-base.png"
 width="3606"
 height="762"
-srcset="https://www.franziskuskiefer.de/p/openmls-performance/send-update-base_hu4874649569774633425.png 480w, https://www.franziskuskiefer.de/p/openmls-performance/send-update-base_hu5991119730222648403.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/openmls-performance/send-update-base_hu_ebfa9c70c142c4cd.png 480w, https://www.franziskuskiefer.de/p/openmls-performance/send-update-base_hu_eac6b5d50105e99f.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="473"
@@ -386,7 +384,7 @@ data-flex-basis="1135px"
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/openmls-performance/send-update-bare.png"
 width="3606"
 height="900"
-srcset="https://www.franziskuskiefer.de/p/openmls-performance/send-update-bare_hu17457979822156307379.png 480w, https://www.franziskuskiefer.de/p/openmls-performance/send-update-bare_hu12985293488775238139.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/openmls-performance/send-update-bare_hu_dd7355c5d880ac03.png 480w, https://www.franziskuskiefer.de/p/openmls-performance/send-update-bare_hu_ac606ee3ba0048bc.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="400"
@@ -402,7 +400,7 @@ The operations appear to be slightly more expensive in a fully updated tree thou
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/openmls-performance/add.png"
 width="600"
 height="371"
-srcset="https://www.franziskuskiefer.de/p/openmls-performance/add_hu480920004077346561.png 480w, https://www.franziskuskiefer.de/p/openmls-performance/add_hu1289853682501411927.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/openmls-performance/add_hu_9c38b82ff3e244c2.png 480w, https://www.franziskuskiefer.de/p/openmls-performance/add_hu_2ead502d3b5dff0b.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="161"
@@ -416,7 +414,7 @@ The remove information has to be encrypted to all other remaining participants i
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/openmls-performance/remove.png"
 width="600"
 height="371"
-srcset="https://www.franziskuskiefer.de/p/openmls-performance/remove_hu5303864267182273244.png 480w, https://www.franziskuskiefer.de/p/openmls-performance/remove_hu2574459668790701661.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/openmls-performance/remove_hu_7ecf46df3ffbc881.png 480w, https://www.franziskuskiefer.de/p/openmls-performance/remove_hu_4724a6e21d07a0ac.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="161"
@@ -429,7 +427,7 @@ This should be negligible in practice though.&lt;/p>
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/openmls-performance/application-message-send.png"
 width="600"
 height="371"
-srcset="https://www.franziskuskiefer.de/p/openmls-performance/application-message-send_hu2157335197267976492.png 480w, https://www.franziskuskiefer.de/p/openmls-performance/application-message-send_hu6324650358861094575.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/openmls-performance/application-message-send_hu_edc77415743ac28a.png 480w, https://www.franziskuskiefer.de/p/openmls-performance/application-message-send_hu_4d09a3ffb2673bb6.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="161"
@@ -438,7 +436,7 @@ data-flex-basis="388px"
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/openmls-performance/application-message-receive.png"
 width="600"
 height="371"
-srcset="https://www.franziskuskiefer.de/p/openmls-performance/application-message-receive_hu5643673153265419165.png 480w, https://www.franziskuskiefer.de/p/openmls-performance/application-message-receive_hu3098709710336373218.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/openmls-performance/application-message-receive_hu_fde770f19d41ed90.png 480w, https://www.franziskuskiefer.de/p/openmls-performance/application-message-receive_hu_8836068b72b1aff6.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="161"

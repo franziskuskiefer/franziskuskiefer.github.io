@@ -2,8 +2,7 @@
 >HPKE&lt;/a>, published as &lt;a class="link" href="https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/" target="_blank" rel="noopener"
 >RFC 9180&lt;/a>, describes a scheme for hybrid public key encryption.&lt;/p>
 &lt;blockquote>
-&lt;p>📚 Please go and read our &lt;a class="link" href="https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/" >TL;DR on HPKE&lt;/a> if you nee more background on HPKE.&lt;/p>
-&lt;/blockquote>
+&lt;p>📚 Please go and read our &lt;a class="link" href="https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/" >TL;DR on HPKE&lt;/a> if you nee more background on HPKE.&lt;/p>&lt;/blockquote>
 &lt;p>In this I describe the first executable HPKE specification using &lt;a class="link" href="https://hacspec.org" target="_blank" rel="noopener"
 >hacspec&lt;/a>.
 It is not only an executable specification of &lt;a class="link" href="https://datatracker.ietf.org/doc/draft-irtf-cfrg-hpke/" target="_blank" rel="noopener"
@@ -28,8 +27,7 @@ It works for any combination of an asymmetric key encapsulation mechanism (KEM),
 details on the core functions within HPKE.
 All code examples are in hacspec.&lt;/p>
 &lt;blockquote>
-&lt;p>💡 Go ahead and &lt;a class="link" href="https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/#try-it-out-now" >run the hacspec HPKE in the browser&lt;/a>.&lt;/p>
-&lt;/blockquote>
+&lt;p>💡 Go ahead and &lt;a class="link" href="https://www.franziskuskiefer.de/p/tldr-hybrid-public-key-encryption/#try-it-out-now" >run the hacspec HPKE in the browser&lt;/a>.&lt;/p>&lt;/blockquote>
 &lt;h2 id="encrypting-to-a-public-key">Encrypting to a Public Key
 &lt;/h2>&lt;p>This is the most basic functionality HPKE offers; encrypting a payload to a public key.
 So how does this look on the outside?&lt;/p>
@@ -390,7 +388,7 @@ Specs σ ::= s1...sn sequence of statements
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/update-on-hacspec/hacspec2-architecture.png"
 width="2873"
 height="2451"
-srcset="https://www.franziskuskiefer.de/p/update-on-hacspec/hacspec2-architecture_hu3195581800283001141.png 480w, https://www.franziskuskiefer.de/p/update-on-hacspec/hacspec2-architecture_hu2649430833740968362.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/update-on-hacspec/hacspec2-architecture_hu_8de99e7eeff4771e.png 480w, https://www.franziskuskiefer.de/p/update-on-hacspec/hacspec2-architecture_hu_950af34ffa8e638f.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="117"

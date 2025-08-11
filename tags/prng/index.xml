@@ -60,7 +60,7 @@ The essence of the bug is that &lt;code>dest_len-len&lt;/code> does not point to
 &lt;p>&lt;img src="https://www.franziskuskiefer.de/p/cve-2017-5462-a-prng-issue/CVE-2017-5462-bug.png"
 width="822"
 height="302"
-srcset="https://www.franziskuskiefer.de/p/cve-2017-5462-a-prng-issue/CVE-2017-5462-bug_hu8192818250878528882.png 480w, https://www.franziskuskiefer.de/p/cve-2017-5462-a-prng-issue/CVE-2017-5462-bug_hu13844593303691259105.png 1024w"
+srcset="https://www.franziskuskiefer.de/p/cve-2017-5462-a-prng-issue/CVE-2017-5462-bug_hu_e8b8cedd1aa54041.png 480w, https://www.franziskuskiefer.de/p/cve-2017-5462-a-prng-issue/CVE-2017-5462-bug_hu_85a39c5e97dacc3c.png 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="272"
